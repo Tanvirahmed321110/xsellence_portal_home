@@ -1,0 +1,357 @@
+<odoo>
+    <template id="dashboard_page">
+        <link rel="stylesheet" href="/xsellence_portal/static/src/css/dashboard.css?v=1"/>
+
+        <t t-call="xsellence_portal.custom_layout">
+            <section class="">
+
+                <!--=================|| Carts Here ||==================  -->
+                <div class="grid-4 grid-sm-2 gap-4 dashboard-items">
+                    <div class="card">
+                        <p class="title">Total Projects</p>
+                        <h2 class="mt-6">04</h2>
+                    </div>
+                    <div class="card">
+                        <p class="title">Completed Project</p>
+                        <h2 class="mt-6">03</h2>
+                    </div>
+                    <div class="card">
+                        <p class="title">Helpdesk New</p>
+                        <h2 class="mt-5">01</h2>
+                    </div>
+                    <div class="card">
+                        <p class="title">Helpdesk Sloved</p>
+                        <h2 class="mt-6">22</h2>
+                    </div>
+                </div>
+
+
+                <!-- ── Bottom Row ── -->
+                <div class="grid-2 grid-sm-1 mt-7 gap-6" style="align-items:stretch;">
+
+                    <!-- Project Progress -->
+                    <div class="project-progress p-4 radius-xl  ">
+                        <div class="section-title  ">Project Progress</div>
+                        <div class="proj-list mt-4 flex-column gap-5">
+
+                            <div class="proj-item">
+                                <div class="proj-meta">
+                                    <span class="proj-name">Nadia Website Dev</span>
+                                    <span class="proj-pct">78%</span>
+                                </div>
+                                <div class="prog-track">
+                                    <div class="prog-bar"
+                                         style="width:78%; background: linear-gradient(90deg,#d9117cac,#d9117c7a);">
+                                    </div>
+                                </div>
+                                <div class="proj-tags">
+                                    <span class="tag tag-blue">Design</span>
+                                    <span class="tag tag-green">Active</span>
+                                </div>
+                            </div>
+
+                            <div class="proj-item">
+                                <div class="proj-meta">
+                                    <span class="proj-name">Mobile App v2</span>
+                                    <span class="proj-pct">45%</span>
+                                </div>
+                                <div class="prog-track">
+                                    <div class="prog-bar"
+                                         style="width:30%; background: linear-gradient(90deg,#d9117cac,#d9117c7a);">
+                                    </div>
+                                </div>
+                                <div class="proj-tags">
+                                    <span class="tag tag-green">Dev</span>
+                                    <span class="tag tag-amber">In Review</span>
+                                </div>
+                            </div>
+
+                            <div class="proj-item">
+                                <div class="proj-meta">
+                                    <span class="proj-name">Tourgull Tour Module</span>
+                                    <span class="proj-pct">65%</span>
+                                </div>
+                                <div class="prog-track">
+                                    <div class="prog-bar"
+                                         style="width:65%; background: linear-gradient(90deg,#d9117cac,#d9117c7a);">
+                                    </div>
+                                </div>
+                                <div class="proj-tags">
+                                    <span class="tag tag-green">Dev</span>
+                                    <span class="tag tag-amber">In Review</span>
+                                </div>
+                            </div>
+
+                            <div class="proj-item">
+                                <div class="proj-meta">
+                                    <span class="proj-name">API Integration</span>
+                                    <span class="proj-pct">88%</span>
+                                </div>
+                                <div class="prog-track">
+                                    <div class="prog-bar"
+                                         style="width:88%; background: linear-gradient(90deg,#d9117cac,#d9117c7a);">
+                                    </div>
+                                </div>
+                                <div class="proj-tags">
+                                    <span class="tag tag-purple">Backend</span>
+                                    <span class="tag tag-blue">Testing</span>
+                                </div>
+                            </div>
+
+                            <div class="proj-item">
+                                <div class="proj-meta">
+                                    <span class="proj-name">Dashboard UI</span>
+                                    <span class="proj-pct">12%</span>
+                                </div>
+                                <div class="prog-track">
+                                    <div class="prog-bar"
+                                         style="width:12%; background: linear-gradient(90deg,#d9117cac,#d9117c7a);">
+                                    </div>
+                                </div>
+                                <div class="proj-tags">
+                                    <span class="tag tag-amber">Frontend</span>
+                                    <span class="tag tag-red">Delayed</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 2×2 Mini Cards -->
+                    <div class="grid-2 gap-4 mini-cards">
+
+                        <div class="mini-card shadow-sm">
+                            <div class="mini-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                     fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                            </div>
+                            <div class="mini-val mt-4">12h</div>
+                            <div class="mini-label">Avg. Time / Task</div>
+                        </div>
+
+                        <div class="mini-card shadow-sm">
+                            <div class="mini-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                     fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <div class="mini-val mt-4">06</div>
+                            <div class="mini-label">Team Members</div>
+                        </div>
+
+                        <div class="mini-card shadow-sm">
+                            <div class="mini-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                     fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <polygon
+                                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                            </div>
+                            <div class="mini-val mt-5">4.8</div>
+                            <div class="mini-label ">Performance Score</div>
+                        </div>
+
+                        <div class="mini-card shadow-sm">
+                            <div class="mini-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                     fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="12" y1="8" x2="12" y2="12"/>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                                </svg>
+                            </div>
+                            <div class="mini-val mt-4">03</div>
+                            <div class="mini-label">Overdue Tasks</div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="grid-2 gap-6 grid-sm-1 mt-7 leave-attendance">
+
+
+                    <!--=================|| For Attendance ||==================  -->
+                    <div class="attendance">
+                        <div class="section-title ">Attendance</div>
+
+                        <div class="grid-3 grid-sm-1 gap-4 mt-4 ">
+                            <!-- Card 1: Working Hours -->
+                            <div class="card card-hours">
+                                <div class="card-top flex-between">
+                                    <div class="card-icon icon-blue">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                             viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"
+                                             stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"/>
+                                            <polyline points="12 6 12 12 16 14"/>
+                                        </svg>
+                                    </div>
+                                    <span class="card-badge badge-blue">March</span>
+                                </div>
+                                <div class="title">Working Hours</div>
+                                <div class="value mt-6">199
+                                    <span class="value-unit">h</span>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="footer-label">Daily avg</span>
+                                    <span class="footer-val col-blue">8.2h</span>
+                                    <span class="trend trend-up">
+                                        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                             stroke-width="3">
+                                            <polyline points="18 15 12 9 6 15"/>
+                                        </svg>
+                                        +4h
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Check In -->
+                            <div class="card card-checkin">
+                                <div class="card-top flex-between">
+                                    <div class="card-icon icon-green">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                             viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"
+                                             stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+                                            <polyline points="10 17 15 12 10 7"/>
+                                            <line x1="15" y1="12" x2="3" y2="12"/>
+                                        </svg>
+                                    </div>
+                                    <span class="card-badge badge-green">
+                                        <span class="live-dot" style="margin-right:4px;"></span>Today
+                                    </span>
+                                </div>
+                                <div class="title">Check In</div>
+                                <div class="value mt-6">9:55
+                                    <span class="value-unit">AM</span>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="footer-label">Expected</span>
+                                    <span class="footer-val col-green">9:00 AM</span>
+                                    <span class="trend trend-down">
+                                        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                             stroke-width="3">
+                                            <polyline points="18 9 12 15 6 9"/>
+                                        </svg>
+                                        55m late
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Card 3: Check Out -->
+                            <div class="card card-checkout">
+                                <div class="card-top flex-between">
+                                    <div class="card-icon icon-amber">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                             viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"
+                                             stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                            <polyline points="16 17 21 12 16 7"/>
+                                            <line x1="21" y1="12" x2="9" y2="12"/>
+                                        </svg>
+                                    </div>
+                                    <span class="card-badge badge-amber">Today</span>
+                                </div>
+                                <div class="title">Check Out</div>
+                                <div class="value mt-6">6:00
+                                    <span class="value-unit">PM</span>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="footer-label">Duration</span>
+                                    <span class="footer-val col-amber">8h 05m</span>
+                                    <span class="trend trend-neutral">On shift</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="leave">
+                        <div class="section-title"> Leave</div>
+                        <div class="grid-2 gap-4 mt-4">
+                            <div class="card">
+                                <div>Sick Leave</div> <span>12</span>
+                            </div>
+                            <div class="card">
+                                <div>Casual <span>12</span></div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!--=================|| For Leave ||==================-->
+                    <div class="leave">
+                        <div class="section-title">Leave</div>
+
+                        <div class="grid-2 gap-4 mt-4 gap-sm-3">
+
+                            <!-- Sick Leave -->
+                            <div class="card leave-card">
+                                <div class="leave-info w-100">
+
+
+                                    <span class="leave-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect x="3" y="10" width="18" height="6" rx="2" stroke="currentColor"
+                                                  stroke-width="2"/>
+                                            <circle cx="7" cy="8" r="2" stroke="currentColor" stroke-width="2"/>
+                                            <path d="M3 16v3M21 16v3" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                    </span>
+
+                                    <div class="title">Sick Leave</div>
+                                    <div class="footer  ">
+                                        <div class="text-right fs-xs total">(<span>2</span> / <span>10</span>)
+                                        </div>
+                                        <div class="prog-track mt-3">
+                                            <div class="prog-bar"
+                                                 style="width:15%; background: linear-gradient(90deg,#d9117cac,#d9117c7a);">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Casual Leave -->
+                            <div class="card leave-card">
+                                <div class="leave-info w-100">
+
+                                    <!-- Beach / Relax Icon -->
+                                    <span class="leave-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M4 14c6-10 16-10 16-10s0 10-10 16C6 22 4 18 4 14z"
+                                                  stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                    </span>
+
+                                    <div class="title">Casual Leave</div>
+                                    <div class="footer  ">
+                                        <div class="text-right fs-xs total">(<span>4</span> / <span>12</span>)
+                                        </div>
+                                        <div class="prog-track mt-3">
+                                            <div class="prog-bar"
+                                                 style="width:65%; background: linear-gradient(90deg,#d9117cac,#d9117c7a);">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </t>
+    </template>
+</odoo>

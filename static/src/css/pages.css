@@ -1,0 +1,1231 @@
+
+/*==============  Submit Form Here  ==============*/
+.submit-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--color-white);
+    padding: 24px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    z-index: 2;
+    transition: var(--transition-base);
+}
+/* When load then load animation */
+.submit-form{
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1.4s ease forwards;
+}
+.helpdesk .card-items > *,
+.h-items > * {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease forwards;
+}
+
+.h-items > * {
+    transform: translateY(40px);
+    animation-delay: .3s;
+}
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.submit-form .top {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background-color: var(--border-primary);
+}
+
+.submit-form .top svg {
+    width: 22px;
+}
+
+
+.input-control.select {
+    width: 100%;
+}
+
+.input-control select {
+    border: 1px solid var(--border-primary);
+    width: 100%;
+    width: 100%;
+    padding: 9.5px 12px;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-white-off);
+}
+
+
+
+
+
+
+
+
+
+/*=========================  Timesheet page  ===========================*/
+.timesheets .filter-head,
+.helpdesk .filter-head {
+    background-color: var(--color-white);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+}
+
+
+
+.timesheets .table-wrap {
+    min-height: 400px;
+}
+
+
+.timesheets .action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-secondary);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-text-white);
+    background-color: var(--color-primary);
+    transition: var(--transition-fast);
+}
+
+.timesheets .action-btn.del:hover {
+    background-color: var(--btn-danger-bg);
+    color: wheat;
+}
+
+.timesheets .action-btn.del {
+    color: var(--color-danger);
+    border-color: var(--color-danger);
+    background: #fee2e2;
+}
+
+.timesheets .table-wrap {
+    max-height: 700px;
+    overflow-y: auto;
+}
+
+.timesheets .task-desc-wrap {
+    position: relative;
+}
+
+.timesheets .task-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* 👈 max 2 line */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 38px;
+}
+
+.timesheets .task-desc-wrap:hover .hover-desc {
+    padding: 12px;
+    border-radius: var(--radius-md);
+    position: absolute;
+    top: -10px;
+    width: fit-content;
+    max-height: 500px;
+    z-index: 2;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-md);
+    display: block;
+    line-height: 1.5;
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 0px;
+    width: 400px;
+    border: 1px solid var(--border-primary);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.task-desc-wrap .hover-desc {
+    display: none;
+}
+
+
+
+.task-details .task-card {
+    border-radius: var(--fs-xl);
+}
+
+.task-details .task-card .card-body {
+    padding: 24px;
+}
+
+.task-details .task-card .card-tags {
+    margin-top: 8px;
+    min-height: unset;
+    gap: 4px;
+    row-gap: 4px;
+}
+
+.task-details .task-card .status-badge {
+    padding: 5px 10px;
+    font-size: var(--fs-xs);
+}
+
+.task-details .proj-card .tag {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-400);
+    padding: 5px 10px;
+    line-height: 1;
+}
+
+.task-details .proj-card .card-tags {
+    gap: 6px;
+    row-gap: 8px;
+    margin-top: 8px;
+    height: auto;
+    overflow: unset;
+}
+
+.task-details .task-card .card-proj-name {
+    font-size: var(--fs-lg);
+}
+
+.task-details .proj-card .info-val {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-600);
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding-top: 2px;
+}
+
+.task-details .proj-card .info-label {
+    font-size: var(--fs-sm);
+}
+
+.task-details .proj-card:hover {
+    transform: scale(1);
+}
+
+
+
+/*==============  Ts Control Library  ==============*/
+.ts-control{
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-white-off);
+    border-color: var(--border-primary);
+    font-weight: 500;
+    color: var(--color-text-muted);
+}
+
+.ts-wrapper.multi .ts-control > div {
+    cursor: pointer;
+    margin: 0 3px 3px 0;
+    padding: 2px 6px;
+    background: var(--border-primary);
+    color: var(--color-text-header);
+    border: 0px solid #d0d0d0;
+    overflow: auto;
+    border-radius: var(--radius-sm);
+}
+
+.ts-dropdown .active {
+    background-color: #f5fafd;
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+
+
+
+
+
+/*=========================  Profile page  ===========================*/
+.banner {
+    height: 180px;
+    width: 100%;
+    background: var(--header-bg);
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-xxl);
+}
+
+.banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+
+.banner-top {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+    border-radius: var(--radius-lg);
+    animation: moveGrid 1.5s linear infinite;
+}
+
+@keyframes moveGrid {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 48px 48px;
+    }
+}
+
+
+/* Profile Info Top */
+.profile .profile-info {
+    margin-top: -84px;
+    position: relative;
+    z-index: 2;
+    padding: 20px 60px;
+    align-items: end;
+}
+
+.profile .profile-info-wrap {
+    align-items: end;
+}
+
+
+.profile .profile-info .profile-img {
+    position: relative;
+    border-radius: 8px;
+    padding: 4px;
+    background: linear-gradient(to bottom,
+            var(--color-secondary) 41%,
+            var(--color-white) 10%,
+            var(--color-white) 90%);
+}
+
+.profile .profile-info .profile-img img {
+    width: 130px;
+    height: 148px;
+    border-radius: 6px;
+    display: block;
+}
+
+.profile .profile-info .name {
+    color: var(--color-text-header);
+    font-size: var(--fs-xl);
+}
+
+.profile .profile-info .post {
+    font-size: var(--fs-sm);
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+.profile .profile-info .id {
+    font-size: var(--fs-xs);
+    margin-top: 2px;
+    font-weight: 500;
+    color: var(--color-text-desc);
+}
+
+
+
+/*=========== Main Info ===========*/
+.profile .main-info {
+    display: grid;
+    gap: 36px;
+    grid-template-columns: 1fr 28%;
+    padding: 0 60px;
+}
+
+.profile .main-info .card {
+    background-color: var(--color-white);
+    border-radius: var(--radius-xl);
+}
+
+.profile .main-info .id-card {
+    background: var(--sidebar-bg);
+    border-radius: var(--radius-xl);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile .main-info .id-card::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.profile .id-card::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.profile .card .info-label {
+    font-size: var(--fs-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--color-text-muted);
+    margin-bottom: 6px;
+}
+
+.profile .card .info-value {
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.profile .card .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 28px;
+}
+
+.profile .card .card-header .icon {
+    background-color: var(--border-primary);
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+}
+
+.profile .id-card-label {
+    font-size: 0.62rem;
+    font-weight: var(--fw-600);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 14px;
+}
+
+.profile .id-card-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-round);
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: var(--fw-700);
+    color: #fff;
+    margin-bottom: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.profile .id-card-name {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-700);
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.profile .id-card-pos {
+    font-size: var(--fs-xs);
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 16px;
+}
+
+.profile .id-card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 14px;
+}
+
+.profile .id-num {
+    font-size: var(--fs-xs);
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: var(--fw-500);
+}
+
+.profile .id-num strong {
+    display: block;
+    font-size: var(--fs-sm);
+    color: var(--color-secondary);
+    font-weight: var(--fw-700);
+    letter-spacing: 1px;
+}
+
+
+/*========== Reporting Manager ==========*/
+.profile .main-info .manager {
+    margin-top: 32px;
+    padding: 0px;
+}
+
+.profile .main-info .manager .card-title {
+    color: var(--color-text-header);
+    font-size: var(--fs-md);
+    border-bottom: 1px solid var(--border-secondary);
+    padding: 16px;
+}
+
+.profile .main-info .manager-name {
+    font-size: var(--fs-sm);
+    color: var(--color-text-header);
+}
+
+.profile .main-info .manager-role {
+    color: var(--color-text-muted);
+}
+
+.profile .manager-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-round);
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    color: var(--color-white);
+    flex-shrink: 0;
+    letter-spacing: .6px;
+
+}
+
+
+
+
+
+/*=========================  Helpdesk page  ===========================*/
+.helpdesk .helpdesk-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    background-color: var(--color-white);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+
+.helpdesk .helpdesk-card .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.helpdesk .helpdesk-card .card-content .count {
+    display: inline-block;
+    width: fit-content;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 4px 8px;
+    font-size: var(--fs-xs);
+}
+
+
+/* Helpdesk card status */
+.helpdesk .helpdesk-card.cancelled .card-content .count {
+    background-color: var(--color-danger);
+}
+
+.helpdesk .helpdesk-card.sloved .card-content .count {
+    background-color: var(--color-primary);
+}
+
+.helpdesk .helpdesk-card.progress .card-content .count {
+    background-color: var(--color-warning);
+}
+
+.helpdesk .helpdesk-card.new .card-content .count {
+    background-color: var(--header-bg);
+}
+
+.helpdesk .helpdesk-card.cancelled svg circle {
+    stroke: var(--color-danger);
+}
+
+.helpdesk .helpdesk-card.new svg circle {
+    stroke: var(--header-bg);
+}
+
+.helpdesk .helpdesk-card.new svg path {
+    stroke: var(--header-bg);
+}
+
+.helpdesk .helpdesk-card.progress svg circle {
+    stroke: var(--color-warning);
+}
+
+.helpdesk .helpdesk-card.sloved svg circle {
+    stroke: var(--color-primary);
+}
+
+.helpdesk .helpdesk-card.sloved svg path {
+    stroke: var(--color-primary);
+}
+
+.helpdesk .helpdesk-wrap {
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    background-color: var(--color-white);
+    gap: 20px;
+}
+
+.helpdesk .helpdesk-wrap .item {
+    background-color: var(--border-primary);
+    position: relative;
+    border-top-right-radius: 12px;
+    border-radius: 12px;
+    transition: var(--transition-base);
+}
+
+.helpdesk .helpdesk-wrap .item::after {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.helpdesk .helpdesk-wrap .item::before {
+    content: '';
+    position: absolute;
+    right: -16px;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: var(--transition-base);
+}
+
+.helpdesk .helpdesk-wrap .item:hover {
+    outline: 1px solid var(--color-tag);
+    transition: unset;
+}
+
+
+/* helpdesk-wrap Status */
+.helpdesk-wrap .item .status {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    top: 2px;
+    right: 2px;
+    padding: 4px 12px;
+    border-radius: 0 12px 2px 12px;
+    font-size: var(--fs-low);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.helpdesk-wrap .item .status.status-cancelled {
+    background-color: var(--color-danger);
+}
+
+.helpdesk-wrap .item .status.status-new {
+    background-color: var(--header-bg);
+}
+
+.helpdesk-wrap .item .status.status-progress {
+    background-color: var(--color-warning);
+}
+
+.helpdesk-wrap .item .info-label {
+    font-size: var(--fs-xs);
+    color: var(--color-text-desc);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    font-weight: var(--fw-500);
+    margin-bottom: 4px;
+}
+
+.helpdesk-wrap .filter-select {
+    background: var(--color-white);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-pill);
+    padding: 8px 12px;
+    font-size: var(--fs-xs);
+    box-shadow: var(--shadow-md);
+    font-weight: 500;
+}
+
+.helpdesk-wrap .filter-select option {
+    font-weight: 500;
+}
+
+.helpdesk-wrap .item .info-val {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-600);
+    color: var(--color-primary-hover);
+    gap: 5px;
+    padding-top: 2px;
+
+    /* This works for single line too */
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+
+    /* Remove fixed height or make it auto */
+    height: auto;
+    line-height: normal;
+}
+
+.helpdesk-wrap .item .ticket-header {
+    display: flex;
+    gap: 4px;
+    align-items: start;
+}
+
+.helpdesk-wrap .item .ticket-header .task-name {
+    flex: 1;
+    padding: 12px;
+    color: var(--color-text-header);
+    font-weight: 500;
+    line-height: 1.6;
+    display: --webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    height: 60px;
+}
+
+
+
+
+
+
+
+/*==============  Helpdesk Details Page  ==============*/
+.page {
+    max-width: 980px;
+    margin: var(--space-1) auto;
+    padding: 20px;
+}
+
+/* ── Hero ── */
+.ticket-hero {
+    background: var(--color-bg-primary);
+    border: 1px solid var(--border-primary);
+    border-top: 3px solid var(--color-primary);
+    border-radius: var(--radius-xl);
+    padding: var(--space-7) var(--space-7) var(--space-6);
+    margin-bottom: var(--space-5);
+    animation: fadeUp .35s ease both;
+}
+
+.hero-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.ticket-id-badge {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-600);
+    color: var(--color-primary);
+    background: #d9117c11;
+    border: 1px solid var(--border-primary);
+    padding: 3px var(--space-3);
+    border-radius: var(--radius-pill);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-bottom: var(--space-3);
+}
+
+.ticket-title {
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-700);
+    color: var(--color-text-header);
+    margin-bottom: var(--space-4);
+    line-height: var(--line-height-xl);
+}
+
+.hero-badges {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
+}
+
+/* ── Badge ── */
+.helpdesk-details .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-600);
+}
+
+.helpdesk-details .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-round);
+    flex-shrink: 0;
+}
+
+.helpdesk-details .badge-cancelled {
+    background: #fef2f2;
+    color: var(--color-text-danger);
+}
+
+.helpdesk-details .badge-cancelled .badge-dot {
+    background: var(--color-text-danger);
+}
+
+.helpdesk-details .badge-progress {
+    background: #fffbeb;
+    color: var(--color-warning);
+}
+
+.helpdesk-details .badge-progress .badge-dot {
+    background: var(--color-warning);
+}
+
+.helpdesk-details .badge-new {
+    background: #eff6ff;
+    color: var(--color-text-link);
+}
+
+.helpdesk-details .badge-new .badge-dot {
+    background: var(--color-text-link);
+}
+
+.helpdesk-details .badge-solved {
+    background: #f0fdf4;
+    color: var(--color-text-success);
+}
+
+.helpdesk-details .badge-solved .badge-dot {
+    background: var(--color-text-success);
+}
+
+.helpdesk-details .badge-high {
+    background: #fef2f2;
+    color: var(--color-text-danger);
+}
+
+.badge-high .badge-dot {
+    background: var(--color-text-danger);
+}
+
+.helpdesk-details .badge-medium {
+    background: #fffbeb;
+    color: var(--color-warning);
+}
+
+.helpdesk-details .badge-low {
+    background: #f0fdf4;
+    color: var(--color-text-success);
+}
+
+
+
+/* ── Grid ── */
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-5);
+    align-items: start;
+}
+
+.helpdesk-details .col-gap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+/* ── Card ── */
+.helpdesk-details .card {
+    background: var(--color-bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    animation: fadeUp .4s ease both;
+}
+
+.helpdesk-details .card:nth-child(2) {
+    animation-delay: .06s;
+}
+
+.helpdesk-details .card:nth-child(3) {
+    animation-delay: .12s;
+}
+
+.helpdesk-details .card-head {
+    padding: var(--space-3) var(--space-5);
+    border-bottom: 1px solid var(--border-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #d9117c08;
+}
+
+.helpdesk-details .card-head-title {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-700);
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.helpdesk-details .card-body {
+    padding: var(--space-5);
+}
+
+/* ── Description ── */
+.helpdesk-details .description-text {
+    font-size: var(--fs-sm);
+    color: var(--color-text-desc);
+    line-height: var(--line-height-xl);
+}
+
+.helpdesk-details .description-text p {
+    line-height: 1.8;
+}
+
+.helpdesk-details .description-text p+p {
+    margin-top: var(--space-3);
+}
+
+.helpdesk-details .description-text strong {
+    font-weight: var(--fw-600);
+    color: var(--color-text-secondary);
+}
+
+/* ── Timeline ── */
+.helpdesk-details .timeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.helpdesk-details .timeline-item {
+    display: flex;
+    gap: var(--space-3);
+    position: relative;
+    padding-bottom: var(--space-5);
+}
+
+.helpdesk-details .timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.helpdesk-details .timeline-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 13px;
+    top: 26px;
+    width: 1px;
+    bottom: 0;
+    background: var(--border-primary);
+}
+
+
+/* ── Meta list ── */
+.meta-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) 0;
+    gap: var(--space-3);
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.meta-row:last-child {
+    border-bottom: none;
+}
+
+.meta-label {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-600);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.meta-val {
+    font-size: var(--fs-sm);
+    color: var(--color-text-header);
+    font-weight: var(--fw-500);
+    text-align: right;
+}
+
+.meta-val.id-val {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-700);
+    color: var(--color-primary);
+    background: #d9117c11;
+    border: 1px solid var(--border-primary);
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+}
+
+
+
+
+.helpdesk-details .person-name {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-500);
+    color: var(--color-text-header);
+}
+
+/* ── Deadline chip ── */
+.helpdesk-details .deadline-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-600);
+    color: var(--color-text-danger);
+    background: #fef2f2;
+    padding: 3px 9px;
+    border-radius: var(--radius-pill);
+    border: 1px solid #fecaca;
+}
+
+/* ── Status select ── */
+.status-select {
+    width: 100%;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-md);
+    font-family: var(--font-inter);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-500);
+    background: var(--color-bg-secondary);
+    color: var(--color-text-header);
+    cursor: pointer;
+    outline: none;
+    transition: border var(--transition-fast);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+}
+
+.status-select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(217, 17, 123, .08);
+    background: var(--color-bg-primary);
+}
+
+/* ── Action buttons ── */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-500);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: 1px solid var(--border-secondary);
+    background: var(--color-bg-primary);
+    color: var(--color-text-secondary);
+    font-family: var(--font-inter);
+    text-align: left;
+}
+
+.action-btn:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-header);
+}
+
+.action-btn.primary {
+    color: var(--color-primary);
+    border-color: var(--border-primary);
+}
+
+.action-btn.primary:hover {
+    background: #d9117c0d;
+}
+
+.action-btn.success {
+    color: var(--color-text-success);
+    border-color: #bbf7d0;
+}
+
+.action-btn.success:hover {
+    background: #f0fdf4;
+}
+
+.action-btn.danger {
+    color: var(--color-text-danger);
+    border-color: #fecaca;
+}
+
+.action-btn.danger:hover {
+    background: #fef2f2;
+}
+
+.action-btn svg {
+    flex-shrink: 0;
+    opacity: .75;
+}
+
+/* ── Animation ── */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+/* Mobile Responsive Code */
+@media (max-width:767px) {
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        padding: 0 var(--space-4);
+    }
+
+    .page {
+        padding: 0;
+        margin-top: var(--space-1);
+    }
+
+    .ticket-hero {
+        padding: var(--space-4);
+    }
+
+    .submit-form {
+        padding: 16px;
+    }
+
+    .profile .profile-info {
+        margin-top: -84px;
+        position: relative;
+        z-index: 2;
+        padding: 20px 12px;
+        align-items: end;
+    }
+
+    .profile .main-info {
+        display: grid;
+        gap: 36px;
+        grid-template-columns: 1fr;
+        padding: 0 12px;
+    }
+
+
+    /* Helpdesk page */
+    .helpdesk .helpdesk-wrap {
+        padding: 8px;
+    }
+
+    .helpdesk .helpdesk-card .card-content {
+        align-items: end;
+    }
+
+    .helpdesk .item .footer-meta {
+        flex-wrap: wrap;
+    }
+
+    .helpdesk-wrap .item .ticket-header .task-name {
+        margin-top: 12px;
+        font-weight: 500;
+        line-height: 1.2;
+        display: --webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+        height: 44px;
+    }
+
+    .helpdesk-wrap .item .status {
+        padding: 4px 8px;
+        border-radius: 0 12px 2px 12px;
+        font-size: var(--fs-low);
+        text-transform: uppercase;
+        font-weight: 500;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .helpdesk-wrap .pagination {
+        padding-top: 12px;
+    }
+
+    .helpdesk-wrap .filter-select {
+        padding: 6px 12px;
+    }
+
+    .helpdesk .helpdesk-card svg {
+        height: 20px;
+        width: 20px;
+    }
+}
