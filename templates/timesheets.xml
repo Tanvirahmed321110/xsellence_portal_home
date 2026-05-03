@@ -2,11 +2,18 @@
     <template id="timesheet_page">
         <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages?v=2"/>
         <t t-call="xsellence_portal.custom_layout">
+
+            <!-- ====================  Breadcrumb  ==================== -->
+            <t t-call="xsellence_portal.breadcrumb_component"/>
+
             <!--========================|| Projects Here ||=========================-->
             <section class="projects-wrap mt-4 mt-sm-2">
                 <div class="flex-between flex-wrap gap-4">
-                    <div class="sec-title d-flex gap-2 align-center">Timesheets Tasks <span
-                            class="count fs-xs flex-center">130</span></div>
+                    <div class="sec-title d-flex gap-2 align-center">Timesheets Tasks
+                        <span
+                                class="count fs-xs flex-center">130
+                        </span>
+                    </div>
                     <!-- add new timesheet button -->
                     <a class="btn btn-primary" href="/add_timesheet.html">Add New Timesheet +</a>
                 </div>
@@ -25,7 +32,7 @@
                         <div class="search">
                             <div class="search-wrap input-control">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
+                                     stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="11" cy="11" r="8">
 
                                     </circle>
@@ -86,15 +93,19 @@
                                     <td>Tourgull</td>
                                     <td>-</td>
                                     <td>9:00</td>
-                                    <td><button class="action-btn del"><svg width="14" height="14" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                    <td>
+                                        <button class="action-btn del">
+                                            <svg width="14" height="14" viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
                                                 <path d="M10 11v6"></path>
                                                 <path d="M14 11v6"></path>
                                                 <path d="M9 6V4h6v2"></path>
-                                            </svg></button></td>
+                                            </svg>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2026-04-09</td>
@@ -103,20 +114,26 @@
                                     <td>MIT</td>
                                     <td class="task-desc-wrap">
                                         <div class="task-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit!
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit!</div>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit!
+                                        </div>
                                         <p class="hover-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit!
-                                            m dolor sit amet, consectetur adipisicing elit!</p>
+                                            m dolor sit amet, consectetur adipisicing elit!
+                                        </p>
                                     </td>
                                     <td>5:00</td>
-                                    <td><button class="action-btn del"><svg width="14" height="14" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                    <td>
+                                        <button class="action-btn del">
+                                            <svg width="14" height="14" viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
                                                 <path d="M10 11v6"></path>
                                                 <path d="M14 11v6"></path>
                                                 <path d="M9 6V4h6v2"></path>
-                                            </svg></button></td>
+                                            </svg>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2026-04-09</td>
@@ -128,15 +145,19 @@
                                         <p class="hover-desc"></p>
                                     </td>
                                     <td>1:00</td>
-                                    <td><button class="action-btn del"><svg width="14" height="14" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                    <td>
+                                        <button class="action-btn del">
+                                            <svg width="14" height="14" viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
                                                 <path d="M10 11v6"></path>
                                                 <path d="M14 11v6"></path>
                                                 <path d="M9 6V4h6v2"></path>
-                                            </svg></button></td>
+                                            </svg>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2026-04-09</td>
@@ -144,21 +165,27 @@
                                     <td>Tanvir Ahmed</td>
                                     <td>Tourgull</td>
                                     <td class="task-desc-wrap">
-                                        <div class="task-desc"> adipisicing elit!
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit!</div>
+                                        <div class="task-desc">adipisicing elit!
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit!
+                                        </div>
                                         <p class="hover-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit!
-                                            m dolor sit amet, consectetur adipisicing elit!</p>
+                                            m dolor sit amet, consectetur adipisicing elit!
+                                        </p>
                                     </td>
                                     <td>2:00</td>
-                                    <td><button class="action-btn del"><svg width="14" height="14" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                    <td>
+                                        <button class="action-btn del">
+                                            <svg width="14" height="14" viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
                                                 <path d="M10 11v6"></path>
                                                 <path d="M14 11v6"></path>
                                                 <path d="M9 6V4h6v2"></path>
-                                            </svg></button></td>
+                                            </svg>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2026-04-09</td>
@@ -167,15 +194,19 @@
                                     <td>Tourgull</td>
                                     <td>-</td>
                                     <td>2:00</td>
-                                    <td><button class="action-btn del"><svg width="14" height="14" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                    <td>
+                                        <button class="action-btn del">
+                                            <svg width="14" height="14" viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
                                                 <path d="M10 11v6"></path>
                                                 <path d="M14 11v6"></path>
                                                 <path d="M9 6V4h6v2"></path>
-                                            </svg></button></td>
+                                            </svg>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2026-04-09</td>
@@ -183,21 +214,27 @@
                                     <td>Tanvir Ahmed</td>
                                     <td>Tourgull</td>
                                     <td class="task-desc-wrap">
-                                        <div class="task-desc"> adipisicing elit!
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit!</div>
+                                        <div class="task-desc">adipisicing elit!
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit!
+                                        </div>
                                         <p class="hover-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit!
-                                            m dolor sit amet, consectetur adipisicing elit!</p>
+                                            m dolor sit amet, consectetur adipisicing elit!
+                                        </p>
                                     </td>
                                     <td>2:00</td>
-                                    <td><button class="action-btn del"><svg width="14" height="14" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                    <td>
+                                        <button class="action-btn del">
+                                            <svg width="14" height="14" viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
                                                 <path d="M10 11v6"></path>
                                                 <path d="M14 11v6"></path>
                                                 <path d="M9 6V4h6v2"></path>
-                                            </svg></button></td>
+                                            </svg>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2026-04-09</td>
@@ -206,15 +243,19 @@
                                     <td>Tourgull</td>
                                     <td>-</td>
                                     <td>2:00</td>
-                                    <td><button class="action-btn del"><svg width="14" height="14" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                    <td>
+                                        <button class="action-btn del">
+                                            <svg width="14" height="14" viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
                                                 <path d="M10 11v6"></path>
                                                 <path d="M14 11v6"></path>
                                                 <path d="M9 6V4h6v2"></path>
-                                            </svg></button></td>
+                                            </svg>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2026-04-09</td>
@@ -223,15 +264,19 @@
                                     <td>Tourgull</td>
                                     <td>-</td>
                                     <td>2:00</td>
-                                    <td><button class="action-btn del"><svg width="14" height="14" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                    <td>
+                                        <button class="action-btn del">
+                                            <svg width="14" height="14" viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
                                                 <path d="M10 11v6"></path>
                                                 <path d="M14 11v6"></path>
                                                 <path d="M9 6V4h6v2"></path>
-                                            </svg></button></td>
+                                            </svg>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2026-04-09</td>
@@ -240,15 +285,19 @@
                                     <td>Tourgull</td>
                                     <td>-</td>
                                     <td>2:00</td>
-                                    <td><button class="action-btn del"><svg width="14" height="14" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                    <td>
+                                        <button class="action-btn del">
+                                            <svg width="14" height="14" viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
                                                 <path d="M10 11v6"></path>
                                                 <path d="M14 11v6"></path>
                                                 <path d="M9 6V4h6v2"></path>
-                                            </svg></button></td>
+                                            </svg>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2026-04-09</td>
@@ -256,21 +305,27 @@
                                     <td>Tanvir Ahmed</td>
                                     <td>Tourgull</td>
                                     <td class="task-desc-wrap">
-                                        <div class="task-desc"> adipisicing elit!
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit!</div>
+                                        <div class="task-desc">adipisicing elit!
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit!
+                                        </div>
                                         <p class="hover-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit!
-                                            m dolor sit amet, consectetur adipisicing elit!</p>
+                                            m dolor sit amet, consectetur adipisicing elit!
+                                        </p>
                                     </td>
                                     <td>2:00</td>
-                                    <td><button class="action-btn del"><svg width="14" height="14" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                    <td>
+                                        <button class="action-btn del">
+                                            <svg width="14" height="14" viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
                                                 <path d="M10 11v6"></path>
                                                 <path d="M14 11v6"></path>
                                                 <path d="M9 6V4h6v2"></path>
-                                            </svg></button></td>
+                                            </svg>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2026-04-09</td>
@@ -279,15 +334,19 @@
                                     <td>Tourgull</td>
                                     <td>-</td>
                                     <td>2:00</td>
-                                    <td><button class="action-btn del"><svg width="14" height="14" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                    <td>
+                                        <button class="action-btn del">
+                                            <svg width="14" height="14" viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
                                                 <path d="M10 11v6"></path>
                                                 <path d="M14 11v6"></path>
                                                 <path d="M9 6V4h6v2"></path>
-                                            </svg></button></td>
+                                            </svg>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2026-04-09</td>
@@ -296,15 +355,19 @@
                                     <td>Tourgull</td>
                                     <td>-</td>
                                     <td>2:00</td>
-                                    <td><button class="action-btn del"><svg width="14" height="14" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                    <td>
+                                        <button class="action-btn del">
+                                            <svg width="14" height="14" viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
                                                 <path d="M10 11v6"></path>
                                                 <path d="M14 11v6"></path>
                                                 <path d="M9 6V4h6v2"></path>
-                                            </svg></button></td>
+                                            </svg>
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -315,18 +378,24 @@
                 <div class="pagination">
                     <span class="page-info">Showing 1–6 of 24 projects</span>
                     <div class="page-btns">
-                        <button class="page-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="15 18 9 12 15 6" />
-                            </svg></button>
+                        <button class="page-btn">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"/>
+                            </svg>
+                        </button>
                         <button class="page-btn active">1</button>
                         <button class="page-btn">2</button>
                         <button class="page-btn">3</button>
                         <button class="page-btn">4</button>
-                        <button class="page-btn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="9 18 15 12 9 6" />
-                            </svg></button>
+                        <button class="page-btn">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </section>

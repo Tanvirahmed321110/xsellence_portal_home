@@ -35,6 +35,7 @@
         'templates/add_timesheet.xml',
         'templates/profile.xml',
         'templates/edit_profile.xml',
+        'templates/breadcrumb.xml',
     ],
     'assets': {
         'web.assets_frontend': [
