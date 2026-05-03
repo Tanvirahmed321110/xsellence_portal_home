@@ -15,7 +15,7 @@
                         </span>
                     </div>
                     <!-- add new timesheet button -->
-                    <a class="btn btn-primary" href="/add_timesheet">Add New Timesheet +</a>
+                    <a class="btn btn-primary" href="/add_timesheet?source=timesheets">Add New Timesheet +</a>
                 </div>
 
 

@@ -577,6 +577,9 @@ aside .sidebar-bottom {
     height: 200px;
 }
 
+.n-btn-wrap .breadcrumb-wrap{
+    margin-top:0px;
+}
 
 
 /*=============//  Power By  //=============*/
