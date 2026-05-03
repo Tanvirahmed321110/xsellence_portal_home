@@ -38,17 +38,19 @@ class XsellencePortal(http.Controller):
         })
 
 
-    # For Project Details Page
-    @http.route('/projects/details/<int:project_id>', type='http', auth='public', website=True)
-    def project_details_f(self, project_id, **kw):
-        project = request.env['project.project'].sudo().browse(project_id)
+    #=================  For Project Details Page  ===================
+    # @http.route('/projects/details/<int:project_id>', type='http', auth='public', website=True)
+    @http.route('/projects/project_details', type='http', auth='public', website=True)
+    # def project_details_f(self, project_id, **kw):
+    def project_details_f(self, **kw):
+        # project = request.env['project.project'].sudo().browse(project_id)
 
         return request.render('xsellence_portal.project_details_page', {
             'active_menu': 'projects',
-            'project': project,
+            # 'project': project,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Projects', 'url': '/projects'},
-                {'name': project.name, 'url': False}
+                {'name': 'Project Details', 'url': False}
             ]
         })

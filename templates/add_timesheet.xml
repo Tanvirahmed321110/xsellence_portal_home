@@ -1,6 +1,5 @@
 <odoo>
     <template id="add_timesheet_page">
-        <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages.css"/>
         <t t-call="xsellence_portal.custom_layout">
 
              <!-- ====================  Breadcrumb  ==================== -->

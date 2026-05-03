@@ -28,6 +28,7 @@
         'templates/layout.xml',
         'templates/dashboard.xml',
         'templates/projects.xml',
+        'templates/project_details.xml',
         'templates/tasks.xml',
         'templates/timesheets.xml',
         'templates/helpdesk.xml',
@@ -36,6 +37,8 @@
         'templates/profile.xml',
         'templates/edit_profile.xml',
         'templates/create_project.xml',
+        'templates/ticket_details.xml',
+        'templates/task_details.xml',
         'templates/breadcrumb.xml',
     ],
     'assets': {

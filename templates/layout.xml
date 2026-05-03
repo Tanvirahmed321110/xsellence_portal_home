@@ -12,8 +12,8 @@
                 <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="/xsellence_portal/static/src/css/custom_class.css?v=1"/>
                 <link rel="stylesheet" href="/xsellence_portal/static/src/css/my_component.css?v=1"/>
-                <link rel="stylesheet" href="/xsellence_portal/static/src/css/global.css?v=4"/>
-                <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages.css?v=1"/>
+                <link rel="stylesheet" href="/xsellence_portal/static/src/css/global.css?v=6"/>
+                <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages.css?v=2"/>
                 <t t-raw="header"/>
             </head>
 
@@ -92,7 +92,7 @@
 
 
                                         <!-- Theme Toggle -->
-                                        <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                                        <div class="theme-toggle" id="themeToggle" >
                                             <!-- Sun icon (light mode) -->
                                             <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg"
                                                  width="18"
@@ -125,7 +125,7 @@
                                     <!--==========  Profile Image and Dropdown Here ============= -->
                                     <div class="profile-img-wrapper">
                                         <a href="/profile" class="profile-img">
-                                            <img src="xsellence_portal/static/src/images/MDH_8729webqualitysquare.webp"
+                                            <img src="/xsellence_portal/static/src/images/MDH_8729webqualitysquare.webp"
                                                  alt="profile"/>
                                         </a>
                                     </div>
@@ -385,7 +385,7 @@
 
 
                 <!--    Javascript Links Here     -->
-                <script src="xsellence_portal/static/src/js/main.js"></script>
+                <script src="/xsellence_portal/static/src/js/main.js"></script>
             </body>
         </html>
     </template>

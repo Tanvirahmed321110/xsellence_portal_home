@@ -14,6 +14,21 @@ class XsellencePortal(http.Controller):
             ]
         })
 
+    # =============  For Task Details Page  ===============
+    @http.route('/tasks/task_details', type='http', auth='public', website=True)
+    def task_details_f(self, **kw):
+        print('load dashboard')
+        return request.render('xsellence_portal.task_details_page', {
+            'active_menu': 'tasks',
+            'breadcrumb': [
+                {'name': 'Dashboard', 'url': '/dashboard'},
+                {'name': 'Tasks', 'url': '/tasks'},
+                {'name': 'Task Details', 'url': False},
+            ]
+        })
+
+
+
     # ============  For Add Task Page  ===============
     @http.route('/add_task', type='http', auth='public', website=True)
     def add_task_f(self, **kw):

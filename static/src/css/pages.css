@@ -879,7 +879,6 @@
     background: var(--color-bg-primary);
     border: 1px solid var(--border-primary);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-sm);
     overflow: hidden;
     animation: fadeUp .4s ease both;
 }

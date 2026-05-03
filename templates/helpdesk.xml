@@ -3,7 +3,7 @@
         <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages.css"/>
         <t t-call="xsellence_portal.custom_layout">
 
-            <section class="helpdesk mt-6 mt-sm-0">
+            <section class="helpdesk  mt-sm-0">
 
 
                 <!--==============|| Filter Header Here  ||================-->
