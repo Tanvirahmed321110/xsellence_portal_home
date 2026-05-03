@@ -31,14 +31,12 @@
 
             <!-- notebook এর আগে 2টি ফিল্ড যোগ করা -->
             <xpath expr="//notebook" position="before">
-                <group >
+                <group>
                     <group>
-                        <group>
-                            <field name="custom_priority" widget="selection"/>
-                        </group>
-                        <group>
-                            <field name="custom_status" widget="selection"/>
-                        </group>
+                        <field name="custom_priority" widget="selection"/>
+                    </group>
+                    <group>
+                        <field name="custom_status" widget="selection"/>
                     </group>
                 </group>
             </xpath>

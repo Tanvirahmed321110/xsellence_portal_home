@@ -47,11 +47,11 @@
     ],
     'assets': {
         'web.assets_frontend': [
-            # 'xsellence_portal_v1/static/src/css/custom_class.css',
+            # 'xsellence_portal/static/src/css/custom_class.css',
         ],
 
         'web.assets_backend': [
-            # 'xsellence_portal/static/src/css/backend.css',
+            'xsellence_portal/static/src/css/custom_backend.css',
         ],
     },
     # only loaded in demonstration mode
