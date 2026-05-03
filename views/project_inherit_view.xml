@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- ==================== Project Tree/List View ==================== -->
+    <record id="view_project_tree_inherit" model="ir.ui.view">
+        <field name="name">project.project.tree.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project"/>
+        <field name="arch" type="xml">
+
+            <!--  Remove Partner ID  -->
+            <xpath expr="//list/field[@name='partner_id']" position="replace"></xpath>
+
+
+            <xpath expr="//list/field[@name='user_id']" position="after">
+                <field name="custom_priority" widget="badge" optional="show"/>
+                <field name="custom_status" widget="badge" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!-- ==================== Project Form View ==================== -->
+
+
+    <record id="view_project_form_inherit" model="ir.ui.view">
+        <field name="name">project.project.form.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+
+            <!-- notebook এর আগে 2টি ফিল্ড যোগ করা -->
+            <xpath expr="//notebook" position="before">
+                <group >
+                    <group>
+                        <group>
+                            <field name="custom_priority" widget="selection"/>
+                        </group>
+                        <group>
+                            <field name="custom_status" widget="selection"/>
+                        </group>
+                    </group>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>

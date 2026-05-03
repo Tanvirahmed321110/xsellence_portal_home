@@ -11,20 +11,33 @@
             <!--========================|| Projects Here ||=========================-->
             <section class="projects-wrap mt-4">
 
-                <div class="flex-between">
-                    <div class="sec-title d-flex gap-2 align-center">Projects
-                        <span
-                                class="count fs-xs flex-center">12
+               <!--================||   Filter Header ||===============-->
+               <div class="flex-between  gap-5 row-gap-2" style="overflow-x: auto;">
+                    <div class="sec-title d-flex gap-2 align-center flex-1 text-nowrap">Projects
+                        <span class="count fs-xs flex-center">12
                         </span>
                     </div>
-                    <select class="filter-select bg-white" id="filter-month">
-                        <option value="">All Status</option>
-                        <option value="">Pending</option>
-                        <option value="2025-04">Complted</option>
-                        <option value="2025-04">In Progress</option>
-                        <option value="2025-04">Done</option>
-                        <option value="2025-04">Other</option>
-                    </select>
+
+                    <div class="search task-search">
+                        <div class="search-wrap  input-control shadow-md">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input class="search-input" type="text" placeholder="Search task name or id..."/>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 d-flex justify-end">
+                        <select class="filter-select bg-white  " id="filter-month">
+                            <option value="">All Status</option>
+                            <option value="">Pending</option>
+                            <option value="2025-04">Complted</option>
+                            <option value="2025-04">In Progress</option>
+                            <option value="2025-04">Done</option>
+                            <option value="2025-04">Other</option>
+                        </select>
+                    </div>
                 </div>
 
                 <!--==============================|| All Projects Here ||============================-->

@@ -1,110 +1,122 @@
 <odoo>
     <template id="create_project_page">
-        <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages.css"/>
         <t t-call="xsellence_portal.custom_layout">
 
-             <!-- ====================  Breadcrumb  ==================== -->
+            <!-- ====================  Breadcrumb  ==================== -->
             <t t-call="xsellence_portal.breadcrumb_component"/>
 
-             <!--========================|| Projects Here ||=========================-->
+            <!--========================|| Create Project ||=========================-->
             <section class="projects-wrap mt-4 flex-column">
-                <div class="sec-title d-flex gap-2 align-center">Add New Task <span
-                        class="count fs-xs flex-center">+</span></div>
+                <div class="sec-title d-flex gap-2 align-center">Create New Project
+                    <span
+                            class="count fs-xs flex-center">+
+                    </span>
+                </div>
 
 
                 <div class="d-flex flex-1 flex-center mt-6">
                     <form action="#" method="post" class="submit-form flex-column gap-5">
                         <div class="d-flex gap-3 align-center">
                             <div class="top flex-center">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                    <path d="M2 17l10 5 10-5"></path>
-                                    <path d="M2 12l10 5 10-5"></path>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                     fill="none" stroke-width="2" stroke="currentColor" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <!-- Document -->
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <path d="M14 2v6h6"/>
+
+                                    <!-- Plus -->
+                                    <path d="M12 11v6M9 14h6"/>
                                 </svg>
                             </div>
                             <div>
-                                <div class="section-title head-primary">Add New Task</div>
-                                <p class="desc mt-1">Add the details of your new task</p>
+                                <div class="section-title head-primary">Create New Project</div>
+                                <p class="desc mt-1">Add the details of your new project</p>
                             </div>
                         </div>
 
                         <div class="grid-2 gap-5 grid-sm-1">
-                            <!--======= For Project =======-->
-                            <div class="input-control ">
-                                <label for="">Project <span class="required">*</span></label>
+                            <!--======= For Project Name =======-->
+                            <div class="input-control">
+                                <label for="">Name
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" placeholder="Project Name"/>
+                            </div>
+
+                            <!--======= For Company Name =======-->
+                            <div class="input-control">
+                                <label for="">Company Name
+                                </label>
+                                <input type="text" placeholder="Company Name"/>
+                            </div>
+                        </div>
+
+                        <div class="grid-2 gap-5 grid-sm-1">
+                            <!--======= For Project Manager =======-->
+                            <div class="input-control">
+                                <label for="">Project Manager
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" placeholder="Project Manager"/>
+                            </div>
+
+                             <!--======= For  Status =======-->
+                            <div class="input-control">
+                                <label for="">Project Status
+                                    <span class="required">*</span>
+                                </label>
                                 <select name="" id="">
-                                    <option value="Select Project">Select Project</option>
-                                    <option value="">Project two</option>
-                                    <option value="">Project Three</option>
-                                    <option value="">Project Four</option>
-                                </select>
-                            </div>
-
-                            <!--======= For Task Name =======-->
-                            <div class="input-control">
-                                <label for="">Task Name <span class="required">*</span></label>
-                                <input type="text" placeholder="Task Name"/>
-                            </div>
-                        </div>
-
-                        <div class="grid-2 gap-5 grid-sm-1">
-
-                            <!--======= For Assign Date =======-->
-                            <div class="input-control">
-                                <label for="">Assign Date</label>
-                                <input type="date"/>
-                            </div>
-
-                            <!--======= For Assignees =======-->
-                            <div class="input-control">
-                                <label for="">Assignees</label>
-                                <input type="date"/>
-                            </div>
-                        </div>
-
-                        <div class="grid-2 gap-5 grid-sm-1">
-                            <!--======= For Allocation Hours =======-->
-                            <div class="input-control">
-                                <label for="">Allocation Hours <span class="required">*</span></label>
-                                <input type="text" placeholder="Task Name"/>
-                            </div>
-
-                            <!--======= For Deadline =======-->
-                            <div class="input-control">
-                                <label for="">Deadline</label>
-                                <input type="date"/>
-                            </div>
-                        </div>
-
-                        <div class="grid-2 gap-5 grid-sm-1">
-                            <!--======= For Allocation Hours =======-->
-                            <div class="input-control ">
-                                <label for="">Priority <span class="required">*</span></label>
-                                <select name="" id="">
-                                    <option value="Select Project">Select Priority</option>
-                                    <option value="">Normal</option>
-                                    <option value="">Medium</option>
-                                    <option value="">High</option>
-                                </select>
-                            </div>
-                            <!--======= For Status =======-->
-                            <div class="input-control ">
-                                <label for="">Task Status <span class="required">*</span></label>
-                                <select name="" id="">
-                                    <option value="Select Project">Pending</option>
+                                    <option value="Select Project">Status</option>
+                                    <option value="">Pending</option>
                                     <option value="">In Progress</option>
-                                    <option value="">Completed</option>
-                                    <option value="">Canceled</option>
+                                    <option value="">Complted</option>
                                 </select>
                             </div>
-                            <!--======= For Assignee Names =======-->
-                            <div class="input-control ">
-                                <label for="">Assignee Names <span class="required">*</span></label>
+
+                        </div>
+
+                        <div class="grid-2 gap-5 grid-sm-1">
+                            <!--======= For Project Manager =======-->
+                            <div class="input-control">
+                                <label for="">Start Date
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="date" placeholder="Project Manager"/>
+                            </div>
+
+                            <!--======= For Company Name =======-->
+                            <div class="input-control">
+                                <label for="">End Date
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="date" placeholder="Company Name"/>
+                            </div>
+                        </div>
+
+                        <div class="grid-2 gap-5 grid-sm-1">
+                            <!--======= For Company Name =======-->
+                            <div class="input-control">
+                                <label for="">Assign Members
+                                    <span class="required">*</span>
+                                </label>
                                 <select id="assignees" multiple="multiple">
                                     <option value="1">Tanvir</option>
                                     <option value="2">Rahim</option>
                                     <option value="3">Karim</option>
+                                </select>
+                            </div>
+
+                             <!--======= For Project Tags =======-->
+                            <div class="input-control">
+                                <label for="">Tags
+                                    <span class="required">*</span>
+                                </label>
+                                <select id="tags" multiple="1">
+                                    <option value="1">App</option>
+                                    <option value="2">Portal</option>
+                                    <option value="3">Backend</option>
+                                    <option value="4">HR</option>
                                 </select>
                             </div>
                         </div>
@@ -117,6 +129,7 @@
                             </div>
                         </div>
 
+
                         <!-- <div id="toast" class="toast show error">
                             <span id="toast-msg">Submited Task</span>
                         </div> -->
@@ -124,37 +137,43 @@
                             <span id="toast-msg">Error Message</span>
                         </div> -->
 
-
                         <!--======= For Rest and Sumbit Buttons =======-->
                         <div class="d-flex justify-end w-100 gap-4">
-                            <!-- Reset button -->
+                            <!-- Reset Button -->
                             <button class="btn btn-danger" type="reset">Reset
-
-                                <svg width="16" height="14" viewBox="0 0 24 24" fill="none">
-                                    <path d="M21 12a9 9 0 1 1-3-6.7" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" />
-                                    <path d="M21 3v6h-6" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" />
-                                </svg></button>
-                            <!-- submit button -->
-                            <button type="submit" class="btn btn-primary" style="gap:8px">Submit <svg width="12"
-                                    height="12" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M2 21l20-9L2 3v7l15 2-15 2z" />
-                                </svg></button>
+                                <svg width="12" height="12"
+                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 12a9 9 0 1 1-3-6.7"></path>
+                                    <path d="M21 3v6h-6"></path>
+                                </svg>
+                            </button>
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary" style="gap:8px">Submit
+                                <svg width="12"
+                                     height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M2 21l20-9L2 3v7l15 2-15 2z"/>
+                                </svg>
+                            </button>
                         </div>
 
                     </form>
                 </div>
             </section>
+
             <!-- Ts Control Library CDN -->
-        <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
-        <script>
-            // <!-- Ts Control Library Code -->
-            new TomSelect("#assignees", {
-                create: true,   // allow new names
+            <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+            <script>
+                // <!-- Ts Control Library Code -->
+                new TomSelect("#assignees", {
+                create: true, // allow new names
                 persist: false
-            });
-        </script>
+                });
+
+                new TomSelect("#tags", {
+                create: true, // allow new names
+                persist: false
+                });
+            </script>
         </t>
     </template>
 </odoo>

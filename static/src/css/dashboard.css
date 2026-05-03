@@ -62,7 +62,7 @@
 .project-progress {
     border-radius: 12px;
     padding: 20px;
-    background: var(--color-bg-secondary);
+    background: var(--color-bg-primary);
     box-shadow: var(--shadow-sm);
 }
 

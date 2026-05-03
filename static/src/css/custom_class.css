@@ -193,7 +193,13 @@
     --input-shadow-focus: 0 0 0 0.2rem rgba(15, 70, 56, 0.25);
 }
 
-
+/* 🌙 Dark Theme */
+[data-theme="dark"] {
+    --color-bg-card: #999;
+    --color-bg-primary: #000;
+    --color-white: #232323;
+    --color-text-header : #8c8888;
+}
 
 
 

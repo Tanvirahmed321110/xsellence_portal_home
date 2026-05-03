@@ -40,6 +40,10 @@
         'templates/ticket_details.xml',
         'templates/task_details.xml',
         'templates/breadcrumb.xml',
+
+
+        # views
+        'views/project_inherit_view.xml',
     ],
     'assets': {
         'web.assets_frontend': [
