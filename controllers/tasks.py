@@ -7,6 +7,10 @@ class XsellencePortal(http.Controller):
         print('load dashboard')
         return  request.render('xsellence_portal.tasks_page',{
             'active_menu': 'tasks',
+            'breadcrumb': [
+                {'name': 'Dashboard', 'url': '/dashboard'},
+                {'name': 'Tasks', 'url': False},
+            ]
         })
 
     #============  For Add Task Page  ===============
@@ -15,4 +19,9 @@ class XsellencePortal(http.Controller):
         print('load dashboard')
         return request.render('xsellence_portal.add_task_page', {
             'active_menu': 'add_task',
+            'breadcrumb': [
+                {'name': 'Dashboard', 'url': '/dashboard'},
+                {'name': 'Tasks', 'url':'/tasks' },
+                {'name': 'Add Task', 'url': False},
+            ]
         })

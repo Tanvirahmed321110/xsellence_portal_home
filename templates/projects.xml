@@ -1,6 +1,10 @@
 <odoo>
     <template id="projects_page">
         <t t-call="xsellence_portal.custom_layout">
+
+             <!-- ====================  Breadcrumb  ==================== -->
+            <t t-call="xsellence_portal.breadcrumb_component"/>
+
             <!--========================|| Projects Here ||=========================-->
             <section class="projects-wrap mt-4">
 

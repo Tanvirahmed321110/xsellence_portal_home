@@ -2,6 +2,9 @@
     <template id="edit_profile_page">
         <t t-call="xsellence_portal.custom_layout">
 
+              <!-- ====================  Breadcrumb  ==================== -->
+            <t t-call="xsellence_portal.breadcrumb_component"/>
+
 
             <section class="profile">
                 <div class="d-flex flex-1 flex-center mt-6">

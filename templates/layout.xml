@@ -124,7 +124,7 @@
                                 <div class="user">
                                     <!--==========  Profile Image and Dropdown Here ============= -->
                                     <div class="profile-img-wrapper">
-                                        <a href="profile.html" class="profile-img">
+                                        <a href="/profile" class="profile-img">
                                             <img src="xsellence_portal/static/src/images/MDH_8729webqualitysquare.webp"
                                                  alt="profile"/>
                                         </a>
