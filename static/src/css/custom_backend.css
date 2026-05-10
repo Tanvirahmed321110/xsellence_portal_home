@@ -21,3 +21,7 @@
 .o_field_widget.o_required_modifier.o_field_selection{
     border-bottom:1px solid #ddd !important;
 }
+textarea.o_input.o_field_translate{
+    border:none !important;
+    border-bottom:1px solid #ddd !important;
+}
