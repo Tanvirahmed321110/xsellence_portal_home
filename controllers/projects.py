@@ -3,11 +3,16 @@ from odoo.http import request
 
 # For Projects Page
 class XsellencePortal(http.Controller):
-    @http.route('/projects',type='http',auth='public',website=True)
+    @http.route('/projects',type='http',auth='user',website=True)
     def projects_f (self,**kw):
-        print('load dashboard')
+
+        domain = [('active', '=', True),('name', '!=', 'Internal')]
+
+        projects = request.env['project.project'].search(domain)
+
         return  request.render('xsellence_portal.projects_page',{
             'active_menu' : 'projects',
+            'projects': projects,
             'breadcrumb' : [
                 {'name' : 'Dashboard', 'url': '/dashboard'},
                 {'name' : 'Projects', 'url': False},

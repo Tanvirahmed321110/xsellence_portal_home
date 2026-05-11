@@ -479,7 +479,6 @@
 .card {
     position: relative;
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
     border: 1px solid var(--my-border-primary);
     background-color: var(--my-bg-card);
 }

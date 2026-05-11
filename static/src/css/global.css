@@ -176,6 +176,7 @@ header .head-right {
     height: 68px;
     background-color: rgb(132, 70, 194);
     background-color: #e33592;
+    background-color: purple;
     position: relative;
     align-items: center;
     justify-content: end;
@@ -190,6 +191,7 @@ header .head-right::after {
     top: -72px;
     background-color: rgb(132, 70, 194);
     background-color: #e33592;
+    background-color: purple;
     width: 42px;
     height: 228px;
     transform: rotate(40deg);

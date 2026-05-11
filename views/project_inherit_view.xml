@@ -21,28 +21,47 @@
 
 
     <!-- ==================== Project Form View ==================== -->
-
-
     <record id="view_project_form_inherit" model="ir.ui.view">
         <field name="name">project.project.form.inherit</field>
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
 
-            <!-- notebook এর আগে 2টি ফিল্ড যোগ করা -->
-            <xpath expr="//notebook" position="before">
-                <group>
-                    <group>
-                        <field name="custom_priority" widget="selection"/>
-                    </group>
-                    <group>
-                        <field name="custom_status" widget="selection"/>
-                    </group>
-                </group>
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="custom_priority" widget="selection"/>
+                <field name="custom_status" widget="selection"/>
             </xpath>
 
+            <!-- add assignee members -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="assigned_user_ids" widget="many2many_tags"/>
+            </xpath>
         </field>
     </record>
 
 
+    <!-- ==================== Project Form View Inherit Project Invoice ==================== -->
+    <record id="view_project_invoice_form_inherit" model="ir.ui.view">
+        <field name="name">project.project.invoice.form.inherit</field>
+        <field name="model">project.project</field>
+        <!-- inherit hr_timesheet form -->
+        <field name="inherit_id" ref="hr_timesheet.project_invoice_form"/>
+
+        <field name="arch" type="xml">
+            <!-- partner এর পরে assigned users -->
+            <xpath expr="//field[@name='allocated_hours']" position="before">
+                <field name="date"/>
+            </xpath>
+
+            <!-- add deadline field -->
+            <xpath expr="//field[@name='allocated_hours']" position="before">
+                <field name="date" string="Project Deadline"/>
+            </xpath>
+
+            <!-- add remaining_days field -->
+            <xpath expr="//field[@name='allocated_hours']" position="after">
+                <field name="remaining_days"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>

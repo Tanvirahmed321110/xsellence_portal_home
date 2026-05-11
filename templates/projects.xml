@@ -14,7 +14,8 @@
                <!--================||   Filter Header ||===============-->
                <div class="flex-between  gap-5 row-gap-2" style="overflow-x: auto;">
                     <div class="sec-title d-flex gap-2 align-center flex-1 text-nowrap">Projects
-                        <span class="count fs-xs flex-center">12
+                        <span class="count fs-xs flex-center">
+                            <t t-esc="len(projects)"/>
                         </span>
                     </div>
 
