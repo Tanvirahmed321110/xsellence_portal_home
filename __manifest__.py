@@ -40,6 +40,7 @@
         'templates/ticket_details.xml',
         'templates/task_details.xml',
         'templates/breadcrumb.xml',
+        'templates/alert.xml',
 
 
         # views

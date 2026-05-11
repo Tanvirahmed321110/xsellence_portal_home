@@ -1,35 +1,46 @@
 from odoo import http
 from odoo.http import request
 
+from win32comext.shell.demos.servers.folder_view import tasks
+
+
 # For Projects Page
 class XsellencePortal(http.Controller):
-    @http.route('/projects',type='http',auth='user',website=True)
-    def projects_f (self,**kw):
+    @http.route('/projects', type='http', auth='user', website=True)
+    def projects_f(self, **kw):
 
-        domain = [('active', '=', True),('name', '!=', 'Internal')]
+        domain = [('active', '=', True), ('name', '!=', 'Internal')]
 
         projects = request.env['project.project'].search(domain)
 
-        return  request.render('xsellence_portal.projects_page',{
-            'active_menu' : 'projects',
+        return request.render('xsellence_portal.projects_page', {
+            'active_menu': 'projects',
             'projects': projects,
-            'breadcrumb' : [
-                {'name' : 'Dashboard', 'url': '/dashboard'},
-                {'name' : 'Projects', 'url': False},
+            'breadcrumb': [
+                {'name': 'Dashboard', 'url': '/dashboard'},
+                {'name': 'Projects', 'url': False},
             ]
         })
 
-    #==================  For Create Project Page  ====================
+    # ==================  For Create Project Page  ====================
     @http.route('/create_project', type='http', auth='public', website=True)
     def create_project_f(self, **kw):
         source = kw.get('source')
-        print(source)
+
+        project_managers = request.env['res.users'].search([('share','=',False)])
+        users = request.env['res.users'].sudo().search([
+            ('share', 'in', [True, False]),
+            ('id', '!=', request.env.ref('base.user_admin').id)
+        ])
+        status_selection = request.env['project.project']._fields['custom_status'].selection
+        print(users)
+
 
         if source == 'projects':
             breadcrumb_data = [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Projects', 'url': '/projects'},
-                {'name': 'Create Project', 'url':False},
+                {'name': 'Create Project', 'url': False},
             ]
         else:
             breadcrumb_data = [
@@ -40,10 +51,37 @@ class XsellencePortal(http.Controller):
         return request.render('xsellence_portal.create_project_page', {
             'active_menu': 'projects',
             'breadcrumb': breadcrumb_data,
+            'project_managers':project_managers,
+            'status_selection' :status_selection,
+            'users': users,
         })
 
+    # ================== Submit Project ==================
+    @http.route('/submit_project', type='http', auth='user', methods=['POST'], website=True, csrf=True)
+    def submit_project(self, **post):
 
-    #=================  For Project Details Page  ===================
+        user_ids = post.get('assigned_user_ids') or []
+        tags = post.get('tag_ids') or []
+
+        print("POST DATA:", post)
+
+        project = request.env['project.project'].sudo().create({
+            'name': post.get('name'),
+            'partner_id': post.get('partner_id') if post.get('partner_id') else False,
+            'user_id':int(post.get('user_id') if post.get('user_id') else False),
+            'custom_status': post.get('custom_status'),
+            'date_start': post.get('date_start'),
+            'date': post.get('date'),
+            'description': post.get('description'),
+            'assigned_user_ids': [(6, 0, [x for x in user_ids])] if user_ids else False,
+            'tag_ids': [(6, 0, [x for x in tags])] if tags else False,
+
+        })
+        # ✅ Success Page
+        return request.render('xsellence_portal.success_page')
+
+
+    # =================  For Project Details Page  ===================
     # @http.route('/projects/details/<int:project_id>', type='http', auth='public', website=True)
     @http.route('/projects/project_details', type='http', auth='public', website=True)
     # def project_details_f(self, project_id, **kw):
@@ -59,3 +97,11 @@ class XsellencePortal(http.Controller):
                 {'name': 'Project Details', 'url': False}
             ]
         })
+
+
+
+
+
+
+
+
