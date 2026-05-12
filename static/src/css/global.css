@@ -1551,7 +1551,7 @@ aside .sidebar-bottom {
 .empty-4 {
     width: 100%;
      background: linear-gradient(226deg,#b30000,#000080d9, #b30000);
-    border-radius: 24px;
+    border-radius: 20px;
     padding: 70px 40px;
     position: relative;
     overflow: hidden;
@@ -1707,6 +1707,7 @@ aside .sidebar-bottom {
         margin-left: 250px;
         padding: 28px;
         padding-left: 32px;
+        height: calc(100dvh - 116px);
     }
 
     .proj-card .card-banner {
@@ -1715,6 +1716,7 @@ aside .sidebar-bottom {
 
     .proj-card {
         overflow: unset;
+        border-radius:10px;
     }
 
     .proj-card .status-badge {
@@ -1747,6 +1749,23 @@ aside .sidebar-bottom {
         font-size: calc(var(--fs-sm));
         line-height: 1.4;
     }
+
+    .task-details .proj-card .status-badge{
+        position:relative;
+        top:2px;
+        right:4px;
+        border-radius:6px;
+    }
+     .task-details .proj-card .status-badge::after{
+        content:unset;
+     }
+
+     .task-details .proj-card .action-btn{
+        gap: 4px;
+        padding: 4px 10px;
+        height: 32px;
+        font-size: 12px;
+     }
 
     .proj-card .info-label {
         font-size: calc(var(--fs-xs) - 1px);
@@ -1791,7 +1810,14 @@ aside .sidebar-bottom {
 
     .proj-card .card-body {
         padding: 12px;
-        gap: 14px;
+        gap: 12px;
+    }
+
+    .proj-card .card-tags {
+        margin-top: 0px;
+        height:auto;
+        max-height:19px;
+        overflow:hidden;
     }
 
     .proj-card .card-footer {
@@ -1803,10 +1829,13 @@ aside .sidebar-bottom {
         gap: 6px;
     }
 
-    .proj-card .card-tags {
-        height: 19px;
-    }
 
+.proj-card .action-btn {
+    gap:4px;
+    padding: 2px 5px;
+    height: 32px;
+    font-size: 12px;
+}
 }
 
 

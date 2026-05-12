@@ -97,7 +97,7 @@
                         </div>
 
                         <div class="grid-2 gap-5 grid-sm-1">
-                            <!--======= For Project Manager =======-->
+                            <!--======= For Start Date =======-->
                             <div class="input-control">
                                 <label for="">Start Date
                                     <span class="required">*</span>
@@ -132,9 +132,8 @@
                             <!--======= For Project Tags =======-->
                             <div class="input-control">
                                 <label for="">Tags
-                                    <span class="required">*</span>
                                 </label>
-                                <select id="tags" name="tag_ids" required="required" multiple="multiple">
+                                <select id="tags" name="tag_ids"  multiple="multiple">
                                     <t t-foreach="tags" t-as="tag">
                                         <option t-att-value="tag.id">
                                             <t t-esc="tag.name"/>

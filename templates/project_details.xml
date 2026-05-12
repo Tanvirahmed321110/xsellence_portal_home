@@ -30,10 +30,28 @@
                                     </svg>
                                 </div>
 
-                                <!-- assignee names -->
+                                <!-- tag names -->
                                 <div class="card-tags">
                                     <t t-foreach="project_tag_ids" t-as="tag" t-key="tag.id">
                                         <t t-esc="tag.name"/>
+                                    </t>
+                                </div>
+                            </div>
+                             <!-- assignee names -->
+                            <div>
+                                <div class="info-label d-flex align-center gap-2">Assignee
+                                    <svg width="19" height="17" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="8" r="3.5" fill="currentColor" />
+                                        <circle cx="6" cy="10" r="2.5" fill="currentColor" opacity="0.9" />
+                                        <circle cx="18" cy="10" r="2.5" fill="currentColor" opacity="0.9" />
+                                        <path d="M4 20c0-3.5 4-5.5 8-5.5s8 2 8 5.5" fill="currentColor" />
+                                    </svg>
+                                </div>
+
+                                <!-- assignee names -->
+                                <div class="card-tags">
+                                    <t t-foreach="project.assigned_user_ids" t-as="assign">
+                                         <span class="tag " t-esc="assign.name"></span>
                                     </t>
                                 </div>
                             </div>
