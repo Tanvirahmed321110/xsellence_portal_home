@@ -11,11 +11,19 @@ class XsellencePortal(http.Controller):
 
         domain = [('active', '=', True), ('name', '!=', 'Internal')]
 
-        projects = request.env['project.project'].search(domain,order='create_date desc')
+        status = kw.get('status')
+        print("STATUS FROM URL:", status, type(status))
+        if status:
+            domain.append(('custom_status', '=', status))
+
+        projects = request.env['project.project'].search(domain, order='create_date desc')
+        statuses = request.env['project.project']._fields['custom_status'].selection
 
         return request.render('xsellence_portal.projects_page', {
             'active_menu': 'projects',
             'projects': projects,
+            'statuses': statuses,
+            'status': status or '',
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Projects', 'url': False},
@@ -29,14 +37,13 @@ class XsellencePortal(http.Controller):
 
         tags = request.env['project.tags'].search([])
         customers = request.env['res.partner'].search([])
-        project_managers = request.env['res.users'].search([('share','=',False)])
+        project_managers = request.env['res.users'].search([('share', '=', False)])
         users = request.env['res.users'].sudo().search([
             ('share', 'in', [True, False]),
             ('id', '!=', request.env.ref('base.user_admin').id)
         ])
         status_selection = request.env['project.project']._fields['custom_status'].selection
         print(users)
-
 
         if source == 'projects':
             breadcrumb_data = [
@@ -53,11 +60,11 @@ class XsellencePortal(http.Controller):
         return request.render('xsellence_portal.create_project_page', {
             'active_menu': 'projects',
             'breadcrumb': breadcrumb_data,
-            'project_managers':project_managers,
-            'status_selection' :status_selection,
+            'project_managers': project_managers,
+            'status_selection': status_selection,
             'users': users,
-            'tags':tags,
-            'customers':customers,
+            'tags': tags,
+            'customers': customers,
         })
 
     # ================== Submit Project ==================
@@ -73,7 +80,7 @@ class XsellencePortal(http.Controller):
         create_data = {
             'name': post.get('name'),
             'partner_id': post.get('partner_id') if post.get('partner_id') else False,
-            'user_id':int(post.get('user_id') if post.get('user_id') else False),
+            'user_id': int(post.get('user_id') if post.get('user_id') else False),
             'custom_status': post.get('custom_status'),
             'date_start': post.get('date_start'),
             'date': post.get('date'),
@@ -85,10 +92,8 @@ class XsellencePortal(http.Controller):
 
         project = request.env['project.project'].create(create_data)
 
-
         # ✅ Success Page
         return request.render('xsellence_portal.success_page')
-
 
     # =================  For Project Details Page  ===================
     @http.route('/projects/details/<int:project_id>', type='http', auth='user', website=True)
@@ -104,11 +109,3 @@ class XsellencePortal(http.Controller):
                 {'name': 'Project Details', 'url': False}
             ]
         })
-
-
-
-
-
-
-
-

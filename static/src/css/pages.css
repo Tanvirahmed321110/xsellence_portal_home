@@ -1303,6 +1303,9 @@
 
 /* Mobile Responsive Code */
 @media (max-width:767px) {
+    .task-details .task-card {
+        min-width:100%;
+    }
     .detail-grid {
         grid-template-columns: 1fr;
     }
