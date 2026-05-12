@@ -3,6 +3,7 @@ from datetime import date
 
 class ProjectProject(models.Model):
     _inherit = 'project.project'
+    _order = 'create_date desc'
 
 
     custom_priority = fields.Selection([

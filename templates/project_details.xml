@@ -16,10 +16,10 @@
                             <div class="card-top">
                                 <div class="card-title-wrap">
                                     <!-- Task Name -->
-                                    <div class="card-proj-name">Nadia Website Backend Development</div>
+                                    <div class="card-proj-name" t-esc="project.name">Nadia Website Backend Development</div>
                                 </div>
                                 <!-- Status -->
-                                <span class="status-badge status-active"><span class="dot"></span>In Progress</span>
+                                <span class="status-badge status-active"><span class="dot"></span><t t-esc="project.custom_status"/></span>
                             </div>
                             <div>
                                 <div class="info-label d-flex align-center gap-2">Tags
@@ -32,15 +32,9 @@
 
                                 <!-- assignee names -->
                                 <div class="card-tags">
-                                    <span class="tag ">Mobile App</span>
-                                    <span class="tag ">HR Portal</span>
-                                    <span class="tag ">Website Default</span>
-                                    <span class="tag ">Backend</span>
-                                    <span class="tag ">HR Portal</span>
-                                    <span class="tag ">Website Default</span>
-                                    <span class="tag ">Backend</span>
-                                    <span class="tag ">Sales report</span>
-                                    <span class="tag ">Others</span>
+                                    <t t-foreach="project_tag_ids" t-as="tag" t-key="tag.id">
+                                        <t t-esc="tag.name"/>
+                                    </t>
                                 </div>
                             </div>
                             <div class="card-info-grid mt-4">
@@ -51,9 +45,10 @@
                                             <path d="M3 6a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v1H3V6z"></path>
                                             <path d="M3 10h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8z"></path>
                                         </svg></div>
-                                    <div class="info-val mt-1">Nutrition Depot BD
+                                    <div class="info-val mt-1" t-esc="project.partner_id.name">Nutrition Depot BD
                                     </div>
                                 </div>
+
                                 <!-- For Assigned date -->
                                 <div class="info-item mt-2">
                                     <div class="info-label">Created Date</div>
@@ -64,7 +59,7 @@
                                             <line x1="16" y1="2" x2="16" y2="6" />
                                             <line x1="8" y1="2" x2="8" y2="6" />
                                             <line x1="3" y1="10" x2="21" y2="10" />
-                                        </svg>15 Jan 2026</div>
+                                        </svg><t t-esc="project.date_start"/></div>
                                 </div>
                             </div>
 
@@ -81,7 +76,7 @@
                                             </svg>
 
                                         </div>
-                                        <div class=" info-val">High</div>
+                                        <div class=" info-val" t-esc="project.custom_priority">High</div>
                                     </div>
                                 </div>
 
@@ -95,7 +90,7 @@
                                             <line x1="16" y1="2" x2="16" y2="6" />
                                             <line x1="8" y1="2" x2="8" y2="6" />
                                             <line x1="3" y1="10" x2="21" y2="10" />
-                                        </svg> <span>22 April 2026</span></div>
+                                        </svg> <span> <t t-esc="project.date"/> </span></div>
                                 </div>
                             </div>
 
@@ -111,7 +106,7 @@
                                             <line x1="16" y1="2" x2="16" y2="6" />
                                             <line x1="8" y1="2" x2="8" y2="6" />
                                             <line x1="3" y1="10" x2="21" y2="10" />
-                                        </svg> <span>30 Working days</span></div>
+                                        </svg> <span t-esc="project.allocated_hours"> </span></div>
                                 </div>
 
                                 <!-- Total Task -->
@@ -134,29 +129,9 @@
                             <!-- Task Description -->
                             <div class="mt-4">
                                 <div class="info-label">Description</div>
-                                <div class="task-desc-wrap mt-2 flex-column gap-4">
+                                <div class="task-desc-wrap mt-2 flex-column gap-4" t-esc="project.description">
                                     <!-- <img class="radius-md" src="/images/bg.jpg" alt="project details image" />-->
 
-                                    <p class="task-desc">এই টাস্কটি Sonali Backend-এর জন্য একটি গুরুত্বপূর্ণ ডেভেলপমেন্ট
-                                        পরিবর্তন অন্তর্ভুক্ত
-                                        করে। ব্যাকএন্ড API এর পারফরম্যান্স উন্নত করতে এবং ডেটাবেস কোয়েরি অপ্টিমাইজ করতে
-                                        প্রয়োজনীয় পদক্ষেপগুলি নেওয়া হয়েছে।
-
-                                        Nutrition Depot BD প্রজেক্টের জন্য নতুন মডিউল ইন্টিগ্রেশন এবং সিকিউরিটি আপডেট
-                                        সম্পন্ন করতে হবে। সকল টিম মেম্বারকে নির্ধারিত ডেডলাইনের মধ্যে কাজ সম্পন্ন করতে
-                                        হবে।
-
-                                    <p class="task-desc">
-                                        এই টাস্কটি Sonali Backend-এর জন্য একটি গুরুত্বপূর্ণ ডেভেলপমেন্ট পরিবর্তন
-                                        অন্তর্ভুক্ত
-                                        করে। ব্যাকএন্ড API এর পারফরম্যান্স উন্নত করতে এবং ডেটাবেস কোয়েরি অপ্টিমাইজ করতে
-                                        প্রয়োজনীয় পদক্ষেপগুলি নেওয়া হয়েছে।
-
-                                        Nutrition Depot BD প্রজেক্টের জন্য নতুন মডিউল ইন্টিগ্রেশন এবং সিকিউরিটি আপডেট
-                                        সম্পন্ন করতে হবে। সকল টিম মেম্বারকে নির্ধারিত ডেডলাইনের মধ্যে কাজ সম্পন্ন করতে
-                                        হবে।
-                                    </p>
-                                    </p>
                                 </div>
                             </div>
                         </div>

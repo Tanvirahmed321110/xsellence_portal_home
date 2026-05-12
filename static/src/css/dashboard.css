@@ -202,6 +202,7 @@
 
 }
 
+
 @keyframes spin {
     0% {
         transform: translate(-50%, -50%) rotate(0deg) scale(1);
@@ -217,7 +218,7 @@
 }
 
 .mini-cards::before {
-    animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite ;
 }
 
 .mini-icon {

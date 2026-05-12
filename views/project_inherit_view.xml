@@ -8,6 +8,12 @@
         <field name="inherit_id" ref="project.view_project"/>
         <field name="arch" type="xml">
 
+            <!--  For Order   -->
+            <xpath expr="//list" position="attributes">
+                <attribute name="default_order">create_date desc</attribute>
+            </xpath>
+
+
             <!--  Remove Partner ID  -->
             <xpath expr="//list/field[@name='partner_id']" position="replace"></xpath>
 

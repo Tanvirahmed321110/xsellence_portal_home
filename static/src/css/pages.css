@@ -161,6 +161,15 @@
 
 .task-details .task-card {
     border-radius: var(--fs-xl);
+    width:50%;
+    min-width:50%;
+}
+
+.task-details pre {
+    width: 95% !important;
+    white-space: nowrap !important;
+    line-height:1.8;
+    color:var(--color-text-desc);
 }
 
 .task-details .task-card .card-body {
@@ -1287,14 +1296,9 @@
     margin-bottom: 8px;
 }
 
-
-
-
-
-
-
-
-
+.submit-form select option[disabled] {
+  color: gray;
+}
 
 
 /* Mobile Responsive Code */

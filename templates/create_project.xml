@@ -52,7 +52,14 @@
                             <div class="input-control">
                                 <label for="">Customer Name
                                 </label>
-                                <input type="text" name="partner_id" placeholder="Customer Name"/>
+                                  <select name="user_id" id="" required="required">
+                                    <option value="Select Project">Select Customer</option>
+                                    <t t-foreach="customers" t-as="customer">
+                                        <option t-att-value="customer.id">
+                                            <t t-esc="customer.name"/>
+                                        </option>
+                                    </t>
+                                </select>
                             </div>
                         </div>
 
@@ -78,7 +85,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <select name="custom_status" required="required">
-                                    <option value="Select Status">Select Status</option>
+                                    <option disabled="disabled" value="Select Status">Select Status</option>
                                     <t t-foreach="status_selection" t-as="status">
                                         <option t-att-value="status[0]">
                                             <t t-esc="status[1]"/>
@@ -115,7 +122,7 @@
                                 </label>
                                 <select name="assigned_user_ids" required="required" id="assignees" multiple="multiple">
                                     <t t-foreach="users" t-as="user">
-                                        <option t-att-value="user.name">
+                                        <option t-att-value="user.id">
                                             <t t-esc="user.name"/>
                                         </option>
                                     </t>
@@ -127,12 +134,12 @@
                                 <label for="">Tags
                                     <span class="required">*</span>
                                 </label>
-                                <select id="tags" name="tag_ids" required="required" multiple="1">
-                                    <option value="App">App</option>
-                                    <option value="Portal">Portal</option>
-                                    <option value="Backend">Backend</option>
-                                    <option value="HR">HR</option>
-                                    <option value="UI">UI</option>
+                                <select id="tags" name="tag_ids" required="required" multiple="multiple">
+                                    <t t-foreach="tags" t-as="tag">
+                                        <option t-att-value="tag.id">
+                                            <t t-esc="tag.name"/>
+                                        </option>
+                                    </t>
                                 </select>
                             </div>
                         </div>

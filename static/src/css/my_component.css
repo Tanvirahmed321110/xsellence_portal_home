@@ -582,12 +582,6 @@
 }
 
 /* Spinner Animation */
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 .btn.btn-danger {
     background-color: var(--btn-danger-bg);
     color: var(--color-white);
@@ -899,9 +893,11 @@ button {
     border: 1px solid var(--border-primary);
     border-radius: 10px;
     padding: 16px;
-    color: var(--color-text-muted);
     font-family: inherit;
     background-color: var(--color-white-off);
+    color:var(--color-text-header);
+    font-weight:500;
+    letter-spacing:.5px;
 }
 
 .input-control input {
@@ -911,10 +907,11 @@ button {
     border-radius: var(--radius-sm);
     transition: var(--transition-base);
     width: 100%;
-    color: var(--my-text-primary);
-    background-color: var(--border-primary);
     background-color: var(--color-white-off);
     font-weight: var(--fw-400);
+    color:var(--color-text-header);
+    font-weight:500;
+    letter-spacing:.5px;
 }
 
 
@@ -938,6 +935,12 @@ input[type="date"] {
   font-weight: 400;
   padding: 9px 12px;
 }
+
+/* Date select korar por */
+input[type="date"]:valid {
+  color: #000; /* selected date color */
+}
+
 label {
     color: var(--color-text-header);
     font-size: var(--fs-sm);

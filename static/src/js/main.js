@@ -75,3 +75,24 @@ toggle.addEventListener("click", () => {
         localStorage.setItem("theme", "dark");
     }
 });
+
+
+document.querySelectorAll('input[type="date"]').forEach(function(input) {
+    // Page load এ check
+    toggleDateColor(input);
+
+    // Value change হলে check
+    input.addEventListener('change', function() {
+        toggleDateColor(this);
+    });
+});
+
+
+function toggleDateColor(input) {
+    if (input.value) {
+        input.style.color = 'var(--color-text-header)';
+        input.style.fontWeight='500'
+    } else {
+        input.style.color = 'var(--color-text-placeholder)';
+    }
+}

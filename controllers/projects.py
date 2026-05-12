@@ -11,7 +11,7 @@ class XsellencePortal(http.Controller):
 
         domain = [('active', '=', True), ('name', '!=', 'Internal')]
 
-        projects = request.env['project.project'].search(domain)
+        projects = request.env['project.project'].search(domain,order='create_date desc')
 
         return request.render('xsellence_portal.projects_page', {
             'active_menu': 'projects',
@@ -27,6 +27,8 @@ class XsellencePortal(http.Controller):
     def create_project_f(self, **kw):
         source = kw.get('source')
 
+        tags = request.env['project.tags'].search([])
+        customers = request.env['res.partner'].search([])
         project_managers = request.env['res.users'].search([('share','=',False)])
         users = request.env['res.users'].sudo().search([
             ('share', 'in', [True, False]),
@@ -54,18 +56,21 @@ class XsellencePortal(http.Controller):
             'project_managers':project_managers,
             'status_selection' :status_selection,
             'users': users,
+            'tags':tags,
+            'customers':customers,
         })
 
     # ================== Submit Project ==================
     @http.route('/submit_project', type='http', auth='user', methods=['POST'], website=True, csrf=True)
     def submit_project(self, **post):
 
-        user_ids = post.get('assigned_user_ids') or []
-        tags = post.get('tag_ids') or []
-
+        user_ids = request.httprequest.form.getlist('assigned_user_ids')
+        tags = request.httprequest.form.getlist('tag_ids')
+        print(f"user_ids   ---- {user_ids}")
+        print(f"user_ids   ---- {tags}")
         print("POST DATA:", post)
 
-        project = request.env['project.project'].sudo().create({
+        create_data = {
             'name': post.get('name'),
             'partner_id': post.get('partner_id') if post.get('partner_id') else False,
             'user_id':int(post.get('user_id') if post.get('user_id') else False),
@@ -73,24 +78,26 @@ class XsellencePortal(http.Controller):
             'date_start': post.get('date_start'),
             'date': post.get('date'),
             'description': post.get('description'),
-            'assigned_user_ids': [(6, 0, [x for x in user_ids])] if user_ids else False,
-            'tag_ids': [(6, 0, [x for x in tags])] if tags else False,
+            'assigned_user_ids': [(6, 0, [int(x) for x in user_ids])] if user_ids else False,
+            'tag_ids': [(4, int(x), 0) for x in tags] if tags else [],
+        }
+        print(f"create_data ------------ {create_data}")
 
-        })
+        project = request.env['project.project'].create(create_data)
+
+
         # ✅ Success Page
         return request.render('xsellence_portal.success_page')
 
 
     # =================  For Project Details Page  ===================
-    # @http.route('/projects/details/<int:project_id>', type='http', auth='public', website=True)
-    @http.route('/projects/project_details', type='http', auth='public', website=True)
-    # def project_details_f(self, project_id, **kw):
-    def project_details_f(self, **kw):
-        # project = request.env['project.project'].sudo().browse(project_id)
+    @http.route('/projects/details/<int:project_id>', type='http', auth='user', website=True)
+    def project_details_f(self, project_id, **kw):
+        project = request.env['project.project'].sudo().browse(project_id)
 
         return request.render('xsellence_portal.project_details_page', {
             'active_menu': 'projects',
-            # 'project': project,
+            'project': project,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Projects', 'url': '/projects'},
