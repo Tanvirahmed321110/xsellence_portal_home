@@ -98,6 +98,7 @@
                                         <div class="info-val mt-1" t-esc="project.partner_id.name">
                                         </div>
                                     </div>
+
                                     <!-- Planned Date -->
                                     <div class="info-item">
                                         <div class="info-label">Planned Date</div>

@@ -52,7 +52,7 @@
                             <div class="input-control">
                                 <label for="">Customer Name
                                 </label>
-                                  <select name="user_id" id="" required="required">
+                                  <select name="partner_id" id="" required="required">
                                     <option value="Select Project">Select Customer</option>
                                     <t t-foreach="customers" t-as="customer">
                                         <option t-att-value="customer.id">
