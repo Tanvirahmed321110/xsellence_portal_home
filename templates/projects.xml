@@ -26,7 +26,12 @@
                                 <circle cx="11" cy="11" r="8"></circle>
                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                             </svg>
-                            <input class="search-input" type="text" placeholder="Search task name or id..."/>
+                            <input class="search-input"
+                                   t-att-value="search"
+                                   name="search"
+                                   type="text"
+                                   placeholder="Search task name or id..."/>
+                            <button type="submit" style="display:none;"></button>
                         </div>
                     </div>
 
@@ -54,7 +59,7 @@
 
                 <!--==============================|| All Projects Here ||============================-->
                 <div
-                        class="grid-4 grid-lg-4 gap-lg-4 row-gap-lg-5 gap-6 grid-sm-1 row-gap-sm-4 grid-md-2 projects mt-5 mt-sm-5 gap-sm-3">
+                        class="grid-4 grid-lg-5 gap-lg-4 row-gap-lg-5 gap-6 grid-sm-1 row-gap-sm-4 grid-md-2 projects mt-5 mt-sm-5 gap-sm-3">
 
                     <!--================||   Single Project Card here ||===============-->
                     <t t-foreach="projects" t-as="project">
@@ -294,6 +299,32 @@
 
                 </div>
 
+
+                <!--=============  when data not found  ============-->
+                <div class="design-wrapper d-none  mt-2" id="error-container">
+                    <div class="empty-4">
+                        <div class="e4-glass">
+                            <div class="e4-ring">
+                                <span class="e4-icon-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <circle cx="11" cy="11" r="7"></circle>
+                                        <path d="M16.5 16.5L21 21"></path>
+                                        <line x1="8" y1="11" x2="14" y2="11"></line>
+                                    </svg>
+                                </span>
+                            </div>
+                            <h2 class="e4-title">Data <strong style="color: red;">'NOT'</strong> Found
+                            </h2>
+                            <p class="e4-sub">No records matched your current search or filter criteria.</p>
+                            <div class="e4-pills">
+                                <span class="e4-pill">0 results</span>
+                                <span class="e4-pill">try new filter</span>
+                                <span class="e4-pill">clear search</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Pagination -->
                 <div class="pagination">
                     <span class="page-info">Showing 1–6 of 24 projects</span>
@@ -320,16 +351,8 @@
                 </div>
             </section>
 
-            <script>
-                (function() {
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const status = urlParams.get('status');
-                    if (status) {
-                        const select = document.getElementById('filter-status');
-                        select.value = status;
-                    }
-                })();
-            </script>
+            <!--    Javascript Links Here     -->
+            <script src="/xsellence_portal/static/src/js/project.js?v=1"></script>
         </t>
     </template>
 </odoo>

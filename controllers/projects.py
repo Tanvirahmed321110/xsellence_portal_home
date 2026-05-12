@@ -4,7 +4,7 @@ from odoo.http import request
 from win32comext.shell.demos.servers.folder_view import tasks
 
 
-# For Projects Page
+#========== For Projects Page  ============
 class XsellencePortal(http.Controller):
     @http.route('/projects', type='http', auth='user', website=True)
     def projects_f(self, **kw):
@@ -16,6 +16,20 @@ class XsellencePortal(http.Controller):
         if status:
             domain.append(('custom_status', '=', status))
 
+        # ===== Search Value =====
+        search = kw.get('search')
+
+        # ===== Search Filter =====
+        if search:
+            if search.isdigit():
+                domain += [
+                    '|',
+                    ('name', 'ilike', search),
+                    ('id', '=', int(search))
+                ]
+            else:
+                domain.append(('name', 'ilike', search))
+
         projects = request.env['project.project'].search(domain, order='create_date desc')
         statuses = request.env['project.project']._fields['custom_status'].selection
 
@@ -24,11 +38,16 @@ class XsellencePortal(http.Controller):
             'projects': projects,
             'statuses': statuses,
             'status': status or '',
+            'search': search or '',
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Projects', 'url': False},
             ]
         })
+
+
+
+
 
     # ==================  For Create Project Page  ====================
     @http.route('/create_project', type='http', auth='public', website=True)
@@ -67,6 +86,8 @@ class XsellencePortal(http.Controller):
             'customers': customers,
         })
 
+
+
     # ================== Submit Project ==================
     @http.route('/submit_project', type='http', auth='user', methods=['POST'], website=True, csrf=True)
     def submit_project(self, **post):
@@ -94,6 +115,9 @@ class XsellencePortal(http.Controller):
 
         # ✅ Success Page
         return request.render('xsellence_portal.success_page')
+
+
+
 
     # =================  For Project Details Page  ===================
     @http.route('/projects/details/<int:project_id>', type='http', auth='user', website=True)
