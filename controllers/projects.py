@@ -1,36 +1,47 @@
 from odoo import http
 from odoo.http import request
 
-from win32comext.shell.demos.servers.folder_view import tasks
-
 
 #========== For Projects Page  ============
 class XsellencePortal(http.Controller):
+
     @http.route('/projects', type='http', auth='user', website=True)
     def projects_f(self, **kw):
 
-        domain = [('active', '=', True), ('name', '!=', 'Internal')]
+        base_domain = [
+            ('active', '=', True),
+            ('name', '!=', 'Internal')
+        ]
 
+        status_domain = []
+        search_domain = []
+
+        # ===== Status Filter =====
         status = kw.get('status')
-        print("STATUS FROM URL:", status, type(status))
         if status:
-            domain.append(('custom_status', '=', status))
-
-        # ===== Search Value =====
-        search = kw.get('search')
+            status_domain = [('custom_status', '=', status)]
 
         # ===== Search Filter =====
+        search = kw.get('search')
         if search:
+
             if search.isdigit():
-                domain += [
+                search_domain = [
                     '|',
                     ('name', 'ilike', search),
                     ('id', '=', int(search))
                 ]
             else:
-                domain.append(('name', 'ilike', search))
+                search_domain = [('name', 'ilike', search)]
 
-        projects = request.env['project.project'].search(domain, order='create_date desc')
+        # ===== Final Domain Merge =====
+        domain = base_domain + status_domain + search_domain
+
+        projects = request.env['project.project'].search(
+            domain,
+            order='create_date desc'
+        )
+
         statuses = request.env['project.project']._fields['custom_status'].selection
 
         return request.render('xsellence_portal.projects_page', {

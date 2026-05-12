@@ -1550,7 +1550,7 @@ aside .sidebar-bottom {
 /* ===================== DESIGN 4: GLASSMORPHISM MINIMAL ===================== */
 .empty-4 {
     width: 100%;
-    background: var(--sidebar-bg);
+     background: linear-gradient(226deg,#b30000,#000080d9, #b30000);
     border-radius: 24px;
     padding: 70px 40px;
     position: relative;
@@ -1563,8 +1563,8 @@ aside .sidebar-bottom {
 
 
 .e4-glass {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid red;
     border-radius: 20px;
     padding: 40px 50px;
     position: relative;

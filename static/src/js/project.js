@@ -57,6 +57,8 @@ const searchInput = document.querySelector('.search-input');
 const projectCards = document.querySelectorAll('.proj-card');
 const errorContainer = document.querySelector('#error-container');
 
+
+
 searchInput.addEventListener('keyup', function () {
 
     const value = this.value.toLowerCase();

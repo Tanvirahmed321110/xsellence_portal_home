@@ -19,6 +19,7 @@
                         </span>
                     </div>
 
+                    <!-- Search Product -->
                     <div class="search task-search">
                         <div class="search-wrap  input-control shadow-md">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -352,7 +353,7 @@
             </section>
 
             <!--    Javascript Links Here     -->
-            <script src="/xsellence_portal/static/src/js/project.js?v=1"></script>
+            <script src="/xsellence_portal/static/src/js/project.js?v=2"></script>
         </t>
     </template>
 </odoo>
