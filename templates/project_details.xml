@@ -139,7 +139,7 @@
                                             </svg>
 
                                         </div>
-                                        <div class=" info-val">12</div>
+                                        <div class=" info-val" t-esc="project.task_count"></div>
                                     </div>
                                 </div>
                             </div>

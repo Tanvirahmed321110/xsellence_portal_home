@@ -73,6 +73,7 @@ class XsellencePortal(http.Controller):
             ('share', 'in', [True, False]),
             ('id', '!=', request.env.ref('base.user_admin').id)
         ])
+
         status_selection = request.env['project.project']._fields['custom_status'].selection
         priority = request.env['project.project']._fields['custom_priority'].selection
         print(users)
@@ -130,6 +131,15 @@ class XsellencePortal(http.Controller):
         print(f"create_data ------------ {create_data}")
 
         project = request.env['project.project'].create(create_data)
+
+        # ❌  Error Page
+        if not project:
+            return request.render('xsellence_portal.error_page', {
+                'error_title': '❌ Project Creation Failed',
+                'error_desc': 'Unable to create project.',
+                'error_btn_label': 'Again Try',
+                'error_btn_url':  '/projects/create_project',
+            })
 
         # ✅ Success Page
         return request.render('xsellence_portal.success_page',{
