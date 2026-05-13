@@ -111,6 +111,9 @@ class XsellencePortal(http.Controller):
 
         create_data = {
             'name': post.get('name'),
+            'github_link': post.get('github_link'),
+            'dev_link': post.get('dev_link'),
+            'live_link': post.get('live_link'),
             'partner_id': post.get('partner_id') if post.get('partner_id') else False,
             'user_id': int(post.get('user_id') if post.get('user_id') else False),
             'custom_status': post.get('custom_status'),
@@ -125,7 +128,12 @@ class XsellencePortal(http.Controller):
         project = request.env['project.project'].create(create_data)
 
         # ✅ Success Page
-        return request.render('xsellence_portal.success_page')
+        return request.render('xsellence_portal.success_page',{
+            'success_title': 'Project Successfully Created',
+            'success_desc': 'Your project has been created successfully. You can now manage it and assign tasks to your team.',
+            'success_btn_label': 'Show Projects',
+            'success_btn_url': '/projects',
+        })
 
 
 

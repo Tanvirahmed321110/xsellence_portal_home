@@ -5,6 +5,11 @@ class ProjectProject(models.Model):
     _inherit = 'project.project'
     _order = 'create_date desc'
 
+    # For Userlink links page
+    live_link  = fields.Char(string='Live Link')
+    github_link = fields.Char(string='Github Repo Link')
+    dev_link = fields.Char(string='Dev Server Link')
+
 
     custom_priority = fields.Selection([
         ('normal','normal'),

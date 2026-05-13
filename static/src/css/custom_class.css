@@ -847,7 +847,7 @@ tr {
 }
 
 .text-primary {
-    color: var(--my-text-primary);
+    color: var(--text-primary);
 }
 
 .text-secondary {

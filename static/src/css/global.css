@@ -1620,6 +1620,9 @@ aside .sidebar-bottom {
     align-items: center;
     text-align: center;
 }
+#click-sound {
+    display: none;
+}
 
 
 .e4-glass {

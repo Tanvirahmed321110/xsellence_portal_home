@@ -115,3 +115,46 @@ function setView(type) {
     document.getElementById('btn-grid').classList.toggle('active', type === 'grid');
     document.getElementById('btn-list').classList.toggle('active', type === 'list');
 }
+
+
+
+
+// For audio sound
+const links = document.querySelectorAll('button');
+const sound = document.getElementById('click-sound');
+
+links.forEach(link => {
+    link.addEventListener('click', function () {
+        sound.currentTime = 0;
+        sound.play();
+        console.log(sound)
+    });
+});
+
+
+
+// for submit form
+const successSound = document.getElementById('success-sound');
+const errorSound = document.getElementById('error-sound');
+
+const submitBtns = document.querySelectorAll('form button');
+
+submitBtns.forEach(btn => {
+    btn.addEventListener('click', function (e) {
+
+        const form = this.closest('form');
+
+        if (form.checkValidity()) {
+            successSound.currentTime = 0;
+            successSound.play();
+            console.log("Success");
+
+        } else {
+            errorSound.currentTime = 0;
+            errorSound.play();
+            console.log("Error");
+
+            form.reportValidity();
+        }
+    });
+});

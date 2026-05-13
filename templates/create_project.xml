@@ -42,17 +42,17 @@
                         <div class="grid-2 gap-5 grid-sm-1">
                             <!--======= For Project Name =======-->
                             <div class="input-control">
-                                <label for="">Name
+                                <label for="name">Name
                                     <span class="required">*</span>
                                 </label>
-                                <input type="text" required="required" name="name" placeholder="Project Name"/>
+                                <input type="text" required="required" name="name" id="name" placeholder="Project Name"/>
                             </div>
 
                             <!--======= For Company Name =======-->
                             <div class="input-control">
-                                <label for="">Customer Name
+                                <label for="partner_id">Customer Name
                                 </label>
-                                  <select name="partner_id" id="" required="required">
+                                  <select name="partner_id" id="partner_id" required="required">
                                     <option value="Select Project">Select Customer</option>
                                     <t t-foreach="customers" t-as="customer">
                                         <option t-att-value="customer.id">
@@ -66,10 +66,10 @@
                         <div class="grid-2 gap-5 grid-sm-1">
                             <!--======= For Project Manager =======-->
                             <div class="input-control">
-                                <label for="">Project Manager
+                                <label for="user_id">Project Manager
                                     <span class="required">*</span>
                                 </label>
-                                <select name="user_id" id="" required="required">
+                                <select name="user_id" id="user_id" required="required">
                                     <option value="Select Project">Select Manager</option>
                                     <t t-foreach="project_managers" t-as="manager">
                                         <option t-att-value="manager.id">
@@ -81,10 +81,10 @@
 
                             <!--======= For  Status =======-->
                             <div class="input-control">
-                                <label for="">Project Status
+                                <label for="custom_status">Project Status
                                     <span class="required">*</span>
                                 </label>
-                                <select name="custom_status" required="required">
+                                <select name="custom_status" id="custom_status" required="required">
                                     <option disabled="disabled" value="Select Status">Select Status</option>
                                     <t t-foreach="status_selection" t-as="status">
                                         <option t-att-value="status[0]">
@@ -99,28 +99,28 @@
                         <div class="grid-2 gap-5 grid-sm-1">
                             <!--======= For Start Date =======-->
                             <div class="input-control">
-                                <label for="">Start Date
+                                <label for="date_start">Start Date
                                     <span class="required">*</span>
                                 </label>
-                                <input type="date" name="date_start" placeholder="Project Manager"/>
+                                <input type="date" name="date_start" id="date_start" placeholder="Project Manager"/>
                             </div>
 
                             <!--======= For End Date =======-->
                             <div class="input-control">
-                                <label for="">End Date
+                                <label for="date">End Date
                                     <span class="required">*</span>
                                 </label>
-                                <input type="date" name="date" placeholder="Company Name"/>
+                                <input type="date" name="date" id="date" placeholder="Company Name"/>
                             </div>
                         </div>
 
                         <div class="grid-2 gap-5 grid-sm-1">
                             <!--======= For Assign Members =======-->
                             <div class="input-control">
-                                <label for="">Assign Members
+                                <label for="assigned_user_ids">Assign Members
                                     <span class="required">*</span>
                                 </label>
-                                <select name="assigned_user_ids" required="required" id="assignees" multiple="multiple">
+                                <select name="assigned_user_ids" required="required" id="assigned_user_ids" multiple="multiple">
                                     <t t-foreach="users" t-as="user">
                                         <option t-att-value="user.id">
                                             <t t-esc="user.name"/>
@@ -131,9 +131,9 @@
 
                             <!--======= For Project Tags =======-->
                             <div class="input-control">
-                                <label for="">Tags
+                                <label for="tag_ids">Tags
                                 </label>
-                                <select id="tags" name="tag_ids"  multiple="multiple">
+                                <select  name="tag_ids" id="tag_ids"  multiple="multiple">
                                     <t t-foreach="tags" t-as="tag">
                                         <option t-att-value="tag.id">
                                             <t t-esc="tag.name"/>
@@ -146,8 +146,29 @@
                         <div class="grid-1 gap-5 grid-sm-1">
                             <!--======= For Description =======-->
                             <div class="input-control">
-                                <label for="">Description</label>
-                                <textarea name="description" id="" placeholder="Description..."></textarea>
+                                <label for="description">Description</label>
+                                <textarea name="description" id="description" placeholder="Description..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="my-mt-7 team-leader">
+                            <div class=" fs-lg  fw-bold" style="color:#121212">For Teamleader</div>
+                            <div class="grid-1 gap-5 grid-sm-1 mt-3">
+                                <!--======= For Gite LInk =======-->
+                                <div class="input-control">
+                                    <label for="github_link">Github Link</label>
+                                    <input name="github_link" id="github_link" placeholder="Github Link..."/>
+                                </div>
+                                <!--======= For Gite LInk =======-->
+                                <div class="input-control">
+                                    <label for="live_link">Live Link</label>
+                                    <input name="live_link" id="live_link" placeholder="Live  Link..."/>
+                                </div>
+                                <!--======= For Gite LInk =======-->
+                                <div class="input-control">
+                                    <label for="dev_link">Dev Link</label>
+                                    <input name="dev_link" id="dev_link" placeholder="Dev Server Link..."/>
+                                </div>
                             </div>
                         </div>
 
@@ -186,12 +207,12 @@
             <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
             <script>
                 // <!-- Ts Control Library Code -->
-                new TomSelect("#assignees", {
+                new TomSelect("#assigned_user_ids", {
                 create: true, // allow new names
                 persist: false
                 });
 
-                new TomSelect("#tags", {
+                new TomSelect("#tag_ids", {
                 create: true, // allow new names
                 persist: false
                 });

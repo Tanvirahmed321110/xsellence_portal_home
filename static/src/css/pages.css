@@ -20,6 +20,11 @@
     transform: translateY(20px);
     animation: fadeUp 1.4s ease forwards;
 }
+.submit-form .team-leader{
+    border: 1px solid var(--color-tag);
+    padding: 16px;
+    border-radius: var(--radius-xl);
+}
 .helpdesk .card-items > *,
 .h-items > * {
     opacity: 0;
@@ -1195,6 +1200,20 @@
     max-width: 340px;
     margin: 0 auto 36px;
 }
+
+
+.d5-icon-circle {
+    animation: popBounce 1.2s ease infinite, spinOnce 2s ease infinite;
+    display: flex;
+}
+
+@keyframes popBounce {
+    0%, 100% { transform: scale(1) rotate(0deg);   }
+    30%      { transform: scale(1.12) rotate(-10deg); }
+    60%      { transform: scale(0.95) rotate(10deg); }
+}
+
+
 
 .d5-actions {
     display: flex;
