@@ -160,10 +160,31 @@ class XsellencePortal(http.Controller):
 
 
     # =================  For Project Details Page State Update  ===================
-    @http.route('/project/update_status', type='http', auth='user', methods=['POST'], csrf=False)
+    @http.route('/project/update_status', type='http', auth='user', methods=['POST'], csrf=True)
     def update_project_status(self, project_id=None, status=None, **kw):
         if project_id and status:
             project = request.env['project.project'].sudo().browse(int(project_id))
             project.write({'custom_status': status})
 
         return request.redirect(f"/projects/details/{project_id}")
+
+
+    # =================  For Project Details Page Delete Project  ===================
+    @http.route('/project/delete',type="http",auth="user",methods=['POST'])
+    def delete_project(self,project_id=None,**kw):
+        if project_id:
+            project = request.env['project.project'].sudo().browse(int(project_id))
+            project.unlink()
+
+        if not project_id:
+            return request.render('xsellence_portal.error_page', {
+
+            })
+
+        # ✅ Success Page
+        return request.render('xsellence_portal.success_page',{
+            'success_title': 'Project Delete Successfully ',
+            'success_desc': 'Your project has been created successfully. You can now manage it and assign tasks to your team.',
+            'success_btn_label': 'Show All Projects',
+            'success_btn_url': '/projects',
+        })
