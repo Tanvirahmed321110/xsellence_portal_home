@@ -141,6 +141,9 @@ class XsellencePortal(http.Controller):
     # =================  For Project Details Page  ===================
     @http.route('/projects/details/<int:project_id>', type='http', auth='user', website=True)
     def project_details_f(self, project_id, **kw):
+
+        request.session['last_project_id'] = project_id
+
         project = request.env['project.project'].sudo().browse(project_id)
 
         status_selection = request.env['project.project'].fields_get(
@@ -169,21 +172,30 @@ class XsellencePortal(http.Controller):
         return request.redirect(f"/projects/details/{project_id}")
 
 
+
+
+
     # =================  For Project Details Page Delete Project  ===================
     @http.route('/project/delete',type="http",auth="user",methods=['POST'])
     def delete_project(self,project_id=None,**kw):
+
+        last_id = request.session.get('last_project_id')
+
         if project_id:
             project = request.env['project.project'].sudo().browse(int(project_id))
             project.unlink()
 
         if not project_id:
             return request.render('xsellence_portal.error_page', {
-
+                'error_title': 'Invalid Request',
+                'error_desc': 'Project ID missing.',
+                'error_btn_label': 'Retry',
+                'error_btn_url': f'/projects/details/{last_id}',
             })
 
         # ✅ Success Page
         return request.render('xsellence_portal.success_page',{
-            'success_title': 'Project Delete Successfully ',
+            'success_title': 'Project Deleted Successfully 🗑️',
             'success_desc': 'Your project has been created successfully. You can now manage it and assign tasks to your team.',
             'success_btn_label': 'Show All Projects',
             'success_btn_url': '/projects',

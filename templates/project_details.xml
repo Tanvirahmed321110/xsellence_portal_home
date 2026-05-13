@@ -211,7 +211,7 @@
 
                                 <form method='post' action="/project/delete">
                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                   <input type="hidden" name="project_id" t-att-value="project_id"/>
+                                   <input type="hidden" name="project_id" t-att-value="project.id"/>
 
                                     <!-- Delete button -->
                                     <button type="submit" class="action-btn del"><svg width="12" height="12" viewBox="0 0 24 24"

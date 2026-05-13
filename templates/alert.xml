@@ -32,11 +32,11 @@
                 <div class="d5-wrap d5-failed">
                     <div class="d5-icon-circle">🚫</div>
                     <div class="d5-divider"></div>
-                    <h2>Submission Failed</h2>
-                    <p>Your project could not be created at this time. Please review the errors below and try again.</p>
+                    <h2 t-esc="error_title"></h2>
+                    <p t-esc="error_desc">Your project could not be created at this time. Please review the errors below and try again.</p>
                     <div class="d5-actions">
-                        <a href="#" class="d5-btn-primary">Retry</a>
-                        <a href="#" class="d5-btn-ghost">Get Help</a>
+                        <a t-att-href="error_btn_url" class="d5-btn-primary" t-esc="error_btn_label"></a>
+                        <a href="/dashboard" class="d5-btn-ghost">Go To Dashboard</a>
                     </div>
                 </div>
             </div>
