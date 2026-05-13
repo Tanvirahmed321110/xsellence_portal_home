@@ -1,5 +1,6 @@
 from odoo import http
 from odoo.http import request
+from datetime import date
 
 
 #========== For Projects Page  ============
@@ -73,6 +74,7 @@ class XsellencePortal(http.Controller):
             ('id', '!=', request.env.ref('base.user_admin').id)
         ])
         status_selection = request.env['project.project']._fields['custom_status'].selection
+        priority = request.env['project.project']._fields['custom_priority'].selection
         print(users)
 
         if source == 'projects':
@@ -95,6 +97,7 @@ class XsellencePortal(http.Controller):
             'users': users,
             'tags': tags,
             'customers': customers,
+            'priority':priority,
         })
 
 
@@ -117,8 +120,9 @@ class XsellencePortal(http.Controller):
             'partner_id': post.get('partner_id') if post.get('partner_id') else False,
             'user_id': int(post.get('user_id') if post.get('user_id') else False),
             'custom_status': post.get('custom_status'),
-            'date_start': post.get('date_start'),
+            'date_start': post.get('date_start') or  date.today(),
             'date': post.get('date'),
+            'custom_priority': post.get('custom_priority'),
             'description': post.get('description'),
             'assigned_user_ids': [(6, 0, [int(x) for x in user_ids])] if user_ids else False,
             'tag_ids': [(4, int(x), 0) for x in tags] if tags else [],

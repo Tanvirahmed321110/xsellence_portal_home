@@ -35,7 +35,7 @@
                             </div>
                             <div>
                                 <div class="section-title head-primary">Create New Project</div>
-                                <p class="desc mt-1">Add the details of your new project</p>
+                                <p class="desc mt-1">Add the details of your new project (<span class="required">*</span> are required.) </p>
                             </div>
                         </div>
 
@@ -70,7 +70,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <select name="user_id" id="user_id" required="required">
-                                    <option value="Select Project">Select Manager</option>
+                                    <option value="Select Manager">Select Manager</option>
                                     <t t-foreach="project_managers" t-as="manager">
                                         <option t-att-value="manager.id">
                                             <t t-esc="manager.name"/>
@@ -82,9 +82,8 @@
                             <!--======= For  Status =======-->
                             <div class="input-control">
                                 <label for="custom_status">Project Status
-                                    <span class="required">*</span>
                                 </label>
-                                <select name="custom_status" id="custom_status" required="required">
+                                <select name="custom_status" id="custom_status">
                                     <option disabled="disabled" value="Select Status">Select Status</option>
                                     <t t-foreach="status_selection" t-as="status">
                                         <option t-att-value="status[0]">
@@ -100,9 +99,8 @@
                             <!--======= For Start Date =======-->
                             <div class="input-control">
                                 <label for="date_start">Start Date
-                                    <span class="required">*</span>
                                 </label>
-                                <input type="date" name="date_start" id="date_start" placeholder="Project Manager"/>
+                                <input type="date" name="date_start" id="date_start"  placeholder="Project Manager"/>
                             </div>
 
                             <!--======= For End Date =======-->
@@ -137,6 +135,21 @@
                                     <t t-foreach="tags" t-as="tag">
                                         <option t-att-value="tag.id">
                                             <t t-esc="tag.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid-1">
+                            <!--======= For  Status =======-->
+                            <div class="input-control">
+                                <label for="custom_priority">Project Priority
+                                </label>
+                                <select name="custom_priority" id="custom_priority">
+                                    <t t-foreach="priority" t-as="item">
+                                        <option t-att-value="item[0]">
+                                            <t t-esc="item[1]"/>
                                         </option>
                                     </t>
                                 </select>

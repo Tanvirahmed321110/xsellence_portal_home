@@ -11,7 +11,7 @@
                 <!-- Ts Control Library CDN -->
                 <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="/xsellence_portal/static/src/css/custom_class.css?v=3"/>
-                <link rel="stylesheet" href="/xsellence_portal/static/src/css/my_component.css?v=6"/>
+                <link rel="stylesheet" href="/xsellence_portal/static/src/css/my_component.css?v=7"/>
                 <link rel="stylesheet" href="/xsellence_portal/static/src/css/global.css?v=18"/>
                 <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages.css?v=16"/>
                 <t t-raw="header"/>

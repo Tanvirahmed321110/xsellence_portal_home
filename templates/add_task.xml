@@ -27,7 +27,7 @@
                             </div>
                             <div>
                                 <div class="section-title head-primary">Add New Task</div>
-                                <p class="desc mt-1">Add the details of your new task</p>
+                                <p class="desc mt-1">Add the details of your new task (<span class="required">*</span> are required.) </p>
                             </div>
                         </div>
 
@@ -68,11 +68,9 @@
 
                         <div class="grid-2 gap-5 grid-sm-1">
                             <!--======= For Allocation Hours =======-->
-                            <div class="input-control ">
-                                <label for="">Priority <span class="required">*</span></label>
-                                <select name="custom_priority" id="">
-                                    <option disabled="disabled" value="Select Status">Select Status</option>
-                                    <option value="Select Project" disabled="disabled">Select Priority</option>
+                            <div class="input-control">
+                                <label for="">Priority </label>
+                                <select name="custom_priority" id="custom_priority">
                                     <t t-foreach="priority" t-as="item">
                                         <option t-att-value="item[0]">
                                             <t t-esc="item[1]"/>
@@ -82,9 +80,8 @@
                             </div>
                             <!--======= For Status =======-->
                             <div class="input-control ">
-                                <label for="">Task Status <span class="required">*</span></label>
-                                <select name="custom_status" id="">
-                                    <option value="Select Project" disabled="disabled">Select Status</option>
+                                <label for="">Task Status</label>
+                                <select name="custom_status" id="custom_status">
                                     <t t-foreach="statuses" t-as="item">
                                         <option t-att-value="item[0]">
                                             <t t-esc="item[1]"/>

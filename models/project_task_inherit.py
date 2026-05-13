@@ -11,7 +11,7 @@ class ProjectProject(models.Model):
         ('medium','medium'),
         ('high','high'),
         ('urgent','urgent'),
-    ], string=' Priority',default='medium')
+    ], string=' Priority',default='normal')
 
     custom_status = fields.Selection([
         ('planning', 'Planning'),

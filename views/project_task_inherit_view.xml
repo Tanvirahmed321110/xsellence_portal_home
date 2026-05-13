@@ -2,6 +2,19 @@
 <odoo>
 
     <!-- ==================== Project Task Tree/List View ==================== -->
+    <record id="view_project_task_list_inherit" model="ir.ui.view">
+        <field name="name">project.task.list.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <field name="arch" type="xml">
+
+            <!-- Order: Newest first -->
+            <xpath expr="//list" position="attributes">
+                <attribute name="default_order">create_date desc</attribute>
+            </xpath>
+
+        </field>
+    </record>
 
 
 

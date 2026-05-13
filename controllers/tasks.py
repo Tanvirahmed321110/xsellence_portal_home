@@ -77,8 +77,8 @@ class XsellencePortal(http.Controller):
             'project_id': int(kw.get('project_id')) if kw.get('project_id') else False,
             'date_assign': kw.get('date_assign') or date.today(),
             'date_deadline': kw.get('date_deadline'),
-            'custom_priority': kw.get('custom_priority', '1'),
-            'custom_status': kw.get('custom_status', '1'),
+            'custom_priority': kw.get('custom_priority') ,
+            'custom_status': kw.get('custom_status') ,
             'user_ids' : user_ids,
             'description':kw.get('description'),
         }

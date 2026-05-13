@@ -1011,7 +1011,7 @@ select:focus.select.dropdown:focus,
     user-select: none;
     transition: .12s linear;
 }
-.required{color: var(--color-secondary);}
+.required{color: blueviolet;font-size: var(--fs-md);font-weight: 500;}
 .input-control input:focus+.label {
     top: -16px;
 }

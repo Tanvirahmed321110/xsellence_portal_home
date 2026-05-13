@@ -16,7 +16,7 @@ class ProjectProject(models.Model):
         ('medium','medium'),
         ('high','high'),
         ('urgent','urgent'),
-    ], string=' Priority',default='medium')
+    ], string=' Priority',default='normal')
 
     custom_status = fields.Selection([
         ('planning', 'Planning'),
@@ -24,7 +24,7 @@ class ProjectProject(models.Model):
         ('review', 'Under Review'),
         ('completed', 'Completed'),
         ('cancelled', 'Cancelled'),
-    ], string='Project Status', default='planning')
+    ], string='Project Status', default='Planning')
 
     # assign members
     assigned_user_ids = fields.Many2many(
