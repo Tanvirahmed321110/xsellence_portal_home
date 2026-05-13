@@ -845,7 +845,7 @@ aside .sidebar-bottom {
 
 .main-content {
     width: calc(100% - 300px);
-    height: calc(100dvh - 106px);
+    height: calc(100dvh - 112px);
     margin-left: 300px;
     margin-top: 72px;
     padding: 32px 32px;

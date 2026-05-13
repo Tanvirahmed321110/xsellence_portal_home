@@ -44,3 +44,18 @@ class ProjectProject(models.Model):
                 rec.remaining_days = (rec.date - today).days
             else:
                 rec.remaining_days = 0
+
+    allocated_hours = fields.Float(
+        compute="_compute_allocated_hours",
+        store=True,
+        readonly=False
+    )
+
+    @api.depends("date_start", "date")
+    def _compute_allocated_hours(self):
+        for rec in self:
+            if rec.date_start and rec.date:
+                delta = rec.date - rec.date_start
+                rec.allocated_hours = delta.days * 8
+            else:
+                rec.allocated_hours = 0.0

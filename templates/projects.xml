@@ -96,7 +96,7 @@
                                                 <t t-esc="project.name"/>
                                                 <!-- Total Tasks -->
                                                 <span
-                                                        class="info-val tasks-num ">2
+                                                        class="info-val tasks-num " t-esc="project.task_count">
                                                 </span>
                                             </div>
                                         </div>
