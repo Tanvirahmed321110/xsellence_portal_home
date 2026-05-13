@@ -143,12 +143,27 @@ class XsellencePortal(http.Controller):
     def project_details_f(self, project_id, **kw):
         project = request.env['project.project'].sudo().browse(project_id)
 
+        status_selection = request.env['project.project'].fields_get(
+            ['custom_status'])['custom_status']['selection']
+
         return request.render('xsellence_portal.project_details_page', {
             'active_menu': 'projects',
             'project': project,
+            'status_selection': status_selection,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Projects', 'url': '/projects'},
                 {'name': 'Project Details', 'url': False}
             ]
         })
+
+
+
+    # =================  For Project Details Page State Update  ===================
+    @http.route('/project/update_status', type='http', auth='user', methods=['POST'], csrf=False)
+    def update_project_status(self, project_id=None, status=None, **kw):
+        if project_id and status:
+            project = request.env['project.project'].sudo().browse(int(project_id))
+            project.write({'custom_status': status})
+
+        return request.redirect(f"/projects/details/{project_id}")

@@ -20,10 +20,16 @@
     transform: translateY(20px);
     animation: fadeUp 1.4s ease forwards;
 }
-.submit-form .team-leader{
+.team-leader{
     border: 1px solid var(--color-tag);
     padding: 16px;
     border-radius: var(--radius-xl);
+}
+
+.team-leader a{
+    color: var(--color-text-link);
+    font-weight: 500;
+    text-decoration: underline;
 }
 .helpdesk .card-items > *,
 .h-items > * {
@@ -1165,8 +1171,8 @@
 }
 
 .d5-icon-circle {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1203,16 +1209,16 @@
 
 
 .d5-icon-circle {
-    animation: popBounce 1.2s ease infinite, spinOnce 2s ease infinite;
-    display: flex;
+    animation: popBounce 1.2s ease 5;
 }
 
 @keyframes popBounce {
-    0%, 100% { transform: scale(1) rotate(0deg);   }
-    30%      { transform: scale(1.12) rotate(-10deg); }
-    60%      { transform: scale(0.95) rotate(10deg); }
+    0%   { transform: scale(1);    }
+    30%  { transform: scale(1.1);  }
+    50%  { transform: scale(0.95); }
+    70%  { transform: scale(1.1);  }
+    100% { transform: scale(1);    }
 }
-
 
 
 .d5-actions {

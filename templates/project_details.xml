@@ -146,25 +146,56 @@
 
                             <!-- Task Description -->
                             <div class="mt-4">
-                                <div class="info-label">Description</div>
-                                <div class="task-desc-wrap mt-2 flex-column gap-4" t-esc="project.description">
-                                    <!-- <img class="radius-md" src="/images/bg.jpg" alt="project details image" />-->
+                                <t t-if="project.description">
+                                    <div class="info-label">Description</div>
+                                    <div class="task-desc-wrap mt-2 flex-column gap-4" t-esc="project.description">
 
+                                    <!-- <img class="radius-md" src="/images/bg.jpg" alt="project details image" />-->
+                                    </div>
+                                </t>
+                            </div>
+
+                            <div class="team-leader mt-5">
+                                <div class="fs-lg fw-bold" style="color:#121212;">Usefull Links: </div>
+                                <div class="flex-column gap-3 mt-3">
+                                    <div class="d-flex align-center gap-4">
+                                        <span style="min-width:100px;display:inline-block;font-weight:500;color:var(--color-primary)">Github:</span>
+                                        <t t-if="project.github_link">
+                                            <a t-att-href="project.github_link" target="_blank">Github Link</a>
+                                        </t>
+                                    </div>
+                                    <div class="d-flex align-center gap-4">
+                                        <span style="min-width:100px;display:inline-block;color:var(--color-primary);font-weight:500">Dev Server:</span>
+                                        <t t-if="project.dev_link">
+                                            <a t-att-href="project.dev_link" target="_blank">Dev Server Link</a>
+                                        </t>
+                                    </div>
+                                    <div class="d-flex align-center gap-4">
+                                        <span style="min-width:100px;display:inline-block;color:var(--color-primary);font-weight:500">Live:</span>
+                                        <t t-if="project.live_link">
+                                            <a t-att-href="project.live_link" target="_blank">Live Link</a>
+                                        </t>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <!--=============  Card Footer  =============-->
                         <div class="card-footer">
-                            <div class="state-dropdown ">
-                                <select class="filter-select">
-                                    <option value="blocked">Blocked</option>
-                                    <option value="active">Active</option>
-                                    <option value="onhold">On Hold</option>
-                                    <option value="cancelled">Cancelled</option>
-                                    <option value="completed">Completed</option>
-                                </select>
-                            </div>
+                            <form method="post" action="/project/update_status">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <input type="hidden" name="project_id" t-att-value="project.id"/>
+
+                                <div class="state-dropdown">
+                                    <select class="filter-select" name="status" onchange="this.form.submit()">
+                                        <t t-foreach="status_selection" t-as="status">
+                                            <option t-att-value="status[0]" t-att-selected="status[0] == project.custom_status">
+                                                <t t-esc="status[1]"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                            </form>
                             <!-- Actions Buttons -->
                             <div class="action-btns">
 
