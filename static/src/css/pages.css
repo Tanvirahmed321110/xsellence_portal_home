@@ -98,7 +98,6 @@
     min-height: 400px;
 }
 
-
 .timesheets .action-btn {
     width: 32px;
     height: 32px;
@@ -113,6 +112,15 @@
     background-color: var(--color-primary);
     transition: var(--transition-fast);
 }
+
+ .table-wrap .action-btn{
+    padding:6px 10px;
+    gap:4px;
+    background:var(--color-primary);
+    color:var(--color-white)
+ }
+
+
 
 .timesheets .action-btn.del:hover {
     background-color: var(--btn-danger-bg);
@@ -1325,6 +1333,29 @@
   color: gray;
 }
 
+@media (max-width:1439px) {
+    .alert-wrap .submit-form {
+        padding:8px;
+        max-width:450px;
+        border-radius: 20px;
+    }
+    .d5-icon-circle {
+        width: 70px;
+        height: 70px;
+        font-size: 36px;
+    }
+    .table-wrap td {
+        padding: 8px 10px;
+        font-size:var(--fs-sm);
+        font-weight: 400;
+        max-width: 220px;
+    }
+     .table-wrap th{
+         padding: 16px 10px;
+         font-size:var(--fs-xs);
+         font-weight:600;
+     }
+}
 
 /* Mobile Responsive Code */
 @media (max-width:767px) {

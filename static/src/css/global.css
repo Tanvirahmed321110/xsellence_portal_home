@@ -1056,7 +1056,7 @@ aside .sidebar-bottom {
 .table th {
     text-align: left;
     text-transform: uppercase;
-    color: var(--color-text-primary);
+    color: var(--color-text-secondary);
     font-weight: 500;
     padding: 16px 16px;
     background-color: var(--border-primary);
@@ -1879,7 +1879,12 @@ aside .sidebar-bottom {
     }
 
     aside .menu-item {
-        padding: 10px 12px;
+        padding: 8px 10px;
+    }
+
+    aside .menu-item .icon {
+        width: 30px;
+        height: 26px;
     }
 
     .proj-card .card-body {
@@ -1904,14 +1909,44 @@ aside .sidebar-bottom {
     }
 
 
+
     .proj-card .action-btn {
         gap: 4px;
         padding: 2px 5px;
         height: 32px;
         font-size: 12px;
     }
-}
+    .task-card .action-btn{
+         padding: 4px 8px;
+    }
 
+/*=============//  Power By  //=============*/
+@keyframes logoSlide {
+    0% {
+        transform: translateY(-28px);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-28px);
+        opacity: .6;
+    }
+}
+aside .sidebar-bottom {
+    background-color: var(--color-primary);
+    background-color: var(--color-tag);
+    padding-top: 4px;
+    height: 178px;
+}
+.powered-logo {
+    animation: logoSlide 2s ease-in-out infinite;
+}
+}
 
 
 /*===================|| For Mobile Responsive ||====================*/

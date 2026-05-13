@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <div class="grid-4 grid-lg-3 gap-6 grid-sm-1 row-gap-sm-4 grid-md-2 tasks mt-6 mt-sm-5 gap-sm-3">
+                <div class="grid-4 grid-lg-4 gap-lg-4 gap-6 grid-sm-1 row-gap-sm-4 grid-md-2 tasks mt-6 mt-sm-5 gap-sm-3">
                     <!--================||   Single Task Card here ||===============-->
                     <div class="proj-card task-card">
                         <div class="card-banner"></div>
