@@ -45,6 +45,7 @@
 
         # views
         'views/project_inherit_view.xml',
+        'views/project_task_inherit_view.xml',
     ],
     'assets': {
         'web.assets_frontend': [

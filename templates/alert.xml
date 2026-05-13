@@ -8,10 +8,10 @@
                 <div class="d5-wrap d5-success">
                     <div class="d5-icon-circle">🎯</div>
                     <div class="d5-divider"></div>
-                    <h2>Project Successfully Created</h2>
-                    <p>Your project is live and ready. Share it with your team or jump straight into tasks.</p>
+                    <h2 t-esc="success_title"></h2>
+                    <p t-esc="success_desc"></p>
                     <div class="d5-actions">
-                        <a href="/projects" class="d5-btn-primary">Show Projects</a>
+                        <a t-att-href="success_btn_url" class="d5-btn-primary" t-esc="success_btn_label"></a>
                         <a href="/dashboard" class="d5-btn-ghost">Back to Dashboard</a>
                     </div>
                 </div>
@@ -44,12 +44,3 @@
         </t>
     </template>
 </odoo>
-
-
-
-
-
-
-
-
-

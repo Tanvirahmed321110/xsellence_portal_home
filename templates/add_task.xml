@@ -13,7 +13,9 @@
 
 
                 <div class="d-flex flex-1 flex-center mt-6">
-                    <form action="#" method="post" class="submit-form flex-column gap-5">
+                    <form action="/add_task/submit" method="post" class="submit-form flex-column gap-5">
+                       <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
                         <div class="d-flex gap-3 align-center">
                             <div class="top flex-center">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -30,21 +32,21 @@
                         </div>
 
                         <div class="grid-2 gap-5 grid-sm-1">
-                            <!--======= For Project =======-->
-                            <div class="input-control ">
-                                <label for="">Project <span class="required">*</span></label>
-                                <select name="" id="">
-                                    <option value="Select Project">Select Project</option>
-                                    <option value="">Project two</option>
-                                    <option value="">Project Three</option>
-                                    <option value="">Project Four</option>
-                                </select>
-                            </div>
-
                             <!--======= For Task Name =======-->
                             <div class="input-control">
                                 <label for="">Task Name <span class="required">*</span></label>
-                                <input type="text" placeholder="Task Name"/>
+                                <input type="text" name='name' required="1" placeholder="Task Name"/>
+                            </div>
+
+                                <!--======= For Project =======-->
+                            <div class="input-control ">
+                                <label for="">Project <span class="required">*</span></label>
+                                <select name="project_id" required="required" id="">
+                                    <option value="">Select Project</option>
+                                    <t t-foreach="projects" t-as="project">
+                                        <option t-att-value="project.id" t-esc="project.name"></option>
+                                    </t>
+                                </select>
                             </div>
                         </div>
 
@@ -52,59 +54,52 @@
 
                             <!--======= For Assign Date =======-->
                             <div class="input-control">
-                                <label for="">Assign Date</label>
-                                <input type="date"/>
+                                <label for="">Assigning Date</label>
+                                <input type="date" readonly='1' name="date_assign"/>
                             </div>
 
-                            <!--======= For Assignees =======-->
+                            <!--======= For Daedline =======-->
                             <div class="input-control">
-                                <label for="">Assignees</label>
-                                <input type="date"/>
+                                <label for="">Deadline <span class="required">*</span></label>
+                                <input type="date" name="date_deadline" required="required"/>
                             </div>
                         </div>
 
-                        <div class="grid-2 gap-5 grid-sm-1">
-                            <!--======= For Allocation Hours =======-->
-                            <div class="input-control">
-                                <label for="">Allocation Hours <span class="required">*</span></label>
-                                <input type="text" placeholder="Task Name"/>
-                            </div>
-
-                            <!--======= For Deadline =======-->
-                            <div class="input-control">
-                                <label for="">Deadline</label>
-                                <input type="date"/>
-                            </div>
-                        </div>
 
                         <div class="grid-2 gap-5 grid-sm-1">
                             <!--======= For Allocation Hours =======-->
                             <div class="input-control ">
                                 <label for="">Priority <span class="required">*</span></label>
-                                <select name="" id="">
-                                    <option value="Select Project">Select Priority</option>
-                                    <option value="">Normal</option>
-                                    <option value="">Medium</option>
-                                    <option value="">High</option>
+                                <select name="custom_priority" id="">
+                                    <option disabled="disabled" value="Select Status">Select Status</option>
+                                    <option value="Select Project" disabled="disabled">Select Priority</option>
+                                    <t t-foreach="priority" t-as="item">
+                                        <option t-att-value="item[0]">
+                                            <t t-esc="item[1]"/>
+                                        </option>
+                                    </t>
                                 </select>
                             </div>
                             <!--======= For Status =======-->
                             <div class="input-control ">
                                 <label for="">Task Status <span class="required">*</span></label>
-                                <select name="" id="">
-                                    <option value="Select Project">Pending</option>
-                                    <option value="">In Progress</option>
-                                    <option value="">Completed</option>
-                                    <option value="">Canceled</option>
+                                <select name="custom_status" id="">
+                                    <option value="Select Project" disabled="disabled">Select Status</option>
+                                    <t t-foreach="statuses" t-as="item">
+                                        <option t-att-value="item[0]">
+                                            <t t-esc="item[1]"/>
+                                        </option>
+                                    </t>
                                 </select>
                             </div>
+
                             <!--======= For Assignee Names =======-->
                             <div class="input-control ">
                                 <label for="">Assignee Names <span class="required">*</span></label>
-                                <select id="assignees" multiple="multiple">
-                                    <option value="1">Tanvir</option>
-                                    <option value="2">Rahim</option>
-                                    <option value="3">Karim</option>
+                                <select name="user_ids" id="assignees" multiple="multiple">
+                                    <t t-foreach="users" t-as="user">
+                                        <option t-att-value="user.id" t-esc="user.name"/>
+                                    </t>
                                 </select>
                             </div>
                         </div>
@@ -113,7 +108,7 @@
                             <!--======= For Description =======-->
                             <div class="input-control">
                                 <label for="">Description</label>
-                                <textarea name="" id="" placeholder="Description..."></textarea>
+                                <textarea name="description" id="" placeholder="Description..."></textarea>
                             </div>
                         </div>
 
