@@ -96,3 +96,22 @@ function toggleDateColor(input) {
         input.style.color = 'var(--color-text-placeholder)';
     }
 }
+
+
+
+
+
+
+
+
+
+// For List and Grid View
+function setView(type) {
+    // Panels
+    document.getElementById('panel-grid').classList.toggle('visible', type === 'grid');
+    document.getElementById('panel-list').classList.toggle('visible', type === 'list');
+
+    // Buttons
+    document.getElementById('btn-grid').classList.toggle('active', type === 'grid');
+    document.getElementById('btn-list').classList.toggle('active', type === 'list');
+}

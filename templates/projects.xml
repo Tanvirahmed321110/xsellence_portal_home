@@ -12,7 +12,7 @@
             <section class="projects-wrap mt-4">
 
                 <!--================||   Filter Header ||===============-->
-                <div class="flex-between  gap-5 row-gap-2" style="overflow-x: auto;">
+                <div class="flex-between py-3 gap-5 row-gap-2" style="overflow-x: auto;">
                     <div class="sec-title d-flex gap-2 align-center flex-1 text-nowrap">Projects
                         <span class="count fs-xs flex-center">
                             <t t-esc="len(projects)"/>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
 
-                    <div class="flex-1 d-flex justify-end">
+                    <div class="flex-1 d-flex gap-4 justify-end">
                         <!--  Filter Projects  -->
                         <select class="filter-select bg-white"
                                 id="filter-status"
@@ -55,11 +55,32 @@
                             </t>
 
                         </select>
+
+                        <div class="toggle-group">
+                            <!-- List View Button -->
+                            <button class="toggle-btn" id="btn-list" title="List View" onclick="setView('list')">
+                                <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
+                                    <rect x="1" y="2" width="16" height="2.5" rx="1.25" fill="currentColor" />
+                                    <rect x="1" y="7.75" width="16" height="2.5" rx="1.25" fill="currentColor" />
+                                    <rect x="1" y="13.5" width="16" height="2.5" rx="1.25" fill="currentColor" />
+                                </svg>
+                            </button>
+                            <!-- Grid View Button -->
+                            <button class="toggle-btn active" id="btn-grid" title="Grid View" onclick="setView('grid')">
+                                <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
+                                    <rect x="1" y="1" width="7" height="7" rx="1.5" fill="currentColor" />
+                                    <rect x="10" y="1" width="7" height="7" rx="1.5" fill="currentColor" />
+                                    <rect x="1" y="10" width="7" height="7" rx="1.5" fill="currentColor" />
+                                    <rect x="10" y="10" width="7" height="7" rx="1.5" fill="currentColor" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <!--==============================|| All Projects Here ||============================-->
                 <t t-if="projects">
+                    <!--==============================|| Grid View All Projects Here ||============================-->
+                <div class="view-panel visible" id="panel-grid">
                     <div
                             class="grid-4 grid-lg-4 gap-lg-4 row-gap-lg-5 gap-6 grid-sm-1 row-gap-sm-4 grid-md-2 projects mt-6 mt-lg-7 mt-sm-5 gap-sm-3">
 
@@ -304,7 +325,57 @@
                         <!--                    </div>-->
 
                     </div>
+                </div>
+
+
+                <!--==============================|| List View All Projects Here ||============================-->
+                <div class="view-panel" id="panel-list">
+                    <div class="table-wrap mt-5 ">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Project Name</th>
+                                    <th>Project Status</th>
+                                    <th>Start Date</th>
+                                    <th>Deadline</th>
+                                    <th>Project Manager</th>
+                                    <th>View Details</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <t t-foreach="projects" t-as="project">
+                                    <tr>
+                                        <td t-esc="project.name"></td>
+                                        <td t-esc="project.custom_status"></td>
+                                        <td t-esc="project.date_start"></td>
+                                        <td t-esc="project.date"></td>
+                                        <td t-esc="project.user_id.name"></td>
+                                        <td>
+                                            <div class="d-inline-block">
+                                                <!-- View Project -->
+                                                <a t-att-href=" '/projects/details/%s' % project.id "
+                                                class="action-btn btn-primary tooltip">View
+                                                    <svg width="14" height="14" viewBox="0 0 24 24"
+                                                        fill="none" stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                                        <circle cx="12" cy="12" r="3"/>
+                                                    </svg>
+                                                    <span class="tooltip-text">View Project</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 </t>
+
+
                 <t t-else="">
                     <div class="design-wrapper mt-7">
                         <div class="empty-4">
