@@ -10,7 +10,7 @@
 
             <!--========================|| Projects Here ||=========================-->
             <section class="projects-wrap mt-4">
-                <div class="flex-between  gap-5 row-gap-2" style="overflow-x: auto;">
+                <div class="flex-between py-3 gap-5 row-gap-2" style="overflow-x: auto;">
                     <div class="sec-title d-flex gap-2 align-center flex-1 text-nowrap">My Tasks
                         <span
                                 class="count fs-xs flex-center">20
@@ -28,7 +28,8 @@
                         </div>
                     </div>
 
-                    <div class="flex-1 d-flex justify-end">
+
+                    <div class="flex-1 d-flex gap-4 justify-end">
                         <select class="filter-select bg-white  " id="filter-month">
                             <option value="">All Status</option>
                             <option value="">Pending</option>
@@ -37,10 +38,30 @@
                             <option value="2025-04">Done</option>
                             <option value="2025-04">Other</option>
                         </select>
+
+                        <div class="toggle-group" data-oe-model="ir.ui.view" data-oe-id="1898" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/section[1]/div[1]/div[3]/div[1]">
+
+                            <button class="toggle-btn" id="btn-list" title="List View" onclick="setView('list')">
+                                <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
+                                    <rect x="1" y="2" width="16" height="2.5" rx="1.25" fill="currentColor"></rect>
+                                    <rect x="1" y="7.75" width="16" height="2.5" rx="1.25" fill="currentColor"></rect>
+                                    <rect x="1" y="13.5" width="16" height="2.5" rx="1.25" fill="currentColor"></rect>
+                                </svg>
+                            </button>
+
+                            <button class="toggle-btn active" id="btn-grid" title="Grid View" onclick="setView('grid')">
+                                <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
+                                    <rect x="1" y="1" width="7" height="7" rx="1.5" fill="currentColor"></rect>
+                                    <rect x="10" y="1" width="7" height="7" rx="1.5" fill="currentColor"></rect>
+                                    <rect x="1" y="10" width="7" height="7" rx="1.5" fill="currentColor"></rect>
+                                    <rect x="10" y="10" width="7" height="7" rx="1.5" fill="currentColor"></rect>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="grid-4 grid-lg-4 gap-lg-4 gap-6 grid-sm-1 row-gap-sm-4 grid-md-2 tasks mt-6 mt-sm-5 gap-sm-3">
+                <div class="grid-4 grid-lg-4 gap-lg-4 gap-6 grid-sm-1 row-gap-lg-6 row-gap-sm-4 grid-md-2 tasks mt-6 mt-sm-5 gap-sm-3">
                     <!--================||   Single Task Card here ||===============-->
                     <div class="proj-card task-card">
                         <div class="card-banner"></div>

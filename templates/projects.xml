@@ -60,18 +60,18 @@
                             <!-- List View Button -->
                             <button class="toggle-btn" id="btn-list" title="List View" onclick="setView('list')">
                                 <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
-                                    <rect x="1" y="2" width="16" height="2.5" rx="1.25" fill="currentColor" />
-                                    <rect x="1" y="7.75" width="16" height="2.5" rx="1.25" fill="currentColor" />
-                                    <rect x="1" y="13.5" width="16" height="2.5" rx="1.25" fill="currentColor" />
+                                    <rect x="1" y="2" width="16" height="2.5" rx="1.25" fill="currentColor"/>
+                                    <rect x="1" y="7.75" width="16" height="2.5" rx="1.25" fill="currentColor"/>
+                                    <rect x="1" y="13.5" width="16" height="2.5" rx="1.25" fill="currentColor"/>
                                 </svg>
                             </button>
                             <!-- Grid View Button -->
                             <button class="toggle-btn active" id="btn-grid" title="Grid View" onclick="setView('grid')">
                                 <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
-                                    <rect x="1" y="1" width="7" height="7" rx="1.5" fill="currentColor" />
-                                    <rect x="10" y="1" width="7" height="7" rx="1.5" fill="currentColor" />
-                                    <rect x="1" y="10" width="7" height="7" rx="1.5" fill="currentColor" />
-                                    <rect x="10" y="10" width="7" height="7" rx="1.5" fill="currentColor" />
+                                    <rect x="1" y="1" width="7" height="7" rx="1.5" fill="currentColor"/>
+                                    <rect x="10" y="1" width="7" height="7" rx="1.5" fill="currentColor"/>
+                                    <rect x="1" y="10" width="7" height="7" rx="1.5" fill="currentColor"/>
+                                    <rect x="10" y="10" width="7" height="7" rx="1.5" fill="currentColor"/>
                                 </svg>
                             </button>
                         </div>
@@ -80,299 +80,302 @@
 
                 <t t-if="projects">
                     <!--==============================|| Grid View All Projects Here ||============================-->
-                <div class="view-panel visible" id="panel-grid">
-                    <div
-                            class="grid-4 grid-lg-4 gap-lg-4 row-gap-lg-5 gap-6 grid-sm-1 row-gap-sm-4 grid-md-2 projects mt-6 mt-lg-7 mt-sm-5 gap-sm-3">
+                    <div class="view-panel visible" id="panel-grid">
+                        <div
+                                class="grid-4 grid-lg-4 gap-lg-4 row-gap-lg-5 gap-6 grid-sm-1 row-gap-sm-4 grid-md-2 projects mt-6 mt-lg-7 mt-sm-5 gap-sm-3">
 
-                        <!--================||   Single Project Card here ||===============-->
-                        <t t-foreach="projects" t-as="project">
-                            <div class="proj-card">
-                                <div class="card-banner"></div>
-                                <div class="card-body">
-                                    <div class="card-top">
-                                        <div class="card-title-wrap">
-                                            <!-- Project Name -->
-                                            <div class="card-proj-name">
-                                                <t t-esc="project.name"/>
-                                                <!-- Total Tasks -->
-                                                <span
-                                                        class="info-val tasks-num " t-esc="project.task_count">
-                                                </span>
+                            <!--================||   Single Project Card here ||===============-->
+                            <t t-foreach="projects" t-as="project">
+                                <div class="proj-card">
+                                    <div class="card-banner"></div>
+                                    <div class="card-body">
+                                        <div class="card-top">
+                                            <div class="card-title-wrap">
+                                                <!-- Project Name -->
+                                                <div class="card-proj-name">
+                                                    <t t-esc="project.name"/>
+                                                    <!-- Total Tasks -->
+                                                    <span
+                                                            class="info-val tasks-num " t-esc="project.task_count">
+                                                    </span>
+                                                </div>
                                             </div>
+                                            <!-- Status -->
+                                            <span class="status-badge status-active">
+                                                <span class="dot"></span>
+                                                <t t-esc="project.custom_status"/>
+                                            </span>
                                         </div>
-                                        <!-- Status -->
-                                        <span class="status-badge status-active">
-                                            <span class="dot"></span>
-                                            <t t-esc="project.custom_status"/>
-                                        </span>
-                                    </div>
-                                    <!-- tags -->
-                                    <div class="card-tags">
-                                        <t t-foreach="project.tag_ids" t-as="tag" t-key="tag.id">
-                                            <span class="tag" t-esc="tag.name"></span>
-                                        </t>
-                                    </div>
-                                    <div class="card-info-grid mt-2">
+                                        <!-- tags -->
+                                        <div class="card-tags">
+                                            <t t-foreach="project.tag_ids" t-as="tag" t-key="tag.id">
+                                                <span class="tag" t-esc="tag.name"></span>
+                                            </t>
+                                        </div>
+                                        <div class="card-info-grid mt-2">
 
-                                        <!-- customer -->
-                                        <div class="info-item">
-                                            <div class="info-label">Customer</div>
-                                            <div class="info-val mt-1" t-esc="project.partner_id.name">
+                                            <!-- customer -->
+                                            <div class="info-item">
+                                                <div class="info-label">Customer</div>
+                                                <div class="info-val mt-1" t-esc="project.partner_id.name">
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <!-- Planned Date -->
-                                        <div class="info-item">
-                                            <div class="info-label">Planned Date</div>
-                                            <div class="info-val mt-1">
-                                                <svg width="11" height="11" viewBox="0 0 24 24"
-                                                     fill="none" stroke="#9ca3af" stroke-width="2"
-                                                     stroke-linecap="round"
-                                                     stroke-linejoin="round">
-                                                    <rect x="3" y="4" width="18" height="18" rx="2"/>
-                                                    <line x1="16" y1="2" x2="16" y2="6"/>
-                                                    <line x1="8" y1="2" x2="8" y2="6"/>
-                                                    <line x1="3" y1="10" x2="21" y2="10"/>
-                                                </svg>
-                                                <t t-esc="project.date_start"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-info-grid">
-                                        <div class="card-manager">
-
-                                            <!-- Project Manager -->
-                                            <div class="manager-info">
-                                                <div class="info-label">Project Manager</div>
-                                                <div class="manager-name" t-esc="project.user_id.name"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="info-item">
-                                            <!-- Allocated Time -->
-                                            <div class="info-label">Allocated Time</div>
-                                            <div class="info-val mt-1">
-                                                <svg width="11" height="11" viewBox="0 0 24 24"
-                                                     fill="none" stroke="#9ca3af" stroke-width="2"
-                                                     stroke-linecap="round"
-                                                     stroke-linejoin="round">
-                                                    <rect x="3" y="4" width="18" height="18" rx="2"/>
-                                                    <line x1="16" y1="2" x2="16" y2="6"/>
-                                                    <line x1="8" y1="2" x2="8" y2="6"/>
-                                                    <line x1="3" y1="10" x2="21" y2="10"/>
-                                                </svg>
-                                                <span t-esc="project.allocated_hours">Working Hours</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- ======= Card Footer ======== -->
-                                <div class="card-footer flex-wrap row-gap-3">
-                                    <div class="deadline-wrap">
-                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9ca3af"
-                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <circle cx="12" cy="12" r="10"/>
-                                            <polyline points="12 6 12 12 16 14"/>
-                                        </svg>
-                                        <!-- deadline -->
-                                        <div>
-                                            <div class="deadline-date" t-esc="project.date">20 May 2026</div>
-                                            <div class="deadline-left">
-                                                <t t-esc="project.remaining_days"/>
-                                                days
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- ======== Card Btns ======= -->
-                                    <div class="action-btns">
-                                        <!-- View Task -->
-                                        <a href="/tasks.html" class="action-btn view-task-btn tooltip">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path d="M9 11L12 14L20 6" stroke="currentColor" stroke-width="2"
-                                                      stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path
-                                                        d="M20 12V19C20 20.1046 19.1046 21 18 21H5C3.89543 21 3 20.1046 3 19V6C3 4.89543 3.89543 4 5 4H16"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"/>
-                                            </svg>
-                                            Tasks
-                                            <span class="tooltip-text">View All Tasks</span>
-                                        </a>
-
-                                        <!-- View Project -->
-                                        <a t-att-href=" '/projects/details/%s' % project.id "
-                                           class="action-btn btn-primary tooltip">View
-                                            <svg width="14" height="14" viewBox="0 0 24 24"
-                                                 fill="none" stroke="currentColor" stroke-width="2"
-                                                 stroke-linecap="round"
-                                                 stroke-linejoin="round">
-                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                                <circle cx="12" cy="12" r="3"/>
-                                            </svg>
-                                            <span class="tooltip-text">View Project</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </t>
-
-                        <!--================||   Single Project Card here ||===============-->
-                        <!--                    <div class="proj-card">-->
-                        <!--                        <div class="card-banner"></div>-->
-                        <!--                        <div class="card-body">-->
-                        <!--                            <div class="card-top">-->
-                        <!--                                <div class="card-title-wrap">-->
-                        <!--                                    &lt;!&ndash; Project Name &ndash;&gt;-->
-                        <!--                                    <div class="card-proj-name">Gents Care Salon-->
-                        <!--                                        <span class="info-val tasks-num ">10</span>-->
-                        <!--                                    </div>-->
-                        <!--                                </div>-->
-                        <!--                                &lt;!&ndash; Status &ndash;&gt;-->
-                        <!--                                <span class="status-badge status-active"><span class="dot"></span>In Progress-->
-                        <!--                                </span>-->
-                        <!--                            </div>-->
-                        <!--                            &lt;!&ndash; tags &ndash;&gt;-->
-                        <!--                            <div class="card-tags">-->
-                        <!--                                <span class="tag ">Mobile</span>-->
-                        <!--                                <span class="tag ">UI UX</span>-->
-                        <!--                                <span class="tag ">Backend</span>-->
-                        <!--                                <span class="tag ">Default</span>-->
-                        <!--                                <span class="tag ">Backend</span>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="card-info-grid mt-2">-->
-
-                        <!--                                &lt;!&ndash; customer &ndash;&gt;-->
-                        <!--                                <div class="info-item">-->
-                        <!--                                    <div class="info-label">Customer</div>-->
-                        <!--                                    <div class="info-val mt-1">ByteTech Ltd-->
-                        <!--                                    </div>-->
-                        <!--                                </div>-->
-                        <!--                                &lt;!&ndash; Planned Date &ndash;&gt;-->
-                        <!--                                <div class="info-item">-->
-                        <!--                                    <div class="info-label">Planned Date</div>-->
-                        <!--                                    <div class="info-val mt-1">-->
-                        <!--                                        <svg width="11" height="11" viewBox="0 0 24 24"-->
-                        <!--                                             fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"-->
-                        <!--                                             stroke-linejoin="round">-->
-                        <!--                                            <rect x="3" y="4" width="18" height="18" rx="2"/>-->
-                        <!--                                            <line x1="16" y1="2" x2="16" y2="6"/>-->
-                        <!--                                            <line x1="8" y1="2" x2="8" y2="6"/>-->
-                        <!--                                            <line x1="3" y1="10" x2="21" y2="10"/>-->
-                        <!--                                        </svg>-->
-                        <!--                                        15 Jan 2026-->
-                        <!--                                    </div>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="card-info-grid">-->
-                        <!--                                <div class="card-manager">-->
-
-                        <!--                                    &lt;!&ndash; Project Manager &ndash;&gt;-->
-                        <!--                                    <div class="manager-info">-->
-                        <!--                                        <div class="info-label">Project Manager</div>-->
-                        <!--                                        <div class="manager-name">Nadia Islam</div>-->
-                        <!--                                    </div>-->
-                        <!--                                </div>-->
-
-                        <!--                                <div class="info-item">-->
-                        <!--                                    &lt;!&ndash; Allocated Time &ndash;&gt;-->
-                        <!--                                    <div class="info-label">Allocated Time</div>-->
-                        <!--                                    <div class="info-val mt-1">-->
-                        <!--                                        <svg width="11" height="11" viewBox="0 0 24 24"-->
-                        <!--                                             fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"-->
-                        <!--                                             stroke-linejoin="round">-->
-                        <!--                                            <rect x="3" y="4" width="18" height="18" rx="2"/>-->
-                        <!--                                            <line x1="16" y1="2" x2="16" y2="6"/>-->
-                        <!--                                            <line x1="8" y1="2" x2="8" y2="6"/>-->
-                        <!--                                            <line x1="3" y1="10" x2="21" y2="10"/>-->
-                        <!--                                        </svg>-->
-                        <!--                                        40-->
-                        <!--                                        <span>Working days</span>-->
-                        <!--                                    </div>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-
-                        <!--                        &lt;!&ndash; ======= Card Footer ======== &ndash;&gt;-->
-                        <!--                        <div class="card-footer">-->
-                        <!--                            <div class="deadline-wrap">-->
-                        <!--                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9ca3af"-->
-                        <!--                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">-->
-                        <!--                                    <circle cx="12" cy="12" r="10"/>-->
-                        <!--                                    <polyline points="12 6 12 12 16 14"/>-->
-                        <!--                                </svg>-->
-                        <!--                                &lt;!&ndash; deadline &ndash;&gt;-->
-                        <!--                                <div>-->
-                        <!--                                    <div class="deadline-date">20 May 2026</div>-->
-                        <!--                                    <div class="deadline-left">52 days left</div>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-
-                        <!--                            &lt;!&ndash; ======== Card Btns ======= &ndash;&gt;-->
-                        <!--                            <div class="action-btns">-->
-                        <!--                                &lt;!&ndash; View Button Here &ndash;&gt;-->
-                        <!--                                <button class="action-btn">View-->
-                        <!--                                    <svg width="14" height="14" viewBox="0 0 24 24"-->
-                        <!--                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"-->
-                        <!--                                         stroke-linejoin="round">-->
-                        <!--                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>-->
-                        <!--                                        <circle cx="12" cy="12" r="3"/>-->
-                        <!--                                    </svg>-->
-                        <!--                                </button>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                    </div>-->
-
-                    </div>
-                </div>
-
-
-                <!--==============================|| List View All Projects Here ||============================-->
-                <div class="view-panel" id="panel-list">
-                    <div class="table-wrap mt-5 ">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Project Name</th>
-                                    <th>Project Manager</th>
-                                    <th>Project Status</th>
-                                    <th>Start Date</th>
-                                    <th>Deadline</th>
-                                    <th>View Details</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <t t-foreach="projects" t-as="project">
-                                    <tr>
-                                        <td t-esc="project.name"></td>
-                                        <td t-esc="project.user_id.name"></td>
-                                        <td class=""> <div  class="sts" t-esc="project.custom_status"></div> </td>
-                                        <td  t-esc="project.date_start"></td>
-                                        <td t-esc="project.date"></td>
-                                        <td>
-                                            <div class="d-inline-block">
-                                                <!-- View Project -->
-                                                <a t-att-href=" '/projects/details/%s' % project.id "
-                                                class="action-btn btn-primary tooltip">View
-                                                    <svg width="14" height="14" viewBox="0 0 24 24"
-                                                        fill="none" stroke="currentColor" stroke-width="2"
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                                        <circle cx="12" cy="12" r="3"/>
+                                            <!-- Planned Date -->
+                                            <div class="info-item">
+                                                <div class="info-label">Planned Date</div>
+                                                <div class="info-val mt-1">
+                                                    <svg width="11" height="11" viewBox="0 0 24 24"
+                                                         fill="none" stroke="#9ca3af" stroke-width="2"
+                                                         stroke-linecap="round"
+                                                         stroke-linejoin="round">
+                                                        <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                                        <line x1="16" y1="2" x2="16" y2="6"/>
+                                                        <line x1="8" y1="2" x2="8" y2="6"/>
+                                                        <line x1="3" y1="10" x2="21" y2="10"/>
                                                     </svg>
-                                                    <span class="tooltip-text">View Project</span>
-                                                </a>
+                                                    <t t-esc="project.date_start"/>
+                                                </div>
                                             </div>
-                                        </td>
-                                    </tr>
-                                </t>
-                            </tbody>
-                        </table>
+                                        </div>
+                                        <div class="card-info-grid">
+                                            <div class="card-manager">
+
+                                                <!-- Project Manager -->
+                                                <div class="manager-info">
+                                                    <div class="info-label">Project Manager</div>
+                                                    <div class="manager-name" t-esc="project.user_id.name"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="info-item">
+                                                <!-- Allocated Time -->
+                                                <div class="info-label">Allocated Time</div>
+                                                <div class="info-val mt-1">
+                                                    <svg width="11" height="11" viewBox="0 0 24 24"
+                                                         fill="none" stroke="#9ca3af" stroke-width="2"
+                                                         stroke-linecap="round"
+                                                         stroke-linejoin="round">
+                                                        <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                                        <line x1="16" y1="2" x2="16" y2="6"/>
+                                                        <line x1="8" y1="2" x2="8" y2="6"/>
+                                                        <line x1="3" y1="10" x2="21" y2="10"/>
+                                                    </svg>
+                                                    <span t-esc="project.allocated_hours">Working Hours</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- ======= Card Footer ======== -->
+                                    <div class="card-footer flex-wrap row-gap-3">
+                                        <div class="deadline-wrap">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9ca3af"
+                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="10"/>
+                                                <polyline points="12 6 12 12 16 14"/>
+                                            </svg>
+                                            <!-- deadline -->
+                                            <div>
+                                                <div class="deadline-date" t-esc="project.date">20 May 2026</div>
+                                                <div class="deadline-left">
+                                                    <t t-esc="project.remaining_days"/>
+                                                    days
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- ======== Card Btns ======= -->
+                                        <div class="action-btns">
+                                            <!-- View Task -->
+                                            <a href="/tasks.html" class="action-btn view-task-btn tooltip">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M9 11L12 14L20 6" stroke="currentColor" stroke-width="2"
+                                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path
+                                                            d="M20 12V19C20 20.1046 19.1046 21 18 21H5C3.89543 21 3 20.1046 3 19V6C3 4.89543 3.89543 4 5 4H16"
+                                                            stroke="currentColor" stroke-width="2"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"/>
+                                                </svg>
+                                                Tasks
+                                                <span class="tooltip-text">View All Tasks</span>
+                                            </a>
+
+                                            <!-- View Project -->
+                                            <a t-att-href=" '/projects/details/%s' % project.id "
+                                               class="action-btn btn-primary tooltip">View
+                                                <svg width="14" height="14" viewBox="0 0 24 24"
+                                                     fill="none" stroke="currentColor" stroke-width="2"
+                                                     stroke-linecap="round"
+                                                     stroke-linejoin="round">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                                    <circle cx="12" cy="12" r="3"/>
+                                                </svg>
+                                                <span class="tooltip-text">View Project</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+
+                            <!--================||   Single Project Card here ||===============-->
+                            <!--                    <div class="proj-card">-->
+                            <!--                        <div class="card-banner"></div>-->
+                            <!--                        <div class="card-body">-->
+                            <!--                            <div class="card-top">-->
+                            <!--                                <div class="card-title-wrap">-->
+                            <!--                                    &lt;!&ndash; Project Name &ndash;&gt;-->
+                            <!--                                    <div class="card-proj-name">Gents Care Salon-->
+                            <!--                                        <span class="info-val tasks-num ">10</span>-->
+                            <!--                                    </div>-->
+                            <!--                                </div>-->
+                            <!--                                &lt;!&ndash; Status &ndash;&gt;-->
+                            <!--                                <span class="status-badge status-active"><span class="dot"></span>In Progress-->
+                            <!--                                </span>-->
+                            <!--                            </div>-->
+                            <!--                            &lt;!&ndash; tags &ndash;&gt;-->
+                            <!--                            <div class="card-tags">-->
+                            <!--                                <span class="tag ">Mobile</span>-->
+                            <!--                                <span class="tag ">UI UX</span>-->
+                            <!--                                <span class="tag ">Backend</span>-->
+                            <!--                                <span class="tag ">Default</span>-->
+                            <!--                                <span class="tag ">Backend</span>-->
+                            <!--                            </div>-->
+                            <!--                            <div class="card-info-grid mt-2">-->
+
+                            <!--                                &lt;!&ndash; customer &ndash;&gt;-->
+                            <!--                                <div class="info-item">-->
+                            <!--                                    <div class="info-label">Customer</div>-->
+                            <!--                                    <div class="info-val mt-1">ByteTech Ltd-->
+                            <!--                                    </div>-->
+                            <!--                                </div>-->
+                            <!--                                &lt;!&ndash; Planned Date &ndash;&gt;-->
+                            <!--                                <div class="info-item">-->
+                            <!--                                    <div class="info-label">Planned Date</div>-->
+                            <!--                                    <div class="info-val mt-1">-->
+                            <!--                                        <svg width="11" height="11" viewBox="0 0 24 24"-->
+                            <!--                                             fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"-->
+                            <!--                                             stroke-linejoin="round">-->
+                            <!--                                            <rect x="3" y="4" width="18" height="18" rx="2"/>-->
+                            <!--                                            <line x1="16" y1="2" x2="16" y2="6"/>-->
+                            <!--                                            <line x1="8" y1="2" x2="8" y2="6"/>-->
+                            <!--                                            <line x1="3" y1="10" x2="21" y2="10"/>-->
+                            <!--                                        </svg>-->
+                            <!--                                        15 Jan 2026-->
+                            <!--                                    </div>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                            <!--                            <div class="card-info-grid">-->
+                            <!--                                <div class="card-manager">-->
+
+                            <!--                                    &lt;!&ndash; Project Manager &ndash;&gt;-->
+                            <!--                                    <div class="manager-info">-->
+                            <!--                                        <div class="info-label">Project Manager</div>-->
+                            <!--                                        <div class="manager-name">Nadia Islam</div>-->
+                            <!--                                    </div>-->
+                            <!--                                </div>-->
+
+                            <!--                                <div class="info-item">-->
+                            <!--                                    &lt;!&ndash; Allocated Time &ndash;&gt;-->
+                            <!--                                    <div class="info-label">Allocated Time</div>-->
+                            <!--                                    <div class="info-val mt-1">-->
+                            <!--                                        <svg width="11" height="11" viewBox="0 0 24 24"-->
+                            <!--                                             fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"-->
+                            <!--                                             stroke-linejoin="round">-->
+                            <!--                                            <rect x="3" y="4" width="18" height="18" rx="2"/>-->
+                            <!--                                            <line x1="16" y1="2" x2="16" y2="6"/>-->
+                            <!--                                            <line x1="8" y1="2" x2="8" y2="6"/>-->
+                            <!--                                            <line x1="3" y1="10" x2="21" y2="10"/>-->
+                            <!--                                        </svg>-->
+                            <!--                                        40-->
+                            <!--                                        <span>Working days</span>-->
+                            <!--                                    </div>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                            <!--                        </div>-->
+
+                            <!--                        &lt;!&ndash; ======= Card Footer ======== &ndash;&gt;-->
+                            <!--                        <div class="card-footer">-->
+                            <!--                            <div class="deadline-wrap">-->
+                            <!--                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9ca3af"-->
+                            <!--                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">-->
+                            <!--                                    <circle cx="12" cy="12" r="10"/>-->
+                            <!--                                    <polyline points="12 6 12 12 16 14"/>-->
+                            <!--                                </svg>-->
+                            <!--                                &lt;!&ndash; deadline &ndash;&gt;-->
+                            <!--                                <div>-->
+                            <!--                                    <div class="deadline-date">20 May 2026</div>-->
+                            <!--                                    <div class="deadline-left">52 days left</div>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+
+                            <!--                            &lt;!&ndash; ======== Card Btns ======= &ndash;&gt;-->
+                            <!--                            <div class="action-btns">-->
+                            <!--                                &lt;!&ndash; View Button Here &ndash;&gt;-->
+                            <!--                                <button class="action-btn">View-->
+                            <!--                                    <svg width="14" height="14" viewBox="0 0 24 24"-->
+                            <!--                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"-->
+                            <!--                                         stroke-linejoin="round">-->
+                            <!--                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>-->
+                            <!--                                        <circle cx="12" cy="12" r="3"/>-->
+                            <!--                                    </svg>-->
+                            <!--                                </button>-->
+                            <!--                            </div>-->
+                            <!--                        </div>-->
+                            <!--                    </div>-->
+
+                        </div>
                     </div>
-                </div>
+
+
+                    <!--==============================|| List View All Projects Here ||============================-->
+                    <div class="view-panel" id="panel-list">
+                        <div class="table-wrap mt-5 ">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Project Name</th>
+                                        <th>Project Manager</th>
+                                        <th>Project Status</th>
+                                        <th>Start Date</th>
+                                        <th>Deadline</th>
+                                        <th>View Details</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <t t-foreach="projects" t-as="project">
+                                        <tr>
+                                            <td t-esc="project.name"></td>
+                                            <td t-esc="project.user_id.name"></td>
+                                            <td class="">
+                                                <div class="sts" t-esc="project.custom_status"></div>
+                                            </td>
+                                            <td t-esc="project.date_start"></td>
+                                            <td t-esc="project.date"></td>
+                                            <td>
+                                                <div class="d-inline-block">
+                                                    <!-- View Project -->
+                                                    <a t-att-href=" '/projects/details/%s' % project.id "
+                                                       class="action-btn btn-primary tooltip">View
+                                                        <svg width="14" height="14" viewBox="0 0 24 24"
+                                                             fill="none" stroke="currentColor" stroke-width="2"
+                                                             stroke-linecap="round"
+                                                             stroke-linejoin="round">
+                                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                                            <circle cx="12" cy="12" r="3"/>
+                                                        </svg>
+                                                        <span class="tooltip-text">View Project</span>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </t>
 
 
@@ -432,28 +435,28 @@
                 <!-- Pagination -->
                 <t t-if="len(projects) > 16">
                     <div class="pagination">
-                    <span class="page-info">Showing 1–6 of 24 projects</span>
-                    <div class="page-btns">
-                        <button class="page-btn">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                 stroke-linejoin="round">
-                                <polyline points="15 18 9 12 15 6"/>
-                            </svg>
-                        </button>
-                        <button class="page-btn active">1</button>
-                        <button class="page-btn">2</button>
-                        <button class="page-btn">3</button>
-                        <button class="page-btn">4</button>
-                        <button class="page-btn">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                 stroke-linejoin="round">
-                                <polyline points="9 18 15 12 9 6"/>
-                            </svg>
-                        </button>
+                        <span class="page-info">Showing 1–6 of 24 projects</span>
+                        <div class="page-btns">
+                            <button class="page-btn">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <polyline points="15 18 9 12 15 6"/>
+                                </svg>
+                            </button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <button class="page-btn">4</button>
+                            <button class="page-btn">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
-                </div>
                 </t>
             </section>
 
