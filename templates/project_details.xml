@@ -144,6 +144,19 @@
                                 </div>
                             </div>
 
+
+
+                            <div class="card-info-grid">
+                                <!-- Total Task -->
+                                <div class="card-manager">
+                                    <div class="manager-info mt-2">
+                                        <div class="info-label align-center gap-1">Project Manager
+                                        </div>
+                                        <div class=" info-val" t-esc="project.user_id.name"></div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Task Description -->
                             <div class="mt-4">
                                 <t t-if="project.description">

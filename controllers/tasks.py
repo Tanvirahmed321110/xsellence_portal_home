@@ -4,16 +4,28 @@ from datetime import date
 
 
 class XsellencePortal(http.Controller):
+    # =============  For Tasks Page  ===============
     @http.route('/tasks', type='http', auth='public', website=True)
     def tasks_f(self, **kw):
-        print('load dashboard')
+
+        user = request.env.user
+
+        # all task for current user
+        tasks = request.env['project.task'].search([('user_ids', 'in', [user.id])])
+        statuses = request.env['project.task'].fields_get(['custom_status'])['custom_status']['selection']
+
+
         return request.render('xsellence_portal.tasks_page', {
             'active_menu': 'tasks',
+            'tasks': tasks,
+            'statuses':statuses,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Tasks', 'url': False},
             ]
         })
+
+
 
     # =============  For Task Details Page  ===============
     @http.route('/tasks/task_details', type='http', auth='public', website=True)
