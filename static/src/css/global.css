@@ -860,6 +860,7 @@ aside .sidebar-bottom {
     padding: 32px 32px;
     padding-left: 28px;
     overflow-y: auto;
+    overflow-x:hidden;
     transition: var(--transition-slow);
 }
 
@@ -1918,6 +1919,10 @@ aside .sidebar-bottom {
         max-height: 19px;
         overflow: hidden;
     }
+
+     .task-details .proj-card{
+        max-height:unset;
+     }
 
     .proj-card .card-footer {
         padding: 8px 12px;

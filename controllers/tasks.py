@@ -28,17 +28,32 @@ class XsellencePortal(http.Controller):
 
 
     # =============  For Task Details Page  ===============
-    @http.route('/tasks/task_details', type='http', auth='public', website=True)
-    def task_details_f(self, **kw):
-        print('load dashboard')
+    @http.route('/tasks/task_details/<int:project_id>', type='http', auth='public', website=True)
+    def task_details_f(self,project_id, **kw):
+
+        task = request.env['project.task'].sudo().browse(project_id)
+        status_selection = request.env['project.task'].fields_get(
+            ['custom_status'])['custom_status']['selection']
+
         return request.render('xsellence_portal.task_details_page', {
             'active_menu': 'tasks',
+            'task' : task,
+            'status_selection':status_selection,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Tasks', 'url': '/tasks'},
                 {'name': 'Task Details', 'url': False},
             ]
         })
+
+    # =================  For Task Update Status   ===================
+    @http.route('/task/update_status', type='http', auth='user', methods=['POST'], csrf=True)
+    def update_project_status(self, task_id=None, status=None, **kw):
+        if task_id and status:
+            task = request.env['project.task'].sudo().browse(int(task_id))
+            task.write({'custom_status': status})
+
+        return request.redirect(f"/tasks/task_details/{task_id}")
 
 
 

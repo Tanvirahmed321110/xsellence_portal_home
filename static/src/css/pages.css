@@ -1334,6 +1334,12 @@
 }
 
 @media (max-width:1439px) {
+      .task-details .task-card {
+        width: 60%;
+        min-width: 60%;
+    }
+
+
     .alert-wrap .submit-form {
         padding:8px;
         max-width:450px;

@@ -134,7 +134,7 @@
                                                         <line x1="8" y1="2" x2="8" y2="6"/>
                                                         <line x1="3" y1="10" x2="21" y2="10"/>
                                                     </svg>
-                                                    <t t-esc="project.date_start"/>
+                                                    <t t-esc="project.date_start.strftime('%d %b %y') if project.date_start else ''"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -177,7 +177,7 @@
                                             </svg>
                                             <!-- deadline -->
                                             <div>
-                                                <div class="deadline-date" t-esc="project.date">20 May 2026</div>
+                                                <div class="deadline-date" t-esc="project.date.strftime('%d %b %y') if project.date else '' ">20 May 2026</div>
                                                 <div class="deadline-left">
                                                     <t t-esc="project.remaining_days"/>
                                                     days

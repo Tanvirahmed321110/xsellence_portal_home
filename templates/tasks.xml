@@ -120,7 +120,7 @@
                                                 <line x1="8" y1="2" x2="8" y2="6"/>
                                                 <line x1="3" y1="10" x2="21" y2="10"/>
                                             </svg>
-                                            <t t-esc="task.date_assign.strftime('%d %b %y')" />
+                                            <t t-esc="task.date_assign.strftime('%d %b %y') if task.date_assign else ''" />
                                         </div>
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@
                                                 <line x1="8" y1="2" x2="8" y2="6"/>
                                                 <line x1="3" y1="10" x2="21" y2="10"/>
                                             </svg>
-                                            <span t-esc="task.date_deadline.strftime('%d %b %y') if task.date_deadline else ''"></span>
+                                            <span t-esc="task.date_deadline.strftime('%d %b %y') if task.date_deadline else ''"> </span>
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@
                                 <!-- Actions Buttons -->
                                 <div class="action-btns">
                                     <!-- View Button Here -->
-                                    <a href="/task_details.html" class="action-btn view-btn">
+                                    <a t-att-href="'/tasks/task_details/%s' % task.id" class="action-btn view-btn">
                                         <svg width="14" height="14"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round">
