@@ -93,7 +93,7 @@
                                         </t>
                                     </div>
                                 </div>
-                                <div class="card-info-grid mt-2">
+                                <div class="card-info-grid">
                                     <!-- Project Name -->
                                     <div class="info-item">
                                         <div class="info-label d-flex gap-1 align-center">Project
@@ -102,7 +102,9 @@
                                                 <path d="M3 10h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8z"/>
                                             </svg>
                                         </div>
-                                        <div class="info-val mt-1" t-esc="task.project_id.name[:20] + '...' if task.project_id.name and len(task.project_id.name) > 22 else task.project_id.name">
+                                        <div class="info-val mt-1 tooltip" >
+                                             <t t-esc="task.project_id.name[:14] + '...' if task.project_id.name and len(task.project_id.name) > 22 else task.project_id.name"/>
+                                            <span class="tooltip-text" t-esc="task.project_id.name"> d f dfd</span>
                                         </div>
                                     </div>
 

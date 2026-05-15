@@ -1765,6 +1765,15 @@ aside .sidebar-bottom {
     background-color: var(--color-white) !important
 }
 
+.proj-card .tooltip .tooltip-text {
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: var(--fs-xs);
+    width: 180px;
+    font-weight:400;
+    z-index: 12;
+    line-height: 1.45;
+}
 
 
 @media (max-width:1439px) {
@@ -1839,6 +1848,17 @@ aside .sidebar-bottom {
         padding: 4px 10px;
         height: 32px;
         font-size: 12px;
+    }
+
+    .task-card.proj-card .card-top {
+        min-height: 24px;
+        overflow: hidden;
+    }
+
+    .proj-card .card-proj-name {
+        font-size: calc(var(--fs-sm));
+        line-height: 1.32;
+        height: 35px;
     }
 
     .proj-card .info-label {
