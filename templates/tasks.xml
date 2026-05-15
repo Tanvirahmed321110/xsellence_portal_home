@@ -30,13 +30,20 @@
 
 
                     <div class="flex-1 d-flex gap-4 justify-end">
-                        <select class="filter-select bg-white  " id="filter-month">
+                        <select class="filter-select bg-white  "
+                                id="filter-status"
+                                onchange="if (this.value){
+                                         window.location = '/tasks?status='  + this.value
+                                     }
+                                    else{
+                                         window.location = '/tasks'
+                                    }
+                                ">
                             <option value="">All Status</option>
-                            <option value="">Pending</option>
-                            <option value="2025-04">Complted</option>
-                            <option value="2025-04">In Progress</option>
-                            <option value="2025-04">Done</option>
-                            <option value="2025-04">Other</option>
+                            <t t-foreach="statuses" t-as="status">
+                                <option t-att-value="status[0]" t-esc="status[1]">
+                                </option>
+                            </t>
                         </select>
 
                         <div class="toggle-group" data-oe-model="ir.ui.view" data-oe-id="1898" data-oe-field="arch"
@@ -62,6 +69,7 @@
                     </div>
                 </div>
 
+                <!--==============  When task Available  ===============-->
                 <t t-if="tasks">
                     <!--==============================|| Grid View All Projects Here ||============================-->
                     <div class="view-panel visible" id="panel-grid">
@@ -273,7 +281,7 @@
                     </div>
                 </t>
 
-
+                <!--================ When task empty ===============-->
                 <t t-else="">
                     <div class="design-wrapper mt-7">
                         <div class="empty-4">
@@ -329,5 +337,7 @@
                 </t>
             </section>
         </t>
+
+        <script src="/xsellence_portal/static/src/js/project.js?v=2"></script>
     </template>
 </odoo>

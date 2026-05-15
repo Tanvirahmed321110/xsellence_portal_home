@@ -9,16 +9,31 @@ class XsellencePortal(http.Controller):
     def tasks_f(self, **kw):
 
         user = request.env.user
+        status = kw.get('status')
 
-        # all task for current user
-        tasks = request.env['project.task'].search([('user_ids', 'in', [user.id])])
+        domain = []
+
+        # 🔥 Admin / Internal check
+        if user._is_admin() or user.has_group('base.group_system'):
+            # Admin → all tasks
+            domain = []
+        else:
+            # Internal user → only assigned tasks
+            domain = [('user_ids', 'in', [user.id])]
+
+        # 🔥 status filter
+        if status:
+            domain.append(('custom_status', '=', status))
+
+        tasks = request.env['project.task'].sudo().search(domain)
+
         statuses = request.env['project.task'].fields_get(['custom_status'])['custom_status']['selection']
-
 
         return request.render('xsellence_portal.tasks_page', {
             'active_menu': 'tasks',
             'tasks': tasks,
-            'statuses':statuses,
+            'statuses': statuses,
+            'selected_status': status,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Tasks', 'url': False},
