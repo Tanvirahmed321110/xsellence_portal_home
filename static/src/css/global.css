@@ -1033,20 +1033,24 @@ aside .sidebar-bottom {
 }
 
 .table-wrap::-webkit-scrollbar {
-    background-color: var(--color-white);
+    background: var(--border-primary);
+    border-radius:12px;
 }
 
 .table-wrap::-webkit-scrollbar {
     height: 8px;
     width: 8px;
+    border-radius:12px;
 }
 
 .table-wrap::-webkit-scrollbar-track {
-    background: transparent;
+    background: #f1f1f8;
+    border-radius:12px;
 }
 
 .table-wrap::-webkit-scrollbar-thumb {
-    background: var(--color-primary);
+    background: var(--color-tag);
+    border-radius:12px;
 }
 
 .table-wrap table {
@@ -1156,6 +1160,10 @@ aside .sidebar-bottom {
 
 .proj-card:hover {
     outline: 1px solid var(--color-tag);
+}
+
+.proj-card .filter-select {
+    padding: 8px 12px;
 }
 
 

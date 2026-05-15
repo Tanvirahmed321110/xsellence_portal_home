@@ -48,12 +48,14 @@ class XsellencePortal(http.Controller):
 
     # =================  For Task Update Status   ===================
     @http.route('/task/update_status', type='http', auth='user', methods=['POST'], csrf=True)
-    def update_project_status(self, task_id=None, status=None, **kw):
+    def update_project_status(self, task_id=None, status=None,redirect_url=None, **kw):
         if task_id and status:
             task = request.env['project.task'].sudo().browse(int(task_id))
             task.write({'custom_status': status})
 
-        return request.redirect(f"/tasks/task_details/{task_id}")
+        if not redirect_url:
+            return request.redirect(f"/tasks/task_details/{task_id}")
+        return request.redirect(f"/tasks")
 
 
 

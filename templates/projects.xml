@@ -177,7 +177,10 @@
                                             </svg>
                                             <!-- deadline -->
                                             <div>
-                                                <div class="deadline-date" t-esc="project.date.strftime('%d %b %y') if project.date else '' ">20 May 2026</div>
+                                                <div class="deadline-date"
+                                                     t-esc="project.date.strftime('%d %b %y') if project.date else '' ">
+                                                    20 May 2026
+                                                </div>
                                                 <div class="deadline-left">
                                                     <t t-esc="project.remaining_days"/>
                                                     days
@@ -327,7 +330,6 @@
 
                         </div>
                     </div>
-
 
                     <!--==============================|| List View All Projects Here ||============================-->
                     <div class="view-panel" id="panel-list">
