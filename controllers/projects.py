@@ -15,28 +15,15 @@ class XsellencePortal(http.Controller):
         ]
 
         status_domain = []
-        search_domain = []
 
         # ===== Status Filter =====
         status = kw.get('status')
         if status:
             status_domain = [('custom_status', '=', status)]
 
-        # ===== Search Filter =====
-        search = kw.get('search')
-        if search:
-
-            if search.isdigit():
-                search_domain = [
-                    '|',
-                    ('name', 'ilike', search),
-                    ('id', '=', int(search))
-                ]
-            else:
-                search_domain = [('name', 'ilike', search)]
 
         # ===== Final Domain Merge =====
-        domain = base_domain + status_domain + search_domain
+        domain = base_domain + status_domain
 
         projects = request.env['project.project'].search(
             domain,
@@ -50,7 +37,6 @@ class XsellencePortal(http.Controller):
             'projects': projects,
             'statuses': statuses,
             'status': status or '',
-            'search': search or '',
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Projects', 'url': False},

@@ -10,98 +10,121 @@ document.addEventListener("DOMContentLoaded", function () {
     })();
 
 
-    // const searchInput = document.querySelector('.search-input');
-    // const projectCards = document.querySelectorAll('.proj-card');
-    // const errorContainer = document.querySelector('#error-container');
 
-    // // searchInput.addEventListener('keyup', function () {
-    // //     const value = this.value.toLowerCase()
-    // //     let found = false
+    // function searchF(cardSelector) {
 
-    // //     projectCards.forEach(card => {
-    // //         const projectName = card
-    // //     })
-    // // })
+    //     const searchInput = document.querySelector('.search-input');
+    //     const card = document.querySelectorAll(cardSelector);
+    //     const errorContainer = document.querySelector('#error-container');
 
+    //     // Validation
+    //     if (!searchInput || !card.length || !errorContainer) {
+    //         console.error('Required elements not found');
+    //         return;
+    //     }
 
-    // searchInput.addEventListener('keyup', function () {
+    //     searchInput.addEventListener('keyup', function () {
 
-    //     const value = this.value.toLowerCase();
+    //         const value = this.value.trim().toLowerCase();
+    //         let found = false;
 
-    //     projectCards.forEach(card => {
-
-    //         const projectName = card
-    //             .querySelector('.card-proj-name')
-    //             .innerText
-    //             .toLowerCase();
-
-    //         const projectLink = card
-    //             .querySelector('.btn-primary')
-    //             .getAttribute('href');
-
-    //         const projectId = projectLink.split('/').pop();
-
-    //         if (
-    //             projectName.includes(value) ||
-    //             projectId.includes(value)
-    //         ) {
-    //             card.style.display = 'block';
-    //         } else {
-    //             card.style.display = 'none';
+    //         // খালি হলে সব দেখাও
+    //         if (value === '') {
+    //             card.forEach(card => card.style.display = 'block');
+    //             errorContainer.classList.add('d-none');
+    //             return;
     //         }
 
+    //         card.forEach(card => {
+
+    //             const nameEl = card.querySelector('.card-proj-name');
+    //             const linkEl = card.querySelector('.btn-primary.action-btn');
+
+    //             if (!nameEl || !linkEl) return; // card broken হলে skip
+
+    //             const projectName = nameEl.innerText.toLowerCase();
+    //             const projectId = linkEl.getAttribute('href').split('/').pop();
+
+    //             if (projectName.includes(value) || projectId.includes(value)) {
+    //                 card.style.display = 'block';
+    //                 found = true;
+    //             } else {
+    //                 card.style.display = 'none';
+    //             }
+    //         });
+
+    //         errorContainer.classList.toggle('d-none', found);
     //     });
+    // }
 
-    // });
+    // searchF('.proj-card')
 
 
-    function initProjectSearch() {
+    // ==========  For  Search  ===========
+    function searchF(cardSelector, nameSelector, idSelector = null) {
 
-        const searchInput = document.querySelector('.search-input');
-        const projectCards = document.querySelectorAll('.proj-card');
-        const errorContainer = document.querySelector('#error-container');
+        const searchInput = document.querySelector('.search-input')
+        const cards = document.querySelectorAll(cardSelector)
+        const errorContainer = document.getElementById('error-container')
 
-        // Validation
-        if (!searchInput || !projectCards.length || !errorContainer) {
-            console.error('Required elements found না।');
-            return;
+        if (!searchInput || !cards.length || !errorContainer) {
+            console.log('Required Elements not found')
+            console.log('searchInput', searchInput, 'cards', cards, 'errorContainer', errorContainer)
+            return
         }
+
+
 
         searchInput.addEventListener('keyup', function () {
 
-            const value = this.value.trim().toLowerCase();
-            let found = false;
+            const value = this.value.trim().toLowerCase()
+            let found = false
 
-            // খালি হলে সব দেখাও
             if (value === '') {
-                projectCards.forEach(card => card.style.display = 'block');
-                errorContainer.classList.add('d-none');
-                return;
+                cards.forEach(card => card.style.display = 'block')
+                errorContainer.classList.add('d-none')
+                return
             }
 
-            projectCards.forEach(card => {
+            cards.forEach(card => {
 
-                const nameEl = card.querySelector('.card-proj-name');
-                const linkEl = card.querySelector('.btn-primary.action-btn');
+                const nameEl = card.querySelector(nameSelector)
+                if (!nameEl) return
 
-                if (!nameEl || !linkEl) return; // card broken হলে skip
+                const cardName = nameEl.innerText.toLowerCase()
 
-                const projectName = nameEl.innerText.toLowerCase();
-                const projectId = linkEl.getAttribute('href').split('/').pop();
+                let cardId = ''
 
-                if (projectName.includes(value) || projectId.includes(value)) {
-                    card.style.display = 'block';
-                    found = true;
-                } else {
-                    card.style.display = 'none';
+                if (idSelector) {
+                    const idEl = card.querySelector(idSelector)
+
+                    if (idEl) {
+                        cardId = idEl.getAttribute('href')
+                            ?.split('/')
+                            .pop() || ''
+                    }
                 }
-            });
 
-            errorContainer.classList.toggle('d-none', found);
-        });
+                if (
+                    cardName.includes(value) ||
+                    cardId.includes(value)
+                ) {
+                    card.style.display = 'block'
+                    found = true
+                } else {
+                    card.style.display = 'none'
+                }
+            })
+
+            errorContainer.classList.toggle('d-none', found)
+        })
     }
 
-    initProjectSearch()
+    // for project page
+    searchF('.proj-card', '.card-proj-name', '.btn-primary.action-btn')
+    //    searchF('.task-card', '.card-proj-name', '.btn-primary.action-btn')
+
+    // for project task page
 
 
 });

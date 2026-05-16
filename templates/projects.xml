@@ -29,7 +29,6 @@
                             </svg>
                             <input class="search-input"
                                    t-att-value="search"
-                                   name="search"
                                    type="text"
                                    placeholder="Search task name or id..."/>
                             <button type="submit" style="display:none;"></button>

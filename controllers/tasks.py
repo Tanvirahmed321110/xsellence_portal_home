@@ -18,7 +18,7 @@ class XsellencePortal(http.Controller):
             # Admin → all tasks
             domain = []
         else:
-            # Internal user → only assigned tasks
+            # portal user only assigned tasks
             domain = [('user_ids', 'in', [user.id])]
 
         # 🔥 status filter
