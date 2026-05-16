@@ -1,15 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    (function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const status = urlParams.get('status');
-        if (status) {
-            const select = document.getElementById('filter-status');
-            select.value = status;
-        }
-    })();
-
-
 
     // function searchF(cardSelector) {
 
