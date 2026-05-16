@@ -60,71 +60,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // searchF('.proj-card')
 
 
-    // ==========  For  Search  ===========
-    function searchF(cardSelector, nameSelector, idSelector = null) {
-
-        const searchInput = document.querySelector('.search-input')
-        const cards = document.querySelectorAll(cardSelector)
-        const errorContainer = document.getElementById('error-container')
-
-        if (!searchInput || !cards.length || !errorContainer) {
-            console.log('Required Elements not found')
-            console.log('searchInput', searchInput, 'cards', cards, 'errorContainer', errorContainer)
-            return
-        }
-
-
-
-        searchInput.addEventListener('keyup', function () {
-
-            const value = this.value.trim().toLowerCase()
-            let found = false
-
-            if (value === '') {
-                cards.forEach(card => card.style.display = 'block')
-                errorContainer.classList.add('d-none')
-                return
-            }
-
-            cards.forEach(card => {
-
-                const nameEl = card.querySelector(nameSelector)
-                if (!nameEl) return
-
-                const cardName = nameEl.innerText.toLowerCase()
-
-                let cardId = ''
-
-                if (idSelector) {
-                    const idEl = card.querySelector(idSelector)
-
-                    if (idEl) {
-                        cardId = idEl.getAttribute('href')
-                            ?.split('/')
-                            .pop() || ''
-                    }
-                }
-
-                if (
-                    cardName.includes(value) ||
-                    cardId.includes(value)
-                ) {
-                    card.style.display = 'block'
-                    found = true
-                } else {
-                    card.style.display = 'none'
-                }
-            })
-
-            errorContainer.classList.toggle('d-none', found)
-        })
-    }
 
     // for project page
     searchF('.proj-card', '.card-proj-name', '.btn-primary.action-btn')
-    //    searchF('.task-card', '.card-proj-name', '.btn-primary.action-btn')
 
-    // for project task page
 
 
 });
