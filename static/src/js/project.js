@@ -1,3 +1,4 @@
+console.log('project jd')
 document.addEventListener("DOMContentLoaded", function () {
 
 

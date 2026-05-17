@@ -338,11 +338,14 @@
                     </div>
                 </t>
             </section>
+
+            <script>
+                     document.addEventListener("DOMContentLoaded", function () {
+                        searchF('.proj-card', '.card-proj-name', '.view-btn')
+                    })
+            </script>
         </t>
 
-        <script>
-                 searchF('.proj-card', '.card-proj-name', '.view-btn')
-        </script>
 
     </template>
 </odoo>

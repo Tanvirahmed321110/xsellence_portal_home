@@ -405,7 +405,7 @@
 
 
                 <!--    Javascript Links Here     -->
-                <script src="/xsellence_portal/static/src/js/main.js?v=4"></script>
+                <script src="/xsellence_portal/static/src/js/main.js?v=7"> </script>
             </body>
         </html>
     </template>

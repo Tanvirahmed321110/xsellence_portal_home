@@ -380,8 +380,8 @@
                 </t>
 
 
-                <t >
-                    <div class="design-wrapper d-none mt-7" id="error-container">
+                <t t-if="not projects">
+                    <div class="design-wrapper  mt-7" id="error-container">
                         <div class="empty-4">
                             <div class="e4-glass">
                                 <div class="e4-ring">
@@ -439,6 +439,7 @@
 
             <!--    Javascript Links Here     -->
             <script src="/xsellence_portal/static/src/js/project.js?v=2"></script>
+
 
         </t>
     </template>

@@ -1,14 +1,107 @@
+//==============  For List and Grid View  (Global)
+function setView(type) {
+    document.getElementById('panel-grid').classList.toggle('visible', type === 'grid');
+    document.getElementById('panel-list').classList.toggle('visible', type === 'list');
+    document.getElementById('btn-grid').classList.toggle('active', type === 'grid');
+    document.getElementById('btn-list').classList.toggle('active', type === 'list');
+}
+
+
+// ============  For Search  (Global)
+function searchF(cardSelector, nameSelector, idSelector) {
+
+    const searchInput = document.querySelector('.search-input')
+    const cards = document.querySelectorAll(cardSelector)
+
+    // ✅ Get or CREATE error container dynamically
+    let errorContainer = document.getElementById('error-container')
+
+    if (!errorContainer) {
+        errorContainer = document.createElement('div')
+        errorContainer.id = 'error-container'
+        errorContainer.innerHTML = `
+            <div class="design-wrapper mt-7">
+                <div class="empty-4">
+                    <div class="e4-glass">
+                        <div class="e4-ring">
+                            <span class="e4-icon-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <circle cx="11" cy="11" r="7"></circle>
+                                    <path d="M16.5 16.5L21 21"></path>
+                                    <line x1="8" y1="11" x2="14" y2="11"></line>
+                                </svg>
+                            </span>
+                        </div>
+                        <h2 class="e4-title">Data <strong style="color: red;">'NOT'</strong> Found</h2>
+                        <p class="e4-sub">No records matched your current search or filter criteria.</p>
+                        <div class="e4-pills">
+                            <span class="e4-pill">0 results</span>
+                            <span class="e4-pill">try new filter</span>
+                            <span class="e4-pill">clear search</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
+        errorContainer.style.display = 'none' // hidden by default
+
+        // ✅ Insert after the cards container
+        const panel = document.getElementById('panel-grid')
+        panel.parentNode.insertBefore(errorContainer, panel.nextSibling)
+    }
+
+    // validation
+    if (!searchInput || !cards.length) {
+        console.log('Required Elements not found')
+        return
+    }
+
+    // search event
+    searchInput.addEventListener('keyup', function () {
+        const value = this.value.trim().toLowerCase()
+        let found = false
+
+        if (value === '') {
+            cards.forEach(card => card.style.display = 'block')
+            errorContainer.style.display = 'none'  // ✅
+            return
+        }
+
+        cards.forEach(card => {
+            const nameEl = card.querySelector(nameSelector)
+            const idEl = card.querySelector(idSelector)
+
+            if (!nameEl || !idEl) return
+
+            const cardName = nameEl.innerText.toLowerCase()
+            const cardId = idEl.getAttribute('href').split('/').pop()
+
+            if (cardName.includes(value) || cardId.includes(value)) {
+                card.style.display = 'block'
+                found = true
+            } else {
+                card.style.display = 'none'
+            }
+        })
+
+        // ✅ show/hide with style.display instead of classList
+        errorContainer.style.display = found ? 'none' : 'block'
+    })
+}
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
-
-    //=============  Sidebar 
+    //=============  Sidebar
     const sidebar = document.getElementById('sidebar');
+
     function openSidebarDesktop() {
         const collaps_btn = document.getElementById('collaps-btn');
         const main_content = document.querySelector('.main-content');
         const notic_board = document.getElementById('notic-board');
 
-        // ✅ validation (important)
         if (!collaps_btn || !main_content || !sidebar || !notic_board) {
             console.log("Sidebar elements not found ❌");
             return;
@@ -26,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    //===============  For Mobile Sidebar 
+    //===============  For Mobile Sidebar
     function mobileSidebar() {
         const mobile_menu_btn = document.getElementById('mobile-menu-btn')
         const menuIcon = document.getElementById('menu-icon');
@@ -38,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let isOpen = false;
 
-        // icons
         const hamburger = `
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <line x1="3" y1="7" x2="21" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -57,7 +149,6 @@ document.addEventListener("DOMContentLoaded", function () {
         mobile_menu_btn.addEventListener('click', function () {
             sidebar.classList.toggle('active');
             isOpen = !isOpen;
-
             menuIcon.innerHTML = isOpen ? closeIcon : hamburger;
         });
     }
@@ -84,17 +175,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    // ============  For Date input field Change Placeholder color  ===========
+
+    // ============  For Date input field Change Placeholder color
     document.querySelectorAll('input[type="date"]').forEach(function (input) {
-        // Page load  check
         toggleDateColor(input);
 
-        // Value change  check
         input.addEventListener('change', function () {
             toggleDateColor(this);
         });
     });
-
 
     function toggleDateColor(input) {
         if (input.value) {
@@ -107,49 +196,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    // // for current date
-    // const dateEl = document.querySelector(".date span");
-
-    // if (!dateEl) return;
-
-    // const today = new Date();
-
-    // const options = {
-    //     day: "2-digit",
-    //     month: "long",
-    //     year: "numeric"
-    // };
-
-    // dateEl.innerText = today.toLocaleDateString("en-GB", options);
-
-
 
     // for current date
     const dateEl = document.querySelector('header .date span')
-
     const today = new Date()
-
-    const options = {
-        day: "2-digit",
-        month: "short",
-        year: 'numeric'
-    }
+    const options = { day: "2-digit", month: "short", year: 'numeric' }
     dateEl.innerText = today.toLocaleDateString('en-GB', options)
-
-
-
-
-
-    //==============  For List and Grid View
-    function setView(type) {
-        // Panels
-        document.getElementById('panel-grid').classList.toggle('visible', type === 'grid');
-        document.getElementById('panel-list').classList.toggle('visible', type === 'list');
-
-        // Buttons
-        document.getElementById('btn-grid').classList.toggle('active', type === 'grid');
-        document.getElementById('btn-list').classList.toggle('active', type === 'list');
-    }
 
 
 
@@ -162,33 +214,29 @@ document.addEventListener("DOMContentLoaded", function () {
         link.addEventListener('click', function () {
             sound.currentTime = 0;
             sound.play();
-            console.log(sound)
         });
     });
+
 
 
 
     // for submit form
     const successSound = document.getElementById('success-sound');
     const errorSound = document.getElementById('error-sound');
-
     const submitBtns = document.querySelectorAll('form button');
 
     submitBtns.forEach(btn => {
         btn.addEventListener('click', function (e) {
-
             const form = this.closest('form');
 
             if (form.checkValidity()) {
                 successSound.currentTime = 0;
                 successSound.play();
                 console.log("Success");
-
             } else {
                 errorSound.currentTime = 0;
                 errorSound.play();
                 console.log("Error");
-
                 form.reportValidity();
             }
         });
@@ -197,74 +245,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
-
-
-    // ============  For  Search  =============
-    function searchF(cardSelector, nameSelector, idSelector) {
-
-        const searchInput = document.querySelector('.search-input')
-        const cards = document.querySelectorAll(cardSelector)
-        const errorContainer = document.getElementById('error-container')
-
-        if (cards.length == 0) {
-            errorContainer.classList.remove('d-none')
-        }
-
-        // validation 
-        if (!searchInput || !cards.length || !errorContainer) {
-            console.log('Required Elements not found')
-            console.log('searchInput', searchInput, 'cards', cards, 'errorContainer', errorContainer)
-            return
-        }
-
-        // search event
-        searchInput.addEventListener('keyup', function () {
-            const value = this.value.trim().toLowerCase()
-            let found = false
-
-            // if value empty then all card show
-            if (value === '') {
-                cards.forEach(card => card.style.display = 'block')
-                errorContainer.classList.add('d-none')
-                return
-            }
-
-            cards.forEach(card => {
-                const nameEl = card.querySelector(nameSelector)
-                const idEl = card.querySelector(idSelector)
-
-                if (!nameEl || !idEl) return
-
-                const cardName = nameEl.innerText.toLowerCase()
-                const cardId = idEl.getAttribute('href').split('/').pop()
-
-                if (cardName.includes(value) || cardId.includes(value)) {
-                    card.style.display = 'block'
-                    found = true;
-                }
-                else {
-                    card.style.display = 'none'
-                }
-            })
-
-            if (found) {
-                errorContainer.classList.add('d-none')    // hide
-            } else {
-                errorContainer.classList.remove('d-none') // show
-            }
-        })
-    }
-
-
-
-    //  ===============  For Status Action
+    //  ===============  For Status Filter
     function setStatusFilter() {
         const select = document.getElementById('filter-status')
-
         if (!select) return
-
         const status = new URLSearchParams(window.location.search).get('status')
         if (status && select) select.value = status
     }
