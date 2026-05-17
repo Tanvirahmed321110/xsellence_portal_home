@@ -218,7 +218,7 @@
 
                                     <!-- Timesheet Button Here -->
                                     <div class="timesheet px-4 pb-4 mt-1">
-                                        <a href="/timesheets" class="btn btn-primary w-100">
+                                        <a t-att-href="'/tasks/add_timesheet?task_id=%s&amp;project_id=%s' % (task.id, task.project_id.id)" class="btn btn-primary w-100">
                                             <svg width="18" height="18"
                                                  viewBox="0 0 24 24" fill="none">
                                                 <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
