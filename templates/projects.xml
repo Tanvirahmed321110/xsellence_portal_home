@@ -190,7 +190,7 @@
                                         <!-- ======== Card Btns ======= -->
                                         <div class="action-btns">
                                             <!-- View Task -->
-                                            <a href="/tasks.html" class="action-btn view-task-btn tooltip">
+                                            <a t-att-href="'/tasks?project_id=%s' % project.id" class="action-btn view-task-btn tooltip">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                     <path d="M9 11L12 14L20 6" stroke="currentColor" stroke-width="2"
                                                           stroke-linecap="round" stroke-linejoin="round"/>

@@ -336,8 +336,6 @@
                 </t>
 
 
-
-
                 <!-- Pagination -->
                 <t t-if="len(tasks) > 16">
                     <div class="pagination">
@@ -365,8 +363,9 @@
                     </div>
                 </t>
             </section>
-              <script src="/xsellence_portal/static/src/js/task.js?v=2"></script>
         </t>
 
+
+            <script src="/xsellence_portal/static/src/js/task.js?v=2"></script>
     </template>
 </odoo>
