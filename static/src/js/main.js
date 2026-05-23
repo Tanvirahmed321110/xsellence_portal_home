@@ -1,3 +1,40 @@
+
+//============== For Delete Confirmation
+
+function deleteModalF() {
+
+    // Outside click
+    var modal = document.getElementById('deleteModal');
+
+    function openDeleteModal(element) {
+        var confirmBtn = document.getElementById('confirmYes');
+
+        if (!modal || !confirmBtn) return false;
+
+        confirmBtn.setAttribute('href', element.getAttribute('href'));
+        modal.classList.add('active');
+        return false;
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+    }
+
+    if (modal) {
+
+        if (modal) {
+            modal.addEventListener('click', function (e) {
+                if (e.target === this) closeModal();
+            });
+        }
+    }
+}
+
+deleteModalF()
+
+
+
+
 //==============  For List and Grid View  (Global)
 function setView(type) {
     document.getElementById('panel-grid').classList.toggle('visible', type === 'grid');

@@ -161,7 +161,7 @@
                                     </svg>
                                 </button>
                                 <!-- Delete button -->
-                                <a t-att-href="'/task/delete/%s' % task.id " class="action-btn del">
+                                <a t-att-href="'/task/delete/%s' % task.id " class="action-btn del" onclick="return openDeleteModal(this)">
                                     <svg width="12" height="12" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                          stroke-linejoin="round">
@@ -172,11 +172,56 @@
                                         <path d="M9 6V4h6v2"/>
                                     </svg>
                                 </a>
+
                             </div>
+
                         </div>
                     </div>
                 </div>
+
+                <!-- =====  Delete Modal  ===== -->
+                <div class=" modal-overlay " id="deleteModal">
+                    <div class="modal-container">
+                        <div class="glass-icon">🗑️</div>
+                        <h3>Delete Task?</h3>
+                        <p>
+                            This action cannot be undone.<br/>
+                            The task will be permanently removed.
+                        </p>
+
+                        <div class="glass-actions">
+                            <button id="confirmYes" href="#" class="btn-glass-yes">
+                                Yes, Delete
+                            </button>
+                            <button class="btn-glass-no" onclick="closeModal()">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </section>
+
+            <!-- Trigger Button -->
+    
+    <script>
+        // Modal খোলা
+        function openModal() {
+            document.getElementById('modal-1').classList.add('active');
+        }
+
+        // Modal বন্ধ করা
+        function closeModal() {
+            document.getElementById('modal-1').classList.remove('active');
+        }
+
+        // Container এর বাইরে click করলে বন্ধ হবে
+        document.getElementById('modal-1').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
         </t>
     </template>
 </odoo>

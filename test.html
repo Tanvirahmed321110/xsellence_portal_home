@@ -1,132 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>View Toggle</title>
-        <style>
-            *,
-            *::before,
-            *::after {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Modal</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #0f0f0f;
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== Trigger Button ===== */
+        .delete-btn {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255, 65, 108, 0.4);
+            transition: all 0.2s;
+        }
+
+        .delete-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 65, 108, 0.5);
+        }
+
+        /* ===== Overlay — full screen ===== */
+        #modal-1.modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease;
+        }
+
+        #modal-1.modal-overlay.active {
+            display: flex;
+        }
+
+        /* ===== Container ===== */
+        #modal-1.modal-overlay .modal-container {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 36px 30px;
+            text-align: center;
+            width: 320px;
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ===== Icon ===== */
+        #modal-1.modal-overlay .modal-container .glass-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 65, 108, 0.2);
+            border: 1px solid rgba(255, 65, 108, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            font-size: 24px;
+        }
+
+        /* ===== Title ===== */
+        #modal-1.modal-overlay .modal-container h3 {
+            font-family: 'Syne', sans-serif;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* ===== Description ===== */
+        #modal-1.modal-overlay .modal-container p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        /* ===== Actions ===== */
+        #modal-1.modal-overlay .modal-container .glass-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* ===== Yes Button ===== */
+        #modal-1.modal-overlay .modal-container .glass-actions .btn-glass-yes {
+            flex: 1;
+            padding: 11px;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        #modal-1.modal-overlay .modal-container .glass-actions .btn-glass-yes:hover {
+            opacity: 0.85;
+            transform: scale(0.97);
+        }
+
+        /* ===== No Button ===== */
+        #modal-1.modal-overlay .modal-container .glass-actions .btn-glass-no {
+            flex: 1;
+            padding: 11px;
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        #modal-1.modal-overlay .modal-container .glass-actions .btn-glass-no:hover {
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
             }
 
-            body {
-                font-family: 'Segoe UI', sans-serif;
-                background: #f5f5f7;
-                min-height: 100vh;
-                padding: 32px 24px;
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(0.95);
             }
 
-            :root {
-                --color-primary: #d9117b;
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
+        }
+    </style>
+</head>
 
+<body>
 
-            .toggle-group {
-                display: flex;
-                gap: 8px;
-                background: #fff;
-                border: 1.5px solid #e0e0e0;
-                border-radius: 10px;
-                padding: 4px;
-            }
+    <!-- Trigger Button -->
+    <button class="delete-btn" onclick="openModal()">🗑 Delete Task</button>
 
-            /*============ Toggle Buttons ========*/
-            .toggle-btn {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 36px;
-                height: 36px;
-                border: none;
-                border-radius: 6px;
-                background: transparent;
-                color: #999;
-                cursor: pointer;
-                transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
-            }
+    <!-- ===== Delete Modal ===== -->
+    <div id="modal-1" class="modal-overlay">
+        <div class="modal-container">
+            <div class="glass-icon">🗑️</div>
+            <h3>Delete Task?</h3>
+            <p>
+                This action cannot be undone.<br>
+                The task will be permanently removed.
+            </p>
 
-            .toggle-btn:hover {
-                background: var(--color-primary);
-                color: #fff;
-            }
-
-            .toggle-btn.active {
-                background: var(--color-primary);
-                color: #fff;
-            }
-
-            .toggle-btn:active {
-                transform: scale(0.92);
-                background: var(--color-primary);
-                color: #fff;
-            }
-
-            /*============  Content Panels  ==========*/
-            .view-panel {
-                display: none;
-            }
-
-            .view-panel.visible {
-                display: block;
-            }
-
-        </style>
-    </head>
-
-    <body>
-
-
-            <div class="toggle-group">
-                <!-- List View Button -->
-                <button class="toggle-btn" id="btn-list" title="List View" onclick="setView('list')">
-                    <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
-                        <rect x="1" y="2" width="16" height="2.5" rx="1.25" fill="currentColor" />
-                        <rect x="1" y="7.75" width="16" height="2.5" rx="1.25" fill="currentColor" />
-                        <rect x="1" y="13.5" width="16" height="2.5" rx="1.25" fill="currentColor" />
-                    </svg>
+            <div class="glass-actions">
+                <button class="btn-glass-yes">
+                    Yes, Delete
                 </button>
-                <!-- Grid View Button -->
-                <button class="toggle-btn active" id="btn-grid" title="Grid View" onclick="setView('grid')">
-                    <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
-                        <rect x="1" y="1" width="7" height="7" rx="1.5" fill="currentColor" />
-                        <rect x="10" y="1" width="7" height="7" rx="1.5" fill="currentColor" />
-                        <rect x="1" y="10" width="7" height="7" rx="1.5" fill="currentColor" />
-                        <rect x="10" y="10" width="7" height="7" rx="1.5" fill="currentColor" />
-                    </svg>
+                <button class="btn-glass-no" onclick="closeModal()">
+                    Cancel
                 </button>
-            </div>
-
-        <!-- Grid View Panel -->
-        <div class="view-panel visible" id="panel-grid">
-            <div class="grid-view">
-                <div>grid view</div>
             </div>
         </div>
+    </div>
 
-        <!-- List View Panel -->
-        <div class="view-panel" id="panel-list">
-            <div class="list-view">
-                <div>list view</div>
-            </div>
-        </div>
+    <script>
+        // Modal খোলা
+        function openModal() {
+            document.getElementById('modal-1').classList.add('active');
+        }
 
-        <script>
-            function setView(type) {
-                // Panels
-                document.getElementById('panel-grid').classList.toggle('visible', type === 'grid');
-                document.getElementById('panel-list').classList.toggle('visible', type === 'list');
+        // Modal বন্ধ করা
+        function closeModal() {
+            document.getElementById('modal-1').classList.remove('active');
+        }
 
-                // Buttons
-                document.getElementById('btn-grid').classList.toggle('active', type === 'grid');
-                document.getElementById('btn-list').classList.toggle('active', type === 'list');
+        // Container এর বাইরে click করলে বন্ধ হবে
+        document.getElementById('modal-1').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeModal();
             }
-        </script>
+        });
+    </script>
 
-    </body>
+</body>
 
 </html>

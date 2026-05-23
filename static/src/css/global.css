@@ -8,6 +8,157 @@
 }
 
 
+/* ===================== MODAL 1 — Glassmorphism ===================== */
+.delete-btn {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(255, 65, 108, 0.4);
+    transition: all 0.2s;
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 65, 108, 0.5);
+}
+
+/* ===== Overlay — full screen ===== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+/* ===== Container ===== */
+.modal-overlay .modal-container {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 36px 30px;
+    text-align: center;
+    width: 320px;
+    position: relative;
+    z-index: 1;
+    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ===== Icon ===== */
+.modal-overlay .modal-container .glass-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 65, 108, 0.2);
+    border: 1px solid rgba(255, 65, 108, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+    font-size: 24px;
+}
+
+/* ===== Title ===== */
+.modal-overlay .modal-container h3 {
+    font-family: 'Syne', sans-serif;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* ===== Description ===== */
+.modal-overlay .modal-container p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+/* ===== Actions ===== */
+.modal-overlay .modal-container .glass-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* ===== Yes Button ===== */
+.modal-overlay .modal-container .glass-actions .btn-glass-yes {
+    flex: 1;
+    padding: 11px;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.modal-overlay .modal-container .glass-actions .btn-glass-yes:hover {
+    opacity: 0.85;
+    transform: scale(0.97);
+}
+
+/* ===== No Button ===== */
+.modal-overlay .modal-container .glass-actions .btn-glass-no {
+    flex: 1;
+    padding: 11px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.modal-overlay.modal-overlay .modal-container .glass-actions .btn-glass-no:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
 
 /*=============//  Pagination Here  //=============*/
 .pagination {
@@ -201,7 +352,8 @@ body {
 .view-panel.visible {
     display: block;
 }
-.view-panel .sts{
+
+.view-panel .sts {
     display: inline-flex;
     line-height: 1;
     padding: 4px 12px;
@@ -860,7 +1012,7 @@ aside .sidebar-bottom {
     padding: 32px 32px;
     padding-left: 28px;
     overflow-y: auto;
-    overflow-x:hidden;
+    overflow-x: hidden;
     transition: var(--transition-slow);
 }
 
@@ -892,7 +1044,7 @@ aside .sidebar-bottom {
 .filter-select {
     background: var(--color-white-off);
     border: 1px solid var(--border-secondary);
-    border-radius:10px;
+    border-radius: 10px;
     padding: 10px 12px;
     font-size: var(--fs-sm);
     color: var(--color-text-secondary);
@@ -1034,23 +1186,23 @@ aside .sidebar-bottom {
 
 .table-wrap::-webkit-scrollbar {
     background: var(--border-primary);
-    border-radius:12px;
+    border-radius: 12px;
 }
 
 .table-wrap::-webkit-scrollbar {
     height: 8px;
     width: 8px;
-    border-radius:12px;
+    border-radius: 12px;
 }
 
 .table-wrap::-webkit-scrollbar-track {
     background: #f1f1f8;
-    border-radius:12px;
+    border-radius: 12px;
 }
 
 .table-wrap::-webkit-scrollbar-thumb {
     background: var(--color-tag);
-    border-radius:12px;
+    border-radius: 12px;
 }
 
 .table-wrap table {
@@ -1638,6 +1790,7 @@ aside .sidebar-bottom {
     align-items: center;
     text-align: center;
 }
+
 #click-sound {
     display: none;
 }
@@ -1760,7 +1913,7 @@ aside .sidebar-bottom {
     width: 100%;
     background-color: var(--color-white-off);
     border: 1px solid var(--border-primary);
-    border-radius:10px;
+    border-radius: 10px;
     padding: 11px 12px;
     padding-left: 34px;
     font-size: 13px;
@@ -1779,7 +1932,7 @@ aside .sidebar-bottom {
     border-radius: 8px;
     font-size: var(--fs-xs);
     width: 180px;
-    font-weight:400;
+    font-weight: 400;
     z-index: 12;
     line-height: 1.45;
 }
@@ -1932,9 +2085,9 @@ aside .sidebar-bottom {
         overflow: hidden;
     }
 
-     .task-details .proj-card{
-        max-height:unset;
-     }
+    .task-details .proj-card {
+        max-height: unset;
+    }
 
     .proj-card .card-footer {
         padding: 8px 12px;
@@ -1953,36 +2106,39 @@ aside .sidebar-bottom {
         height: 32px;
         font-size: 12px;
     }
-    .task-card .action-btn{
-         padding: 4px 8px;
+
+    .task-card .action-btn {
+        padding: 4px 8px;
     }
 
-/*=============//  Power By  //=============*/
-@keyframes logoSlide {
-    0% {
-        transform: translateY(-28px);
-        opacity: 0.6;
+    /*=============//  Power By  //=============*/
+    @keyframes logoSlide {
+        0% {
+            transform: translateY(-28px);
+            opacity: 0.6;
+        }
+
+        50% {
+            transform: translateY(-10px);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateY(-28px);
+            opacity: .6;
+        }
     }
 
-    50% {
-        transform: translateY(-10px);
-        opacity: 1;
+    aside .sidebar-bottom {
+        background-color: var(--color-primary);
+        background-color: var(--color-tag);
+        padding-top: 4px;
+        height: 178px;
     }
 
-    100% {
-        transform: translateY(-28px);
-        opacity: .6;
+    .powered-logo {
+        animation: logoSlide 2s ease-in-out infinite;
     }
-}
-aside .sidebar-bottom {
-    background-color: var(--color-primary);
-    background-color: var(--color-tag);
-    padding-top: 4px;
-    height: 178px;
-}
-.powered-logo {
-    animation: logoSlide 2s ease-in-out infinite;
-}
 }
 
 
