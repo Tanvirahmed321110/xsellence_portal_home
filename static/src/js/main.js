@@ -1,36 +1,30 @@
 
 //============== For Delete Confirmation
+function openDeleteModal(element) {
+    let modal = document.getElementById('deleteModal');
+    let confirmBtn = document.getElementById('confirmYes');
+    if (!modal) return false;
 
-function deleteModalF() {
+    confirmBtn.href = element.href; // ✅ directly set
 
-    // Outside click
-    var modal = document.getElementById('deleteModal');
-
-    function openDeleteModal(element) {
-        var confirmBtn = document.getElementById('confirmYes');
-
-        if (!modal || !confirmBtn) return false;
-
-        confirmBtn.setAttribute('href', element.getAttribute('href'));
-        modal.classList.add('active');
-        return false;
-    }
-
-    function closeModal() {
-        modal.classList.remove('active');
-    }
-
-    if (modal) {
-
-        if (modal) {
-            modal.addEventListener('click', function (e) {
-                if (e.target === this) closeModal();
-            });
-        }
-    }
+    modal.classList.add('active');
+    return false;
 }
 
-deleteModalF()
+function closeModal(modalId) {
+    let modal = document.getElementById(modalId);
+    if (!modal) return;
+    modal.classList.remove('active');
+}
+
+function deleteModalF(deleteModal) {
+    let modal = document.getElementById('deleteModal');
+    if (!modal) return;
+    modal.addEventListener('click', function (e) {
+        if (e.target === this) closeModal(deleteModal);
+    });
+}
+
 
 
 
