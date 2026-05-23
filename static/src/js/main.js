@@ -3,7 +3,7 @@
 function openDeleteModal(element) {
     let modal = document.getElementById('deleteModal');
     let confirmBtn = document.getElementById('confirmYes');
-    if (!modal) return false;
+    if (!modal || !confirmBtn) return false;
 
     confirmBtn.href = element.href; // ✅ directly set
 
