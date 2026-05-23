@@ -161,7 +161,7 @@
                                     </svg>
                                 </button>
                                 <!-- Delete button -->
-                                <button class="action-btn del">
+                                <a t-att-href="'/task/delete/%s' % task.id " class="action-btn del">
                                     <svg width="12" height="12" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                          stroke-linejoin="round">
@@ -171,7 +171,7 @@
                                         <path d="M14 11v6"/>
                                         <path d="M9 6V4h6v2"/>
                                     </svg>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>

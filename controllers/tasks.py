@@ -144,3 +144,20 @@ class XsellencePortal(http.Controller):
             'success_btn_label': 'Show Tasks',
             'success_btn_url': '/tasks',
         })
+
+    # =============  For Delete Task  ===============
+    @http.route('/task/delete/<int:task_id>', type='http', auth='user', website=True)
+    def delete_task(self, task_id, **kw):
+
+        task = request.env['project.task'].sudo().browse(task_id)
+
+        if task.exists():
+            task.unlink()
+
+        # ✅ Success Page
+        return request.render('xsellence_portal.success_page', {
+            'success_title': 'Task Successfully Deleted',
+            'success_desc': 'Your task has been deleted successfully.',
+            'success_btn_label': 'Show Tasks',
+            'success_btn_url': '/tasks',
+        })
