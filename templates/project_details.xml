@@ -3,10 +3,10 @@
         <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages.css"/>
         <t t-call="xsellence_portal.custom_layout">
 
-             <!-- ====================  Breadcrumb  ==================== -->
+            <!-- ====================  Breadcrumb  ==================== -->
             <t t-call="xsellence_portal.breadcrumb_component"/>
 
-             <!--========================|| Project Details Here ||=========================-->
+            <!--========================|| Project Details Here ||=========================-->
             <section class="task-details mt-6">
                 <div class="flex-center">
                     <!--================||   Single Task Card here ||===============-->
@@ -16,17 +16,21 @@
                             <div class="card-top">
                                 <div class="card-title-wrap">
                                     <!-- Task Name -->
-                                    <div class="card-proj-name" t-esc="project.name">Nadia Website Backend Development</div>
+                                    <div class="card-proj-name" t-esc="project.name">Nadia Website Backend Development
+                                    </div>
                                 </div>
                                 <!-- Status -->
-                                <span class="status-badge status-active"><span class="dot"></span><t t-esc="project.custom_status"/></span>
+                                <span class="status-badge status-active">
+                                    <span class="dot"></span>
+                                    <t t-esc="project.custom_status"/>
+                                </span>
                             </div>
                             <div>
                                 <div class="info-label d-flex align-center gap-2">Tags
                                     <svg width="19" height="17" viewBox="0 0 24 24" fill="none">
                                         <path d="M20 12L12 20L4 12V4H12L20 12Z" stroke="currentColor" stroke-width="2"
-                                            stroke-linejoin="round" />
-                                        <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                                              stroke-linejoin="round"/>
+                                        <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/>
                                     </svg>
                                 </div>
 
@@ -37,32 +41,34 @@
                                     </t>
                                 </div>
                             </div>
-                             <!-- assignee names -->
+                            <!-- assignee names -->
                             <div>
                                 <div class="info-label d-flex align-center gap-2">Assignee
                                     <svg width="19" height="17" viewBox="0 0 24 24" fill="none">
-                                        <circle cx="12" cy="8" r="3.5" fill="currentColor" />
-                                        <circle cx="6" cy="10" r="2.5" fill="currentColor" opacity="0.9" />
-                                        <circle cx="18" cy="10" r="2.5" fill="currentColor" opacity="0.9" />
-                                        <path d="M4 20c0-3.5 4-5.5 8-5.5s8 2 8 5.5" fill="currentColor" />
+                                        <circle cx="12" cy="8" r="3.5" fill="currentColor"/>
+                                        <circle cx="6" cy="10" r="2.5" fill="currentColor" opacity="0.9"/>
+                                        <circle cx="18" cy="10" r="2.5" fill="currentColor" opacity="0.9"/>
+                                        <path d="M4 20c0-3.5 4-5.5 8-5.5s8 2 8 5.5" fill="currentColor"/>
                                     </svg>
                                 </div>
 
                                 <!-- assignee names -->
                                 <div class="card-tags">
                                     <t t-foreach="project.assigned_user_ids" t-as="assign">
-                                         <span class="tag " t-esc="assign.name"></span>
+                                        <span class="tag " t-esc="assign.name"></span>
                                     </t>
                                 </div>
                             </div>
                             <div class="card-info-grid mt-4">
                                 <!-- Project Name -->
                                 <div class="info-item mt-2">
-                                    <div class="info-label d-flex ailign-center gap-1">Project <svg width="18"
-                                            height="17" viewBox="0 0 24 24" fill="currentColor">
+                                    <div class="info-label d-flex ailign-center gap-1">Project
+                                        <svg width="18"
+                                             height="17" viewBox="0 0 24 24" fill="currentColor">
                                             <path d="M3 6a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v1H3V6z"></path>
                                             <path d="M3 10h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8z"></path>
-                                        </svg></div>
+                                        </svg>
+                                    </div>
                                     <div class="info-val mt-1" t-esc="project.partner_id.name">Nutrition Depot BD
                                     </div>
                                 </div>
@@ -70,14 +76,17 @@
                                 <!-- For Assigned date -->
                                 <div class="info-item mt-2">
                                     <div class="info-label">Created Date</div>
-                                    <div class="info-val mt-1"><svg width="11" height="11" viewBox="0 0 24 24"
-                                            fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <rect x="3" y="4" width="18" height="18" rx="2" />
-                                            <line x1="16" y1="2" x2="16" y2="6" />
-                                            <line x1="8" y1="2" x2="8" y2="6" />
-                                            <line x1="3" y1="10" x2="21" y2="10" />
-                                        </svg><t t-esc="project.date_start"/></div>
+                                    <div class="info-val mt-1">
+                                        <svg width="11" height="11" viewBox="0 0 24 24"
+                                             fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"
+                                             stroke-linejoin="round">
+                                            <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                            <line x1="16" y1="2" x2="16" y2="6"/>
+                                            <line x1="8" y1="2" x2="8" y2="6"/>
+                                            <line x1="3" y1="10" x2="21" y2="10"/>
+                                        </svg>
+                                        <t t-esc="project.date_start"/>
+                                    </div>
                                 </div>
                             </div>
 
@@ -86,11 +95,12 @@
                                 <!-- For Project Priority -->
                                 <div class="card-manager">
                                     <div class="manager-info mt-2">
-                                        <div class="info-label">Priority <svg width="18" height="16" viewBox="0 0 24 24"
-                                                fill="currentColor">
+                                        <div class="info-label">Priority
+                                            <svg width="18" height="16" viewBox="0 0 24 24"
+                                                 fill="currentColor">
                                                 <path d="M4 2v20" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" />
-                                                <path d="M4 3h13l-2 4 2 4H4z" />
+                                                      stroke-linecap="round"/>
+                                                <path d="M4 3h13l-2 4 2 4H4z"/>
                                             </svg>
 
                                         </div>
@@ -101,14 +111,19 @@
                                 <!-- For Deadline -->
                                 <div class="info-item mt-2">
                                     <div class="info-label">Deadline</div>
-                                    <div class="info-val mt-1"><svg width="11" height="11" viewBox="0 0 24 24"
-                                            fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <rect x="3" y="4" width="18" height="18" rx="2" />
-                                            <line x1="16" y1="2" x2="16" y2="6" />
-                                            <line x1="8" y1="2" x2="8" y2="6" />
-                                            <line x1="3" y1="10" x2="21" y2="10" />
-                                        </svg> <span> <t t-esc="project.date"/> </span></div>
+                                    <div class="info-val mt-1">
+                                        <svg width="11" height="11" viewBox="0 0 24 24"
+                                             fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"
+                                             stroke-linejoin="round">
+                                            <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                            <line x1="16" y1="2" x2="16" y2="6"/>
+                                            <line x1="8" y1="2" x2="8" y2="6"/>
+                                            <line x1="3" y1="10" x2="21" y2="10"/>
+                                        </svg>
+                                        <span>
+                                            <t t-esc="project.date"/>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -117,25 +132,29 @@
                                 <!-- For Deadline -->
                                 <div class="info-item mt-2">
                                     <div class="info-label">Allocated Time</div>
-                                    <div class="info-val mt-1"><svg width="11" height="11" viewBox="0 0 24 24"
-                                            fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <rect x="3" y="4" width="18" height="18" rx="2" />
-                                            <line x1="16" y1="2" x2="16" y2="6" />
-                                            <line x1="8" y1="2" x2="8" y2="6" />
-                                            <line x1="3" y1="10" x2="21" y2="10" />
-                                        </svg> <span t-esc="project.allocated_hours"> </span></div>
+                                    <div class="info-val mt-1">
+                                        <svg width="11" height="11" viewBox="0 0 24 24"
+                                             fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"
+                                             stroke-linejoin="round">
+                                            <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                            <line x1="16" y1="2" x2="16" y2="6"/>
+                                            <line x1="8" y1="2" x2="8" y2="6"/>
+                                            <line x1="3" y1="10" x2="21" y2="10"/>
+                                        </svg>
+                                        <span t-esc="project.allocated_hours"></span>
+                                    </div>
                                 </div>
 
                                 <!-- Total Task -->
                                 <div class="card-manager">
                                     <div class="manager-info mt-2">
-                                        <div class="info-label align-center gap-1">Total Tasks <svg width="18"
-                                                height="16" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M9 5h12v2H9zM9 11h12v2H9zM9 17h12v2H9z" />
-                                                <path d="M4 6l1.5 1.5L8 5l-1-1-1.5 1.5L4 4z" />
-                                                <path d="M4 12l1.5 1.5L8 11l-1-1-1.5 1.5L4 10z" />
-                                                <path d="M4 18l1.5 1.5L8 17l-1-1-1.5 1.5L4 16z" />
+                                        <div class="info-label align-center gap-1">Total Tasks
+                                            <svg width="18"
+                                                 height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M9 5h12v2H9zM9 11h12v2H9zM9 17h12v2H9z"/>
+                                                <path d="M4 6l1.5 1.5L8 5l-1-1-1.5 1.5L4 4z"/>
+                                                <path d="M4 12l1.5 1.5L8 11l-1-1-1.5 1.5L4 10z"/>
+                                                <path d="M4 18l1.5 1.5L8 17l-1-1-1.5 1.5L4 16z"/>
                                             </svg>
 
                                         </div>
@@ -143,7 +162,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
 
                             <div class="card-info-grid">
@@ -163,28 +181,34 @@
                                     <div class="info-label">Description</div>
                                     <div class="task-desc-wrap mt-2 flex-column gap-4" t-esc="project.description">
 
-                                    <!-- <img class="radius-md" src="/images/bg.jpg" alt="project details image" />-->
+                                        <!-- <img class="radius-md" src="/images/bg.jpg" alt="project details image" />-->
                                     </div>
                                 </t>
                             </div>
 
                             <div class="team-leader mt-5">
-                                <div class="fs-lg fw-bold" style="color:#121212;">Usefull Links: </div>
+                                <div class="fs-lg fw-bold" style="color:#121212;">Usefull Links:</div>
                                 <div class="flex-column gap-3 mt-3">
                                     <div class="d-flex align-center gap-4">
-                                        <span style="min-width:100px;display:inline-block;font-weight:500;color:var(--color-primary)">Github:</span>
+                                        <span style="min-width:100px;display:inline-block;font-weight:500;color:var(--color-primary)">
+                                            Github:
+                                        </span>
                                         <t t-if="project.github_link">
                                             <a t-att-href="project.github_link" target="_blank">Github Link</a>
                                         </t>
                                     </div>
                                     <div class="d-flex align-center gap-4">
-                                        <span style="min-width:100px;display:inline-block;color:var(--color-primary);font-weight:500">Dev Server:</span>
+                                        <span style="min-width:100px;display:inline-block;color:var(--color-primary);font-weight:500">
+                                            Dev Server:
+                                        </span>
                                         <t t-if="project.dev_link">
                                             <a t-att-href="project.dev_link" target="_blank">Dev Server Link</a>
                                         </t>
                                     </div>
                                     <div class="d-flex align-center gap-4">
-                                        <span style="min-width:100px;display:inline-block;color:var(--color-primary);font-weight:500">Live:</span>
+                                        <span style="min-width:100px;display:inline-block;color:var(--color-primary);font-weight:500">
+                                            Live:
+                                        </span>
                                         <t t-if="project.live_link">
                                             <a t-att-href="project.live_link" target="_blank">Live Link</a>
                                         </t>
@@ -202,7 +226,8 @@
                                 <div class="state-dropdown">
                                     <select class="filter-select" name="status" onchange="this.form.submit()">
                                         <t t-foreach="status_selection" t-as="status">
-                                            <option t-att-value="status[0]" t-att-selected="status[0] == project.custom_status">
+                                            <option t-att-value="status[0]"
+                                                    t-att-selected="status[0] == project.custom_status">
                                                 <t t-esc="status[1]"/>
                                             </option>
                                         </t>
@@ -216,29 +241,52 @@
                                 <button class="action-btn edit">
                                     Edit
                                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 20h9" />
-                                        <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
+                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 20h9"/>
+                                        <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/>
                                     </svg>
                                 </button>
 
                                 <form method='post' action="/project/delete">
-                                   <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                   <input type="hidden" name="project_id" t-att-value="project.id"/>
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <input type="hidden" name="project_id" t-att-value="project.id"/>
 
                                     <!-- Delete button -->
-                                    <button type="submit" class="action-btn del"><svg width="12" height="12" viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <polyline points="3 6 5 6 21 6" />
-                                            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-                                            <path d="M10 11v6" />
-                                            <path d="M14 11v6" />
-                                            <path d="M9 6V4h6v2" />
+                                    <button type="submit" class="action-btn del" onclick="return openDeleteModal(this)">
+                                        <svg width="12" height="12" viewBox="0 0 24 24"
+                                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                             stroke-linejoin="round">
+                                            <polyline points="3 6 5 6 21 6"/>
+                                            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                                            <path d="M10 11v6"/>
+                                            <path d="M14 11v6"/>
+                                            <path d="M9 6V4h6v2"/>
                                         </svg>
                                     </button>
                                 </form>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =====  Delete Modal  ===== -->
+                <div class="modal-overlay " id="deleteModal">
+                    <div class="modal-container">
+                        <div class="glass-icon">🗑️</div>
+                        <h3>Delete Project?</h3>
+                        <p>
+                            This action cannot be undone.
+                            <br/>
+                            The Project will be permanently removed.
+                        </p>
+
+                        <div class="glass-actions">
+                            <button type="button" id="confirmYes" class="btn-glass-yes">
+                                Yes, Delete
+                            </button>
+                            <button class="btn-glass-no" onclick="closeModal('deleteModal')">
+                                Cancel
+                            </button>
                         </div>
                     </div>
                 </div>
