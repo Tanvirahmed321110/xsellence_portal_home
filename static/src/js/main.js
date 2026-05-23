@@ -1,11 +1,14 @@
-
 //============== For Delete Confirmation
 function openDeleteModal(element) {
     let modal = document.getElementById('deleteModal');
     let confirmBtn = document.getElementById('confirmYes');
     if (!modal || !confirmBtn) return false;
 
-    confirmBtn.href = element.href; // ✅ directly set
+    // ✅ href এর বদলে form submit
+    let form = element.closest('form');
+    confirmBtn.onclick = function () {
+        form.submit();
+    };
 
     modal.classList.add('active');
     return false;
@@ -24,8 +27,6 @@ function deleteModalF(deleteModal) {
         if (e.target === this) closeModal(deleteModal);
     });
 }
-
-
 
 
 

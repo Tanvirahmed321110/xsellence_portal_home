@@ -73,6 +73,8 @@ class XsellencePortal(http.Controller):
             return request.redirect(f"/tasks/task_details/{task_id}")
         return request.redirect(f"/tasks")
 
+
+
     # ============  For Add Task Page  ===============
     @http.route('/add_task', type='http', auth='public', website=True)
     def add_task_f(self, **kw):
@@ -143,10 +145,15 @@ class XsellencePortal(http.Controller):
         })
 
     # =============  For Delete Task  ===============
-    @http.route('/task/delete/<int:task_id>', type='http', auth='user', website=True)
-    def delete_task(self, task_id, **kw):
+    @http.route('/task/delete', type='http', auth='user', methods=['POST'], website=True)
+    def delete_task(self, task_id=None, **kw):
+        print("======= task_id =======", task_id)
 
-        task = request.env['project.task'].sudo().browse(task_id)
+        if not task_id:
+            return request.redirect('/tasks')
+
+        task = request.env['project.task'].sudo().browse(int(task_id))
+        print("======= task =======", task)
 
         if task.exists():
             task.unlink()
