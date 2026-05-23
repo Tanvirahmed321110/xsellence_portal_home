@@ -1899,12 +1899,16 @@ aside .sidebar-bottom {
         margin-left: 246px;
     }
 
+    .header-wrap .logo svg {
+        max-width: 240px;
+    }
+
     .header-wrap .logo svg text {
         animation: stroke 6s 1 alternate;
         stroke-width: 1;
         stroke: var(--color-white);
         color: var(--color-white);
-        font-size: 34px;
+        font-size: 32px;
     }
 
     aside .menu-item {

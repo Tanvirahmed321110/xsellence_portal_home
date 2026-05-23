@@ -18,6 +18,7 @@ class XsellencePortal(http.Controller):
     def add_timesheet_f(self, **kw):
 
         source = kw.get('source')
+        today = date.today()
         print(source)
 
         if source == 'timesheets':
@@ -36,6 +37,7 @@ class XsellencePortal(http.Controller):
         return request.render('xsellence_portal.add_timesheet_page', {
             'active_menu': 'add_timesheet',
             'breadcrumb': breadcrumb_data,
+            'today':today
         })
 
 
