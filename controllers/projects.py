@@ -3,7 +3,7 @@ from odoo.http import request
 from datetime import date
 
 
-#========== For Projects Page  ============
+# ========== For Projects Page  ============
 class XsellencePortal(http.Controller):
 
     @http.route('/projects', type='http', auth='user', website=True)
@@ -20,7 +20,6 @@ class XsellencePortal(http.Controller):
         status = kw.get('status')
         if status:
             status_domain = [('custom_status', '=', status)]
-
 
         # ===== Final Domain Merge =====
         domain = base_domain + status_domain
@@ -42,10 +41,6 @@ class XsellencePortal(http.Controller):
                 {'name': 'Projects', 'url': False},
             ]
         })
-
-
-
-
 
     # ==================  For Create Project Page  ====================
     @http.route('/create_project', type='http', auth='public', website=True)
@@ -84,10 +79,8 @@ class XsellencePortal(http.Controller):
             'users': users,
             'tags': tags,
             'customers': customers,
-            'priority':priority,
+            'priority': priority,
         })
-
-
 
     # ================== Submit Project ==================
     @http.route('/submit_project', type='http', auth='user', methods=['POST'], website=True, csrf=True)
@@ -107,7 +100,7 @@ class XsellencePortal(http.Controller):
             'partner_id': post.get('partner_id') if post.get('partner_id') else False,
             'user_id': int(post.get('user_id') if post.get('user_id') else False),
             'custom_status': post.get('custom_status'),
-            'date_start': post.get('date_start') or  date.today(),
+            'date_start': post.get('date_start') or date.today(),
             'date': post.get('date'),
             'custom_priority': post.get('custom_priority'),
             'description': post.get('description'),
@@ -124,19 +117,16 @@ class XsellencePortal(http.Controller):
                 'error_title': '❌ Project Creation Failed',
                 'error_desc': 'Unable to create project.',
                 'error_btn_label': 'Again Try',
-                'error_btn_url':  '/projects/create_project',
+                'error_btn_url': '/projects/create_project',
             })
 
         # ✅ Success Page
-        return request.render('xsellence_portal.success_page',{
+        return request.render('xsellence_portal.success_page', {
             'success_title': 'Project Successfully Created',
             'success_desc': 'Your project has been created successfully. You can now manage it and assign tasks to your team.',
             'success_btn_label': 'Show Projects',
             'success_btn_url': '/projects',
         })
-
-
-
 
     # =================  For Project Details Page  ===================
     @http.route('/projects/details/<int:project_id>', type='http', auth='user', website=True)
@@ -160,8 +150,6 @@ class XsellencePortal(http.Controller):
             ]
         })
 
-
-
     # =================  For Project Details Page State Update  ===================
     @http.route('/project/update_status', type='http', auth='user', csrf=True)
     def update_project_status(self, project_id=None, status=None, **kw):
@@ -171,13 +159,42 @@ class XsellencePortal(http.Controller):
 
         return request.redirect(f"/projects/details/{project_id}")
 
+    # ========================
+    # GET - Edit Page Show
+    # ========================
+    @http.route('/project/edit/<int:project_id>', type='http', auth='user', website=True, methods=['GET'])
+    def edit_project_page(self, project_id, **kwargs):
 
+        # project fetch
+        project = request.env['project.project'].sudo().browse(project_id)
 
+        if not project.exists():
+            return request.redirect('/projects')
 
+        customers = request.env['res.partner'].sudo().search([])
+        project_managers = request.env['res.users'].sudo().search([])
+        users = request.env['res.users'].sudo().search([])
+        tags = request.env['project.tags'].sudo().search([])
 
-    # =================  For Project Details Page Delete Project  ===================
-    @http.route('/project/delete',type="http",auth="user",methods=['POST'])
-    def delete_project(self,project_id=None,**kw):
+        status_field = request.env['project.project']._fields.get('custom_status')
+        priority_field = request.env['project.project']._fields.get('custom_priority')
+        status_selection = status_field.selection if status_field else []
+        priority_selection = priority_field.selection if priority_field else []
+
+        # project object
+        return request.render('xsellence_portal.edit_project_page', {
+            'project': project,
+            'customers': customers,
+            'project_managers': project_managers,
+            'users': users,
+            'tags': tags,
+            'status_selection': status_selection,
+            'priority': priority_selection,
+        })
+
+    # =================  For Project  Delete Project  ===================
+    @http.route('/project/delete', type="http", auth="user", methods=['POST'])
+    def delete_project(self, project_id=None, **kw):
 
         last_id = request.session.get('last_project_id')
 
@@ -194,7 +211,7 @@ class XsellencePortal(http.Controller):
             })
 
         # ✅ Success Page
-        return request.render('xsellence_portal.success_page',{
+        return request.render('xsellence_portal.success_page', {
             'success_title': 'Project Deleted Successfully 🗑️',
             'success_desc': 'The project has been permanently deleted and is no longer available.',
             'success_btn_label': 'Show All Projects',

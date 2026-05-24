@@ -37,6 +37,7 @@
         'templates/profile.xml',
         'templates/edit_profile.xml',
         'templates/create_project.xml',
+        'templates/edit_project.xml',
         'templates/ticket_details.xml',
         'templates/task_details.xml',
         'templates/breadcrumb.xml',
