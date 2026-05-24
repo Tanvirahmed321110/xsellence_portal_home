@@ -86,10 +86,10 @@ class XsellencePortal(http.Controller):
     @http.route('/submit_project', type='http', auth='user', methods=['POST'], website=True, csrf=True)
     def submit_project(self, **post):
 
-        user_ids = request.httprequest.form.getlist('assigned_user_ids')
+        assigned_user_ids = request.httprequest.form.getlist('assigned_assigned_user_ids')
         tags = request.httprequest.form.getlist('tag_ids')
-        print(f"user_ids   ---- {user_ids}")
-        print(f"user_ids   ---- {tags}")
+        print(f"assigned_user_ids   ---- {assigned_user_ids}")
+        print(f"assigned_user_ids   ---- {tags}")
         print("POST DATA:", post)
 
         create_data = {
@@ -104,7 +104,7 @@ class XsellencePortal(http.Controller):
             'date': post.get('date'),
             'custom_priority': post.get('custom_priority'),
             'description': post.get('description'),
-            'assigned_user_ids': [(6, 0, [int(x) for x in user_ids])] if user_ids else False,
+            'assigned_assigned_user_ids': [(6, 0, [int(x) for x in assigned_user_ids])] if assigned_user_ids else False,
             'tag_ids': [(4, int(x), 0) for x in tags] if tags else [],
         }
         print(f"create_data ------------ {create_data}")
@@ -159,6 +159,8 @@ class XsellencePortal(http.Controller):
 
         return request.redirect(f"/projects/details/{project_id}")
 
+
+
     # ========================
     # GET - Edit Page Show
     # ========================
@@ -192,7 +194,43 @@ class XsellencePortal(http.Controller):
             'priority': priority_selection,
         })
 
-    # =================  For Project  Delete Project  ===================
+    # ========================
+    # POST - Edit Page Submit
+    # ========================
+    @http.route('/project/edit/<int:project_id>', type='http', auth='user', website=True, methods=['POST'], csrf=True)
+    def edit_project_submit(self, project_id, **kw):
+        project = request.env['project.project'].sudo().browse(project_id)
+
+        if not project.exists():
+            return request.redirect('/projects')
+
+        tag_ids = request.httprequest.form.getlist('tag_ids')
+        tag_ids = [int(item) for item in tag_ids if item]
+
+        assigned_user_ids = request.httprequest.form.getlist('assigned_user_ids')
+        assigned_user_ids = [int(user) for user in assigned_user_ids if user]
+
+        vals = {
+             'name':  kw.get('name', project.name),
+            'partner_id': int(kw['partner_id']) if kw.get('partner_id') else False,
+            'user_id': int(kw['user_id']) if kw.get('user_id') else False,
+            'date_start': kw.get('date_start') or False,
+            'date': kw.get('date') or False,
+            'description': kw.get('description', ''),
+            'custom_status': kw.get('custom_status', ''),
+            'custom_priority': kw.get('custom_priority', ''),
+            'tag_ids': [(6, 0, tag_ids)],
+            'assigned_user_ids': [(6, 0, assigned_user_ids)],
+        }
+
+        project.write(vals)
+        return request.redirect(f"/projects/details/{project_id}")
+
+
+
+    # ========================
+    # POST - Project Delete
+    # ========================
     @http.route('/project/delete', type="http", auth="user", methods=['POST'])
     def delete_project(self, project_id=None, **kw):
 
