@@ -211,7 +211,7 @@ class XsellencePortal(http.Controller):
         assigned_user_ids = [int(user) for user in assigned_user_ids if user]
 
         vals = {
-             'name':  kw.get('name', project.name),
+            'name':  kw.get('name', project.name),
             'partner_id': int(kw['partner_id']) if kw.get('partner_id') else False,
             'user_id': int(kw['user_id']) if kw.get('user_id') else False,
             'date_start': kw.get('date_start') or False,

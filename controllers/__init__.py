@@ -1,3 +1,4 @@
+from . import login_inherit
 from . import dashboard
 from . import projects
 from . import tasks
