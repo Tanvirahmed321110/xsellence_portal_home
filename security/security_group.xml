@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ক্যাটাগরি তৈরি করুন -->
+    <record id="category_xsellence_portal" model="ir.module.category">
+        <field name="name">Xsellence Portal</field>
+        <field name="description">Xsellence Portal Management</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- 1. ADMIN GROUP -->
+    <record id="group_admin" model="res.groups">
+        <field name="name">Admin</field>
+        <field name="category_id" ref="xsellence_portal.category_xsellence_portal"/>
+    </record>
+
+    <!-- 2. PROJECT MANAGER GROUP -->
+    <record id="group_project_manager" model="res.groups">
+        <field name="name">Project Manager</field>
+        <field name="category_id" ref="xsellence_portal.category_xsellence_portal"/>
+    </record>
+
+    <!-- 3. GENERAL EMPLOYEE GROUP -->
+    <record id="group_general_employee" model="res.groups">
+        <field name="name">General Employee</field>
+        <field name="category_id" ref="xsellence_portal.category_xsellence_portal"/>
+    </record>
+</odoo>

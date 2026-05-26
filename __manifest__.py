@@ -24,6 +24,7 @@
 
     # always loaded
     'data': [
+        'security/security_group.xml',
         'security/ir.model.access.csv',
         'templates/layout.xml',
         'templates/dashboard.xml',
