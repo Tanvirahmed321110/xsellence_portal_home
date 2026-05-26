@@ -30,7 +30,7 @@ class XsellencePortal(http.Controller):
 
         tasks = request.env['project.task'].sudo().search(domain)
 
-        statuses = request.env['project.task'].fields_get(['custom_status'])['custom_status']['selection']
+        statuses = request.env['project.task'].sudo()._fields['custom_status'].selection
 
         return request.render('xsellence_portal.tasks_page', {
             'active_menu': 'tasks',
@@ -43,13 +43,14 @@ class XsellencePortal(http.Controller):
             ]
         })
 
+
+
     # =============  For Task Details Page  ===============
     @http.route('/tasks/task_details/<int:project_id>', type='http', auth='public', website=True)
     def task_details_f(self, project_id, **kw):
 
         task = request.env['project.task'].sudo().browse(project_id)
-        status_selection = request.env['project.task'].fields_get(
-            ['custom_status'])['custom_status']['selection']
+        status_selection = request.env['project.task'].sudo()._fields['custom_status'].selection
 
         return request.render('xsellence_portal.task_details_page', {
             'active_menu': 'tasks',
@@ -94,8 +95,8 @@ class XsellencePortal(http.Controller):
 
         projects = request.env['project.project'].search([])
         users = request.env['res.users'].search([])
-        statuses = request.env['project.task']._fields['custom_status'].selection
-        priority = request.env['project.task']._fields['custom_priority'].selection
+        statuses = request.env['project.task'].sudo()._fields['custom_status'].selection
+        priority = request.env['project.task'].sudo()._fields['custom_priority'].selection
 
         return request.render('xsellence_portal.add_task_page', {
             'active_menu': 'add_task',
@@ -126,7 +127,7 @@ class XsellencePortal(http.Controller):
             'description': kw.get('description'),
         }
 
-        new_task = request.env['project.task'].create(task)
+        new_task = request.env['project.task'].sudo().create(task)
 
         # ❌  Error Page
         if not new_task:

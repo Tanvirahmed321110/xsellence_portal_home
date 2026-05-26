@@ -24,7 +24,7 @@ class XsellencePortal(http.Controller):
         # ===== Final Domain Merge =====
         domain = base_domain + status_domain
 
-        projects = request.env['project.project'].search(
+        projects = request.env['project.project'].sudo().search(
             domain,
             order='create_date desc'
         )
