@@ -1251,12 +1251,11 @@ aside .sidebar-bottom {
     height: 100%;
     width: 0px;
     background-color: var(--color-tag);
-    border-radius: 0px 12px 12px 0;
     transition: var(--transition-base);
 }
 
 .table-wrap tbody tr:hover::after {
-    width: 5px;
+    width: 2px;
 }
 
 .table-wrap tbody tr {
