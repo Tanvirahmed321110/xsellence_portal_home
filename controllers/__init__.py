@@ -1,3 +1,4 @@
+from . import user_info
 from . import login_inherit
 from . import dashboard
 from . import projects

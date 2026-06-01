@@ -94,8 +94,8 @@ class XsellencePortal(http.Controller):
                 {'name': 'Add Task', 'url': False},
             ]
 
-        projects = request.env['project.project'].search([])
-        users = request.env['res.users'].search([])
+        projects = request.env['project.project'].sudo().search([])
+        users = request.env['res.users'].sudo().search([])
         statuses = request.env['project.task'].sudo()._fields['custom_status'].selection
         priority = request.env['project.task'].sudo()._fields['custom_priority'].selection
 
@@ -107,6 +107,7 @@ class XsellencePortal(http.Controller):
             'users': users,
             'statuses': statuses,
             'priority': priority,
+            'today': date.today().strftime('%Y-%m-%d'),
         })
 
     # ============  For Add Task Submit Page  ===============

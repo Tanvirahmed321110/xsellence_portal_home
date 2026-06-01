@@ -49,8 +49,8 @@ class XsellencePortal(http.Controller):
         source = kw.get('source')
 
         tags = request.env['project.tags'].search([])
-        customers = request.env['res.partner'].search([])
-        project_managers = request.env['res.users'].search([('share', '=', False)])
+        customers = request.env['res.partner'].sudo().search([])
+        project_managers = request.env['res.users'].sudo().search([('share', '=', False)])
         users = request.env['res.users'].sudo().search([
             ('share', 'in', [True, False]),
             ('id', '!=', request.env.ref('base.user_admin').id)
@@ -81,6 +81,7 @@ class XsellencePortal(http.Controller):
             'tags': tags,
             'customers': customers,
             'priority': priority,
+            'today': date.today().strftime('%Y-%m-%d'),
         })
 
     # ================== Submit Project ==================

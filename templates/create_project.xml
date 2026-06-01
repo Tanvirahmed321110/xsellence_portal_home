@@ -100,7 +100,7 @@
                             <div class="input-control">
                                 <label for="date_start">Start Date
                                 </label>
-                                <input type="date" name="date_start" id="date_start"  placeholder="Project Manager"/>
+                                <input type="date" t-att-value="today" name="date_start" id="date_start"  placeholder="Project Manager"/>
                             </div>
 
                             <!--======= For End Date =======-->
