@@ -140,10 +140,10 @@
                                                      class="profile-img-photo"/>
                                             </t>
                                             <t t-elif="current_user.name">
-                                                <!-- Extract initials safely from user name -->
+                                                <!-- Extract initials from user name -->
                                                 <t t-set="display_name" t-value="current_user.name"/>
                                                 <t t-set="initials"
-                                                   t-value="''.join([w[0].upper() for w in display_name.split() if w])[:2]"/>
+                                                   t-value="(display_name[:2].upper() if len(display_name.split()) == 1 else ''.join([w[0].upper() for w in display_name.split() if w])[:2])"/>
                                                 <span class="profile-initials" t-esc="initials"/>
                                             </t>
                                             <t t-else="">
