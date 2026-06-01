@@ -1,6 +1,7 @@
 from odoo import http
 from odoo.http import request
 from datetime import date
+from odoo.tools import html2plaintext
 
 
 class XsellencePortal(http.Controller):
@@ -144,6 +145,66 @@ class XsellencePortal(http.Controller):
             'success_btn_label': 'Show Tasks',
             'success_btn_url': '/tasks',
         })
+
+
+
+    # ==========================
+    # POST - Edit Page Form Page
+    # ==========================
+    @http.route('/task/edit/<int:task_id>', type='http', auth='user', website=True, methods=['GET'], csrf=True)
+    def edit_task_form(self, task_id, **kw):
+        task = request.env['project.task'].sudo().browse(task_id)
+
+        if not task.exists():
+            return request.redirect('/tasks')
+
+        projects = request.env['project.project'].sudo().search([])
+        users = request.env['res.users'].sudo().search([])
+
+        statuses = request.env['project.task'].sudo()._fields['custom_status'].selection
+        priority = request.env['project.task'].sudo()._fields['custom_priority'].selection
+
+        return request.render('xsellence_portal.edit_task_page', {
+            'active_menu': 'tasks',
+            'task': task,
+            'task_description': html2plaintext(task.description or ''),
+            'projects': projects,
+            'users': users,
+            'statuses': statuses,
+            'priority': priority,
+            'breadcrumb': [
+                {'name': 'Dashboard', 'url': '/dashboard'},
+                {'name': 'Tasks', 'url': '/tasks'},
+                {'name': 'Edit Task', 'url': False},
+            ]
+        })
+
+    # ========================
+    # POST - Edit Task Submit
+    # ========================
+    @http.route('/task/edit/<int:task_id>', type='http', auth='user', website=True, methods=['POST'], csrf=True)
+    def edit_task_submit(self, task_id, **kw):
+        task = request.env['project.task'].sudo().browse(task_id)
+
+        if not task.exists():
+            return request.redirect('/tasks')
+
+        assign_ids = request.httprequest.form.getlist('user_ids')
+        user_ids = [(6,0, [int(uid) for uid in assign_ids if uid])]
+
+        vals = {
+            'name': kw.get('name', task.name),
+            'project_id': int(kw['project_id']) if kw.get('project_id') else False,
+            'date_deadline': kw.get('date_deadline') or False,
+            'custom_status': kw.get('custom_status', ''),
+            'custom_priority': kw.get('custom_priority', ''),
+            'description': kw.get('description', ''),
+            'user_ids': user_ids,
+        }
+
+        task.write(vals)
+        return request.redirect(f"/tasks/task_details/{task_id}")
+
 
     # =============  For Delete Task  ===============
     @http.route('/task/delete', type='http', auth='user', methods=['POST'], website=True)

@@ -24,7 +24,7 @@ class ProjectProject(models.Model):
         ('review', 'Under Review'),
         ('completed', 'Completed'),
         ('cancelled', 'Cancelled'),
-    ], string='Project Status', default='Planning')
+    ], string='Project Status', default='planning')
 
     # assign members
     assigned_user_ids = fields.Many2many(
