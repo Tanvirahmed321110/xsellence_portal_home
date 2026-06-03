@@ -3,13 +3,13 @@
     'name': "xsellence portal",
 
     'summary': """
-        xsellence own software""",
+        xsellence own software """,
 
     'description': """
         For Project Management and Support
     """,
 
-    'author': "Tanvir Ahmed, Fahim",
+    'author': "Tanvir Ahmed",
     'website': "http://www.xsellencebdltd.com",
 
     # Categories can be used to filter modules in modules listing
