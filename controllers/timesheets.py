@@ -19,7 +19,9 @@ class XsellencePortal(http.Controller):
 
         source = kw.get('source')
         today = date.today()
-        print(source)
+
+        projects = request.env['project.project'].sudo().search([])
+        tasks = request.env['project.task'].sudo().search([])
 
         if source == 'timesheets':
             breadcrumb_data = [
@@ -37,7 +39,9 @@ class XsellencePortal(http.Controller):
         return request.render('xsellence_portal.add_timesheet_page', {
             'active_menu': 'add_timesheet',
             'breadcrumb': breadcrumb_data,
-            'today':today
+            'today':today,
+            'projects':projects,
+            'tasks':tasks,
         })
 
 
@@ -67,4 +71,54 @@ class XsellencePortal(http.Controller):
                 {'name': 'Tasks', 'url': '/tasks'},
                 {'name': 'Add Timesheet', 'url': False},
             ]
+        })
+
+    # =============  Timesheet From Submit  =============
+    @http.route('/tasks/add_timesheet/submit', type='http', auth='user', website=True,methods=['POST'] )
+    def add_timesheet_from_submit(self, **kw):
+        task_id = int(kw.get('task_id',0))
+        project_id = int(kw.get('project_id', 0))
+        unit_amount = float(kw.get('unit_amount', 0))
+        date_str = kw.get('date')
+        description = kw.get('name', '')
+
+        employee = request.env['hr.employee'].sudo().search(
+            [('user_id', '=', request.env.user.id)], limit=1
+        )
+
+        # ❌ Employee
+        if not employee:
+            return request.render('xsellence_portal.error_page', {
+                'error_title': 'Employee Not Found',
+                'error_desc': 'No employee record linked to your account. Please contact admin.',
+                'error_btn_label': 'Go Back',
+                'error_btn_url': f'/tasks/add_timesheet?task_id={task_id}&project_id={project_id}',
+            })
+
+        vals = {
+            'task_id': task_id,
+            'project_id': project_id,
+            'employee_id': employee.id,
+            'date': date_str,
+            'name': description,
+            'unit_amount': unit_amount,
+        }
+
+        timesheet = request.env['account.analytic.line'].sudo().create(vals)
+
+        # ❌ Error
+        if not timesheet:
+            return request.render('xsellence_portal.error_page', {
+                'error_title': '❌ Timesheet Creation Failed',
+                'error_desc': 'Unable to save timesheet entry.',
+                'error_btn_label': 'Try Again',
+                'error_btn_url': f'/tasks/add_timesheet?task_id={task_id}&project_id={project_id}',
+            })
+
+        # ✅ Success
+        return request.render('xsellence_portal.success_page', {
+            'success_title': '✅ Timesheet Submitted',
+            'success_desc': 'Your timesheet entry has been saved successfully.',
+            'success_btn_label': 'Back to Tasks',
+            'success_btn_url': '/tasks',
         })

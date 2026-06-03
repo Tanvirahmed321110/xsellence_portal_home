@@ -17,8 +17,15 @@
                         <div class="left">
                             <!-- User Image -->
                             <div class="profile-img">
-                                <img t-att-src="'web/image/hr.employee/%s/image_512' % employee.id"
-                                     alt="profile image"/>
+                                <t t-if="employee.image_512">
+                                    <!-- ✅ Employee-এর নিজের image থাকলে সেটা দেখাবে -->
+                                    <img t-att-src="'web/image/hr.employee/%s/image_512' % employee.id"
+                                         alt="profile image"/>
+                                </t>
+                                <t t-else="">
+                                    <!-- ✅ Image না থাকলে Odoo default avatar -->
+                                    <img src="/web/static/img/avatar_grey.png" alt="profile image"/>
+                                </t>
                             </div>
                         </div>
                         <!-- User name post and id -->
@@ -127,7 +134,7 @@
 
                                 <div class="info-field" style="grid-column: 1 / -1">
                                     <div class="info-label">Address</div>
-                                    <div class="info-value" t-esc="employee.private_street or 'N/A'"> </div>
+                                    <div class="info-value" t-esc="employee.private_street or 'N/A'"></div>
                                 </div>
 
                             </div>
@@ -149,13 +156,18 @@
 
                     <div class="id-card flex-column justify-between">
                         <div class="id-card-label">Employee Card</div>
-                        <div class="id-card-avatar" t-esc="''.join([w[0].upper() for w in (employee.name or '').split()[:2]])"/>
+                        <div class="id-card-avatar"
+                             t-esc="''.join([w[0].upper() for w in (employee.name or '').split()[:2]])"/>
                         <div class="id-card-name" t-esc="employee.name or ''">Tanvir Ahmed</div>
-                        <div class="id-card-pos mt-1" t-esc="employee.job_id.name if employee.job_id else ''">Junior Developer</div>
+                        <div class="id-card-pos mt-1" t-esc="employee.job_id.name if employee.job_id else ''">Junior
+                            Developer
+                        </div>
                         <div class="id-card-row">
                             <div class="id-num">
                                 Employee ID
-                                <strong class="mt-2">#EMP-<t t-esc="employee.barcode or ''"/></strong>
+                                <strong class="mt-2">#EMP-
+                                    <t t-esc="employee.barcode or ''"/>
+                                </strong>
                             </div>
                             <div style="font-size:1.8rem;opacity:0.4">🪪</div>
                         </div>
@@ -172,8 +184,10 @@
                             <div class="manager-wrap mt-1 d-flex gap-4 p-4">
                                 <div class="manager-avatar">RM</div>
                                 <div>
-                                    <div class="manager-name fs-sm fw-bold" t-esc="employee.parent_id.name if employee.parent_id else 'N/A'"/>
-                                    <div class="manager-role mt-1 fs-xs" t-esc="employee.parent_id.job_id.name if employee.parent_id and employee.parent_id.job_id else 'N/A'"/>
+                                    <div class="manager-name fs-sm fw-bold"
+                                         t-esc="employee.parent_id.name if employee.parent_id else 'N/A'"/>
+                                    <div class="manager-role mt-1 fs-xs"
+                                         t-esc="employee.parent_id.job_id.name if employee.parent_id and employee.parent_id.job_id else 'N/A'"/>
                                 </div>
                                 <button class="manager-msg-btn">💬</button>
                             </div>

@@ -40,6 +40,7 @@
         'templates/edit_project.xml',
         'templates/ticket_details.xml',
         'templates/task_details.xml',
+        'templates/edit_task.xml',
         'templates/breadcrumb.xml',
         'templates/alert.xml',
 

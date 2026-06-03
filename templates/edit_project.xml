@@ -169,8 +169,7 @@
                             <!--======= For Description =======-->
                             <div class="input-control">
                                 <label for="description">Description</label>
-                                <textarea t-att-value="project.description" name="description" id="description"
-                                          placeholder="Description..."></textarea>
+                                <textarea name="description" placeholder="Description..."><t t-out="project_desc"/></textarea>
                             </div>
                         </div>
 

@@ -40,7 +40,7 @@
 
                                     </line>
                                 </svg>
-                                <input class="search-input" type="text" placeholder="Search project, task…"/>
+                                <input class="search-input" type="text" placeholder="Search Timesheet"/>
                             </div>
                         </div>
 

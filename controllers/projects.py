@@ -1,6 +1,7 @@
 from odoo import http
 from odoo.http import request
 from datetime import date
+from odoo.tools import html2plaintext
 
 
 # ========== For Projects Page  ============
@@ -48,8 +49,8 @@ class XsellencePortal(http.Controller):
         source = kw.get('source')
 
         tags = request.env['project.tags'].search([])
-        customers = request.env['res.partner'].search([])
-        project_managers = request.env['res.users'].search([('share', '=', False)])
+        customers = request.env['res.partner'].sudo().search([])
+        project_managers = request.env['res.users'].sudo().search([('share', '=', False)])
         users = request.env['res.users'].sudo().search([
             ('share', 'in', [True, False]),
             ('id', '!=', request.env.ref('base.user_admin').id)
@@ -80,17 +81,15 @@ class XsellencePortal(http.Controller):
             'tags': tags,
             'customers': customers,
             'priority': priority,
+            'today': date.today().strftime('%Y-%m-%d'),
         })
 
     # ================== Submit Project ==================
     @http.route('/submit_project', type='http', auth='user', methods=['POST'], website=True, csrf=True)
     def submit_project(self, **post):
 
-        assigned_user_ids = request.httprequest.form.getlist('assigned_assigned_user_ids')
+        assigned_user_ids = request.httprequest.form.getlist('assigned_user_ids')
         tags = request.httprequest.form.getlist('tag_ids')
-        print(f"assigned_user_ids   ---- {assigned_user_ids}")
-        print(f"assigned_user_ids   ---- {tags}")
-        print("POST DATA:", post)
 
         create_data = {
             'name': post.get('name'),
@@ -104,7 +103,7 @@ class XsellencePortal(http.Controller):
             'date': post.get('date'),
             'custom_priority': post.get('custom_priority'),
             'description': post.get('description'),
-            'assigned_assigned_user_ids': [(6, 0, [int(x) for x in assigned_user_ids])] if assigned_user_ids else False,
+            'assigned_user_ids': [(6, 0, [int(x) for x in assigned_user_ids])] if assigned_user_ids else False,
             'tag_ids': [(4, int(x), 0) for x in tags] if tags else [],
         }
         print(f"create_data ------------ {create_data}")
@@ -186,6 +185,7 @@ class XsellencePortal(http.Controller):
         # project object
         return request.render('xsellence_portal.edit_project_page', {
             'project': project,
+            'project_desc':html2plaintext(project.description or ''),
             'customers': customers,
             'project_managers': project_managers,
             'users': users,
