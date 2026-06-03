@@ -8,20 +8,53 @@ class XsellencePortal(http.Controller):
     def dashboard_f(self, **kw):
         user = request.env.user
 
+        # আপনার কাস্টম গ্রুপ চেক করুন
+        is_admin = user.has_group('xsellence_portal.group_admin')
+        is_project_manager = user.has_group('xsellence_portal.group_project_manager')
+        is_general_employee = user.has_group('xsellence_portal.group_general_employee')
+
+        # বিল্ট-ইন গ্রুপ চেক
         is_portal = user.has_group('base.group_portal')
         is_internal = user.has_group('base.group_user')
 
-        if is_portal:
-            user_type = 'portal'
-            print("Portal User")
+        # কাস্টম গ্রুপ প্রিন্ট করুন
+        print("=" * 50)
+        print(f"User: {user.name}")
+        print("-" * 30)
+        print("Custom Groups:")
+        print(f"  - Admin: {is_admin}")
+        print(f"  - Project Manager: {is_project_manager}")
+        print(f"  - General Employee: {is_general_employee}")
+        print("-" * 30)
+        print("Built-in Groups:")
+        print(f"  - Portal User: {is_portal}")
+        print(f"  - Internal User: {is_internal}")
+        print("=" * 50)
+
+        # ইউজার টাইপ নির্ধারণ (কাস্টম গ্রুপ প্রাধান্য পাবে)
+        if is_admin:
+            user_role = 'admin'
+            print("Role: ADMIN (Custom Group)")
+        elif is_project_manager:
+            user_role = 'project_manager'
+            print("Role: PROJECT MANAGER (Custom Group)")
+        elif is_general_employee:
+            user_role = 'general_employee'
+            print("Role: GENERAL EMPLOYEE (Custom Group)")
         elif is_internal:
-            user_type = 'internal'
-            print("Internal User")
+            user_role = 'internal'
+            print("Role: INTERNAL USER (Built-in)")
+        elif is_portal:
+            user_role = 'portal'
+            print("Role: PORTAL USER (Built-in)")
         else:
-            user_type = 'public'
-            print("Public User")
+            user_role = 'public'
+            print("Role: PUBLIC USER")
 
         return request.render('xsellence_portal.dashboard_page', {
             'active_menu': 'dashboard',
-            'user_type': user_type,
+            'user_type': user_role,
+            'is_admin': is_admin,
+            'is_project_manager': is_project_manager,
+            'is_general_employee': is_general_employee,
         })

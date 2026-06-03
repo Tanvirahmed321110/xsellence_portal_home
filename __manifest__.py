@@ -3,8 +3,7 @@
     'name': "xsellence portal",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        xsellence own software""",
 
     'description': """
         For Project Management and Support
