@@ -56,6 +56,173 @@
     background-color: var(--color-white);
 }
 
+
+
+
+
+/* ════════════════════════════
+       Chart and Performance
+    ════════════════════════════ */
+
+.chart-performance {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.chart-performance .chart,
+.chart-performance .my-performance {
+    opacity: 0;
+    animation: fade-up 0.5s ease forwards;
+    background-color: var(--color-white);
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.my-performance.d4-card {
+    background: #fff;
+    border-radius: 22px;
+    padding: 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+}
+
+
+.chart-performance .d4-card {
+    overflow: hidden;
+}
+
+.chart-performance .d4-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #e3298d, #d9117b, #663399a5);
+    z-index: -1;
+}
+
+.chart-performance .d4-section-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-white);
+    margin-bottom: 8px;
+    margin-top: 4px;
+}
+
+.chart-performance .d4-main-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-white);
+    opacity: .75;
+    margin-bottom: 24px;
+}
+
+.chart-performance .d4-year-badge {
+    font-size: 10px;
+    font-weight: 700;
+    background: rgba(217, 17, 123, 0.08);
+    color: #d9117b;
+    padding: 3px 10px;
+    border-radius: 100px;
+}
+
+
+
+/* D4 Performance */
+.chart-performance .d4-score-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.chart-performance .d4-score-circle {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    /* background: linear-gradient(190deg, #c9ff05f9, #90b4c69d, #c9ff05f9); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 3px dotted var(--color-secondary);
+    background: var(--color-tag);
+    background-color: var(--color-primary-hover);
+}
+
+.chart-performance .d4-score-num {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.5;
+}
+
+
+.chart-performance .d4-score-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-white);
+}
+
+.chart-performance .d4-score-status {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin-top: 8px;
+}
+
+.chart-performance .d4-perf-item {
+    margin-bottom: 14px;
+}
+
+.chart-performance .d4-perf-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.chart-performance .d4-perf-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-white);
+    opacity: .8;
+}
+
+.chart-performance .d4-perf-pct {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-white);
+    color: gold;
+}
+
+.chart-performance .d4-perf-track {
+    height: 6px;
+    background: #f3f4f6;
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.chart-performance .d4-perf-bar {
+    height: 100%;
+    border-radius: 100px;
+    background: linear-gradient(90deg, #f0b74e, #F9B12C);
+    transition: width 1s ease;
+}
+
+
+
+
+
+
+
+
 /* ════════════════════════════
        PROJECT PROGRESS
     ════════════════════════════ */

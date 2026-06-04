@@ -1,6 +1,6 @@
 <odoo>
     <template id="dashboard_page">
-        <link rel="stylesheet" href="/xsellence_portal/static/src/css/dashboard.css?v=3"/>
+        <link rel="stylesheet" href="/xsellence_portal/static/src/css/dashboard.css?v=4"/>
 
         <t t-call="xsellence_portal.custom_layout">
             <section class="">
@@ -26,7 +26,83 @@
                 </div>
 
 
-                <!-- ── Bottom Row ── -->
+                <!--=================|| Chart and My Performance ||==================  -->
+                <div class="chart-performance">
+                    <div class="chart">
+                        <div class="section-title  ">Attendance Chart</div>
+                    </div>
+
+
+                    <div class="d4-card my-performance">
+                        <div class="d4-section-title">My Performance</div>
+                        <div class="d4-main-title">Skills Score</div>
+                        <div class="d4-score-row">
+                            <div class="d4-score-circle">
+                                <div style="text-align:center;">
+                                    <div class="d4-score-num">88</div>
+                                    <div
+                                            style="font-size:11px;color:rgba(255,255,255,0.7);font-weight:500;letter-spacing:0.5px;">
+                                        / 100
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d4-score-info">
+                                <div class="d4-score-label">Overall Score</div>
+                                <div class="d4-score-status">▲ Excellent</div>
+                            </div>
+                        </div>
+                        <div id="d4perf">
+                            <div class="d4-perf-item">
+                                <div class="d4-perf-top">
+                                    <span class="d4-perf-name">Task Completion</span>
+                                    <span class="d4-perf-pct">92%</span>
+                                </div>
+                                <div class="d4-perf-track">
+                                    <div class="d4-perf-bar" style="width:92%"></div>
+                                </div>
+                            </div>
+                            <div class="d4-perf-item">
+                                <div class="d4-perf-top">
+                                    <span class="d4-perf-name">Code Quality</span>
+                                    <span class="d4-perf-pct">78%</span>
+                                </div>
+                                <div class="d4-perf-track">
+                                    <div class="d4-perf-bar" style="width:78%"></div>
+                                </div>
+                            </div>
+                            <div class="d4-perf-item">
+                                <div class="d4-perf-top">
+                                    <span class="d4-perf-name">On-time Delivery</span>
+                                    <span class="d4-perf-pct">85%</span>
+                                </div>
+                                <div class="d4-perf-track">
+                                    <div class="d4-perf-bar" style="width:85%"></div>
+                                </div>
+                            </div>
+                            <div class="d4-perf-item">
+                                <div class="d4-perf-top">
+                                    <span class="d4-perf-name">Collaboration</span>
+                                    <span class="d4-perf-pct">70%</span>
+                                </div>
+                                <div class="d4-perf-track">
+                                    <div class="d4-perf-bar" style="width:70%"></div>
+                                </div>
+                            </div>
+                            <div class="d4-perf-item">
+                                <div class="d4-perf-top">
+                                    <span class="d4-perf-name">Attendance</span>
+                                    <span class="d4-perf-pct">87%</span>
+                                </div>
+                                <div class="d4-perf-track">
+                                    <div class="d4-perf-bar" style="width:87%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--=================|| Attendance and Leave ||==================  -->
                 <div class="grid-2 grid-sm-1 mt-7 gap-6" style="align-items:stretch;">
 
                     <!-- Project Progress -->
@@ -179,6 +255,7 @@
                 </div>
 
 
+                <!--=================|| Project Progress and other cards ||==================  -->
                 <div class="grid-2 gap-6 grid-sm-1 mt-7 leave-attendance">
 
 
@@ -352,6 +429,39 @@
                     </div>
                 </div>
             </section>
+            <script>
+                const scoreElements = document.querySelectorAll('.d4-score-num');
+
+                scoreElements.forEach((element) => {
+                const target = parseInt(element.textContent);
+
+                function animateCounter() {
+                let start = 0;
+                const duration = 3000;
+                const startTime = performance.now();
+
+                function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                const value = Math.floor(progress * target);
+                element.textContent = value;
+
+                if (progress
+                &lt;
+                1) {
+                requestAnimationFrame(update);
+                } else {
+                setTimeout(animateCounter, 2000);
+                }
+                }
+
+                requestAnimationFrame(update);
+                }
+
+                animateCounter();
+                });
+            </script>
         </t>
     </template>
 </odoo>

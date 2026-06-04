@@ -8,30 +8,30 @@ class XsellencePortal(http.Controller):
     def dashboard_f(self, **kw):
         user = request.env.user
 
-        # আপনার কাস্টম গ্রুপ চেক করুন
+        # users
         is_admin = user.has_group('xsellence_portal.group_admin')
         is_project_manager = user.has_group('xsellence_portal.group_project_manager')
         is_general_employee = user.has_group('xsellence_portal.group_general_employee')
 
-        # বিল্ট-ইন গ্রুপ চেক
+        # group
         is_portal = user.has_group('base.group_portal')
         is_internal = user.has_group('base.group_user')
 
-        # কাস্টম গ্রুপ প্রিন্ট করুন
-        print("=" * 50)
-        print(f"User: {user.name}")
-        print("-" * 30)
-        print("Custom Groups:")
-        print(f"  - Admin: {is_admin}")
-        print(f"  - Project Manager: {is_project_manager}")
-        print(f"  - General Employee: {is_general_employee}")
-        print("-" * 30)
-        print("Built-in Groups:")
-        print(f"  - Portal User: {is_portal}")
-        print(f"  - Internal User: {is_internal}")
-        print("=" * 50)
+        # custom group print
+        # print("=" * 50)
+        # print(f"User: {user.name}")
+        # print("-" * 30)
+        # print("Custom Groups:")
+        # print(f"  - Admin: {is_admin}")
+        # print(f"  - Project Manager: {is_project_manager}")
+        # print(f"  - General Employee: {is_general_employee}")
+        # print("-" * 30)
+        # print("Built-in Groups:")
+        # print(f"  - Portal User: {is_portal}")
+        # print(f"  - Internal User: {is_internal}")
+        # print("=" * 50)
 
-        # ইউজার টাইপ নির্ধারণ (কাস্টম গ্রুপ প্রাধান্য পাবে)
+        # user type
         if is_admin:
             user_role = 'admin'
             print("Role: ADMIN (Custom Group)")
