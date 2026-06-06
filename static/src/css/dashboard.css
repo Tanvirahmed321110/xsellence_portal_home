@@ -57,9 +57,6 @@
 }
 
 
-
-
-
 /* ════════════════════════════
        Chart and Performance
     ════════════════════════════ */
@@ -118,8 +115,8 @@
 }
 
 .chart-performance .d4-main-title {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 400;
     color: var(--color-white);
     opacity: .75;
     margin-bottom: 24px;
@@ -170,11 +167,12 @@
     font-size: 14px;
     font-weight: 500;
     color: var(--color-white);
+    opacity:.95;
 }
 
 .chart-performance .d4-score-status {
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--color-secondary);
     margin-top: 8px;
 }
@@ -193,7 +191,7 @@
     font-size: 12px;
     font-weight: 500;
     color: var(--color-white);
-    opacity: .8;
+    opacity: .7;
 }
 
 .chart-performance .d4-perf-pct {
@@ -205,7 +203,7 @@
 
 .chart-performance .d4-perf-track {
     height: 6px;
-    background: #f3f4f6;
+    background: #bfc5d1;
     border-radius: 100px;
     overflow: hidden;
 }
