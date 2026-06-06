@@ -1,3 +1,31 @@
+
+//============== for Notification
+const notificationSidebar = document.getElementById('notification-sidebar');
+
+if (notificationSidebar) {
+
+    const overlay = document.getElementById('overlay');
+
+    // open button
+    document.getElementById('notification-btn').onclick = () => {
+        notificationSidebar.classList.add('open');
+        overlay.classList.add('show');
+        console.log('click')
+    }
+
+    // close button
+    document.getElementById('close3').onclick = close;
+    overlay.onclick = close;
+
+    function close() {
+        notificationSidebar.classList.remove('open');
+        overlay.classList.remove('show');
+    }
+}
+else {
+    console.log('notificationSidebar not found')
+}
+
 //============== For Delete Confirmation
 function openDeleteModal(element) {
     let modal = document.getElementById('deleteModal');

@@ -12,7 +12,7 @@
                 <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="/xsellence_portal/static/src/css/custom_class.css?v=4"/>
                 <link rel="stylesheet" href="/xsellence_portal/static/src/css/my_component.css?v=8"/>
-                <link rel="stylesheet" href="/xsellence_portal/static/src/css/global.css?v=27"/>
+                <link rel="stylesheet" href="/xsellence_portal/static/src/css/global.css?v=28"/>
                 <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages.css?v=20"/>
                 <t t-raw="header"/>
             </head>
@@ -80,7 +80,7 @@
 
                                     <div class="d-flex gap-2 my-align-center mobile-hide">
                                         <!-- Notification Icon -->
-                                        <div class="notification-wrap">
+                                        <button class="notification-wrap" id="notification-btn">
                                             <div class="icon-btn">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -91,7 +91,7 @@
                                                 </svg>
                                                 <span class="badge-bounce">9</span>
                                             </div>
-                                        </div>
+                                        </button>
 
 
                                         <!-- Theme Toggle -->
@@ -376,8 +376,116 @@
                     <t t-raw="0"/>
                 </main>
 
+
+                <!-- ==============================================
+                 ||======  notification Board  Start Here  ======||
+                 ============================================== -->
+                <div class="notification-sidebar" id="notification-sidebar">
+                    <div class="s3-header">
+                        <div>
+                            <h3>Notifications
+                                <span class="blink"></span>
+                            </h3>
+                        </div>
+                        <button id="close3">✕</button>
+                    </div>
+                    <div class="s3-body">
+                        <a href="#" class="s3-item new">
+                            <div class="s3-icon">🗂️</div>
+                            <div class="s3-text">
+                                <p>Task assigned by
+                                    <span class="s3-name">Rahim Uddin</span>
+                                </p>
+                                <small>2 MIN AGO</small>
+                            </div>
+                        </a>
+
+                        <div class="s3-item">
+                            <div class="s3-icon">📈</div>
+                            <div class="s3-text">
+                                <p>Your score went <span class="s3-name s3-up">▲ up</span> by
+                                    <span class="s3-name">12 points</span>
+                                </p>
+                                <small>5 MIN AGO</small>
+                            </div>
+                        </div>
+
+
+                        <a href="#" class="s3-item">
+                            <div class="s3-icon">📁</div>
+                            <div class="s3-text">
+                                <p>Project assigned by
+                                    <span class="s3-name">Karim Hassan</span>
+                                </p>
+                                <small>15 MIN AGO</small>
+                            </div>
+                        </a>
+                        <a href="#" class="s3-item">
+                            <div class="s3-icon">📁</div>
+                            <div class="s3-text">
+                                <p>Project assigned by
+                                    <span class="s3-name">Karim Hassan</span>
+                                </p>
+                                <small>15 MIN AGO</small>
+                            </div>
+                        </a>
+                        <a href="#" class="s3-item">
+                            <div class="s3-icon">📁</div>
+                            <div class="s3-text">
+                                <p>Project assigned by
+                                    <span class="s3-name">Karim Hassan</span>
+                                </p>
+                                <small>15 MIN AGO</small>
+                            </div>
+                        </a>
+                        <div class="s3-item">
+                            <div class="s3-icon">📉</div>
+                            <div class="s3-text">
+                                <p>Your score went <span class="s3-name s3-down">▼ down</span> by
+                                    <span class="s3-name s3-down">8 points</span>
+                                </p>
+                                <small>5 MIN AGO</small>
+                            </div>
+                        </div>
+
+
+                        <a href="#" class="s3-item ">
+                            <div class="s3-icon">🎧</div>
+                            <div class="s3-text">
+                                <p>Support ticket assigned by
+                                    <span class="s3-name">Nadia Islam</span>
+                                </p>
+                                <small>1 HR AGO</small>
+                            </div>
+                        </a>    <a href="#" class="s3-item ">
+                            <div class="s3-icon">🎧</div>
+                            <div class="s3-text">
+                                <p>Support ticket assigned by
+                                    <span class="s3-name">Nadia Islam</span>
+                                </p>
+                                <small>1 HR AGO</small>
+                            </div>
+                        </a>    <a href="#" class="s3-item ">
+                            <div class="s3-icon">🎧</div>
+                            <div class="s3-text">
+                                <p>Support ticket assigned by
+                                    <span class="s3-name">Nadia Islam</span>
+                                </p>
+                                <small>1 HR AGO</small>
+                            </div>
+                        </a>
+                        <div class="s3-empty">
+                            <div class="s3-empty-icon">🔔</div>
+                            <p>No notifications yet</p>
+                            <small>You're all caught up!</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="overlay" id="overlay"></div>
+
+
                 <!-- ======================================
-                ||======  Notic Board  Start Here  ======||
+                ||======  Notice Board  Start Here  ======||
                 ======================================= -->
                 <div class="notic-board big" id="notic-board">
                     <div>
@@ -446,7 +554,7 @@
 
 
                 <!--    Javascript Links Here     -->
-                <script src="/xsellence_portal/static/src/js/main.js?v=7"></script>
+                <script src="/xsellence_portal/static/src/js/main.js?v=8"></script>
             </body>
         </html>
     </template>

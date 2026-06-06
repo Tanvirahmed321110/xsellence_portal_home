@@ -77,17 +77,18 @@
     animation: fade-up 0.5s ease forwards;
     background-color: var(--color-white);
     padding: 20px;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xxl);
     box-shadow: var(--shadow-sm);
 }
 
 .my-performance.d4-card {
     background: #fff;
-    border-radius: 22px;
+    border-radius: 16px;
     padding: 20px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-md);
 }
 
 
