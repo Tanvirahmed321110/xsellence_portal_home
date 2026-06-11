@@ -80,10 +80,75 @@
 
 
 
-
-
-
 /*=========================  Timesheet page  ===========================*/
+.empty-timesheet-box {
+    width: 100%;
+    min-height: 260px;
+    padding: 42px 20px;
+    border: 1px dashed #e5e7eb;
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at top, rgba(189, 9, 105, 0.08), transparent 35%),
+        linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.empty-timesheet-icon {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: rgba(189, 9, 105, 0.08);
+    color: #BD0969;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.empty-timesheet-box h4 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.empty-timesheet-box p {
+    margin: 0;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.empty-timesheet-btn {
+    margin-top: 14px;
+    padding: 11px 24px;
+    border-radius: 999px;
+    background: var(--color-primary);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.empty-timesheet-btn:hover {
+    background: #a3075b;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(189, 9, 105, 0.22);
+}
+
+
+
+
+
+
+
+
 .timesheets .filter-head,
 .helpdesk .filter-head {
     background-color: var(--color-white);

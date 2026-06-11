@@ -142,19 +142,19 @@
 }
 
 .chart-performance .d4-score-circle {
-    width: 72px;
-    height: 72px;
+    position: relative;
+    width: 66px;
+    height: 66px;
     border-radius: 50%;
-    /* background: linear-gradient(190deg, #c9ff05f9, #90b4c69d, #c9ff05f9); */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    border: 3px dotted var(--color-secondary);
-    background: var(--color-tag);
     background-color: var(--color-primary-hover);
+    z-index: 1;
+    border:4px solid #E2268B;
+    outline:4px solid #eadcc240;
 }
-
 .chart-performance .d4-score-num {
     font-size: 20px;
     font-weight: 800;
@@ -202,8 +202,8 @@
 }
 
 .chart-performance .d4-perf-track {
-    height: 6px;
-    background: #bfc5d1;
+    height: 9px;
+    border: 2px solid #85e624bd;
     border-radius: 100px;
     overflow: hidden;
 }
@@ -211,7 +211,7 @@
 .chart-performance .d4-perf-bar {
     height: 100%;
     border-radius: 100px;
-    background: linear-gradient(90deg, #f0b74e, #F9B12C);
+    background: var(--color-secondary);
     transition: width 1s ease;
 }
 

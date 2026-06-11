@@ -2,21 +2,34 @@ from odoo import http
 from odoo.http import request
 from datetime import date
 
+
 class XsellencePortal(http.Controller):
     @http.route('/timesheets', type='http', auth='public', website=True)
     def timesheet_f(self, **kw):
+        user = request.env.user
+        employees = request.env['hr.employee'].sudo().search([
+            ('user_id', '=', user.id)
+        ])
+
+        timesheets = request.env['account.analytic.line'].sudo().search([
+            '|',
+            ('user_id', '=', user.id),
+            ('employee_id', 'in', employees.ids),
+        ], order='date desc, id desc')
+
         return request.render('xsellence_portal.timesheet_page', {
             'active_menu': 'timesheets',
+            'timesheets':timesheets,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Timesheets', 'url': False},
             ]
         })
 
+
     # For Add Timesheet Page
     @http.route('/add_timesheet', type='http', auth='public', website=True)
     def add_timesheet_f(self, **kw):
-
         source = kw.get('source')
         today = date.today()
 
@@ -39,12 +52,10 @@ class XsellencePortal(http.Controller):
         return request.render('xsellence_portal.add_timesheet_page', {
             'active_menu': 'add_timesheet',
             'breadcrumb': breadcrumb_data,
-            'today':today,
-            'projects':projects,
-            'tasks':tasks,
+            'today': today,
+            'projects': projects,
+            'tasks': tasks,
         })
-
-
 
 
     # =============  Timesheet From Tasks  =============
@@ -62,8 +73,8 @@ class XsellencePortal(http.Controller):
         return request.render('xsellence_portal.add_timesheet_page', {
             'active_menu': 'add_timesheet',
             'selected_task': selected_task,
-            'tasks':tasks,
-            'projects' : projects,
+            'tasks': tasks,
+            'projects': projects,
             'today': date.today(),
             'selected_project': selected_project,  # ✅ fixed
             'breadcrumb': [
@@ -73,10 +84,11 @@ class XsellencePortal(http.Controller):
             ]
         })
 
+
     # =============  Timesheet From Submit  =============
-    @http.route('/tasks/add_timesheet/submit', type='http', auth='user', website=True,methods=['POST'] )
+    @http.route('/tasks/add_timesheet/submit', type='http', auth='user', website=True, methods=['POST'])
     def add_timesheet_from_submit(self, **kw):
-        task_id = int(kw.get('task_id',0))
+        task_id = int(kw.get('task_id', 0))
         project_id = int(kw.get('project_id', 0))
         unit_amount = float(kw.get('unit_amount', 0))
         date_str = kw.get('date')
@@ -117,8 +129,8 @@ class XsellencePortal(http.Controller):
 
         # ✅ Success
         return request.render('xsellence_portal.success_page', {
-            'success_title': '✅ Timesheet Submitted',
+            'success_title': '✔️ Timesheet Submitted',
             'success_desc': 'Your timesheet entry has been saved successfully.',
-            'success_btn_label': 'Back to Tasks',
-            'success_btn_url': '/tasks',
+            'success_btn_label': 'View Timesheets',
+            'success_btn_url': '/timesheets',
         })
