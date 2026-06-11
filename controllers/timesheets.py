@@ -134,3 +134,37 @@ class XsellencePortal(http.Controller):
             'success_btn_label': 'View Timesheets',
             'success_btn_url': '/timesheets',
         })
+
+    # =============  Delete Timesheet  =============
+    @http.route('/timesheets/delete', type='http', auth='user', website=True, methods=['POST'], csrf=True)
+    def delete_timesheet_f(self, **post):
+        user = request.env.user
+        timesheet_id = int(post.get('timesheet_id') or 0)
+
+        employees = request.env['hr.employee'].sudo().search([
+            ('user_id', '=', user.id)
+        ])
+
+        timesheet = request.env['account.analytic.line'].sudo().search([
+            ('id', '=', timesheet_id),
+            '|',
+            ('user_id', '=', user.id),
+            ('employee_id', 'in', employees.ids),
+        ], limit=1)
+
+        if not timesheet:
+            return request.render('xsellence_portal.error_page', {
+                'error_title': '❌ Delete Failed',
+                'error_desc': 'Timesheet not found or you are not allowed to delete it.',
+                'error_btn_label': 'View Timesheets',
+                'error_btn_url': '/timesheets',
+            })
+
+        timesheet.unlink()
+
+        return request.render('xsellence_portal.success_page', {
+            'success_title': '✔️ Timesheet Deleted',
+            'success_desc': 'Your timesheet entry has been deleted successfully.',
+            'success_btn_label': 'View Timesheets',
+            'success_btn_url': '/timesheets',
+        })

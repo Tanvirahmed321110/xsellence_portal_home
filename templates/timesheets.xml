@@ -105,21 +105,29 @@
                                             <span t-field="item.unit_amount" t-options="{'widget': 'float_time'}"/>
                                         </td>
                                         <td>
-                                            <button class="action-btn del">
-                                                <svg width="14" height="14" viewBox="0 0 24 24"
-                                                     fill="none" stroke="currentColor" stroke-width="2"
-                                                     stroke-linecap="round" stroke-linejoin="round">
-                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
-                                                    <path d="M10 11v6"></path>
-                                                    <path d="M14 11v6"></path>
-                                                    <path d="M9 6V4h6v2"></path>
-                                                </svg>
-                                            </button>
+                                           <!-- Delete button -->
+                                            <form method="post" action="/timesheets/delete">
+                                                <input type="hidden" name="csrf_token"
+                                                       t-att-value="request.csrf_token()"/>
+                                                <input type="hidden" name="timesheet_id" t-att-value="item.id"/>
+                                                <button type="button" class="action-btn del"
+                                                        onclick="return openDeleteModal(this)">
+                                                    <svg width="12" height="12" viewBox="0 0 24 24"
+                                                         fill="none" stroke="currentColor" stroke-width="2"
+                                                         stroke-linecap="round" stroke-linejoin="round">
+                                                        <polyline points="3 6 5 6 21 6"/>
+                                                        <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                                                        <path d="M10 11v6"/>
+                                                        <path d="M14 11v6"/>
+                                                        <path d="M9 6V4h6v2"/>
+                                                    </svg>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 </t>
 
+                                <!--  When Empty Timesheets-->
                                 <t t-if="not timesheets">
                                     <tr>
                                         <td colspan="7">
@@ -147,13 +155,36 @@
                                         </td>
                                     </tr>
                                 </t>
+
+                              <!-- =====  Delete Modal  ===== -->
+                                <div class="modal-overlay " id="deleteModal">
+                                    <div class="modal-container">
+                                        <div class="glass-icon">🗑️</div>
+                                        <h3>Delete Timesheet?</h3>
+                                        <p>
+                                            This action cannot be undone.
+                                            <br/>
+                                            The timesheet will be permanently removed.
+                                        </p>
+
+                                        <div class="glass-actions">
+                                            <button type="button" id="confirmYes" class="btn-glass-yes">
+                                                Yes, Delete
+                                            </button>
+                                            <button class="btn-glass-no" onclick="closeModal('deleteModal')">
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
                 <!-- Pagination -->
-                <div class="pagination">
+              <t t-if="len(timesheets) > 15">
+                    <div class="pagination">
                     <span class="page-info">Showing 1–6 of 24 projects</span>
                     <div class="page-btns">
                         <button class="page-btn">
@@ -176,6 +207,7 @@
                         </button>
                     </div>
                 </div>
+               </t>
             </section>
         </t>
     </template>

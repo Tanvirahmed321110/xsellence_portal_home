@@ -81,7 +81,7 @@
                                 <label for="">Time Spent
                                     <span class="required">*</span>
                                 </label>
-                                <input type="number" name="unit_amount" required="1" placeholder="Time Spent(Hours e.g. 1.5)"/>
+                                <input type="number" name="unit_amount" pattern="^[0-9]+(\.[0-5][0-9])?$" required="1" placeholder="Time Spent(Hours e.g. 1.5)"/>
                             </div>
                         </div>
 

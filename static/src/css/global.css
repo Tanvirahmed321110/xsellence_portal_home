@@ -521,7 +521,7 @@ header .date {
     font-weight: 700;
     line-height: 17px;
     text-align: center;
-    animation: badge-bounce 1.2s cubic-bezier(.36, .07, .19, .97) 10;
+    animation: badge-bounce 1.2s cubic-bezier(.36, .07, .19, .97) 20;
     transform-origin: center bottom;
 }
 
