@@ -30,6 +30,7 @@
 
 
                     <div class="flex-1 d-flex gap-4 justify-end">
+                        <!-- Filter by Status-->
                         <select class="filter-select bg-white  "
                                 id="filter-status"
                                 onchange="if (this.value){

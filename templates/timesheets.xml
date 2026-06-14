@@ -48,7 +48,7 @@
                         <div class="right d-flex gap-4 align-center">
                             <!--  Filter By Project-->
 
-                            <select class="filter-select" id="filter-project" onchange="applyFilters()">
+                            <select class="filter-select" id="filter-project" onchange="applyFilters()" >
                                 <option value=""
                                         t-att-selected="'selected' if not selected_month else None">
                                     Filter by Project
@@ -215,5 +215,7 @@
                 </t>
             </section>
         </t>
+
+        <script src="/static/src/js/timesheet.js"></script>
     </template>
 </odoo>
