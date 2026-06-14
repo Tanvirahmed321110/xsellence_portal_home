@@ -47,14 +47,26 @@
                         <!-- right -->
                         <div class="right d-flex gap-4 align-center">
                             <!--  Filter By Project-->
+
                             <select class="filter-select" id="filter-project" onchange="applyFilters()">
+                                <option value=""
+                                        t-att-selected="'selected' if not selected_month else None">
+                                    Filter by Project
+                                </option>
                                 <t t-foreach="project_filter_options" t-as="project">
-                                   <option t-att-value="project.id" t-att-selected="'selected' if selected_project_id == project.id else None">   <t t-esc="project.name"/></option>
+                                    <option t-att-value="project.id"
+                                            t-att-selected="'selected' if selected_project_id == project.id else None">
+                                        <t t-esc="project.name"/>
+                                    </option>
                                 </t>
                             </select>
 
                             <!--  Filter By Month-->
                             <select class="filter-select" id="filter-month" onchange="applyFilters()">
+                                <option value=""
+                                        t-att-selected="'selected' if not selected_month else None">
+                                    Filter by Month
+                                </option>
                                 <t t-foreach="month_options" t-as="month">
                                     <option t-att-value="month['value']"
                                             t-att-selected="'selected' if selected_month == month['value'] else None">
