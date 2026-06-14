@@ -9,8 +9,8 @@
 .dashboard-items .card::after {
     content: '';
     position: absolute;
-    right: -60px;
-    top: 40px;
+    right: -25px;
+    top: 54px;
     width: 120px;
     height: 120px;
     background-color: #d9117c20;
@@ -305,6 +305,7 @@
     animation: grow 1.2s cubic-bezier(.4, 0, .2, 1) forwards;
     transform-origin: left;
     background: var(--prog-bar) !important;
+    animation: d4PerfLoad 2.5s ease forwards  4;
 }
 
 @keyframes grow {
