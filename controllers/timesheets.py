@@ -48,6 +48,18 @@ class XsellencePortal(http.Controller):
             ('user_id', '=', user.id)
         ])
 
+        base_domain = [
+            '|',
+            ('user_id', '=', user.id),
+            ('employee_id', 'in', employees.ids),
+        ]
+
+        # Project Dropdown
+        user_timesheets_for_projects = request.env['account.analytic.line'].sudo().search(
+            base_domain + [('project_id', '!=', False)]
+        )
+        project_filter_options = user_timesheets_for_projects.mapped('project_id')
+
         # ==============================
         # Last 12 months dropdown data
         # Current month included
@@ -74,6 +86,7 @@ class XsellencePortal(http.Controller):
             'active_menu': 'timesheets',
             'timesheets':timesheets,
             'month_options':month_options,
+            'project_filter_options':project_filter_options,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Timesheets', 'url': False},

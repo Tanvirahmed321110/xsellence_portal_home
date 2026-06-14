@@ -46,17 +46,11 @@
 
                         <!-- right -->
                         <div class="right d-flex gap-4 align-center">
+                            <!--  Filter By Project-->
                             <select class="filter-select" id="filter-project" onchange="applyFilters()">
-                                <option value="">All Projects</option>
-                                <option>MIT</option>
-                                <option>Dashboard Project</option>
-                                <option>NADIA FURNITURE</option>
-                                <option>Ultimate Organic Life Ltd</option>
-                                <option>MIT</option>
-                                <option>Dashboard Project</option>
-                                <option>NADIA FURNITURE</option>
-                                <option>Ultimate Organic Life Ltd</option>
-                                <option>Dashboard Project</option>
+                                <t t-foreach="project_filter_options" t-as="project">
+                                   <option t-att-value="project.id" t-att-selected="'selected' if selected_project_id == project.id else None">   <t t-esc="project.name"/></option>
+                                </t>
                             </select>
 
                             <!--  Filter By Month-->
