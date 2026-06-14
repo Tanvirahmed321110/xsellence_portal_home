@@ -2,6 +2,7 @@ import re
 from odoo import http
 from odoo.http import request
 from datetime import date
+from dateutil.relativedelta import relativedelta
 
 
 class XsellencePortal(http.Controller):
@@ -47,6 +48,22 @@ class XsellencePortal(http.Controller):
             ('user_id', '=', user.id)
         ])
 
+        # ==============================
+        # Last 12 months dropdown data
+        # Current month included
+        # ==============================
+        today = date.today()
+        current_month_start = today.replace(day=1)
+
+        month_options = []
+        for i in range(11, -1, -1):
+            month_start = current_month_start - relativedelta(months=i)
+
+            month_options.append({
+                'value': month_start.strftime('%Y-%m'),
+                'label': month_start.strftime('%b %Y'),
+            })
+
         timesheets = request.env['account.analytic.line'].sudo().search([
             '|',
             ('user_id', '=', user.id),
@@ -56,6 +73,7 @@ class XsellencePortal(http.Controller):
         return request.render('xsellence_portal.timesheet_page', {
             'active_menu': 'timesheets',
             'timesheets':timesheets,
+            'month_options':month_options,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Timesheets', 'url': False},

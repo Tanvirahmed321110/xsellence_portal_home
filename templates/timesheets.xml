@@ -58,13 +58,15 @@
                                 <option>Ultimate Organic Life Ltd</option>
                                 <option>Dashboard Project</option>
                             </select>
+
+                            <!--  Filter By Month-->
                             <select class="filter-select" id="filter-month" onchange="applyFilters()">
-                                <option value="">All Months</option>
-                                <option value="2025-04">Jan 2026</option>
-                                <option value="2025-04">Feb 2026</option>
-                                <option value="2025-04">March 2026</option>
-                                <option value="2025-04">April 2026</option>
-                                <option value="2025-04">May 2026</option>
+                                <t t-foreach="month_options" t-as="month">
+                                    <option t-att-value="month['value']"
+                                            t-att-selected="'selected' if selected_month == month['value'] else None">
+                                        <t t-esc="month['label']"/>
+                                    </option>
+                                </t>
                             </select>
                         </div>
                     </div>
@@ -98,10 +100,11 @@
                                             <t t-esc="item.name or '-'"/>
                                         </td>
                                         <td>
-                                            <span class="time-spent" t-field="item.unit_amount" t-options="{'widget': 'float_time'}"/>
+                                            <span class="time-spent" t-field="item.unit_amount"
+                                                  t-options="{'widget': 'float_time'}"/>
                                         </td>
                                         <td>
-                                           <!-- Delete button -->
+                                            <!-- Delete button -->
                                             <form method="post" action="/timesheets/delete">
                                                 <input type="hidden" name="csrf_token"
                                                        t-att-value="request.csrf_token()"/>
@@ -152,7 +155,7 @@
                                     </tr>
                                 </t>
 
-                              <!-- =====  Delete Modal  ===== -->
+                                <!-- =====  Delete Modal  ===== -->
                                 <div class="modal-overlay " id="deleteModal">
                                     <div class="modal-container">
                                         <div class="glass-icon">🗑️</div>
@@ -179,31 +182,31 @@
                 </div>
 
                 <!-- Pagination -->
-              <t t-if="len(timesheets) > 15">
+                <t t-if="len(timesheets) > 15">
                     <div class="pagination">
-                    <span class="page-info">Showing 1–6 of 24 projects</span>
-                    <div class="page-btns">
-                        <button class="page-btn">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                 stroke-linejoin="round">
-                                <polyline points="15 18 9 12 15 6"/>
-                            </svg>
-                        </button>
-                        <button class="page-btn active">1</button>
-                        <button class="page-btn">2</button>
-                        <button class="page-btn">3</button>
-                        <button class="page-btn">4</button>
-                        <button class="page-btn">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                 stroke-linejoin="round">
-                                <polyline points="9 18 15 12 9 6"/>
-                            </svg>
-                        </button>
+                        <span class="page-info">Showing 1–6 of 24 projects</span>
+                        <div class="page-btns">
+                            <button class="page-btn">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <polyline points="15 18 9 12 15 6"/>
+                                </svg>
+                            </button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <button class="page-btn">4</button>
+                            <button class="page-btn">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                     stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
-                </div>
-               </t>
+                </t>
             </section>
         </t>
     </template>
