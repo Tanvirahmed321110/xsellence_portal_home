@@ -314,4 +314,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     setStatusFilter()
 
+
+
+    //============   For Dropdown Open  ===========
+    document.addEventListener("click", function (event) {
+        const label = event.target.closest(".select-open-label");
+        if (!label) return;
+
+        const selectId = label.dataset.selectTarget;
+        const select = document.getElementById(selectId);
+        if (!select) return;
+
+        select.focus();
+
+        if (typeof select.showPicker === "function") {
+            select.showPicker();
+        } else {
+            select.click();
+        }
+    });
+
 });

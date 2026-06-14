@@ -37,18 +37,22 @@
                         <div class="grid-2 gap-5 grid-sm-1">
                             <!--======= For Date =======-->
                             <div class="input-control">
-                                <label for="">Date
+                                <label for="date">Date
                                     <span class="required">*</span>
                                 </label>
-                                <input type="date" name="date" t-att-value="today.strftime('%Y-%m-%d')"/>
+                                <input type="date" name="date" id="date" t-att-value="today.strftime('%Y-%m-%d')"/>
                             </div>
 
                             <!--======= For Project =======-->
                             <div class="input-control">
-                                <label for="">Project
+                                <label for="project_select"
+                                       class="select-open-label"
+                                       data-select-target="project_select">
+                                    Project
                                     <span class="required">*</span>
                                 </label>
-                                <select name="project_id" id="" required="required">
+
+                                <select name="project_id" id="project_select" required="required">
                                     <option value="">Select Project</option>
                                     <t t-foreach="projects" t-as="project">
                                         <option t-att-value="project.id"
@@ -63,13 +67,13 @@
                         <div class="grid-2 gap-5 grid-sm-1">
                             <!--======= For Task =======-->
                             <div class="input-control ">
-                                <label for="">Task
+                                <label for="task_select" data-select-target="task_select" class="select-open-label">Task
                                     <span class="required">*</span>
                                 </label>
-                                <select name="task_id" id="" required="required">
+                                <select name="task_id" id="task_select" required="required">
                                     <option value="">Select Task</option>
                                     <t t-foreach="tasks" t-as="task">
-                                        <option t-esc="task.name" t-att-value="task.id"
+                                        <option t-esc="task.name" t-att-value="task.id" id="tasks"
                                                 t-att-selected="selected_task and selected_task.id == task.id">
                                         </option>
                                     </t>
@@ -78,8 +82,21 @@
 
                             <!--======= For Time Spent =======-->
                             <div class="input-control">
-                                <label for="">Time Spent
+                                <label for="unit_amount" class="tooltip-icon tooltip">Time Spent
                                     <span class="required">*</span>
+                                    <span style="color:var(--color-secondary)">ⓘ</span>
+                                    <span class="tooltip-text"
+                                          style="font-size:11px;font-weight:400;padding:10px;8px;line-height:1.8">
+                                        Example:
+                                        <br/>
+                                        1.55 = 1 hour 55 minutes,
+                                        <br/>
+                                        1.30 = 1 hour 30 minutes,
+                                        <br/>
+                                        1.22 = 1 hour 22 minutes,
+                                        <br/>
+                                        1.7 = 1 hour 7 minutes.
+                                    </span>
                                 </label>
                                 <input
                                         type="text"
@@ -87,6 +104,7 @@
                                         inputmode="decimal"
                                         pattern="^\d+(\.(\d|[0-5]\d))?$"
                                         required="1"
+                                        id="unit_amount"
                                         placeholder="Time Spent e.g. 1.5 = 1h30m, 1.22 = 1h22m"
                                         title="Use 1.30 for 1 hour 30m, or 1.22 for 1 hour 22m ,1.7 for 1 hour 7m"
                                 />
@@ -96,8 +114,8 @@
                         <div class="grid-1 gap-5 grid-sm-1">
                             <!--======= For Description =======-->
                             <div class="input-control">
-                                <label for="">Description</label>
-                                <textarea name="name" id="" placeholder="Description..."></textarea>
+                                <label for="description">Description</label>
+                                <textarea name="name" id="description" placeholder="Description..."></textarea>
                             </div>
                         </div>
 
