@@ -64,7 +64,7 @@
 .chart-performance {
     display: grid;
     grid-template-columns: 1fr 420px;
-    gap: 24px;
+    gap: 32px;
     margin-top: 32px;
 }
 
@@ -469,10 +469,8 @@
     max-width: 32px;
     height: 100%;
     background: #D7DCE4;
-    background: #eef7e7f0;
-    background: #D7DCE4;
     border-radius: 999px;
-    border: 1px solid rgba(136, 202, 70, 0.151);
+    border: 1px rgb(229, 233, 240)gba(136, 202, 70, 0.151);
     display: flex;
     align-items: flex-end;
     overflow: hidden;
@@ -972,6 +970,15 @@
 
 
 
+@media(max-width:1439px){
+    .chart-performance {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 32px;
+    margin-top: 32px;
+}
+
+}
 
 
 

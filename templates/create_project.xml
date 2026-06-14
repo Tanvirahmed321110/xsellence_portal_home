@@ -50,7 +50,7 @@
 
                             <!--======= For Company Name =======-->
                             <div class="input-control">
-                                <label for="partner_id">Customer Name
+                                <label for="partner_id" data-select-target="partner_id" class="select-open-label">Customer Name
                                 </label>
                                   <select name="partner_id" id="partner_id" required="required">
                                     <option value="Select Project">Select Customer</option>
@@ -66,7 +66,7 @@
                         <div class="grid-2 gap-5 grid-sm-1">
                             <!--======= For Project Manager =======-->
                             <div class="input-control">
-                                <label for="user_id">Project Manager
+                                <label for="user_id" data-select-target="user_id" class="select-open-label">Project Manager
                                     <span class="required">*</span>
                                 </label>
                                 <select name="user_id" id="user_id" required="required">
@@ -81,7 +81,7 @@
 
                             <!--======= For  Status =======-->
                             <div class="input-control">
-                                <label for="custom_status">Project Status
+                                <label for="custom_status"  data-select-target="custom_status" class="select-open-label">Project Status
                                 </label>
                                 <select name="custom_status" id="custom_status">
                                     <option disabled="disabled" value="Select Status">Select Status</option>
@@ -144,7 +144,7 @@
                         <div class="grid-1">
                             <!--======= For  Status =======-->
                             <div class="input-control">
-                                <label for="custom_priority">Project Priority
+                                <label for="custom_priority"  data-select-target="custom_priority" class="select-open-label">Project Priority
                                 </label>
                                 <select name="custom_priority" id="custom_priority">
                                     <t t-foreach="priority" t-as="item">

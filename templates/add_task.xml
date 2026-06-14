@@ -39,18 +39,18 @@
                         <div class="grid-2 gap-5 grid-sm-1">
                             <!--======= For Task Name =======-->
                             <div class="input-control">
-                                <label for="">Task Name
+                                <label for="name">Task Name
                                     <span class="required">*</span>
                                 </label>
-                                <input type="text" name='name' required="1" placeholder="Task Name"/>
+                                <input type="text" name='name' id="name" required="1" placeholder="Task Name"/>
                             </div>
 
                             <!--======= For Project =======-->
                             <div class="input-control ">
-                                <label for="">Project
+                                <label for="project_id" data-select-target="project_id" class="select-open-label">Project
                                     <span class="required">*</span>
                                 </label>
-                                <select name="project_id" required="required" id="">
+                                <select name="project_id" required="required" id="project_id">
                                     <option value="">Select Project</option>
                                     <t t-foreach="projects" t-as="project">
                                         <option t-att-value="project.id" t-esc="project.name"></option>
@@ -69,10 +69,10 @@
 
                             <!--======= For Deadline =======-->
                             <div class="input-control">
-                                <label for="">Deadline
+                                <label for="date_deadline">Deadline
                                     <span class="required">*</span>
                                 </label>
-                                <input type="date" name="date_deadline" required="required"/>
+                                <input type="date" id="date_deadline" name="date_deadline" required="required"/>
                             </div>
                         </div>
 
@@ -80,7 +80,7 @@
                         <div class="grid-2 gap-5 grid-sm-1">
                             <!--======= For Allocation Hours =======-->
                             <div class="input-control">
-                                <label for="">Priority</label>
+                                <label for="custom_priority" data-select-target="custom_priority" class="select-open-label">Priority</label>
                                 <select name="custom_priority" id="custom_priority">
                                     <t t-foreach="priority" t-as="item">
                                         <option t-att-value="item[0]">
@@ -91,7 +91,7 @@
                             </div>
                             <!--======= For Status =======-->
                             <div class="input-control ">
-                                <label for="">Task Status</label>
+                                <label for="custom_status" data-select-target="custom_status" class="select-open-label">Task Status</label>
                                 <select name="custom_status" id="custom_status">
                                     <t t-foreach="statuses" t-as="item">
                                         <option t-att-value="item[0]">
@@ -103,7 +103,7 @@
 
                             <!--======= For Assignee Names =======-->
                             <div class="input-control ">
-                                <label for="">Assignee Names
+                                <label for="assignees">Assignee Names
                                     <span class="required">*</span>
                                 </label>
                                 <select name="user_ids" id="assignees" multiple="multiple">
@@ -117,8 +117,8 @@
                         <div class="grid-1 gap-5 grid-sm-1">
                             <!--======= For Description =======-->
                             <div class="input-control">
-                                <label for="">Description</label>
-                                <textarea name="description" id="" placeholder="Description..."></textarea>
+                                <label for="description">Description</label>
+                                <textarea name="description" id="description" placeholder="Description..."></textarea>
                             </div>
                         </div>
 
