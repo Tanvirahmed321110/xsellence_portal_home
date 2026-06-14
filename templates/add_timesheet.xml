@@ -44,13 +44,13 @@
                             </div>
 
                             <!--======= For Project =======-->
-                            <div class="input-control" >
+                            <div class="input-control">
                                 <label for="">Project
                                     <span class="required">*</span>
                                 </label>
                                 <select name="project_id" id="" required="required">
                                     <option value="">Select Project</option>
-                                     <t t-foreach="projects" t-as="project">
+                                    <t t-foreach="projects" t-as="project">
                                         <option t-att-value="project.id"
                                                 t-att-selected="'selected' if selected_project and selected_project.id == project.id else None">
                                             <t t-esc="project.name"/>
@@ -70,7 +70,7 @@
                                     <option value="">Select Task</option>
                                     <t t-foreach="tasks" t-as="task">
                                         <option t-esc="task.name" t-att-value="task.id"
-                                                t-att-selected="selected_task and selected_task.id == task.id" >
+                                                t-att-selected="selected_task and selected_task.id == task.id">
                                         </option>
                                     </t>
                                 </select>
@@ -81,7 +81,15 @@
                                 <label for="">Time Spent
                                     <span class="required">*</span>
                                 </label>
-                                <input type="number" name="unit_amount" pattern="^[0-9]+(\.[0-5][0-9])?$" required="1" placeholder="Time Spent(Hours e.g. 1.5)"/>
+                                <input
+                                        type="text"
+                                        name="unit_amount"
+                                        inputmode="decimal"
+                                        pattern="^\d+(\.(\d|[0-5]\d))?$"
+                                        required="1"
+                                        placeholder="Time Spent e.g. 1.5 = 1h30m, 1.22 = 1h22m"
+                                        title="Use 1.30 for 1 hour 30m, or 1.22 for 1 hour 22m ,1.7 for 1 hour 7m"
+                                />
                             </div>
                         </div>
 

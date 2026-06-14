@@ -1,9 +1,45 @@
+import re
 from odoo import http
 from odoo.http import request
 from datetime import date
 
 
 class XsellencePortal(http.Controller):
+    def _convert_time_input_to_float(self, time_value):
+        """
+        Input:
+            1.7  = 1 hour 7 minutes
+            1.22 = 1 hour 22 minutes
+            1.30 = 1 hour 30 minutes
+            2.45 = 2 hours 45 minutes
+
+        Odoo saves:
+            1.116667 = 1 hour 7 minutes
+            1.366667 = 1 hour 22 minutes
+            1.5      = 1 hour 30 minutes
+            2.75     = 2 hours 45 minutes
+        """
+
+        time_value = str(time_value or "0").strip()
+
+        # allow: 1, 1.7, 1.07, 1.22, 1.59
+        if not re.match(r"^\d+(\.(\d|[0-5]\d))?$", time_value):
+            raise ValueError("Invalid time format")
+
+        if "." not in time_value:
+            return float(time_value)
+
+        hour_part, minute_part = time_value.split(".")
+
+        hours = int(hour_part)
+        minutes = int(minute_part)
+
+        if minutes >= 60:
+            raise ValueError("Minutes must be less than 60")
+
+        return hours + (minutes / 60.0)
+
+
     @http.route('/timesheets', type='http', auth='public', website=True)
     def timesheet_f(self, **kw):
         user = request.env.user
@@ -90,7 +126,30 @@ class XsellencePortal(http.Controller):
     def add_timesheet_from_submit(self, **kw):
         task_id = int(kw.get('task_id', 0))
         project_id = int(kw.get('project_id', 0))
-        unit_amount = float(kw.get('unit_amount', 0))
+
+        try:
+            unit_amount = self._convert_time_input_to_float(kw.get('unit_amount'))
+        except ValueError:
+            return request.render('xsellence_portal.error_page', {
+                'error_title': 'Invalid Time Spent',
+                'error_desc': 'Please enter valid time. Example: 1.5 = 1 hour 30 minutes, 1.22 = 1 hour 22 minutes.',
+                'error_btn_label': 'Go Back',
+                'error_btn_url': f'/tasks/add_timesheet?task_id={task_id}&project_id={project_id}',
+            })
+
+        date_str = kw.get('date')
+        description = kw.get('name', '')
+        task_id = int(kw.get('task_id', 0))
+        project_id = int(kw.get('project_id', 0))
+        try:
+            unit_amount = self._convert_time_input_to_float(kw.get('unit_amount'))
+        except ValueError:
+            return request.render('xsellence_portal.error_page', {
+                'error_title': 'Invalid Time Spent',
+                'error_desc': 'Please enter valid time. Example: 1.5 = 1 hour 30 minutes, 1.22 = 1 hour 22 minutes.',
+                'error_btn_label': 'Go Back',
+                'error_btn_url': f'/tasks/add_timesheet?task_id={task_id}&project_id={project_id}',
+            })
         date_str = kw.get('date')
         description = kw.get('name', '')
 
