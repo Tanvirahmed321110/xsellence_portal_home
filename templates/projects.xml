@@ -189,20 +189,25 @@
 
                                         <!-- ======== Card Btns ======= -->
                                         <div class="action-btns">
+
                                             <!-- View Task -->
-                                            <a t-att-href="'/tasks?project_id=%s' % project.id" class="action-btn view-task-btn tooltip">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <path d="M9 11L12 14L20 6" stroke="currentColor" stroke-width="2"
-                                                          stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path
-                                                            d="M20 12V19C20 20.1046 19.1046 21 18 21H5C3.89543 21 3 20.1046 3 19V6C3 4.89543 3.89543 4 5 4H16"
-                                                            stroke="currentColor" stroke-width="2"
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"/>
-                                                </svg>
-                                                Tasks
-                                                <span class="tooltip-text">View All Tasks</span>
-                                            </a>
+                                            <t t-if="project.task_count">
+                                                <a t-att-href="'/tasks?project_id=%s' % project.id"
+                                                   class="action-btn view-task-btn tooltip">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path d="M9 11L12 14L20 6" stroke="currentColor"
+                                                              stroke-width="2"
+                                                              stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path
+                                                                d="M20 12V19C20 20.1046 19.1046 21 18 21H5C3.89543 21 3 20.1046 3 19V6C3 4.89543 3.89543 4 5 4H16"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"/>
+                                                    </svg>
+                                                    Tasks
+                                                    <span class="tooltip-text">View All Tasks</span>
+                                                </a>
+                                            </t>
 
                                             <!-- View Project -->
                                             <a t-att-href=" '/projects/details/%s' % project.id "
@@ -299,8 +304,6 @@
                         </div>
                     </div>
                 </t>
-
-
 
 
                 <!-- Pagination -->

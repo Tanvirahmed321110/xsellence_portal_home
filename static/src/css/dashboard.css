@@ -63,7 +63,7 @@
 
 .chart-performance {
     display: grid;
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: 1fr 420px;
     gap: 24px;
     margin-top: 32px;
 }
@@ -330,6 +330,204 @@
     color: var(--color-white);
     opacity: .9;
 }
+
+
+
+
+/* ==============================
+           Attendance Chart Card
+        ================================= */
+.chart-performance .chart {
+    border-radius: var(--radius-xl);
+}
+
+.attendance-chart-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 24px;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    overflow: hidden;
+}
+
+.attendance-chart-card::before {
+    content: "";
+    position: absolute;
+    top: -90px;
+    right: -90px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(136, 202, 70, 0.16);
+    pointer-events: none;
+}
+
+.attendance-chart-header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.attendance-chart-title-wrap {
+    min-width: 0;
+}
+
+.section-title {
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 800;
+    color: #172033;
+    margin: 0 0 6px;
+}
+
+.attendance-chart-card .chart-subtitle {
+    font-size: 13px;
+    font-weight: 500;
+    color: #7b8794;
+    margin: 0;
+}
+
+.attendance-total-badge {
+    flex-shrink: 0;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    padding: 10px 14px;
+    border-radius: 16px;
+    background: #f2fae9;
+    border: 1px solid rgba(136, 202, 70, 0.22);
+}
+
+.attendance-total-badge .badge-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #6b7a5a;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.attendance-total-badge .badge-value {
+    font-size: 18px;
+    font-weight: 800;
+    color: #4f8f18;
+}
+
+/* ==============================
+           Chart Body
+        ================================= */
+.attendance-chart-body {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+}
+
+.attendance-chart-grid {
+    height: calc(100% - 36px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    border-radius: 18px;
+    background:
+        linear-gradient(to top, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+    background-size: 100% 44px;
+}
+
+.attendance-bar-item {
+    flex: 1;
+    min-width: 42px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.attendance-chart-body .bar-value {
+    font-size: 12px;
+    font-weight: 800;
+    color: #4f8f18;
+    margin-bottom: 16px;
+    white-space: nowrap;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+    animation-delay: 0.65s;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    background-color: #eef7e7d1;
+    border: 1px solid rgba(136, 202, 70, 0.151);
+}
+
+.attendance-chart-body .bar-track {
+    width: 100%;
+    max-width: 32px;
+    height: 100%;
+    background: #D7DCE4;
+    background: #eef7e7f0;
+    background: #D7DCE4;
+    border-radius: 999px;
+    border: 1px solid rgba(136, 202, 70, 0.151);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+.attendance-chart-body .bar-fill {
+    width: 100%;
+    height: var(--bar-height);
+    min-height: 8px;
+    border-radius: 999px;
+    background: var(--color-tag);
+    transform-origin: bottom;
+    animation: attendanceBarLoad 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.attendance-chart-body .bar-month {
+    margin-top: 16px;
+    font-size: var(--fs-xs);
+    font-weight: 800;
+    color: var(--color-text-header);
+    text-transform: uppercase;
+}
+
+
+/* ==============================
+           Animations
+        ================================= */
+@keyframes attendanceBarLoad {
+    from {
+        transform: scaleY(0);
+    }
+
+    to {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
 
 
 /* ════════════════════════════
@@ -817,5 +1015,76 @@
         margin-top: 0px;
         border-top: 1px solid transparent;
         padding-top: 0px;
+    }
+
+
+    /*=======================  chart-performance ================ */
+    .chart-performance {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 32px;
+    }
+
+
+    .attendance-chart-grid .attendance-chart-card {
+        padding: 18px;
+        border-radius: 18px;
+    }
+
+    .attendance-chart-grid .attendance-chart-header {
+        flex-direction: column;
+    }
+
+    .attendance-chart-grid .attendance-total-badge {
+        align-items: flex-start;
+    }
+
+    .attendance-chart-grid .attendance-chart-grid {
+        justify-content: flex-start;
+        overflow-x: auto;
+        gap: 14px;
+        height: 215px;
+    }
+
+    .attendance-chart-grid .attendance-bar-item {
+        min-width: 51px;
+    }
+
+    .attendance-chart-grid .bar-track {
+        height: 160px;
+        max-width: 20px;
+    }
+
+
+
+    .chart-performance .chart {
+        border-radius: var(--radius-xl);
+        padding: 16px;
+        overflow-x: auto;
+    }
+
+    .attendance-chart-grid .my-performance.d4-card {
+        border-radius: 16px;
+        padding: 16px;
+    }
+
+    .attendance-chart-grid .bar-month {
+        margin-top: 12px;
+    }
+
+    .attendance-chart-grid .bar-value {
+        font-size: 10px;
+        font-weight: 700;
+        color: #4f8f18;
+        margin-bottom: 12px;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+    }
+
+    .attendance-chart-grid {
+        border-radius: 0;
+        gap: 0;
     }
 }

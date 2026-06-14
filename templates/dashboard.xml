@@ -29,7 +29,112 @@
                 <!--=================|| Chart and My Performance ||==================  -->
                 <div class="chart-performance">
                     <div class="chart">
-                        <div class="section-title  ">Attendance Chart</div>
+                        <div class="attendance-chart-body">
+                            <div class="section-title  "> Attendance Chart</div>
+                            <div class="attendance-chart-grid mt-3">
+
+                                <!--
+                        Dynamic rule:
+                        Highest month = 100%
+                        Other months = hours / highest_hours * 100
+
+                        Example:
+                        Jan 120h, highest 160h
+                        percent = 120 / 160 * 100 = 75%
+                    -->
+
+                                <div class="attendance-bar-item">
+                                    <div class="bar-value">120h</div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="--bar-height: 75%;"></div>
+                                    </div>
+                                    <div class="bar-month">Jan</div>
+                                </div>
+
+                                <div class="attendance-bar-item">
+                                    <div class="bar-value">135h</div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="--bar-height: 84%;"></div>
+                                    </div>
+                                    <div class="bar-month">Feb</div>
+                                </div>
+
+                                <div class="attendance-bar-item">
+                                    <div class="bar-value">98h</div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="--bar-height: 61%;"></div>
+                                    </div>
+                                    <div class="bar-month">Mar</div>
+                                </div>
+
+                                <div class="attendance-bar-item">
+                                    <div class="bar-value">142h</div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="--bar-height: 89%;"></div>
+                                    </div>
+                                    <div class="bar-month">Apr</div>
+                                </div>
+
+                                <div class="attendance-bar-item">
+                                    <div class="bar-value">160h</div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="--bar-height: 100%;"></div>
+                                    </div>
+                                    <div class="bar-month">May</div>
+                                </div>
+
+                                <div class="attendance-bar-item">
+                                    <div class="bar-value">32h</div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="--bar-height: 20%;"></div>
+                                    </div>
+                                    <div class="bar-month">Jun</div>
+                                </div>
+                                <div class="attendance-bar-item">
+                                    <div class="bar-value">32h</div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="--bar-height: 20%;"></div>
+                                    </div>
+                                    <div class="bar-month">Jun</div>
+                                </div>
+                                <div class="attendance-bar-item">
+                                    <div class="bar-value">32h</div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="--bar-height: 20%;"></div>
+                                    </div>
+                                    <div class="bar-month">Jun</div>
+                                </div>
+                                <div class="attendance-bar-item">
+                                    <div class="bar-value">32h</div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="--bar-height: 20%;"></div>
+                                    </div>
+                                    <div class="bar-month">Sep</div>
+                                </div>
+                                <div class="attendance-bar-item">
+                                    <div class="bar-value">32h</div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="--bar-height: 0%;"></div>
+                                    </div>
+                                    <div class="bar-month">OCT</div>
+                                </div>
+                                <div class="attendance-bar-item">
+                                    <div class="bar-value">32h</div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="--bar-height: 0%;"></div>
+                                    </div>
+                                    <div class="bar-month">Nov</div>
+                                </div>
+                                <div class="attendance-bar-item">
+                                    <div class="bar-value">32h</div>
+                                    <div class="bar-track">
+                                        <div class="bar-fill" style="--bar-height: 0%;"></div>
+                                    </div>
+                                    <div class="bar-month">Dec</div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
 
 
