@@ -2,44 +2,9 @@ import re
 from odoo import http
 from odoo.http import request
 from datetime import date
-from dateutil.relativedelta import relativedelta
 
 
 class XsellencePortal(http.Controller):
-    def _convert_time_input_to_float(self, time_value):
-        """
-        Input:
-            1.7  = 1 hour 7 minutes
-            1.22 = 1 hour 22 minutes
-            1.30 = 1 hour 30 minutes
-            2.45 = 2 hours 45 minutes
-
-        Odoo saves:
-            1.116667 = 1 hour 7 minutes
-            1.366667 = 1 hour 22 minutes
-            1.5      = 1 hour 30 minutes
-            2.75     = 2 hours 45 minutes
-        """
-
-        time_value = str(time_value or "0").strip()
-
-        # allow: 1, 1.7, 1.07, 1.22, 1.59
-        if not re.match(r"^\d+(\.(\d|[0-5]\d))?$", time_value):
-            raise ValueError("Invalid time format")
-
-        if "." not in time_value:
-            return float(time_value)
-
-        hour_part, minute_part = time_value.split(".")
-
-        hours = int(hour_part)
-        minutes = int(minute_part)
-
-        if minutes >= 60:
-            raise ValueError("Minutes must be less than 60")
-
-        return hours + (minutes / 60.0)
-
 
 
     # =============  Timesheet Page  =============
@@ -47,7 +12,6 @@ class XsellencePortal(http.Controller):
     def timesheet_f(self, **kw):
         user = request.env.user
 
-        selected_month = kw.get('month', '')
         selected_project_id = int(kw.get('project_id') or 0)
 
         employees = request.env['hr.employee'].sudo().search([
@@ -81,39 +45,12 @@ class XsellencePortal(http.Controller):
         )
 
         # ==============================
-        # Last 12 months
-        # ==============================
-        today = date.today()
-        current_month_start = today.replace(day=1)
-
-        month_options = []
-        for i in range(11, -1, -1):
-            month_start = current_month_start - relativedelta(months=i)
-
-            month_options.append({
-                'value': month_start.strftime('%Y-%m'),
-                'label': month_start.strftime('%b %Y'),
-            })
-
-        # ==============================
         # Final table domain
         # ==============================
         domain = list(base_domain)
 
         if selected_project_id:
             domain.append(('project_id', '=', selected_project_id))
-
-        if selected_month:
-            try:
-                month_start = date.fromisoformat(selected_month + '-01')
-                month_end = month_start + relativedelta(months=1)
-
-                domain += [
-                    ('date', '>=', month_start.strftime('%Y-%m-%d')),
-                    ('date', '<', month_end.strftime('%Y-%m-%d')),
-                ]
-            except ValueError:
-                selected_month = ''
 
         timesheets = request.env['account.analytic.line'].sudo().search(
             domain,
@@ -124,9 +61,6 @@ class XsellencePortal(http.Controller):
         return request.render('xsellence_portal.timesheet_page', {
             'active_menu': 'timesheets',
             'timesheets': timesheets,
-
-            'month_options': month_options,
-            'selected_month': selected_month,
 
             'project_filter_options': project_filter_options,
             'selected_project_id': selected_project_id,

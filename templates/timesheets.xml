@@ -6,7 +6,7 @@
             <!-- ====================  Breadcrumb  ==================== -->
             <t t-call="xsellence_portal.breadcrumb_component"/>
 
-            <!--========================|| Projects Here ||=========================-->
+            <!--========================|| Timesheets Here ||=========================-->
             <section class="projects-wrap mt-4 mt-sm-2">
                 <div class="flex-between flex-wrap gap-4">
                     <div class="sec-title d-flex gap-2 align-center">Timesheets Tasks
@@ -28,62 +28,42 @@
 
                 <div class="timesheets mt-6">
                     <div class="filter-head flex-between gap-5">
-                        <!-- For Search -->
-                        <div class="search">
-                            <div class="search-wrap input-control">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                     stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="11" cy="11" r="8">
+                        <!--  Filter By Project-->
+                        <select class="filter-select"
+                                id="filter-project"
+                                name="project_id"
+                                onchange="applyFilters()">
 
-                                    </circle>
-                                    <line x1="21" y1="21" x2="16.65" y2="16.65">
+                            <option value=""
+                                    t-att-selected="'selected' if not selected_project_id else None">
+                                Filter by Project
+                            </option>
 
-                                    </line>
-                                </svg>
-                                <input class="search-input" type="text" placeholder="Search Timesheet"/>
-                            </div>
-                        </div>
+                            <t t-foreach="project_filter_options" t-as="project">
+                                <option t-att-value="project.id"
+                                        t-att-selected="'selected' if selected_project_id == project.id else None">
+                                    <t t-esc="project.name"/>
+                                </option>
+                            </t>
+                        </select>
 
                         <!-- right -->
                         <div class="right d-flex gap-4 align-center">
-                            <!--  Filter By Project-->
 
-                            <select class="filter-select"
-                                    id="filter-project"
-                                    name="project_id"
-                                    onchange="applyFilters()">
 
-                                <option value=""
-                                        t-att-selected="'selected' if not selected_project_id else None">
-                                    Filter by Project
-                                </option>
-
-                                <t t-foreach="project_filter_options" t-as="project">
-                                    <option t-att-value="project.id"
-                                            t-att-selected="'selected' if selected_project_id == project.id else None">
-                                        <t t-esc="project.name"/>
-                                    </option>
-                                </t>
-                            </select>
-
-                            <!--  Filter By Month-->
-                            <select class="filter-select"
-                                    id="filter-month"
-                                    name="month"
-                                    onchange="applyFilters()">
-
-                                <option value=""
-                                        t-att-selected="'selected' if not selected_month else None">
-                                    Filter by Month
-                                </option>
-
-                                <t t-foreach="month_options" t-as="month">
-                                    <option t-att-value="month['value']"
-                                            t-att-selected="'selected' if selected_month == month['value'] else None">
-                                        <t t-esc="month['label']"/>
-                                    </option>
-                                </t>
-                            </select>
+                            <div class="right d-flex gap-4 align-center">
+                                <div class="date-search">
+                                    <div class="date-filter-control">
+                                        <label>From</label>
+                                        <input type="date" class="filter-date"/>
+                                    </div>
+                                    <div class="date-filter-control">
+                                        <label>To</label>
+                                        <input type="date" class="filter-date"/>
+                                    </div>
+                                    <button class="filter-apply-btn">Apply</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

@@ -301,7 +301,89 @@ body {
     display: inline-block;
 }
 
+/* =========================================================
+   DESIGN 1 — Soft Card / Rounded Pill (Neumorphic-lite)
+   ========================================================= */
+.timesheets .filter-head {
+    background: var(--color-white);
+    border-radius: 16px;
+    padding: 14px 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    flex-wrap: wrap;
+}
 
+.timesheets .search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-white-off);
+    border-radius: 50px;
+    padding: 10px 16px;
+    min-width: 240px;
+}
+
+.timesheets .date-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-white-off);
+    border-radius: 50px;
+    padding: 8px 16px;
+    border: 1px solid var(--border-secondary);
+}
+
+.timesheets .date-filter-control {
+    display: flex;
+    flex-direction: column;
+    padding: 0 6px;
+}
+.timesheets .date-search{
+    position: relative;
+    overflow: hidden;
+    width: 368px;
+}
+.timesheets .date-filter-control:first-child{
+    border-right: 1px solid var(--color-tag);
+    padding-right: 10px;
+}
+.timesheets .filter-select{
+    color: var(--color-text-header);
+    font-weight: 500;
+    padding: 13px 16px;
+    border-radius: var(--radius-pill);
+}
+.timesheets .date-filter-control label {
+    font-size: 12px;
+    color: var(--color-text-header);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0px;
+}
+
+.timesheets .filter-date {
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    color: var(--color-text-desc) !important;
+    outline: none;
+    padding: 0 0px;
+}
+
+.timesheets .filter-apply-btn {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 7px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
 
 /*============ Loader ========*/
 .timesheet-loader {
@@ -353,6 +435,7 @@ body {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -517,16 +600,22 @@ header .profile-initials {
     font-weight: 700;
     letter-spacing: 1px;
     line-height: 1;
-    animation: counterSpin 5s linear infinite; /* ✅ wrapper এর spin বাতিল */
+    animation: counterSpin 5s linear infinite;
+    /* ✅ wrapper এর spin বাতিল */
 }
 
 @keyframes spinBorder {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes counterSpin {
-    to { transform: rotate(-360deg); }
+    to {
+        transform: rotate(-360deg);
+    }
 }
+
 header .logo {
     color: #ddd;
     text-transform: capitalize;
@@ -1303,6 +1392,7 @@ aside .sidebar-bottom {
     word-break: break-word;
 
 }
+
 .table-wrap .time-spent {
     display: inline-flex;
     align-items: center;
@@ -1530,7 +1620,7 @@ aside .sidebar-bottom {
         border-color var(--transition-base), background var(--transition-base);
     position: relative;
     overflow: hidden;
-    flex-shrink:0;
+    flex-shrink: 0;
 }
 
 /* left accent bar — same color for all */
@@ -2612,7 +2702,7 @@ aside .sidebar-bottom {
     }
 
     aside .sidebar-wrap {
-         border-right: 0px solid var(--color-white);
+        border-right: 0px solid var(--color-white);
     }
 
 
