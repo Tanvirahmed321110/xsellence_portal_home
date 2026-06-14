@@ -54,14 +54,23 @@
                             <div class="right d-flex gap-4 align-center">
                                 <div class="date-search">
                                     <div class="date-filter-control">
-                                        <label>From</label>
-                                        <input type="date" class="filter-date"/>
+                                        <label for="filter-start-date">From</label>
+                                        <input type="date"
+                                               id="filter-start-date"
+                                               name="start_date"
+                                               class="filter-date"
+                                               t-att-value="selected_start_date or ''"/>
                                     </div>
+
                                     <div class="date-filter-control">
-                                        <label>To</label>
-                                        <input type="date" class="filter-date"/>
+                                        <label for="filter-end-date">To</label>
+                                        <input type="date"
+                                               id="filter-end-date"
+                                               name="end_date"
+                                               class="filter-date"
+                                               t-att-value="selected_end_date or ''"/>
                                     </div>
-                                    <button class="filter-apply-btn">Apply</button>
+                                    <button class="filter-apply-btn" onclick="applyFilters()">Apply</button>
                                 </div>
                             </div>
                         </div>
@@ -214,6 +223,6 @@
             </section>
         </t>
 
-        <script src="xsellence_portal/static/src/js/timesheet.js"></script>
+        <script src="xsellence_portal/static/src/js/timesheet.js?v=1"></script>
     </template>
 </odoo>

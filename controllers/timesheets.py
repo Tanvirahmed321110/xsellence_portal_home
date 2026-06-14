@@ -5,7 +5,39 @@ from datetime import date
 
 
 class XsellencePortal(http.Controller):
+    def _convert_time_input_to_float(self, time_value):
+        """
+        Input:
+            1.7  = 1 hour 7 minutes
+            1.22 = 1 hour 22 minutes
+            1.30 = 1 hour 30 minutes
+            2.45 = 2 hours 45 minutes
 
+        Odoo saves:
+            1.116667 = 1 hour 7 minutes
+            1.366667 = 1 hour 22 minutes
+            1.5      = 1 hour 30 minutes
+            2.75     = 2 hours 45 minutes
+        """
+
+        time_value = str(time_value or "0").strip()
+
+        # Allow: 1, 1.7, 1.07, 1.22, 1.59
+        if not re.match(r"^\d+(\.(\d|[0-5]\d))?$", time_value):
+            raise ValueError("Invalid time format")
+
+        if "." not in time_value:
+            return float(time_value)
+
+        hour_part, minute_part = time_value.split(".")
+
+        hours = int(hour_part)
+        minutes = int(minute_part)
+
+        if minutes >= 60:
+            raise ValueError("Minutes must be less than 60")
+
+        return hours + (minutes / 60.0)
 
     # =============  Timesheet Page  =============
     @http.route('/timesheets', type='http', auth='user', website=True)
@@ -13,6 +45,8 @@ class XsellencePortal(http.Controller):
         user = request.env.user
 
         selected_project_id = int(kw.get('project_id') or 0)
+        selected_start_date = kw.get('start_date', '')
+        selected_end_date = kw.get('end_date', '')
 
         employees = request.env['hr.employee'].sudo().search([
             ('user_id', '=', user.id)
@@ -52,6 +86,12 @@ class XsellencePortal(http.Controller):
         if selected_project_id:
             domain.append(('project_id', '=', selected_project_id))
 
+        if selected_start_date:
+            domain.append(('date', '>=', selected_start_date))
+
+        if selected_end_date:
+            domain.append(('date', '<=', selected_end_date))
+
         timesheets = request.env['account.analytic.line'].sudo().search(
             domain,
             order='date desc, id desc',
@@ -65,14 +105,16 @@ class XsellencePortal(http.Controller):
             'project_filter_options': project_filter_options,
             'selected_project_id': selected_project_id,
 
+            'selected_start_date': selected_start_date,
+            'selected_end_date': selected_end_date,
+
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Timesheets', 'url': False},
             ]
         })
 
-
-    #==============  For Add Timesheet Page
+    # ==============  For Add Timesheet Page
     @http.route('/add_timesheet', type='http', auth='public', website=True)
     def add_timesheet_f(self, **kw):
         source = kw.get('source')
@@ -102,7 +144,6 @@ class XsellencePortal(http.Controller):
             'tasks': tasks,
         })
 
-
     # =============  Timesheet From Tasks  =============
     @http.route('/tasks/add_timesheet', type='http', auth='public', website=True)
     def add_timesheet_from_task(self, **kw):
@@ -128,7 +169,6 @@ class XsellencePortal(http.Controller):
                 {'name': 'Add Timesheet', 'url': False},
             ]
         })
-
 
     # =============  Timesheet From Submit  =============
     @http.route('/tasks/add_timesheet/submit', type='http', auth='user', website=True, methods=['POST'])
@@ -203,8 +243,6 @@ class XsellencePortal(http.Controller):
             'success_btn_url': '/timesheets',
         })
 
-
-
     # =============  Delete Timesheet  =============
     @http.route('/timesheets/delete', type='http', auth='user', website=True, methods=['POST'], csrf=True)
     def delete_timesheet_f(self, **post):
@@ -238,3 +276,5 @@ class XsellencePortal(http.Controller):
             'success_btn_label': 'View Timesheets',
             'success_btn_url': '/timesheets',
         })
+
+
