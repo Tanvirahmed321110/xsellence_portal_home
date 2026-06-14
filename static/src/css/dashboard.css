@@ -200,7 +200,6 @@
     color: var(--color-white);
     opacity:.75;
 }
-
 .chart-performance .d4-perf-track {
     height: 9px;
     border: 2px solid #85e624bd;
@@ -210,9 +209,21 @@
 
 .chart-performance .d4-perf-bar {
     height: 100%;
+    width: var(--progress);
     border-radius: 100px;
     background: #88ca46;
-    transition: width 1s ease;
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: d4PerfLoad 2.5s ease forwards  4;
+}
+
+@keyframes d4PerfLoad {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
 }
 
 
