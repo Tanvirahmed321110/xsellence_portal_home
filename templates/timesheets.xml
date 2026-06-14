@@ -48,11 +48,16 @@
                         <div class="right d-flex gap-4 align-center">
                             <!--  Filter By Project-->
 
-                            <select class="filter-select" id="filter-project" onchange="applyFilters()" >
+                            <select class="filter-select"
+                                    id="filter-project"
+                                    name="project_id"
+                                    onchange="applyFilters()">
+
                                 <option value=""
-                                        t-att-selected="'selected' if not selected_month else None">
+                                        t-att-selected="'selected' if not selected_project_id else None">
                                     Filter by Project
                                 </option>
+
                                 <t t-foreach="project_filter_options" t-as="project">
                                     <option t-att-value="project.id"
                                             t-att-selected="'selected' if selected_project_id == project.id else None">
@@ -62,11 +67,16 @@
                             </select>
 
                             <!--  Filter By Month-->
-                            <select class="filter-select" id="filter-month" onchange="applyFilters()">
+                            <select class="filter-select"
+                                    id="filter-month"
+                                    name="month"
+                                    onchange="applyFilters()">
+
                                 <option value=""
                                         t-att-selected="'selected' if not selected_month else None">
                                     Filter by Month
                                 </option>
+
                                 <t t-foreach="month_options" t-as="month">
                                     <option t-att-value="month['value']"
                                             t-att-selected="'selected' if selected_month == month['value'] else None">
@@ -185,6 +195,14 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- ===== Loading Overlay ===== -->
+                    <div id="timesheetLoader" class="timesheet-loader">
+                        <div class="loader-box">
+                            <div class="loader-spinner"></div>
+                            <p>Loading timesheets...</p>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Pagination -->
@@ -216,6 +234,6 @@
             </section>
         </t>
 
-        <script src="/static/src/js/timesheet.js"></script>
+        <script src="xsellence_portal/static/src/js/timesheet.js"></script>
     </template>
 </odoo>

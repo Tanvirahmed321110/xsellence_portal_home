@@ -41,9 +41,15 @@ class XsellencePortal(http.Controller):
         return hours + (minutes / 60.0)
 
 
-    @http.route('/timesheets', type='http', auth='public', website=True)
+
+    # =============  Timesheet Page  =============
+    @http.route('/timesheets', type='http', auth='user', website=True)
     def timesheet_f(self, **kw):
         user = request.env.user
+
+        selected_month = kw.get('month', '')
+        selected_project_id = int(kw.get('project_id') or 0)
+
         employees = request.env['hr.employee'].sudo().search([
             ('user_id', '=', user.id)
         ])
@@ -54,15 +60,28 @@ class XsellencePortal(http.Controller):
             ('employee_id', 'in', employees.ids),
         ]
 
-        # Project Dropdown
-        user_timesheets_for_projects = request.env['account.analytic.line'].sudo().search(
-            base_domain + [('project_id', '!=', False)]
+        # ==============================
+        # Fast Project Dropdown using read_group
+        # ==============================
+        project_groups = request.env['account.analytic.line'].sudo().read_group(
+            domain=base_domain + [('project_id', '!=', False)],
+            fields=['project_id'],
+            groupby=['project_id'],
+            lazy=False,
         )
-        project_filter_options = user_timesheets_for_projects.mapped('project_id')
+
+        project_ids = [
+            group['project_id'][0]
+            for group in project_groups
+            if group.get('project_id')
+        ]
+
+        project_filter_options = request.env['project.project'].sudo().browse(project_ids).sorted(
+            lambda p: p.name or ''
+        )
 
         # ==============================
-        # Last 12 months dropdown data
-        # Current month included
+        # Last 12 months
         # ==============================
         today = date.today()
         current_month_start = today.replace(day=1)
@@ -76,17 +95,42 @@ class XsellencePortal(http.Controller):
                 'label': month_start.strftime('%b %Y'),
             })
 
-        timesheets = request.env['account.analytic.line'].sudo().search([
-            '|',
-            ('user_id', '=', user.id),
-            ('employee_id', 'in', employees.ids),
-        ], order='date desc, id desc')
+        # ==============================
+        # Final table domain
+        # ==============================
+        domain = list(base_domain)
+
+        if selected_project_id:
+            domain.append(('project_id', '=', selected_project_id))
+
+        if selected_month:
+            try:
+                month_start = date.fromisoformat(selected_month + '-01')
+                month_end = month_start + relativedelta(months=1)
+
+                domain += [
+                    ('date', '>=', month_start.strftime('%Y-%m-%d')),
+                    ('date', '<', month_end.strftime('%Y-%m-%d')),
+                ]
+            except ValueError:
+                selected_month = ''
+
+        timesheets = request.env['account.analytic.line'].sudo().search(
+            domain,
+            order='date desc, id desc',
+            limit=100
+        )
 
         return request.render('xsellence_portal.timesheet_page', {
             'active_menu': 'timesheets',
-            'timesheets':timesheets,
-            'month_options':month_options,
-            'project_filter_options':project_filter_options,
+            'timesheets': timesheets,
+
+            'month_options': month_options,
+            'selected_month': selected_month,
+
+            'project_filter_options': project_filter_options,
+            'selected_project_id': selected_project_id,
+
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Timesheets', 'url': False},
@@ -94,7 +138,7 @@ class XsellencePortal(http.Controller):
         })
 
 
-    # For Add Timesheet Page
+    #==============  For Add Timesheet Page
     @http.route('/add_timesheet', type='http', auth='public', website=True)
     def add_timesheet_f(self, **kw):
         source = kw.get('source')
@@ -224,6 +268,8 @@ class XsellencePortal(http.Controller):
             'success_btn_label': 'View Timesheets',
             'success_btn_url': '/timesheets',
         })
+
+
 
     # =============  Delete Timesheet  =============
     @http.route('/timesheets/delete', type='http', auth='user', website=True, methods=['POST'], csrf=True)
