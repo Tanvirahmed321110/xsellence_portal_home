@@ -22,3 +22,16 @@ class XsellencePortal(http.Controller):
                 {'name': 'Ticket Details','url': False},
             ]
         })
+
+    # =================  Create Ticket Page  ==================
+    @http.route('/helpdesk/create_ticket', type='http', auth='user', website=True)
+    def ticket_details_f(self, **kw):
+        print('load dashboard')
+        return request.render('xsellence_portal.create_ticket_page', {
+            'active_menu': 'helpdesk',
+            'breadcrumb': [
+                {'name': 'Dashboard', 'url': '/dashboard'},
+                {'name': 'Helpdesk', 'url': '/helpdesk'},
+                {'name': 'Create Ticket ', 'url': False},
+            ]
+        })

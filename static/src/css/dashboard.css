@@ -978,6 +978,16 @@
     margin-top: 32px;
 }
 
+.chart-performance {
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+}
+.attendance-chart-grid {
+    gap: 8px;
+}
+.chart-performance .chart {
+ overflow-x:auto;
+}
 }
 
 

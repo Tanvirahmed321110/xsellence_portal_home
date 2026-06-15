@@ -32,6 +32,7 @@
         'templates/tasks.xml',
         'templates/timesheets.xml',
         'templates/helpdesk.xml',
+        'templates/create_ticket.xml',
         'templates/add_task.xml',
         'templates/add_timesheet.xml',
         'templates/profile.xml',
