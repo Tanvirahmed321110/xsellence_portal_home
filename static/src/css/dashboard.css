@@ -24,6 +24,10 @@
     transform: translate(24px, 24px);
 }
 
+.dashboard-items .card:hover svg{
+    animation: bounce 0.5s ease 1;
+}
+
 
 .dashboard-items .card:nth-child(1) {
     background-color: #365fa01e;
@@ -80,7 +84,7 @@
 
 .my-performance.d4-card {
     background: #fff;
-    border-radius: 16px;
+    border-radius: var(--radius-xl);
     padding: 20px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
     position: relative;

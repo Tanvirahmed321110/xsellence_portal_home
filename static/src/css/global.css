@@ -1,5 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
 
+
+@keyframes bounce{
+    0%{
+        transform: translateY(0);
+    }
+    30%{
+        transform: translateY(-10px);
+    }
+    60%{
+        transform: translateY(4px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+
 .sec-title {
     color: var(--color-text-secondary);
     line-height: 1.4;
@@ -364,10 +381,11 @@ body {
 .timesheets .filter-date {
     border: none;
     background: transparent;
-    font-size: 13px;
+    font-size: 12.5px;
     color: var(--color-text-desc) !important;
     outline: none;
     padding: 0 0px;
+    margin-top: 2px;
 }
 
 .timesheets .filter-apply-btn {
@@ -383,6 +401,9 @@ body {
     top: 0;
     right: 0;
     height: 100%;
+}
+.timesheets .filter-apply-btn:hover{
+    background:var(--color-primary-hover);
 }
 
 /*============ Loader ========*/
@@ -624,16 +645,13 @@ header .logo {
 
 
 header .date {
-    padding: 8px 18px;
+    padding: 6px 18px;
     height: 40px;
     border-radius: var(--radius-md);
-    background-color: var(--color-tag);
     color: var(--color-white);
     font-size: var(--fs-sm);
     border-radius: 40px;
-    opacity: .9;
-    border: 1px solid var(--primary-hover);
-    background-color: var(--header-bg);
+    opacity: .93;
 }
 
 .btn-collaps.tooltip-right .tooltip-text {
@@ -666,7 +684,7 @@ header .date {
     font-weight: 700;
     line-height: 17px;
     text-align: center;
-    animation: badge-bounce 1.2s cubic-bezier(.36, .07, .19, .97) 20;
+    animation: badge-bounce 1.2s cubic-bezier(.36, .07, .19, .97) 12;
     transform-origin: center bottom;
 }
 
@@ -701,7 +719,7 @@ header .date {
     height: 40px;
     border-radius: 10px;
     background: var(--bg3);
-    border: 1px solid var(--card-bg);
+    border: 1px solid transparent;
     color: var(--color-white);
     display: flex;
     align-items: center;
@@ -716,7 +734,7 @@ header .date {
 .notification-wrap:hover,
 .theme-toggle:hover,
 .btn-collaps:hover {
-    border-color: transparent;
+    border-color: #ededed;
 }
 
 .btn-collaps {
@@ -971,26 +989,7 @@ aside .sidebar-bottom {
 
 
 
-/*=============//  Power By  //=============*/
-@keyframes logoSlide {
-    0% {
-        transform: translateY(-6px);
-        opacity: 0.4;
-    }
-
-    50% {
-        transform: translateY(6px);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(-6px);
-        opacity: 0.4;
-    }
-}
-
 .powered-logo {
-    animation: logoSlide 2s ease-in-out infinite;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2583,23 +2582,7 @@ aside .sidebar-bottom {
         padding: 4px 8px;
     }
 
-    /*=============//  Power By  //=============*/
-    @keyframes logoSlide {
-        0% {
-            transform: translateY(-28px);
-            opacity: 0.6;
-        }
 
-        50% {
-            transform: translateY(-10px);
-            opacity: 1;
-        }
-
-        100% {
-            transform: translateY(-28px);
-            opacity: .6;
-        }
-    }
 
     aside .sidebar-bottom {
         background-color: var(--color-primary);
@@ -2608,9 +2591,7 @@ aside .sidebar-bottom {
         height: 178px;
     }
 
-    .powered-logo {
-        animation: logoSlide 2s ease-in-out infinite;
-    }
+
 }
 
 

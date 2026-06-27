@@ -258,12 +258,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // for current date
-    const dateEl = document.querySelector('header .date span')
-    const today = new Date()
-    const options = { day: "2-digit", month: "short", year: 'numeric' }
-    dateEl.innerText = today.toLocaleDateString('en-GB', options)
+//    const dateEl = document.querySelector('header .date span')
+//    const today = new Date()
+//    const options = { day: "2-digit", month: "short", year: 'numeric' }
+//    dateEl.innerText = today.toLocaleDateString('en-GB', options)
 
 
+// date and time show update
+    const dateEl = document.getElementById('live-date');
+    const timeEl = document.getElementById('live-time');
+    if (!dateEl || !timeEl) return;
+
+    function updateDateTime() {
+    const now = new Date();
+    dateEl.textContent = now.toLocaleDateString('en-GB', {
+        day: '2-digit', month: 'short', year: 'numeric',
+        timeZone: 'Asia/Dhaka'
+    });
+    timeEl.textContent = now.toLocaleTimeString('en-GB', {
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hour12: false,
+        timeZone: 'Asia/Dhaka'
+    });
+}
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
 
 
     // For audio sound

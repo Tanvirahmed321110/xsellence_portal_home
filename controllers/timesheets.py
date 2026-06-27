@@ -44,6 +44,8 @@ class XsellencePortal(http.Controller):
     def timesheet_f(self, **kw):
         user = request.env.user
 
+        today = date.today().strftime('%Y-%m-%d')
+
         selected_project_id = int(kw.get('project_id') or 0)
         selected_start_date = kw.get('start_date', '')
         selected_end_date = kw.get('end_date', '')
@@ -102,11 +104,12 @@ class XsellencePortal(http.Controller):
             'active_menu': 'timesheets',
             'timesheets': timesheets,
 
+
             'project_filter_options': project_filter_options,
             'selected_project_id': selected_project_id,
 
-            'selected_start_date': selected_start_date,
-            'selected_end_date': selected_end_date,
+            'selected_start_date': selected_start_date or today,
+            'selected_end_date': selected_end_date or today,
 
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
