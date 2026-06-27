@@ -325,14 +325,13 @@
 }
 
 .tag {
-    font-size: 9.5px;
+    font-size: 11px;
     padding: 2px 7px;
     border-radius: 99px;
     font-weight: 500;
     letter-spacing: 0.3px;
     background-color: var(--color-tag);
-    color: var(--color-white);
-    opacity: .9;
+    color:#ededed;
 }
 
 

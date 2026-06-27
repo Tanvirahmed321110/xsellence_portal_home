@@ -406,7 +406,7 @@
                     <div class="attendance">
                         <div class="section-title ">Attendance</div>
 
-                        <div class="grid-3 grid-sm-1 gap-4 mt-4 ">
+                        <div class="grid-3 grid-sm-1 gap-4 gap-lg-3 mt-4 ">
                             <!-- Card 1: Working Hours -->
                             <div class="card card-hours">
                                 <div class="card-top flex-between">
