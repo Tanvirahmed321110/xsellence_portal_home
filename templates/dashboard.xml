@@ -1,12 +1,12 @@
 <odoo>
     <template id="dashboard_page">
-        <link rel="stylesheet" href="/xsellence_portal/static/src/css/dashboard.css?v=10"/>
+        <link rel="stylesheet" href="/xsellence_portal/static/src/css/dashboard.css?v=12"/>
 
         <t t-call="xsellence_portal.custom_layout">
             <section class="">
 
                 <!--=================|| Carts Here ||==================  -->
-                <div class="grid-4 grid-sm-2 gap-4 dashboard-items">
+                <div class="grid-4 grid-sm-2 gap-4 gap-sm-3 dashboard-items">
                     <!-- Total Tasks -->
                     <div class="card">
                         <p class="title">Total Tasks</p>
@@ -337,7 +337,7 @@
                     </div>
 
                     <!-- 2×2 Mini Cards -->
-                    <div class="grid-2 gap-4 mini-cards">
+                    <div class="grid-2 gap-4 gap-sm-3 mini-cards">
 
                         <div class="mini-card shadow-sm">
                             <div class="mini-icon">

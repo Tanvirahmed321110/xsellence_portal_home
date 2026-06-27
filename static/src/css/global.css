@@ -2869,4 +2869,23 @@ aside .sidebar-bottom {
         height: fit-content;
         display: flex;
     }
+
+    .filter-select option{
+        font-size: var(--fs-xs);
+    }
+
+.e4-glass {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid red;
+    border-radius: 16px;
+    padding: 24px 24px;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 290px;
+}
 }

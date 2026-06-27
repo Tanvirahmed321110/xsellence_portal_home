@@ -145,7 +145,7 @@
                 <div class="helpdesk-wrap mt-6 ">
 
                     <div class="">
-                        <div class="h-items grid-4 gap-lg-4 grid-sm-2 gap-5  gap-sm-4">
+                        <div class="h-items grid-4 gap-lg-4 grid-sm-2 gap-5  gap-sm-3">
                             <!-- ==========  Single Helpdesk Item ========== -->
                             <a href="/helpdesk_details.html" class="item">
                                 <div class="ticket-header">
