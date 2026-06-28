@@ -100,7 +100,7 @@ class XsellencePortal(http.Controller):
             'user_id': int(post.get('user_id') if post.get('user_id') else False),
             'custom_status': post.get('custom_status'),
             'date_start': post.get('date_start') or date.today(),
-            'date': post.get('date'),
+            'date': post.get('date') or date.today(),
             'custom_priority': post.get('custom_priority'),
             'description': post.get('description'),
             'assigned_user_ids': [(6, 0, [int(x) for x in assigned_user_ids])] if assigned_user_ids else False,
@@ -228,29 +228,60 @@ class XsellencePortal(http.Controller):
 
 
 
+
     # ========================
     # POST - Project Delete
     # ========================
-    @http.route('/project/delete', type="http", auth="user", methods=['POST'])
+    @http.route('/project/delete', type="http", auth="user", methods=['POST'], website=True, csrf=True)
     def delete_project(self, project_id=None, **kw):
 
         last_id = request.session.get('last_project_id')
 
-        if project_id:
-            project = request.env['project.project'].sudo().browse(int(project_id))
-            project.unlink()
-
-        if not project_id:
+        # 1. Validate project_id first
+        if not project_id or not str(project_id).isdigit():
             return request.render('xsellence_portal.error_page', {
                 'error_title': 'Invalid Request',
-                'error_desc': 'Project ID missing.',
+                'error_desc': 'Project ID missing or invalid.',
                 'error_btn_label': 'Retry',
-                'error_btn_url': f'/projects/details/{last_id}',
+                'error_btn_url': f'/projects/details/{last_id}' if last_id else '/projects',
             })
 
-        # ✅ Success Page
+        project = request.env['project.project'].sudo().browse(int(project_id))
+
+        # 3. Get project tasks
+        tasks = request.env['project.task'].sudo().with_context(active_test=False).search([
+            ('project_id', '=', project.id)
+        ])
+
+        # 4. Check timesheet entries under this project/task
+        timesheet_domain = [('project_id', '=', project.id)]
+
+        if tasks:
+            timesheet_domain = [
+                '|',
+                ('project_id', '=', project.id),
+                ('task_id', 'in', tasks.ids),
+            ]
+
+        timesheet = request.env['account.analytic.line'].sudo().search(
+            timesheet_domain,
+            limit=1
+        )
+
+        # 5. If task + timesheet exists, do not delete
+        if tasks and timesheet:
+            return request.render('xsellence_portal.error_page', {
+                'error_title': 'Project Cannot Be Deleted',
+                'error_desc': 'This project has tasks with timesheet entries. Please remove the timesheet entries first, or archive the project instead of deleting it.',
+                'error_btn_label': 'Back to Project',
+                'error_btn_url': f'/projects/details/{project.id}',
+            })
+
+        # 6. Safe delete if no task timesheet exists
+        project.unlink()
+
         return request.render('xsellence_portal.success_page', {
-            'success_title': 'Project Deleted Successfully 🗑️',
+            'success_title': 'Project Deleted Successfully',
             'success_desc': 'The project has been permanently deleted and is no longer available.',
             'success_btn_label': 'Show All Projects',
             'success_btn_url': '/projects',

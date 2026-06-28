@@ -44,8 +44,6 @@ class XsellencePortal(http.Controller):
             ]
         })
 
-
-
     # =============  For Task Details Page  ===============
     @http.route('/tasks/task_details/<int:project_id>', type='http', auth='public', website=True)
     def task_details_f(self, project_id, **kw):
@@ -74,8 +72,6 @@ class XsellencePortal(http.Controller):
         if not redirect_url:
             return request.redirect(f"/tasks/task_details/{task_id}")
         return request.redirect(f"/tasks")
-
-
 
     # ============  For Add Task Page  ===============
     @http.route('/add_task', type='http', auth='public', website=True)
@@ -147,8 +143,6 @@ class XsellencePortal(http.Controller):
             'success_btn_url': '/tasks',
         })
 
-
-
     # ==========================
     # POST - Edit Page Form Page
     # ==========================
@@ -191,7 +185,7 @@ class XsellencePortal(http.Controller):
             return request.redirect('/tasks')
 
         assign_ids = request.httprequest.form.getlist('user_ids')
-        user_ids = [(6,0, [int(uid) for uid in assign_ids if uid])]
+        user_ids = [(6, 0, [int(uid) for uid in assign_ids if uid])]
 
         vals = {
             'name': kw.get('name', task.name),
@@ -206,17 +200,31 @@ class XsellencePortal(http.Controller):
         task.write(vals)
         return request.redirect(f"/tasks/task_details/{task_id}")
 
-
     # =============  For Delete Task  ===============
     @http.route('/task/delete', type='http', auth='user', methods=['POST'], website=True)
     def delete_task(self, task_id=None, **kw):
-        print("======= task_id =======", task_id)
 
         if not task_id:
-            return request.redirect('/tasks')
+            return request.render('xsellence_portal.error_page', {
+                'error_title': 'Invalid Request',
+                'error_desc': 'Task ID missing or invalid.',
+                'error_btn_label': 'Show Tasks',
+                'error_btn_url': '/tasks',
+            })
 
         task = request.env['project.task'].sudo().browse(int(task_id))
-        print("======= task =======", task)
+
+        timesheets = request.env['account.analytic.line'].sudo().search([
+            ('task_id', '=', task.id)
+        ], limit=1)
+
+        if timesheets:
+            return request.render('xsellence_portal.error_page', {
+                'error_title': 'Task Cannot Be Deleted',
+                'error_desc': 'This task has timesheet entries. Please remove the timesheet entries first, then delete the task.',
+                'error_btn_label': 'Back to Task',
+                'error_btn_url': f'/tasks',
+            })
 
         if task.exists():
             task.unlink()
