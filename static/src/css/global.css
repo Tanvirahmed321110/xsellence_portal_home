@@ -567,14 +567,14 @@ header .head-right::after {
     position: absolute;
     content: '';
     left: -29px;
-    top: -72px;
+    top: -73px;
     background-color: rgb(132, 70, 194);
     background-color: #e33592;
     background-color: purple;
     background: #1C0770;
     width: 42px;
     height: 228px;
-    transform: rotate(40deg);
+    transform: rotate(-139deg);
 }
 
 /*=============//  User Profile image  //=============*/

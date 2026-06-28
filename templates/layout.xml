@@ -12,7 +12,7 @@
                 <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="/xsellence_portal/static/src/css/custom_class.css?v=4"/>
                 <link rel="stylesheet" href="/xsellence_portal/static/src/css/my_component.css?v=8"/>
-                <link rel="stylesheet" href="/xsellence_portal/static/src/css/global.css?v=33"/>
+                <link rel="stylesheet" href="/xsellence_portal/static/src/css/global.css?v=34"/>
                 <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages.css?v=26"/>
                 <t t-raw="header"/>
             </head>
@@ -71,12 +71,12 @@
                             <!--============== Header Right Here ==============-->
                             <div class="head-right flex-between gap-5">
 
-                                <div class="date-notification d-flex gap-4 align-center">
+                                <div class="date-notification d-flex gap-6 align-center">
 
                                     <!-- Today's Date -->
                                     <div class="date flex-column gap-1 align-center justify-center" style="gap:6px;">
-                                        <span id="live-date" style="font-size:13px"> </span>
-                                        <span id="live-time" style="font-size:12px;font-weight:500;color:#f1ac2d"> </span>
+                                        <span id="live-date" style="font-size:13.5px"> </span>
+                                        <span id="live-time" style="font-size:12.5px;font-weight:500;color:#f1ac2d"> </span>
                                     </div>
 
 

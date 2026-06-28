@@ -340,6 +340,10 @@
 /* ==============================
            Attendance Chart Card
         ================================= */
+.leave-attendance{
+    grid-template-columns:  1fr .84fr;
+}
+
 .chart-performance .chart {
     border-radius: var(--radius-xl);
 }
@@ -1002,6 +1006,10 @@
     .leave-attendance {
         grid-auto-rows: max-content;
     }
+
+    .leave-attendance{
+    grid-template-columns:  1fr 1fr;
+}
 
     .dashboard-items .card {
         padding: 16px;

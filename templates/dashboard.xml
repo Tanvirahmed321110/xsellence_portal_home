@@ -1,6 +1,6 @@
 <odoo>
     <template id="dashboard_page">
-        <link rel="stylesheet" href="/xsellence_portal/static/src/css/dashboard.css?v=12"/>
+        <link rel="stylesheet" href="/xsellence_portal/static/src/css/dashboard.css?v=13"/>
 
         <t t-call="xsellence_portal.custom_layout">
             <section class="">
@@ -246,7 +246,7 @@
 
 
                 <!--=================|| Attendance and Leave ||==================  -->
-                <div class="grid-2 grid-sm-1 mt-7 gap-6" style="align-items:stretch;">
+                <div class="grid-2 grid-sm-1 mt-7 gap-6 " style="align-items:stretch;">
 
                     <!-- Project Progress -->
                     <div class="project-progress p-4 radius-xl  ">
@@ -399,7 +399,7 @@
 
 
                 <!--=================|| Project Progress and other cards ||==================  -->
-                <div class="grid-2 gap-6 grid-sm-1 mt-7 leave-attendance">
+                <div class=" gap-6  mt-7 leave-attendance">
 
 
                     <!--=================|| For Attendance ||==================  -->
