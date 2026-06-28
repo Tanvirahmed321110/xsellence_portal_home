@@ -63,7 +63,7 @@
                                     </div>
 
                                     <div class="date-filter-control">
-                                        <label for="filter-end-date">To</label>
+                                        <label for="filter-end-date">To </label>
                                         <input type="date"
                                                id="filter-end-date"
                                                name="end_date"

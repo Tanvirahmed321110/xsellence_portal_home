@@ -12,8 +12,8 @@
                 <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="/xsellence_portal/static/src/css/custom_class.css?v=4"/>
                 <link rel="stylesheet" href="/xsellence_portal/static/src/css/my_component.css?v=8"/>
-                <link rel="stylesheet" href="/xsellence_portal/static/src/css/global.css?v=30"/>
-                <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages.css?v=22"/>
+                <link rel="stylesheet" href="/xsellence_portal/static/src/css/global.css?v=33"/>
+                <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages.css?v=26"/>
                 <t t-raw="header"/>
             </head>
 
@@ -74,9 +74,11 @@
                                 <div class="date-notification d-flex gap-4 align-center">
 
                                     <!-- Today's Date -->
-                                    <div class="date flex-center gap-1 align-center justify-center">
-                                        <span></span>
+                                    <div class="date flex-column gap-1 align-center justify-center" style="gap:6px;">
+                                        <span id="live-date" style="font-size:13px"> </span>
+                                        <span id="live-time" style="font-size:12px;font-weight:500;color:#f1ac2d"> </span>
                                     </div>
+
 
                                     <div class="d-flex gap-2 my-align-center mobile-hide">
                                         <!-- Notification Icon -->
@@ -457,7 +459,8 @@
                                 </p>
                                 <small>1 HR AGO</small>
                             </div>
-                        </a>    <a href="#" class="s3-item ">
+                        </a>
+                        <a href="#" class="s3-item ">
                             <div class="s3-icon">🎧</div>
                             <div class="s3-text">
                                 <p>Support ticket assigned by
@@ -465,7 +468,8 @@
                                 </p>
                                 <small>1 HR AGO</small>
                             </div>
-                        </a>    <a href="#" class="s3-item ">
+                        </a>
+                        <a href="#" class="s3-item ">
                             <div class="s3-icon">🎧</div>
                             <div class="s3-text">
                                 <p>Support ticket assigned by
@@ -554,7 +558,7 @@
 
 
                 <!--    Javascript Links Here     -->
-                <script src="/xsellence_portal/static/src/js/main.js?v=8"></script>
+                <script src="/xsellence_portal/static/src/js/main.js?v=9"></script>
             </body>
         </html>
     </template>

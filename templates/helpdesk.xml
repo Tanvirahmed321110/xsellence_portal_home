@@ -66,15 +66,15 @@
 
 
                 <!--==============|| Helpdesk Overview Cards Here  ||================-->
-                <div class="card-items grid-4 grid-sm-2 gap-6 gap-sm-4 mt-6 mt-sm-5">
+                <div class="card-items grid-4 grid-sm-2 gap-4 gap-sm-3 mt-6 mt-sm-5">
 
                     <!-- For New card: with SVG icon and count 12 -->
                     <div class="helpdesk-card new">
                         <div class="card-icon">
                             <!-- New SVG icon: sparkling + plus badge style (fresh ticket) -->
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" stroke="#3b82f6" stroke-width="1.8" fill="none"/>
+                                <circle cx="12" cy="12" r="10" stroke="#3b82f6" stroke-width="1.7" fill="none"/>
                                 <path d="M12 7V17M7 12H17" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
                                 <path d="M17 3L19 5L17 7" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round"
                                       stroke-linejoin="round"/>
@@ -91,9 +91,9 @@
                     <!-- For Progress card: with SVG icon (circular sync / progress arrows) -->
                     <div class="helpdesk-card progress">
                         <div class="card-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" stroke="#f59e0b" stroke-width="1.6" fill="none"/>
+                                <circle cx="12" cy="12" r="10" stroke="#f59e0b" stroke-width="1.7" fill="none"/>
                                 <path d="M12 6V12L16 14" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round"/>
                                 <path d="M18 15L21 18L18 21" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"
                                       stroke-linejoin="round"/>
@@ -110,9 +110,9 @@
                     <!-- For Solved card: originally empty div, now complete with SVG (check badge + resolved) -->
                     <div class="helpdesk-card sloved">
                         <div class="card-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" stroke="#10b981" stroke-width="1.8" fill="none"/>
+                                <circle cx="12" cy="12" r="10" stroke="#10b981" stroke-width="1.7" fill="none"/>
                                 <path d="M8 12L11 15L16 9" stroke="#10b981" stroke-width="2" stroke-linecap="round"
                                       stroke-linejoin="round"/>
                             </svg>
@@ -126,9 +126,9 @@
                     <!-- For Cancelled card: originally empty, now added icon with cancel / X mark -->
                     <div class="helpdesk-card cancelled">
                         <div class="card-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" stroke="#ef4444" stroke-width="1.8" fill="none"/>
+                                <circle cx="12" cy="12" r="10" stroke="#ef4444" stroke-width="1.7" fill="none"/>
                                 <path d="M8 8L16 16M16 8L8 16" stroke="#ef4444" stroke-width="2"
                                       stroke-linecap="round"/>
                             </svg>
@@ -145,7 +145,7 @@
                 <div class="helpdesk-wrap mt-6 ">
 
                     <div class="">
-                        <div class="h-items grid-4 gap-lg-4 grid-sm-2 gap-5  gap-sm-4">
+                        <div class="h-items grid-4 gap-lg-4 grid-sm-2 gap-5  gap-sm-3">
                             <!-- ==========  Single Helpdesk Item ========== -->
                             <a href="/helpdesk_details.html" class="item">
                                 <div class="ticket-header">

@@ -612,7 +612,7 @@
     justify-content: space-between;
     gap: 12px;
     background-color: var(--color-white);
-    padding: 16px;
+    padding: 24px 20px;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
 }
@@ -633,6 +633,9 @@
     font-size: var(--fs-xs);
 }
 
+.helpdesk-card:hover  svg{
+    animation: bounce 0.5s ease;
+}
 
 /* Helpdesk card status */
 .helpdesk .helpdesk-card.cancelled .card-content .count {
