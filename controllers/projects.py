@@ -90,13 +90,14 @@ class XsellencePortal(http.Controller):
 
         assigned_user_ids = request.httprequest.form.getlist('assigned_user_ids')
         tags = request.httprequest.form.getlist('tag_ids')
+        partner_id = post.get('partner_id')
 
         create_data = {
             'name': post.get('name'),
             'github_link': post.get('github_link'),
             'dev_link': post.get('dev_link'),
             'live_link': post.get('live_link'),
-            'partner_id': post.get('partner_id') if post.get('partner_id') else False,
+            'partner_id': int(partner_id) if partner_id else False,
             'user_id': int(post.get('user_id') if post.get('user_id') else False),
             'custom_status': post.get('custom_status'),
             'date_start': post.get('date_start') or date.today(),
@@ -106,7 +107,6 @@ class XsellencePortal(http.Controller):
             'assigned_user_ids': [(6, 0, [int(x) for x in assigned_user_ids])] if assigned_user_ids else False,
             'tag_ids': [(4, int(x), 0) for x in tags] if tags else [],
         }
-        print(f"create_data ------------ {create_data}")
 
         project = request.env['project.project'].create(create_data)
 
