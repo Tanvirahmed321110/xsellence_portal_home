@@ -360,20 +360,27 @@
     outline: 2px solid var(--border-primary);
 }
 
-.history-sidebar .av-1 {
+.history-sidebar .history-avatar.av-1 {
     background: #db2777;
 }
 
-.history-sidebar .av-2 {
+.history-sidebar .history-avatar.av-2 {
     background: #2563eb;
 }
 
-.history-sidebar .av-3 {
+.history-sidebar .history-avatar.av-3 {
     background: #16a34a;
 }
 
-.history-sidebar .av-4 {
+.history-sidebar .history-avatar.av-4 {
     background: #f59e0b;
+}
+.history-sidebar .history-avatar.av-5 {
+    background: #8b5cf6;
+}
+
+.history-sidebar .history-avatar.av-6 {
+    background: #ef4444;
 }
 
 .history-sidebar .history-content {
@@ -417,6 +424,7 @@
     color: #ffffff;
 }
 
+
 .history-sidebar .tag-status {
     background: #2563eb;
 }
@@ -427,6 +435,34 @@
 
 .history-sidebar .tag-update {
     background: #16a34a;
+}
+
+.history-sidebar .tag-priority {
+    background: #f59e0b;
+}
+
+.history-sidebar .tag-manager {
+    background: #7c3aed;
+}
+
+.history-sidebar .tag-assignee {
+    background: #db2777;
+}
+
+.history-sidebar .tag-date {
+    background: #0ea5e9;
+}
+
+.history-sidebar .tag-link {
+    background: #14b8a6;
+}
+
+.history-sidebar .tag-delete {
+    background: #ef4444;
+}
+
+.history-sidebar .tag-create {
+    background: #22c55e;
 }
 
 .history-sidebar .history-empty {
