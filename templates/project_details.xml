@@ -8,7 +8,7 @@
 
             <!--========================|| Project Details Here ||=========================-->
             <section class="task-details mt-6">
-                <div class="flex-center">
+                <div class="flex-center history-and-card">
                     <!--================||   Single Task Card here ||===============-->
                     <div class="proj-card task-card">
                         <div class="card-banner"></div>
@@ -58,7 +58,7 @@
                                 <!-- tag names -->
                                 <div class="card-tags">
                                     <t t-foreach="project.tag_ids" t-as="tag" t-key="tag.id">
-                                        <span class="tag" t-esc="tag.name"> </span>
+                                        <span class="tag" t-esc="tag.name"></span>
                                     </t>
                                 </div>
                             </div>
@@ -288,6 +288,77 @@
                                     </button>
                                 </form>
                             </div>
+                        </div>
+                    </div>
+
+                    <!--================||   History/Log Card Here  ||===============-->
+                    <div class="history-sidebar">
+                        <div class="history-header">
+                            <h5>🕓 Activity Log</h5>
+                            <span class="history-count">4</span>
+                        </div>
+
+                        <div class="history-composer">
+                            <textarea placeholder="Log a note or update..."></textarea>
+                            <div class="composer-actions">
+                                <button class="btn btn-post   btn-primary">POST</button>
+                            </div>
+                        </div>
+
+                        <div class="history-body">
+
+                            <div class="history-item">
+                                <div class="history-avatar av-1">A</div>
+                                <div class="history-content">
+                                    <div class="history-meta">
+                                        <span class="history-author">Administrator</span>
+                                        <span class="history-date">2 hours ago</span>
+                                    </div>
+                                    <div class="history-text">Changed status from <b>Planning</b> to <b>In Progress</b>.
+                                    </div>
+                                    <span class="history-tag tag-status">Status Changed</span>
+                                </div>
+                            </div>
+
+                            <div class="history-item">
+                                <div class="history-avatar av-2">T</div>
+                                <div class="history-content">
+                                    <div class="history-meta">
+                                        <span class="history-author">Tanvir</span>
+                                        <span class="history-date">Yesterday, 4:30 PM</span>
+                                    </div>
+                                    <div class="history-text">Updated allocated time from 8.0 to 16.0 hours.</div>
+                                    <span class="history-tag tag-update">Field Updated</span>
+                                </div>
+                            </div>
+
+                            <div class="history-item">
+                                <div class="history-avatar av-3">P</div>
+                                <div class="history-content">
+                                    <div class="history-meta">
+                                        <span class="history-author">Portal User</span>
+                                        <span class="history-date">29 Jun, 11:05 AM</span>
+                                    </div>
+                                    <div class="history-text">Please confirm the deadline — client asked for an
+                                        extension to
+                                        next Friday.
+                                    </div>
+                                    <span class="history-tag tag-note">Comment</span>
+                                </div>
+                            </div>
+
+                            <div class="history-item">
+                                <div class="history-avatar av-4">A</div>
+                                <div class="history-content">
+                                    <div class="history-meta">
+                                        <span class="history-author">Administrator</span>
+                                        <span class="history-date">28 Jun, 9:12 AM</span>
+                                    </div>
+                                    <div class="history-text">Project created and assigned to Tanvir.</div>
+                                    <span class="history-tag tag-status">Created</span>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

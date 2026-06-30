@@ -244,9 +244,7 @@
 
 
 .task-details .task-card {
-    border-radius: var(--fs-xl);
-    width:50%;
-    min-width:50%;
+    border-radius: var(--fs-lg);
 }
 
 .task-details pre {

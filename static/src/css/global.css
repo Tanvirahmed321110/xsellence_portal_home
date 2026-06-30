@@ -227,6 +227,229 @@
     color: #fff;
 }
 
+
+
+
+/* ===================== History Sidebar ===================== */
+.history-and-card {
+    display: grid;
+    gap: 36px;
+    grid-template-columns: 1fr .72fr;
+    align-items: stretch;
+}
+
+.history-and-card .proj-card,.history-and-card .task-card{
+    min-width: unset;
+    width: 100%;
+    max-width: 100%;
+}
+.history-and-card .proj-card:hover,.history-and-card .task-card:hover{
+    outline: none;
+}
+.history-sidebar {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    min-width: 340px;
+    border: 1px solid #d2d2d2;
+    /* border: 1px solid var(--color-primary); */
+    box-shadow: var(--shadow-sm);
+}
+
+.history-sidebar .history-header {
+    padding: 20px 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(4px);
+    background-color: #4e434e;
+}
+
+.history-sidebar .history-header h5 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ededed;
+}
+
+.history-sidebar .history-count {
+    background: var(--color-secondary);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 6px;
+    border-radius: 999px;
+}
+
+.history-sidebar .history-composer {
+    padding: 14px 20px;
+    border-bottom: 1px solid #ddd;
+    margin-top: 8px;
+    padding-bottom: 32px;
+}
+
+.history-sidebar .history-composer textarea {
+    padding: 10px 12px;
+    border: 1px solid var(--border-primary);
+    outline: none;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-base);
+    width: 100%;
+    color: var(--my-text-primary);
+    background-color: var(--border-primary);
+    background-color: var(--color-white-off);
+    font-weight: var(--fw-400);
+    height: 60px;
+}
+
+.history-composer textarea:focus {
+    outline: none;
+    border-color: 1px solid var(--color-primary);
+}
+
+.history-sidebar .composer-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.history-sidebar .btn-post {
+    font-weight: 700;
+    padding: 10px 16px;
+    border-radius: 6px;
+}
+
+.history-sidebar .history-body {
+    padding: 16px 20px;
+    max-height: 560px;
+    overflow-y: auto;
+}
+
+.history-sidebar .history-item {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #f5f5f7;
+    position: relative;
+}
+
+.history-sidebar .history-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.history-sidebar .history-avatar {
+    width: 42px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    border: 2px solid #fff;
+    outline: 2px solid var(--border-primary);
+}
+
+.history-sidebar .av-1 {
+    background: #db2777;
+}
+
+.history-sidebar .av-2 {
+    background: #2563eb;
+}
+
+.history-sidebar .av-3 {
+    background: #16a34a;
+}
+
+.history-sidebar .av-4 {
+    background: #f59e0b;
+}
+
+.history-sidebar .history-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.history-sidebar .history-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+    gap: 8px;
+}
+
+.history-sidebar .history-author {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.history-sidebar .history-date {
+    font-size: 13px;
+    color: #9ca3af;
+    white-space: nowrap;
+}
+
+.history-sidebar .history-text {
+    font-size: 13.5px;
+    color: var(--color-text-desc);
+    line-height: 1.55;
+}
+
+.history-sidebar .history-tag {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 999px;
+    color: #ffffff;
+}
+
+.history-sidebar .tag-status {
+    background: #2563eb;
+}
+
+.history-sidebar .tag-note {
+    background: #9ca3af;
+}
+
+.history-sidebar .tag-update {
+    background: #16a34a;
+}
+
+.history-sidebar .history-empty {
+    text-align: center;
+    padding: 40px 0;
+    color: #b7b9c2;
+}
+
+.history-sidebar .history-empty .icon {
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+.history-sidebar .history-empty p {
+    font-size: 12.5px;
+    margin: 0;
+}
+
+
+
+
+
+
 .count {
     padding: 3px 6px;
     border-radius: var(--radius-xxl);
