@@ -2,6 +2,7 @@ from odoo import http
 from odoo.http import request
 from datetime import date
 from odoo.tools import html2plaintext
+from markupsafe import Markup, escape
 
 
 class XsellencePortal(http.Controller):
@@ -54,21 +55,45 @@ class XsellencePortal(http.Controller):
         # log message
         messages = request.env['mail.message'].sudo().search([
             ('model', '=', 'project.task'),
-            ('res_id', '=', task.id),
-            ('tracking_value_ids', '!=', False),
+            ('res_id', '=', task.id)
         ], order='date desc')
 
         return request.render('xsellence_portal.task_details_page', {
             'active_menu': 'tasks',
             'task': task,
             'status_selection': status_selection,
-            'messages':messages,
+            'messages': messages,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Tasks', 'url': '/tasks'},
                 {'name': 'Task Details', 'url': False},
             ]
         })
+
+    # =================  For Log Message Submit ===================
+    @http.route('/task/comment/<int:task_id>', type='http', auth='user', website=True, methods=['POST'],
+                csrf=True)
+    def project_comment(self, task_id, **post):
+        task = request.env['project.task'].sudo().browse(task_id)
+
+        if not task.exists():
+            return request.redirect('/tasks')
+
+        comment = post.get('comment')
+
+        if comment:
+            safe_comment = escape(comment)
+
+            task.message_post(
+                body=Markup("""
+                           <b>Comment Added</b><br/>
+                           %s
+                       """) % safe_comment,
+                message_type='comment',
+                subtype_xmlid='mail.mt_note',
+            )
+
+        return request.redirect('/tasks/task_details/%s' % task.id)
 
     # =================  For Task Update Status   ===================
     @http.route('/task/update_status', type='http', auth='user', methods=['POST'], csrf=True)
