@@ -18,7 +18,7 @@
             </head>
 
             <body>
-                <audio id="click-sound" src="/xsellence_portal/static/src/audio/audio1.wav"></audio>
+                <audio id="click-sound" src="/xsellence_portal/static/src/audio/audio1.mp3"></audio>
                 <audio id="success-sound" src="/xsellence_portal/static/src/audio/success.wav"></audio>
                 <audio id="error-sound" src="/xsellence_portal/static/src/audio/error.wav"></audio>
 

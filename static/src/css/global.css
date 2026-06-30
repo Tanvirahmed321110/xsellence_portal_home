@@ -512,18 +512,43 @@ body {
 .view-panel.visible {
     display: block;
 }
-
-.view-panel .sts {
+ .sts {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
     line-height: 1;
-    padding: 4px 12px;
+    padding: 6px 13px;
     border-radius: var(--radius-pill);
-    background-color: var(--color-tag);
     color: var(--color-white);
     font-size: var(--fs-xs);
+    font-weight: 600;
     text-transform: capitalize;
+    white-space: nowrap;
 }
 
+.sts-planning {
+    background-color: var(--color-secondary) /* Muted amber/orange */
+}
+
+ .sts-in-progress {
+    background-color: #d97706;/* Professional blue */
+}
+
+ .sts-review {
+    background-color: #7c3aed; /* Deep violet */
+}
+
+.sts-completed {
+    background-color: #15803d; /* Forest green */
+}
+
+.sts-cancelled {
+    background-color: #dc2626; /* Strong red */
+}
+
+ .sts-default {
+    background-color: var(--color-tag);
+}
 
 
 
@@ -2360,7 +2385,7 @@ aside .sidebar-bottom {
 .search-wrap {
     position: relative;
     flex: 1;
-    min-width: 220px;
+    min-width: 250px;
     border-radius: 10px;
 }
 
@@ -2410,6 +2435,19 @@ aside .sidebar-bottom {
 
 
 @media (max-width:1439px) {
+    .sts {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 4px 8px;
+    border-radius: var(--radius-pill);
+    color: var(--color-white);
+    font-size: var(--fs-low);
+    font-weight: 600;
+    text-transform: capitalize;
+    white-space: nowrap;
+}
     aside {
         width: 250px;
         padding-right: 0;
@@ -2573,8 +2611,8 @@ aside .sidebar-bottom {
 
     .proj-card .action-btn {
         gap: 4px;
-        padding: 2px 5px;
-        height: 32px;
+        padding: 2px 7px;
+        height: 30px;
         font-size: 12px;
     }
 
