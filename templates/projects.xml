@@ -86,7 +86,7 @@
                             <!--================||   Single Project Card here ||===============-->
                             <t t-foreach="projects" t-as="project">
                                 <div class="proj-card">
-                                    <div class="card-banner"></div>
+                                    <div class="card-banner"> </div>
                                     <div class="card-body">
                                         <div class="card-top">
                                             <div class="card-title-wrap">
@@ -230,6 +230,25 @@
                                                 </a>
                                             </t>
 
+                                            <!-- Add Task button: show only if project has no task -->
+                                            <t t-if="project.task_count == 0">
+                                                <a t-att-href="'/add_task?project_id=%s&amp;source=projects' % project.id"
+                                                   class="action-btn view-task-btn tooltip">
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                                        <path d="M12 5V19"
+                                                              stroke="currentColor"
+                                                              stroke-width="2"
+                                                              stroke-linecap="round"/>
+                                                        <path d="M5 12H19"
+                                                              stroke="currentColor"
+                                                              stroke-width="2"
+                                                              stroke-linecap="round"/>
+                                                    </svg>
+                                                    Add
+                                                    <span class="tooltip-text">Create a  new Task</span>
+                                                </a>
+                                            </t>
+
                                             <!-- View Project -->
                                             <a t-att-href=" '/projects/details/%s' % project.id "
                                                class="action-btn btn-primary tooltip">View
@@ -240,7 +259,7 @@
                                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                                                     <circle cx="12" cy="12" r="3"/>
                                                 </svg>
-                                                <span class="tooltip-text">View Project</span>
+                                                <span class="tooltip-text">View Project Details</span>
                                             </a>
                                         </div>
                                     </div>

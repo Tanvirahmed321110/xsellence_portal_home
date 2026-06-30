@@ -77,11 +77,18 @@ class XsellencePortal(http.Controller):
     @http.route('/add_task', type='http', auth='public', website=True)
     def add_task_f(self, **kw):
         source = kw.get('source')
+        selected_project_id = kw.get('project_id')
 
         if source == 'tasks':
             breadcrumb_data = [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Tasks', 'url': '/tasks'},
+                {'name': 'Add Task', 'url': False},
+            ]
+        elif source == 'projects':
+            breadcrumb_data = [
+                {'name': 'Dashboard', 'url': '/dashboard'},
+                {'name': 'Projects', 'url': '/projects'},
                 {'name': 'Add Task', 'url': False},
             ]
         else:
@@ -104,10 +111,12 @@ class XsellencePortal(http.Controller):
             'statuses': statuses,
             'priority': priority,
             'today': date.today().strftime('%Y-%m-%d'),
+            'selected_project_id': int(selected_project_id) if selected_project_id else False,
         })
 
+
     # ============  For Add Task Submit Page  ===============
-    @http.route('/add_task/submit', tpe='http', auth='user', methods=['POST'], csrf=True)
+    @http.route('/add_task/submit', tpe='http', auth='user', methods=['POST'],website=True, csrf=True)
     def add_task_submit(self, **kw):
 
         # Assignees (multiple select)

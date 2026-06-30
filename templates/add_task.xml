@@ -47,13 +47,16 @@
 
                             <!--======= For Project =======-->
                             <div class="input-control ">
-                                <label for="project_id" data-select-target="project_id" class="select-open-label">Project
+                                <label for="project_id" data-select-target="project_id" class="select-open-label">
+                                    Project
                                     <span class="required">*</span>
                                 </label>
                                 <select name="project_id" required="required" id="project_id">
                                     <option value="">Select Project</option>
                                     <t t-foreach="projects" t-as="project">
-                                        <option t-att-value="project.id" t-esc="project.name"></option>
+                                        <option t-att-value="project.id"
+                                                t-att-selected="'selected' if selected_project_id and selected_project_id == project.id else None"
+                                                t-esc="project.name"/>
                                     </t>
                                 </select>
                             </div>
@@ -80,7 +83,9 @@
                         <div class="grid-2 gap-5 grid-sm-1">
                             <!--======= For Allocation Hours =======-->
                             <div class="input-control">
-                                <label for="custom_priority" data-select-target="custom_priority" class="select-open-label">Priority</label>
+                                <label for="custom_priority" data-select-target="custom_priority"
+                                       class="select-open-label">Priority
+                                </label>
                                 <select name="custom_priority" id="custom_priority">
                                     <t t-foreach="priority" t-as="item">
                                         <option t-att-value="item[0]">
@@ -91,7 +96,9 @@
                             </div>
                             <!--======= For Status =======-->
                             <div class="input-control ">
-                                <label for="custom_status" data-select-target="custom_status" class="select-open-label">Task Status</label>
+                                <label for="custom_status" data-select-target="custom_status" class="select-open-label">
+                                    Task Status
+                                </label>
                                 <select name="custom_status" id="custom_status">
                                     <t t-foreach="statuses" t-as="item">
                                         <option t-att-value="item[0]">
