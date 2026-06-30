@@ -233,7 +233,7 @@
 /* ===================== History Sidebar ===================== */
 .history-and-card {
     display: grid;
-    gap: 36px;
+    gap: 32px;
     grid-template-columns: 1fr .72fr;
     align-items: stretch;
 }
@@ -301,7 +301,6 @@
     transition: var(--transition-base);
     width: 100%;
     color: var(--my-text-primary);
-    background-color: var(--border-primary);
     background-color: var(--color-white-off);
     font-weight: var(--fw-400);
     height: 60px;
@@ -315,7 +314,7 @@
 .history-sidebar .composer-actions {
     display: flex;
     justify-content: flex-end;
-    margin-top: 12px;
+    margin-top: 16px;
 }
 
 .history-sidebar .btn-post {
@@ -329,6 +328,30 @@
     max-height: 560px;
     overflow-y: auto;
 }
+
+
+.history-sidebar .history-body::-webkit-scrollbar {
+    background-color: transparent;
+}
+
+.history-sidebar .history-body::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 12px;
+}
+
+.history-sidebar .history-body::-webkit-scrollbar-track {
+    background: transparent;
+    border: 1px solid var(--border-secondary);
+    border-radius: 10px;
+}
+
+.history-sidebar .history-body::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: 10px;
+}
+
+
+
 
 .history-sidebar .history-item {
     display: flex;
@@ -356,8 +379,6 @@
     font-size: 14px;
     font-weight: 700;
     color: #ffffff;
-    border: 2px solid #fff;
-    outline: 2px solid var(--border-primary);
 }
 
 .history-sidebar .history-avatar.av-1 {
