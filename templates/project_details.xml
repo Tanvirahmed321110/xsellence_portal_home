@@ -299,10 +299,23 @@
                         </div>
 
                         <div class="history-composer">
-                            <textarea placeholder="Log a note or update..."></textarea>
-                            <div class="composer-actions">
-                                <button class="btn btn-post   btn-primary">POST</button>
-                            </div>
+
+                            <!-- submit message -->
+                            <form t-att-action="'/project/comment/%s' % project.id"
+                                  method="post"
+                                  class="history-comment-form">
+
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <textarea name="comment"
+                                          placeholder="Log a note or update..."
+                                          required="required"></textarea>
+
+                                <div class="composer-actions">
+                                    <button type="submit" class="btn btn-post btn-primary">
+                                        POST
+                                    </button>
+                                </div>
+                            </form>
                         </div>
 
                         <div class="history-body">
@@ -366,18 +379,34 @@
                                                     <b t-esc="track.new_value_char or track.new_value_integer or track.new_value_datetime or '-'"/>
                                                     .
                                                 </div>
+                                                <div class="history-text" t-raw="msg.body or ''"/>
 
                                                 <span t-attf-class="history-tag #{tag_class}" t-esc="tag_label"/>
                                             </div>
                                         </div>
                                     </t>
                                 </t>
+                                <!--=========  When Empty ========-->
+                                <t t-else="">
+                                    <div class="history-item">
+                                        <div class="history-avatar av-6"
+                                             t-esc="(msg.author_id.name or 'A')[0].upper()"/>
+
+                                        <div class="history-content">
+                                            <div class="history-meta">
+                                                <span class="history-author" t-esc="msg.author_id.name or 'System'"/>
+                                                <span class="history-date"
+                                                      t-esc="msg.date.strftime('%d %b %Y %I:%M%p').replace('AM', 'am').replace('PM', 'pm') if msg.date else ''"/>
+                                            </div>
+
+                                            <div class="history-text" t-raw="msg.body or ''"/>
+
+                                            <span class="history-tag tag-note">Comment</span>
+                                        </div>
+                                    </div>
+                                </t>
                             </t>
 
-                            <!--=========  When Empty ========-->
-                            <t t-if="not messages">
-                                <p class="text-muted text-center">No activity yet.</p>
-                            </t>
 
                         </div>
                     </div>

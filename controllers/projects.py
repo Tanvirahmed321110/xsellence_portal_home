@@ -1,6 +1,7 @@
 from odoo import http
 from odoo.http import request
 from datetime import date
+from markupsafe import Markup, escape
 from odoo.tools import html2plaintext
 
 
@@ -137,8 +138,7 @@ class XsellencePortal(http.Controller):
 
         messages = request.env['mail.message'].sudo().search([
             ('model', '=', 'project.project'),
-            ('res_id', '=', project.id),
-            ('tracking_value_ids', '!=', False),
+            ('res_id', '=', project.id)
         ], order='date desc')
 
         status_selection = request.env['project.project'].fields_get(
@@ -156,6 +156,31 @@ class XsellencePortal(http.Controller):
             ]
         })
 
+    # =================  For Log Message Submit ===================
+    @http.route('/project/comment/<int:project_id>', type='http', auth='user', website=True, methods=['POST'],
+                csrf=True)
+    def project_comment(self, project_id, **post):
+        project = request.env['project.project'].sudo().browse(project_id)
+
+        if not project.exists():
+            return request.redirect('/projects')
+
+        comment = post.get('comment')
+
+        if comment:
+            safe_comment = escape(comment)
+
+            project.message_post(
+                body=Markup("""
+                        <b>Comment Added</b><br/>
+                        %s
+                    """) % safe_comment,
+                message_type='comment',
+                subtype_xmlid='mail.mt_note',
+            )
+
+        return request.redirect('/projects/details/%s' % project.id)
+
     # =================  For Project Details Page State Update  ===================
     @http.route('/project/update_status', type='http', auth='user', csrf=True)
     def update_project_status(self, project_id=None, status=None, **kw):
@@ -165,8 +190,6 @@ class XsellencePortal(http.Controller):
 
         return request.redirect(f"/projects/details/{project_id}")
 
-
-
     # ========================
     # GET - Edit Page Show
     # ========================
@@ -175,7 +198,6 @@ class XsellencePortal(http.Controller):
 
         # project fetch
         project = request.env['project.project'].sudo().browse(project_id)
-
 
         if not project.exists():
             return request.redirect('/projects')
@@ -193,7 +215,7 @@ class XsellencePortal(http.Controller):
         # project object
         return request.render('xsellence_portal.edit_project_page', {
             'project': project,
-            'project_desc':html2plaintext(project.description or ''),
+            'project_desc': html2plaintext(project.description or ''),
             'customers': customers,
             'project_managers': project_managers,
             'users': users,
@@ -219,7 +241,7 @@ class XsellencePortal(http.Controller):
         assigned_user_ids = [int(user) for user in assigned_user_ids if user]
 
         vals = {
-            'name':  kw.get('name', project.name),
+            'name': kw.get('name', project.name),
             'partner_id': int(kw['partner_id']) if kw.get('partner_id') else False,
             'user_id': int(kw['user_id']) if kw.get('user_id') else False,
             'date_start': kw.get('date_start') or False,
@@ -233,9 +255,6 @@ class XsellencePortal(http.Controller):
 
         project.write(vals)
         return request.redirect(f"/projects/details/{project_id}")
-
-
-
 
     # ========================
     # POST - Project Delete
