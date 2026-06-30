@@ -127,90 +127,19 @@ class XsellencePortal(http.Controller):
             'success_btn_url': '/projects',
         })
 
+    # =================  For Project Details Page  ===================
     @http.route('/projects/details/<int:project_id>', type='http', auth='user', website=True)
     def project_details_f(self, project_id, **kw):
 
         request.session['last_project_id'] = project_id
+
         project = request.env['project.project'].sudo().browse(project_id)
 
         messages = request.env['mail.message'].sudo().search([
             ('model', '=', 'project.project'),
             ('res_id', '=', project.id),
+            ('tracking_value_ids', '!=', False),
         ], order='date desc')
-
-        history_items = []
-
-        for msg in messages:
-            author_name = msg.author_id.name or ('Portal User' if not msg.author_id.user_ids else 'System')
-            avatar_letter = author_name[0].upper() if author_name else 'U'
-
-            # ---------- Case A: Project Created (subtype = create) ----------
-            if msg.subtype_id and msg.subtype_id.name == 'Discussions' and not msg.tracking_value_ids and not msg.body:
-                continue  # empty system message skip
-
-            if msg.tracking_value_ids:
-                # ---------- Case B: Field Tracking Change ----------
-                for track in msg.tracking_value_ids:
-                    field_name = track.field_id.name
-                    field_label = track.field_id.field_description
-                    old_val = track.old_value_char or track.old_value_integer or track.old_value_float or track.old_value_datetime or '-'
-                    new_val = track.new_value_char or track.new_value_integer or track.new_value_float or track.new_value_datetime or '-'
-
-                    # field অনুযায়ী আলাদা tag/text ঠিক করো
-                    if field_name == 'custom_status':
-                        tag_class = 'tag-status'
-                        tag_label = 'Status Changed'
-                        text = f"Changed status from <b>{old_val}</b> to <b>{new_val}</b>."
-                    elif field_name == 'allocated_hours':
-                        tag_class = 'tag-update'
-                        tag_label = 'Field Updated'
-                        text = f"Updated allocated time from {old_val} to {new_val} hours."
-                    elif field_name == 'user_id':
-                        tag_class = 'tag-update'
-                        tag_label = 'Manager Changed'
-                        text = f"Project manager changed from <b>{old_val}</b> to <b>{new_val}</b>."
-                    elif field_name == 'custom_priority':
-                        tag_class = 'tag-update'
-                        tag_label = 'Priority Changed'
-                        text = f"Priority changed from <b>{old_val}</b> to <b>{new_val}</b>."
-                    elif field_name in ('live_link', 'github_link', 'dev_link'):
-                        tag_class = 'tag-update'
-                        tag_label = 'Link Updated'
-                        text = f"{field_label} updated."
-                    else:
-                        tag_class = 'tag-update'
-                        tag_label = 'Field Updated'
-                        text = f"Updated {field_label} from {old_val} to {new_val}."
-
-                    history_items.append({
-                        'avatar': avatar_letter,
-                        'author': author_name,
-                        'date': msg.date,
-                        'text': text,
-                        'tag_class': tag_class,
-                        'tag_label': tag_label,
-                    })
-
-            elif msg.body:
-                # ---------- Case C: Plain Comment / Note ----------
-                history_items.append({
-                    'avatar': avatar_letter,
-                    'author': author_name,
-                    'date': msg.date,
-                    'text': msg.body,
-                    'tag_class': 'tag-note',
-                    'tag_label': 'Comment',
-                })
-
-        # ---------- Case D: Project Created entry (manually add, top/bottom এ) ----------
-        history_items.append({
-            'avatar': (project.user_id.name[0].upper() if project.user_id else 'A'),
-            'author': project.create_uid.name,
-            'date': project.create_date,
-            'text': f"Project created and assigned to {project.user_id.name if project.user_id else '-'}.",
-            'tag_class': 'tag-status',
-            'tag_label': 'Created',
-        })
 
         status_selection = request.env['project.project'].fields_get(
             ['custom_status'])['custom_status']['selection']
@@ -219,7 +148,7 @@ class XsellencePortal(http.Controller):
             'active_menu': 'projects',
             'project': project,
             'status_selection': status_selection,
-            'history_items': history_items,
+            'messages': messages,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Projects', 'url': '/projects'},
