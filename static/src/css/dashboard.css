@@ -995,6 +995,9 @@
 .chart-performance .chart {
  overflow-x:auto;
 }
+.dashboard-items .card {
+    padding: 16px 16px;
+}
 }
 
 

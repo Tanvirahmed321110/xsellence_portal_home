@@ -179,7 +179,7 @@
                     <div class="d4-card my-performance">
                         <div class="d4-section-title">My Performance</div>
                         <div class="d4-main-title">Skills Score</div>
-                        <div class="d4-score-row">
+                        <div class="d4-score-row ">
                             <div class="d4-score-circle">
                                 <div style="text-align:center;">
                                     <div class="d4-score-num">88</div>

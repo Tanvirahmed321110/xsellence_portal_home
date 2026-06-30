@@ -558,9 +558,7 @@ body {
    ||======   Header Section Start Here   ======||
    ============================================*/
 header {
-    background: var(--header-bg);
-    background: linear-gradient(135deg, #d9117b 0%, #7c1fa8 100%);
-    background: linear-gradient(120deg, #d9117b 0%, #e91e8c 120%, #5c35cc 200%);
+    background:#740C76;
     position: fixed;
     width: 100%;
     overflow: hidden;
@@ -780,11 +778,11 @@ header .date {
    ============================================*/
 aside {
     /* padding: 8px; */
-    width: 290px;
+    width: 300px;
     /* background-color: var(--header-bg); */
-    height: calc(100% - 67px);
+    height: calc(100% - 66px);
     position: fixed;
-    top: 67px;
+    top: 66px;
     left: 0px;
     border-radius: 0px;
     z-index: 2;
@@ -812,6 +810,7 @@ aside .sidebar-wrap {
 aside .sidebar-top {
     height: 65dvh;
     overflow-y: auto;
+    padding: 16px;
 }
 
 aside .main-menus {
