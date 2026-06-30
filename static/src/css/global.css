@@ -234,7 +234,7 @@
 .history-and-card {
     display: grid;
     gap: 32px;
-    grid-template-columns: 1fr .72fr;
+    grid-template-columns: 1fr .6fr;
     align-items: stretch;
 }
 
@@ -290,7 +290,7 @@
     padding: 14px 20px;
     border-bottom: 1px solid #ddd;
     margin-top: 8px;
-    padding-bottom: 32px;
+    padding-bottom: 20px;
 }
 
 .history-sidebar .history-composer textarea {

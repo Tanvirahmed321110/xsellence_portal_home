@@ -51,10 +51,18 @@ class XsellencePortal(http.Controller):
         task = request.env['project.task'].sudo().browse(project_id)
         status_selection = request.env['project.task'].sudo()._fields['custom_status'].selection
 
+        # log message
+        messages = request.env['mail.message'].sudo().search([
+            ('model', '=', 'project.task'),
+            ('res_id', '=', task.id),
+            ('tracking_value_ids', '!=', False),
+        ], order='date desc')
+
         return request.render('xsellence_portal.task_details_page', {
             'active_menu': 'tasks',
             'task': task,
             'status_selection': status_selection,
+            'messages':messages,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Tasks', 'url': '/tasks'},
@@ -114,9 +122,8 @@ class XsellencePortal(http.Controller):
             'selected_project_id': int(selected_project_id) if selected_project_id else False,
         })
 
-
     # ============  For Add Task Submit Page  ===============
-    @http.route('/add_task/submit', tpe='http', auth='user', methods=['POST'],website=True, csrf=True)
+    @http.route('/add_task/submit', tpe='http', auth='user', methods=['POST'], website=True, csrf=True)
     def add_task_submit(self, **kw):
 
         # Assignees (multiple select)

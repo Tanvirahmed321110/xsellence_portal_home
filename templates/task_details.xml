@@ -7,7 +7,7 @@
 
             <!--========================|| Projects Here ||=========================-->
             <section class="task-details mt-6">
-                <div class="flex-center">
+                <div class="flex-center history-and-card">
                     <!--================||   Single Task Card here ||===============-->
                     <div class="proj-card task-card">
                         <div class="card-banner"></div>
@@ -184,7 +184,99 @@
 
                         </div>
                     </div>
+
+                     <!--================||   History/Log Card Here  ||===============-->
+                    <div class="history-sidebar">
+                        <div class="history-header">
+                            <h5>🕓 Activity Log</h5>
+                            <span class="history-count" t-esc="len(messages)"/>
+                        </div>
+
+                        <div class="history-composer">
+                            <textarea placeholder="Log a note or update..."></textarea>
+                            <div class="composer-actions">
+                                <button class="btn btn-post   btn-primary">POST</button>
+                            </div>
+                        </div>
+
+                        <div class="history-body">
+
+                            <t t-foreach="messages" t-as="msg">
+                                <t t-if="msg.tracking_value_ids">
+                                    <t t-foreach="msg.tracking_value_ids" t-as="track">
+
+                                        <t t-set="avatar_class" t-value="'av-6'"/>
+                                        <t t-set="tag_class" t-value="'tag-update'"/>
+                                        <t t-set="tag_label" t-value="'Updated'"/>
+
+                                        <t t-if="track.field_id.name == 'custom_status'">
+                                            <t t-set="avatar_class" t-value="'av-1'"/>
+                                            <t t-set="tag_class" t-value="'tag-status'"/>
+                                            <t t-set="tag_label" t-value="'Status Changed'"/>
+                                        </t>
+
+                                        <t t-elif="track.field_id.name == 'custom_priority'">
+                                            <t t-set="avatar_class" t-value="'av-2'"/>
+                                            <t t-set="tag_class" t-value="'tag-priority'"/>
+                                            <t t-set="tag_label" t-value="'Priority Changed'"/>
+                                        </t>
+
+                                        <t t-elif="track.field_id.name == 'user_id'">
+                                            <t t-set="avatar_class" t-value="'av-3'"/>
+                                            <t t-set="tag_class" t-value="'tag-manager'"/>
+                                            <t t-set="tag_label" t-value="'Manager Changed'"/>
+                                        </t>
+
+                                        <t t-elif="track.field_id.name == 'assigned_user_ids'">
+                                            <t t-set="avatar_class" t-value="'av-4'"/>
+                                            <t t-set="tag_class" t-value="'tag-assignee'"/>
+                                            <t t-set="tag_label" t-value="'Assignee Changed'"/>
+                                        </t>
+
+                                        <t t-elif="track.field_id.name in ['date_deadline', 'date_start', 'date']">
+                                            <t t-set="avatar_class" t-value="'av-5'"/>
+                                            <t t-set="tag_class" t-value="'tag-date'"/>
+                                            <t t-set="tag_label" t-value="'Date Changed'"/>
+                                        </t>
+
+                                        <div class="history-item">
+                                            <div t-attf-class="history-avatar #{avatar_class}"
+                                                 t-esc="(msg.author_id.name or 'A')[0].upper()"/>
+
+                                            <div class="history-content">
+                                                <div class="history-meta">
+                                                    <span class="history-author"
+                                                          t-esc="msg.author_id.name or 'System'"/>
+                                                    <span class="history-date"
+                                                          t-esc="msg.date.strftime('%d %b %Y %I:%M%p') if msg.date else ''"/>
+                                                </div>
+
+                                                <div class="history-text">
+                                                    Changed
+                                                    <b t-esc="track.field_id.field_description"/>
+                                                    from
+                                                    <b t-esc="track.old_value_char or track.old_value_integer or track.old_value_datetime or '-'"/>
+                                                    to
+                                                    <b t-esc="track.new_value_char or track.new_value_integer or track.new_value_datetime or '-'"/>
+                                                    .
+                                                </div>
+
+                                                <span t-attf-class="history-tag #{tag_class}" t-esc="tag_label"/>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </t>
+                            </t>
+
+                            <!--=========  When Empty ========-->
+                            <t t-if="not messages">
+                                <p class="text-muted text-center">No activity yet.</p>
+                            </t>
+
+                        </div>
+                    </div>
                 </div>
+
 
                 <!-- =====  Delete Modal  ===== -->
                 <div class=" modal-overlay " id="deleteModal">

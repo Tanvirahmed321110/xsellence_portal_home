@@ -5,13 +5,12 @@ class ProjectProject(models.Model):
     _inherit = 'project.task'
     _order = 'create_date desc'
 
-
     custom_priority = fields.Selection([
         ('normal','normal'),
         ('medium','medium'),
         ('high','high'),
         ('urgent','urgent'),
-    ], string=' Priority',default='normal')
+    ], string=' Priority',default='normal', tracking=True)
 
     custom_status = fields.Selection([
         ('planning', 'Planning'),
@@ -19,10 +18,16 @@ class ProjectProject(models.Model):
         ('review', 'Under Review'),
         ('completed', 'Completed'),
         ('cancelled', 'Cancelled'),
-    ], string='Project Status', default='planning')
+    ], string='Project Status', default='planning', tracking=True)
 
     # assign members
     assigned_user_ids = fields.Many2many(
         'res.users',
-        string='Assigned Users'
+        string='Assigned Users',
+        tracking=True
+    )
+
+    description = fields.Html(
+        string='Description',
+        tracking=True,
     )
