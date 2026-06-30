@@ -5,10 +5,20 @@ class ProjectProject(models.Model):
     _inherit = 'project.project'
     _order = 'create_date desc'
 
-    # For Userlink links page
-    live_link  = fields.Char(string='Live Link')
-    github_link = fields.Char(string='Github Repo Link')
-    dev_link = fields.Char(string='Dev Server Link')
+    # For Useful link links page
+    live_link  = fields.Char(string='Live Link',tracking=True)
+    github_link = fields.Char(string='Github Repo Link',tracking=True)
+    dev_link = fields.Char(string='Dev Server Link',tracking=True)
+
+    assigned_user_ids = fields.Many2many(
+        'res.users',
+        tracking=True,
+    )
+
+    user_id = fields.Many2one(
+        'res.users',
+        tracking=True,
+    )
 
 
     custom_priority = fields.Selection([
@@ -24,12 +34,13 @@ class ProjectProject(models.Model):
         ('review', 'Under Review'),
         ('completed', 'Completed'),
         ('cancelled', 'Cancelled'),
-    ], string='Project Status', default='planning')
+    ], string='Project Status', default='planning',tracking=True)
 
     # assign members
     assigned_user_ids = fields.Many2many(
         'res.users',
-        string='Assigned Users'
+        string='Assigned Users',
+        tracking=True
     )
 
     # 🔥 Remaining Days Field
@@ -39,6 +50,8 @@ class ProjectProject(models.Model):
         store=True,
         readonly=True,
     )
+
+
 
     @api.depends('date')
     def _compute_remaining_days(self):

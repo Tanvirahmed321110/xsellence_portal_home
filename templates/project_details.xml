@@ -295,7 +295,7 @@
                     <div class="history-sidebar">
                         <div class="history-header">
                             <h5>🕓 Activity Log</h5>
-                            <span class="history-count">4</span>
+                             <span class="history-count" t-esc="len(messages)"/>
                         </div>
 
                         <div class="history-composer">
@@ -306,6 +306,38 @@
                         </div>
 
                         <div class="history-body">
+
+                            <t t-foreach="messages" t-as="msg">
+                                <!-- ============ Case 1: Field/Status Tracking Change ============ -->
+                                <t t-if="msg.tracking_value_ids">
+                                    <t t-foreach="msg.tracking_value_ids" t-as="track">
+                                        <div class="history-item">
+                                            <div class="history-avatar av-1"
+                                                 t-esc="(msg.author_id.name or 'A')[0]"/>
+                                            <div class="history-content">
+                                                <div class="history-meta">
+                                                    <span class="history-author" t-esc="msg.author_id.name or 'System'"/>
+                                                    <span class="history-date" t-esc="msg.date"/>
+                                                </div>
+                                                <div class="history-text">
+                                                    Changed <b t-esc="track.field_id.field_description"/>
+                                                    from <b t-esc="track.old_value_char or track.old_value_integer or track.old_value_datetime or '-'"/>
+                                                    to <b t-esc="track.new_value_char or track.new_value_integer or track.new_value_datetime or '-'"/>.
+                                                </div>
+                                                <span class="history-tag tag-status">Status Changed</span>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </t>
+                            </t>
+
+
+
+
+                             <!--=========  When Empty ========-->
+                            <t t-if="not messages">
+                                <p class="text-muted text-center">No activity yet.</p>
+                            </t>
 
                             <div class="history-item">
                                 <div class="history-avatar av-1">A</div>
