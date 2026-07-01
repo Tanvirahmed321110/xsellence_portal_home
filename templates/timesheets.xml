@@ -221,6 +221,10 @@
                     </div>
                 </t>
             </section>
+
+
+            <!-- Pagination -->
+            <t t-call="xsellence_portal.reusable_pagination"/>
         </t>
 
         <script src="xsellence_portal/static/src/js/timesheet.js?v=1"></script>

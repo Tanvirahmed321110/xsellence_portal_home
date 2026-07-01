@@ -2,23 +2,11 @@ import re
 from odoo import http
 from odoo.http import request
 from datetime import date
+from odoo.addons.xsellence_portal.utilitis.pagination import get_pager
 
 
 class XsellencePortal(http.Controller):
     def _convert_time_input_to_float(self, time_value):
-        """
-        Input:
-            1.7  = 1 hour 7 minutes
-            1.22 = 1 hour 22 minutes
-            1.30 = 1 hour 30 minutes
-            2.45 = 2 hours 45 minutes
-
-        Odoo saves:
-            1.116667 = 1 hour 7 minutes
-            1.366667 = 1 hour 22 minutes
-            1.5      = 1 hour 30 minutes
-            2.75     = 2 hours 45 minutes
-        """
 
         time_value = str(time_value or "0").strip()
 
@@ -94,22 +82,43 @@ class XsellencePortal(http.Controller):
         if selected_end_date:
             domain.append(('date', '<=', selected_end_date))
 
+
+
+        # for pagination
+        per_page = int(kw.get('per_page', 20))
+        total = request.env['account.analytic.line'].sudo().search_count(domain)
+
+        # ===== Pager Object Banano (reusable function call) =====
+        pager = get_pager(
+            url='/timesheets',
+            total=total,
+            page=kw.get('page', 1),
+            per_page=per_page,
+            url_args={
+                'project_id': selected_project_id if selected_project_id else '',
+                'start_date': selected_start_date,
+                'end_date': selected_end_date,
+            }
+        )
+
         timesheets = request.env['account.analytic.line'].sudo().search(
             domain,
             order='date desc, id desc',
-            limit=100
+            offset=pager['offset'],
+            limit=pager['per_page']
         )
 
         return request.render('xsellence_portal.timesheet_page', {
             'active_menu': 'timesheets',
             'timesheets': timesheets,
-
+            'pager': pager,
+            'total': total,
 
             'project_filter_options': project_filter_options,
             'selected_project_id': selected_project_id,
 
-            'selected_start_date': selected_start_date or today,
-            'selected_end_date': selected_end_date or today,
+            'selected_start_date': selected_start_date or '',
+            'selected_end_date': selected_end_date or '',
 
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
