@@ -15,7 +15,8 @@
 
 
                 <div class="d-flex flex-1 flex-center mt-6">
-                    <form t-attf-action="/project/edit/#{project.id}" method="POST" class="submit-form flex-column gap-5">
+                    <form t-attf-action="/project/edit/#{project.id}" method="POST"
+                          class="submit-form flex-column gap-5">
 
                         <input type="hidden" name="csrf_token"
                                t-att-value="request.csrf_token()"/>
@@ -169,31 +170,63 @@
                             <!--======= For Description =======-->
                             <div class="input-control">
                                 <label for="description">Description</label>
-                                <textarea name="description" placeholder="Description..."><t t-out="project_desc"/></textarea>
+                                <textarea name="description" placeholder="Description..."><t t-out="project_desc"/> </textarea>
                             </div>
                         </div>
 
                         <!--======= For  Teamleader =======-->
-                        <div class="my-mt-7 team-leader">
-                            <div class=" fs-lg  fw-bold" style="color:#121212">For Teamleader</div>
-                            <div class="grid-1 gap-5 grid-sm-1 mt-3">
-                                <!--======= For Gite LInk =======-->
-                                <div class="input-control">
-                                    <label for="github_link">Github Link</label>
-                                    <input t-att-value="project.github_link or ''" name="github_link" id="github_link"
-                                           placeholder="Github Link..."/>
-                                </div>
-                                <!--======= For Gite LInk =======-->
+                        <div class="fs-lg fw-bold mb-2" style="color:#121212;">For Team Leader</div>
+                        <div class="grid-1 gap-5 grid-sm-1 mt-3">
+
+                            <!--======= For Github Link =======-->
+                            <div class="input-control">
+                                <label for="github_link">Github Repo</label>
+                                <input name="github_link" id="github_link"
+                                       t-att-value="project.github_link"
+                                       placeholder="Github Link..."/>
+                            </div>
+
+                            <!--======= For Live =======-->
+                            <div class="grid-3 gap-3 grid-sm-1">
                                 <div class="input-control">
                                     <label for="live_link">Live Link</label>
-                                    <input t-att-value="project.live_link or ''" name="live_link" id="live_link"
-                                           placeholder="Live  Link..."/>
+                                    <input name="live_link" id="live_link"
+                                           t-att-value="project.live_link"
+                                           placeholder="Live Link..."/>
                                 </div>
-                                <!--======= For Gite LInk =======-->
+                                <div class="input-control">
+                                    <label for="live_user">User</label>
+                                    <input name="live_user" id="live_user"
+                                           t-att-value="project.live_user"
+                                           placeholder="User Type"/>
+                                </div>
+                                <div class="input-control">
+                                    <label for="live_password">Live Password</label>
+                                    <input type="password" name="live_password" id="live_password"
+                                           t-att-value="project.live_password"
+                                           placeholder="Live Password"/>
+                                </div>
+                            </div>
+
+                            <!--======= For Dev =======-->
+                            <div class="grid-3 gap-3 grid-sm-1">
                                 <div class="input-control">
                                     <label for="dev_link">Dev Link</label>
-                                    <input t-att-value="project.dev_link or ''" name="dev_link" id="dev_link"
+                                    <input name="dev_link" id="dev_link"
+                                           t-att-value="project.dev_link"
                                            placeholder="Dev Server Link..."/>
+                                </div>
+                                <div class="input-control">
+                                    <label for="dev_user">Dev User</label>
+                                    <input name="dev_user" id="dev_user"
+                                           t-att-value="project.dev_user"
+                                           placeholder="Dev User"/>
+                                </div>
+                                <div class="input-control">
+                                    <label for="dev_password">Dev Password</label>
+                                    <input type="password" name="dev_password" id="dev_password"
+                                           t-att-value="project.dev_password"
+                                           placeholder="Dev Password"/>
                                 </div>
                             </div>
                         </div>

@@ -116,7 +116,11 @@ class XsellencePortal(http.Controller):
             'name': post.get('name'),
             'github_link': post.get('github_link'),
             'dev_link': post.get('dev_link'),
+            'dev_password': post.get('dev_password'),
+            'dev_user': post.get('dev_user'),
             'live_link': post.get('live_link'),
+            'live_user': post.get('live_link'),
+            'live_password': post.get('live_link'),
             'partner_id': int(partner_id) if partner_id else False,
             'user_id': int(post.get('user_id') if post.get('user_id') else False),
             'custom_status': post.get('custom_status'),
@@ -270,10 +274,22 @@ class XsellencePortal(http.Controller):
             'custom_priority': kw.get('custom_priority', ''),
             'tag_ids': [(6, 0, tag_ids)],
             'assigned_user_ids': [(6, 0, assigned_user_ids)],
+
+            # ===== Team Leader Fields  =====
+            'github_link': kw.get('github_link', ''),
+            'live_link': kw.get('live_link', ''),
+            'live_user': kw.get('live_user', ''),
+            'live_password': kw.get('live_password', ''),
+            'dev_link': kw.get('dev_link', ''),
+            'dev_user': kw.get('dev_user', ''),
+            'dev_password': kw.get('dev_password', ''),
         }
 
         project.write(vals)
         return request.redirect(f"/projects/details/{project_id}")
+
+
+
 
     # ========================
     # POST - Project Delete
