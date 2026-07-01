@@ -6,9 +6,14 @@ class ProjectProject(models.Model):
     _order = 'create_date desc'
 
     # For Useful link links page
-    live_link  = fields.Char(string='Live Link',tracking=True)
     github_link = fields.Char(string='Github Repo Link',tracking=True)
+    live_link  = fields.Char(string='Live Link',tracking=True)
+    live_user  = fields.Char(string='Live User',tracking=True)
+    live_password  = fields.Char(string='Live Password',tracking=True)
+
     dev_link = fields.Char(string='Dev Server Link',tracking=True)
+    dev_user = fields.Char(string='Dev Server User',tracking=True)
+    dev_password = fields.Char(string='Dev Server Password',tracking=True)
 
     assigned_user_ids = fields.Many2many(
         'res.users',

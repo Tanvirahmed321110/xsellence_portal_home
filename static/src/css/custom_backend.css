@@ -3,6 +3,7 @@
 .o_form_view input,.o_form_view textarea {
    border:1px solid #ddd !important; /* Light gray background */
    border-radius:4px !important;
+    padding: 5px !important;
 }
 .o_form_view input:focus,.o_form_view textarea:focus{
     border:1px solid var(--o-cc1-btn-primary) !important;

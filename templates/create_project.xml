@@ -168,20 +168,43 @@
                         <div class="my-mt-7 team-leader">
                             <div class=" fs-lg  fw-bold" style="color:#121212">For Team_leader</div>
                             <div class="grid-1 gap-5 grid-sm-1 mt-3">
-                                <!--======= For Gite LInk =======-->
+                                <!--======= For git Link =======-->
                                 <div class="input-control">
-                                    <label for="github_link">Github Link</label>
+                                    <label for="github_link">Github Repo</label>
                                     <input name="github_link" id="github_link" placeholder="Github Link..."/>
                                 </div>
-                                <!--======= For Gite LInk =======-->
-                                <div class="input-control">
-                                    <label for="live_link">Live Link</label>
-                                    <input name="live_link" id="live_link" placeholder="Live  Link..."/>
+
+
+                                <!--======= For Live =======-->
+                                <div class="grid-3 gap-3 grid-sm-1">
+                                    <div class="input-control">
+                                        <label for="live_link">Live Link</label>
+                                        <input name="live_link" id="live_link" placeholder="Live  Link..."/>
+                                    </div>
+                                    <div class="input-control">
+                                        <label for="live_user">User</label>
+                                        <input name="live_user" id="live_link" placeholder="User Type"/>
+                                    </div>
+                                    <div class="input-control">
+                                        <label for="live_password">Live Password</label>
+                                        <input type="password" name="live_password" id="live_password" placeholder="Live  Password"/>
+                                    </div>
                                 </div>
-                                <!--======= For Gite LInk =======-->
-                                <div class="input-control">
-                                    <label for="dev_link">Dev Link</label>
-                                    <input name="dev_link" id="dev_link" placeholder="Dev Server Link..."/>
+
+                                <!--======= For Dev  =======-->
+                                <div class="grid-3 gap-3 grid-sm-1">
+                                   <div class="input-control">
+                                        <label for="dev_link">Dev Link</label>
+                                        <input name="dev_link" id="dev_link" placeholder="Dev Server Link..."/>
+                                    </div>
+                                    <div class="input-control">
+                                        <label for="dev_user">Dev User</label>
+                                        <input name="dev_user" id="dev_user" placeholder="Dev User"/>
+                                    </div>
+                                    <div class="input-control">
+                                        <label for="dev_password">Dev Password</label>
+                                        <input type="password" name="dev_password" id="dev_password" placeholder="Dev Password"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
