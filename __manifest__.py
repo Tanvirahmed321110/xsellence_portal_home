@@ -44,6 +44,7 @@
         'templates/edit_task.xml',
         'templates/breadcrumb.xml',
         'templates/alert.xml',
+        'templates/pagination.xml',
 
 
         # views

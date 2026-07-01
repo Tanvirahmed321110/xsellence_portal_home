@@ -356,180 +356,176 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
-
-
 });
 
 
-     //============   For  Pagination JS  ===========
-       function  initPaginationF () {
-        const wrappers = document.querySelectorAll(".js-pagination-wrapper");
-
-        if (!wrappers.length) {
-            console.log("No pagination wrapper found");
-            return;
-        }
-
-        wrappers.forEach((wrapper) => {
-            const items = Array.from(wrapper.querySelectorAll(".js-pagination-item"));
-            const pagination = wrapper.querySelector(".js-pagination");
-            const info = wrapper.querySelector(".js-pagination-info");
-            const buttonsWrap = wrapper.querySelector(".js-pagination-buttons");
-
-            console.log("items:", items.length);
-            console.log("pagination:", pagination);
-            console.log("info:", info);
-            console.log("buttonsWrap:", buttonsWrap);
-
-            // check element
-            if (!items.length || !pagination || !info || !buttonsWrap) {
-                console.log("Pagination element missing");
-                return;
-            }
-
-            const limit = parseInt(wrapper.dataset.paginationLimit || "12", 10);
-            const label = wrapper.dataset.paginationLabel || "items";
-            const totalItems = items.length;
-            const totalPages = Math.ceil(totalItems / limit);
-
-            let currentPage = 1;
-
-            if (totalPages <= 1) {
-                pagination.style.display = "none";
-                return;
-            }
-
-            function showPage() {
-                const start = (currentPage - 1) * limit;
-                const end = start + limit;
-
-                items.forEach((item, index) => {
-                    item.style.display = index >= start && index < end ? "" : "none";
-                });
-
-                const showingStart = start + 1;
-                const showingEnd = Math.min(end, totalItems);
-
-                info.textContent = `Showing ${showingStart}–${showingEnd} of ${totalItems} ${label}`;
-
-                renderButtons();
-            }
-
-            function renderButtons() {
-                buttonsWrap.innerHTML = "";
-
-                buttonsWrap.appendChild(createArrowButton("prev"));
-
-                getVisiblePages(currentPage, totalPages).forEach((page) => {
-                    if (page === "...") {
-                        const dots = document.createElement("span");
-                        dots.className = "page-dots";
-                        dots.textContent = "...";
-                        buttonsWrap.appendChild(dots);
-                        return;
-                    }
-
-                    const btn = document.createElement("button");
-                    btn.type = "button";
-                    btn.className = "page-btn";
-                    btn.textContent = page;
-
-                    if (page === currentPage) {
-                        btn.classList.add("active");
-                    }
-
-                    btn.addEventListener("click", function () {
-                        currentPage = page;
-                        showPage();
-                    });
-
-                    buttonsWrap.appendChild(btn);
-                });
-
-                buttonsWrap.appendChild(createArrowButton("next"));
-            }
-
-            function createArrowButton(type) {
-                const btn = document.createElement("button");
-                btn.type = "button";
-                btn.className = "page-btn page-arrow";
-
-                if (type === "prev") {
-                    btn.innerHTML = `
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                             stroke-linejoin="round">
-                            <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                    `;
-
-                    btn.disabled = currentPage === 1;
-
-                    btn.addEventListener("click", function () {
-                        if (currentPage > 1) {
-                            currentPage -= 1;
-                            showPage();
-                        }
-                    });
-                }
-
-                if (type === "next") {
-                    btn.innerHTML = `
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                             stroke-linejoin="round">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    `;
-
-                    btn.disabled = currentPage === totalPages;
-
-                    btn.addEventListener("click", function () {
-                        if (currentPage < totalPages) {
-                            currentPage += 1;
-                            showPage();
-                        }
-                    });
-                }
-
-                return btn;
-            }
-
-            function getVisiblePages(current, total) {
-                const pages = [];
-
-                if (total <= 5) {
-                    for (let i = 1; i <= total; i++) {
-                        pages.push(i);
-                    }
-                    return pages;
-                }
-
-                pages.push(1);
-
-                if (current > 3) {
-                    pages.push("...");
-                }
-
-                const start = Math.max(2, current - 1);
-                const end = Math.min(total - 1, current + 1);
-
-                for (let i = start; i <= end; i++) {
-                    pages.push(i);
-                }
-
-                if (current < total - 2) {
-                    pages.push("...");
-                }
-
-                pages.push(total);
-
-                return pages;
-            }
-
-            showPage();
-        });
-    }
-    window.myFunction = myFunction;
+    //  //============   For  Pagination JS  ===========
+    //    function  initPaginationF () {
+    //     const wrappers = document.querySelectorAll(".js-pagination-wrapper");
+    //
+    //     if (!wrappers.length) {
+    //         console.log("No pagination wrapper found");
+    //         return;
+    //     }
+    //
+    //     wrappers.forEach((wrapper) => {
+    //         const items = Array.from(wrapper.querySelectorAll(".js-pagination-item"));
+    //         const pagination = wrapper.querySelector(".js-pagination");
+    //         const info = wrapper.querySelector(".js-pagination-info");
+    //         const buttonsWrap = wrapper.querySelector(".js-pagination-buttons");
+    //
+    //         console.log("items:", items.length);
+    //         console.log("pagination:", pagination);
+    //         console.log("info:", info);
+    //         console.log("buttonsWrap:", buttonsWrap);
+    //
+    //         // check element
+    //         if (!items.length || !pagination || !info || !buttonsWrap) {
+    //             console.log("Pagination element missing");
+    //             return;
+    //         }
+    //
+    //         const limit = parseInt(wrapper.dataset.paginationLimit || "12", 10);
+    //         const label = wrapper.dataset.paginationLabel || "items";
+    //         const totalItems = items.length;
+    //         const totalPages = Math.ceil(totalItems / limit);
+    //
+    //         let currentPage = 1;
+    //
+    //         if (totalPages <= 1) {
+    //             pagination.style.display = "none";
+    //             return;
+    //         }
+    //
+    //         function showPage() {
+    //             const start = (currentPage - 1) * limit;
+    //             const end = start + limit;
+    //
+    //             items.forEach((item, index) => {
+    //                 item.style.display = index >= start && index < end ? "" : "none";
+    //             });
+    //
+    //             const showingStart = start + 1;
+    //             const showingEnd = Math.min(end, totalItems);
+    //
+    //             info.textContent = `Showing ${showingStart}–${showingEnd} of ${totalItems} ${label}`;
+    //
+    //             renderButtons();
+    //         }
+    //
+    //         function renderButtons() {
+    //             buttonsWrap.innerHTML = "";
+    //
+    //             buttonsWrap.appendChild(createArrowButton("prev"));
+    //
+    //             getVisiblePages(currentPage, totalPages).forEach((page) => {
+    //                 if (page === "...") {
+    //                     const dots = document.createElement("span");
+    //                     dots.className = "page-dots";
+    //                     dots.textContent = "...";
+    //                     buttonsWrap.appendChild(dots);
+    //                     return;
+    //                 }
+    //
+    //                 const btn = document.createElement("button");
+    //                 btn.type = "button";
+    //                 btn.className = "page-btn";
+    //                 btn.textContent = page;
+    //
+    //                 if (page === currentPage) {
+    //                     btn.classList.add("active");
+    //                 }
+    //
+    //                 btn.addEventListener("click", function () {
+    //                     currentPage = page;
+    //                     showPage();
+    //                 });
+    //
+    //                 buttonsWrap.appendChild(btn);
+    //             });
+    //
+    //             buttonsWrap.appendChild(createArrowButton("next"));
+    //         }
+    //
+    //         function createArrowButton(type) {
+    //             const btn = document.createElement("button");
+    //             btn.type = "button";
+    //             btn.className = "page-btn page-arrow";
+    //
+    //             if (type === "prev") {
+    //                 btn.innerHTML = `
+    //                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+    //                          stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+    //                          stroke-linejoin="round">
+    //                         <polyline points="15 18 9 12 15 6"></polyline>
+    //                     </svg>
+    //                 `;
+    //
+    //                 btn.disabled = currentPage === 1;
+    //
+    //                 btn.addEventListener("click", function () {
+    //                     if (currentPage > 1) {
+    //                         currentPage -= 1;
+    //                         showPage();
+    //                     }
+    //                 });
+    //             }
+    //
+    //             if (type === "next") {
+    //                 btn.innerHTML = `
+    //                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+    //                          stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+    //                          stroke-linejoin="round">
+    //                         <polyline points="9 18 15 12 9 6"></polyline>
+    //                     </svg>
+    //                 `;
+    //
+    //                 btn.disabled = currentPage === totalPages;
+    //
+    //                 btn.addEventListener("click", function () {
+    //                     if (currentPage < totalPages) {
+    //                         currentPage += 1;
+    //                         showPage();
+    //                     }
+    //                 });
+    //             }
+    //
+    //             return btn;
+    //         }
+    //
+    //         function getVisiblePages(current, total) {
+    //             const pages = [];
+    //
+    //             if (total <= 5) {
+    //                 for (let i = 1; i <= total; i++) {
+    //                     pages.push(i);
+    //                 }
+    //                 return pages;
+    //             }
+    //
+    //             pages.push(1);
+    //
+    //             if (current > 3) {
+    //                 pages.push("...");
+    //             }
+    //
+    //             const start = Math.max(2, current - 1);
+    //             const end = Math.min(total - 1, current + 1);
+    //
+    //             for (let i = start; i <= end; i++) {
+    //                 pages.push(i);
+    //             }
+    //
+    //             if (current < total - 2) {
+    //                 pages.push("...");
+    //             }
+    //
+    //             pages.push(total);
+    //
+    //             return pages;
+    //         }
+    //
+    //         showPage();
+    //     });
+    // }
+    // window.myFunction = myFunction;

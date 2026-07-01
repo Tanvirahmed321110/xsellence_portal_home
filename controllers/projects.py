@@ -3,6 +3,8 @@ from odoo.http import request
 from datetime import date
 from markupsafe import Markup, escape
 from odoo.tools import html2plaintext
+from odoo.addons.xsellence_portal.utilitis.pagination import get_pager
+
 
 
 # ========== For Projects Page  ============
@@ -26,9 +28,24 @@ class XsellencePortal(http.Controller):
         # ===== Final Domain Merge =====
         domain = base_domain + status_domain
 
+
+        # for pagination
+        per_page = int(kw.get('per_page', 12))
+        total = request.env['project.project'].sudo().search_count(domain)
+        # ===== Pager Object Banano (reusable function call) =====
+        pager = get_pager(
+            url='/projects',
+            total=total,
+            page=kw.get('page', 1),
+            per_page=per_page,
+            url_args={'status': status} if status else {}
+        )
+
         projects = request.env['project.project'].sudo().search(
             domain,
-            order='create_date desc'
+            order='create_date desc',
+            offset=pager['offset'],
+            limit=pager['per_page']
         )
 
         statuses = request.env['project.project']._fields['custom_status'].selection
@@ -38,6 +55,7 @@ class XsellencePortal(http.Controller):
             'projects': projects,
             'statuses': statuses,
             'status': status or '',
+            'pager': pager,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Projects', 'url': False},
