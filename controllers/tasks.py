@@ -3,42 +3,60 @@ from odoo.http import request
 from datetime import date
 from odoo.tools import html2plaintext
 from markupsafe import Markup, escape
+from odoo.addons.xsellence_portal.utilitis.pagination import get_pager
 
 
 class XsellencePortal(http.Controller):
     # =============  For Tasks Page  ===============
-    @http.route('/tasks', type='http', auth='public', website=True)
+    @http.route('/tasks', type='http', auth='user', website=True)
     def tasks_f(self, project_id=None, **kw):
 
         domain = []
-
         user = request.env.user
         status = kw.get('status')
 
-        # 🔥 Admin / Internal check
         if user.has_group('base.group_system'):
-            # Admin → all tasks
             domain = []
         else:
-            # portal user only assigned tasks
             domain = [('user_ids', 'in', [user.id])]
 
-        if project_id:
+        if project_id and str(project_id).isdigit():
             domain.append(('project_id', '=', int(project_id)))
 
-        # 🔥 status filter
         if status:
             domain.append(('custom_status', '=', status))
 
-        tasks = request.env['project.task'].sudo().search(domain)
+        # ===== Pagination Setup =====
+        per_page = int(kw.get('per_page', 20))
+        total = request.env['project.task'].sudo().search_count(domain)
+
+        pager = get_pager(
+            url='/tasks',
+            total=total,
+            page=kw.get('page', 1),
+            per_page=per_page,
+            url_args={'status': status} if status else {}
+        )
+
 
         statuses = request.env['project.task'].sudo()._fields['custom_status'].selection
+
+        tasks = request.env['project.task'].sudo().search(
+            domain,
+            order='create_date desc',
+            offset=pager['offset'],
+            limit=pager['per_page']
+        )
+
+
 
         return request.render('xsellence_portal.tasks_page', {
             'active_menu': 'tasks',
             'tasks': tasks,
             'statuses': statuses,
             'selected_status': status,
+            'pager': pager,
+            'total': total,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Tasks', 'url': False},

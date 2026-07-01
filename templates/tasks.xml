@@ -13,7 +13,7 @@
                 <div class="flex-between py-3 gap-5 row-gap-2" style="overflow-x: auto;">
                     <div class="sec-title d-flex gap-2 align-center flex-1 text-nowrap">My Tasks
                         <span
-                                class="count fs-xs flex-center" t-esc="len(tasks)">
+                                class="count fs-xs flex-center" t-esc="total">
                         </span>
                     </div>
 
@@ -336,7 +336,7 @@
 
 
                 <!--================ When task empty ===============-->
-                <t t-else="">
+                 <t t-if="not tasks">
                     <div class="design-wrapper  mt-7" id="error-container">
                         <div class="empty-4">
                             <div class="e4-glass">
@@ -363,32 +363,11 @@
                 </t>
 
 
+
                 <!-- Pagination -->
-                <t t-if="len(tasks) > 16">
-                    <div class="pagination">
-                        <span class="page-info">Showing 1–6 of 24 projects</span>
-                        <div class="page-btns">
-                            <button class="page-btn">
-                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                     stroke-linejoin="round">
-                                    <polyline points="15 18 9 12 15 6"/>
-                                </svg>
-                            </button>
-                            <button class="page-btn active">1</button>
-                            <button class="page-btn">2</button>
-                            <button class="page-btn">3</button>
-                            <button class="page-btn">4</button>
-                            <button class="page-btn">
-                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                     stroke-linejoin="round">
-                                    <polyline points="9 18 15 12 9 6"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </t>
+                <t t-call="xsellence_portal.reusable_pagination"/>
+
+
             </section>
         </t>
 
