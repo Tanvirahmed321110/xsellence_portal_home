@@ -337,6 +337,8 @@
                                 </tbody>
                             </table>
                         </div>
+
+
                     </div>
                 </t>
 
@@ -369,7 +371,7 @@
 
 
                 <!-- Pagination -->
-                <t t-if="total > 4">
+                <t t-if="total > 20">
                     <t t-call="xsellence_portal.reusable_pagination"/>
                 </t>
 
