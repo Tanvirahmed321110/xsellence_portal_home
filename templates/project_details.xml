@@ -208,30 +208,78 @@
                             </div>
 
                             <div class="team-leader mt-5">
-                                <div class="fs-lg fw-bold" style="color:#121212;">Usefull Links:</div>
-                                <div class="flex-column gap-3 mt-3">
+                                <div class="fs-lg fw-bold" style="color:#121212;">Useful Links:</div>
+                                <div class="d-flex align-center mt-4 gap-4">
+                                    <span style="min-width:90px;display:inline-block;font-weight:500;color:var(--color-primary)">
+                                        Github Repo:
+                                    </span>
+                                    <t t-if="project.github_link">
+                                        <a t-att-href="project.github_link" target="_blank">Github Link</a>
+                                    </t>
+                                </div>
+
+
+                                <div class="grid-3  gap-3 mt-4">
+
+                                    <!-- Dev Link -->
                                     <div class="d-flex align-center gap-4">
-                                        <span style="min-width:100px;display:inline-block;font-weight:500;color:var(--color-primary)">
-                                            Github:
-                                        </span>
-                                        <t t-if="project.github_link">
-                                            <a t-att-href="project.github_link" target="_blank">Github Link</a>
-                                        </t>
-                                    </div>
-                                    <div class="d-flex align-center gap-4">
-                                        <span style="min-width:100px;display:inline-block;color:var(--color-primary);font-weight:500">
-                                            Dev Server:
+                                        <span style="min-width:90px;display:inline-block;color:var(--color-primary);font-weight:500">
+                                            Dev Link:
                                         </span>
                                         <t t-if="project.dev_link">
                                             <a t-att-href="project.dev_link" target="_blank">Dev Server Link</a>
                                         </t>
                                     </div>
+
+                                    <!-- Dev User -->
                                     <div class="d-flex align-center gap-4">
-                                        <span style="min-width:100px;display:inline-block;color:var(--color-primary);font-weight:500">
-                                            Live:
+                                        <span style="min-width:90px;display:inline-block;color:var(--color-primary);font-weight:500">
+                                            Dev User:
+                                        </span>
+                                        <t t-if="project.dev_user">
+                                            <p t-esc="project.dev_user" style="padding:2px 4px;background:#ededed;color:var(--color-text-desc)">Dev User</p>
+                                        </t>
+                                    </div>
+
+                                    <!-- Dev Password -->
+                                    <div class="d-flex align-center gap-4">
+                                        <span style="min-width:90px;display:inline-block;color:var(--color-primary);font-weight:500">
+                                            Dev Password:
+                                        </span>
+                                        <t t-if="project.dev_password">
+                                            <p t-esc="project.dev_password" style="padding:2px 4px;background:#ededed;color:var(--color-text-desc)">Dev Password</p>
+                                        </t>
+                                    </div>
+                                </div>
+
+                                <div class="grid-3 gap-3 mt-3" style="border-top:1px solid #ededed;padding-top:12px">
+                                     <!-- Live Link -->
+                                    <div class="d-flex align-center gap-4">
+                                        <span style="min-width:90px;display:inline-block;color:var(--color-primary);font-weight:500">
+                                            Live Link:
                                         </span>
                                         <t t-if="project.live_link">
                                             <a t-att-href="project.live_link" target="_blank">Live Link</a>
+                                        </t>
+                                    </div>
+
+                                    <!-- Live User -->
+                                    <div class="d-flex align-center gap-4">
+                                        <span style="min-width:90px;display:inline-block;color:var(--color-primary);font-weight:500">
+                                            Live User:
+                                        </span>
+                                        <t t-if="project.live_user">
+                                            <p t-esc="project.live_user" style="padding:2px 4px;background:#ededed;color:var(--color-text-desc)">Live User</p>
+                                        </t>
+                                    </div>
+
+                                    <!-- Live Password -->
+                                    <div class="d-flex align-center gap-4">
+                                        <span style="min-width:90px;display:inline-block;color:var(--color-primary);font-weight:500">
+                                            Live Password:
+                                        </span>
+                                        <t t-if="project.live_password">
+                                            <p t-esc="project.live_password" style="padding:2px 4px;background:#ededed;color:var(--color-text-desc)">Live Password</p>
                                         </t>
                                     </div>
                                 </div>
