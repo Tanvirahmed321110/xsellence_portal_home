@@ -15,7 +15,7 @@
                 <div class="flex-between py-3 gap-5 row-gap-2" style="overflow-x: auto;">
                     <div class="sec-title d-flex gap-2 align-center flex-1 text-nowrap">Projects
                         <span class="count fs-xs flex-center">
-                            <t t-esc="len(projects)"/>
+                            <t t-esc="total"/>
                         </span>
                     </div>
 
@@ -369,7 +369,7 @@
 
 
                 <!-- Pagination -->
-                <t t-if="len(projects) > 12">
+                <t t-if="total > 4">
                     <t t-call="xsellence_portal.reusable_pagination"/>
                 </t>
 

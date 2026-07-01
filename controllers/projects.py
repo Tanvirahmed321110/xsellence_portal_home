@@ -30,7 +30,7 @@ class XsellencePortal(http.Controller):
 
 
         # for pagination
-        per_page = int(kw.get('per_page', 12))
+        per_page = int(kw.get('per_page', 4))
         total = request.env['project.project'].sudo().search_count(domain)
         # ===== Pager Object Banano (reusable function call) =====
         pager = get_pager(
@@ -56,6 +56,7 @@ class XsellencePortal(http.Controller):
             'statuses': statuses,
             'status': status or '',
             'pager': pager,
+            'total':total,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Projects', 'url': False},
