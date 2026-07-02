@@ -126,8 +126,210 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="flip-card" data-name="Rakib Hasan">
+                                                    <div class="flip-card-inner">
+                                                        <div class="flip-card-front">
+                                                            <div class="avatar-ring">
+                                                                <img src="https://i.pravatar.cc/150?img=12" alt="Rakib Hasan"/>
+                                                            </div>
+                                                            <div class="emp-name">Rakib Hasan</div>
+                                                            <div class="emp-role">Backend Developer</div>
+                                                            <div class="flip-hint">↻ hover to flip</div>
+                                                        </div>
+                                                        <div class="flip-card-back">
+                                                            <div class="emp-name">Rakib Hasan</div>
+                                                            <div class="info-row">
+                                                                <span class="icon">✉</span>
+                                                                <span class="val">rakib@xsellence.com</span>
+                                                            </div>
+                                                            <div class="info-row">
+                                                                <span class="icon">☎</span>
+                                                                <span class="val">+880 1811-556677</span>
+                                                            </div>
+                                                            <div class="info-row">
+                                                                <span class="icon">🏢</span>
+                                                                <span class="val">Engineering Team</span>
+                                                            </div>
+                                                            <div class="info-row">
+                                                                <span class="icon">
+                                                                    <span class="status-dot away"></span>
+                                                                </span>
+                                                                <span class="val">Away</span>
+                                                            </div>
+                                                            <div class="back-footer">Joined Mar 2023</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                         <div class="flip-card" data-name="Mim Akter">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="avatar-ring">
+                                        <img src="https://i.pravatar.cc/150?img=45" alt="Mim Akter"/>
+                                    </div>
+                                    <div class="emp-name">Mim Akter</div>
+                                    <div class="emp-role">Project Manager</div>
+                                    <div class="flip-hint">↻ hover to flip</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="emp-name">Mim Akter</div>
+                                    <div class="info-row">
+                                        <span class="icon">✉</span>
+                                        <span class="val">mim@xsellence.com</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="icon">☎</span>
+                                        <span class="val">+880 1611-334455</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="icon">🏢</span>
+                                        <span class="val">Management</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="icon">
+                                            <span class="status-dot offline"> </span>
+                                        </span>
+                                        <span class="val">Offline</span>
+                                    </div>
+                                    <div class="back-footer">Joined Sep 2021</div>
+                                </div>
+                            </div>
+                        </div>   <div class="flip-card" data-name="Rakib Hasan">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="avatar-ring">
+                                        <img src="https://i.pravatar.cc/150?img=12" alt="Rakib Hasan"/>
+                                    </div>
+                                    <div class="emp-name">Rakib Hasan</div>
+                                    <div class="emp-role">Backend Developer</div>
+                                    <div class="flip-hint">↻ hover to flip</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="emp-name">Rakib Hasan</div>
+                                    <div class="info-row">
+                                        <span class="icon">✉</span>
+                                        <span class="val">rakib@xsellence.com</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="icon">☎</span>
+                                        <span class="val">+880 1811-556677</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="icon">🏢</span>
+                                        <span class="val">Engineering Team</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="icon">
+                                            <span class="status-dot away"></span>
+                                        </span>
+                                        <span class="val">Away</span>
+                                    </div>
+                                    <div class="back-footer">Joined Mar 2023</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flip-card" data-name="Tanvir Ahmed">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="avatar-ring">
+                                        <img src="https://i.pravatar.cc/150?img=33" alt="Tanvir Ahmed"/>
+                                    </div>
+                                    <div class="emp-name">Tanvir Ahmed</div>
+                                    <div class="emp-role">Full Stack Developer</div>
+                                    <div class="flip-hint">↻ hover to flip</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="emp-name">Tanvir Ahmed</div>
+                                    <div class="info-row">
+                                        <span class="icon">✉</span>
+                                        <span class="val">tanvir@xsellence.com</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="icon">☎</span>
+                                        <span class="val">+880 1911-889900</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="icon">🏢</span>
+                                        <span class="val">Engineering Team</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="icon">
+                                            <span class="status-dot"></span>
+                                        </span>
+                                        <span class="val">Online</span>
+                                    </div>
+                                    <div class="back-footer">Joined Jun 2022</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card" data-name="Rakib Hasan">
+                                                    <div class="flip-card-inner">
+                                                        <div class="flip-card-front">
+                                                            <div class="avatar-ring">
+                                                                <img src="https://i.pravatar.cc/150?img=12" alt="Rakib Hasan"/>
+                                                            </div>
+                                                            <div class="emp-name">Rakib Hasan</div>
+                                                            <div class="emp-role">Backend Developer</div>
+                                                            <div class="flip-hint">↻ hover to flip</div>
+                                                        </div>
+                                                        <div class="flip-card-back">
+                                                            <div class="emp-name">Rakib Hasan</div>
+                                                            <div class="info-row">
+                                                                <span class="icon">✉</span>
+                                                                <span class="val">rakib@xsellence.com</span>
+                                                            </div>
+                                                            <div class="info-row">
+                                                                <span class="icon">☎</span>
+                                                                <span class="val">+880 1811-556677</span>
+                                                            </div>
+                                                            <div class="info-row">
+                                                                <span class="icon">🏢</span>
+                                                                <span class="val">Engineering Team</span>
+                                                            </div>
+                                                            <div class="info-row">
+                                                                <span class="icon">
+                                                                    <span class="status-dot away"></span>
+                                                                </span>
+                                                                <span class="val">Away</span>
+                                                            </div>
+                                                            <div class="back-footer">Joined Mar 2023</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                        <div class="flip-card" data-name="Mim Akter">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="avatar-ring">
+                                        <img src="https://i.pravatar.cc/150?img=45" alt="Mim Akter"/>
+                                    </div>
+                                    <div class="emp-name">Mim Akter</div>
+                                    <div class="emp-role">Project Manager</div>
+                                    <div class="flip-hint">↻ hover to flip</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <div class="emp-name">Mim Akter</div>
+                                    <div class="info-row">
+                                        <span class="icon">✉</span>
+                                        <span class="val">mim@xsellence.com</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="icon">☎</span>
+                                        <span class="val">+880 1611-334455</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="icon">🏢</span>
+                                        <span class="val">Management</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="icon">
+                                            <span class="status-dot offline"> </span>
+                                        </span>
+                                        <span class="val">Offline</span>
+                                    </div>
+                                    <div class="back-footer">Joined Sep 2021</div>
+                                </div>
+                            </div>
+                        </div>  <div class="flip-card" data-name="Mim Akter">
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
                                     <div class="avatar-ring">
