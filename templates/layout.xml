@@ -75,8 +75,9 @@
 
                                     <!-- Today's Date -->
                                     <div class="date flex-column gap-1 align-center justify-center" style="gap:6px;">
-                                        <span id="live-date" style="font-size:13.5px"> </span>
-                                        <span id="live-time" style="font-size:12.5px;font-weight:500;color:#f1ac2d"> </span>
+                                        <span id="live-date" style="font-size:13.5px"></span>
+                                        <span id="live-time"
+                                              style="font-size:12.5px;font-weight:500;color:#f1ac2d"></span>
                                     </div>
 
 
@@ -303,6 +304,27 @@
                                     </a>
                                 </li>
 
+                                <li>
+                                    <a href="/employees" class="menu-item"
+                                       t-attf-class="menu-item #{active_menu == 'add_timesheet' and 'active' or ''}">
+                                        <div class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                 viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round"
+                                                 stroke-linejoin="round">
+                                                <!-- Center/Main Employee -->
+                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                                <circle cx="9" cy="7" r="4"/>
+
+                                                <!-- Right Side Employee (Background) -->
+                                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                            </svg>
+                                        </div>
+                                        <span class="text">Employees</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
 

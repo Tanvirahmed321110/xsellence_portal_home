@@ -42,6 +42,7 @@
         'templates/ticket_details.xml',
         'templates/task_details.xml',
         'templates/edit_task.xml',
+        'templates/employees.xml',
         'templates/breadcrumb.xml',
         'templates/alert.xml',
         'templates/pagination.xml',
