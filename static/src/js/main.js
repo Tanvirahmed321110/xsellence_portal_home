@@ -72,6 +72,7 @@ function searchF(cardSelector, nameSelector, idSelector) {
 
     const searchInput = document.querySelector('.search-input')
     const cards = document.querySelectorAll(cardSelector)
+    const listRows = document.querySelectorAll('#panel-list tbody tr')
 
     // ✅ Get or CREATE error container dynamically
     let errorContainer = document.getElementById('error-container')
@@ -123,7 +124,8 @@ function searchF(cardSelector, nameSelector, idSelector) {
 
         if (value === '') {
             cards.forEach(card => card.style.display = 'block')
-            errorContainer.style.display = 'none'  // ✅
+            listRows.forEach(row => row.style.display = '')
+            errorContainer.style.display = 'none'
             return
         }
 
@@ -141,6 +143,23 @@ function searchF(cardSelector, nameSelector, idSelector) {
                 found = true
             } else {
                 card.style.display = 'none'
+            }
+        })
+
+        listRows.forEach(row => {
+            const name = row.children[0].innerText.toLowerCase()
+            const idEl = row.querySelector('.btn-primary')
+
+            let rowId = ''
+            if (idEl) {
+                rowId = idEl.getAttribute('href').split('/').pop()
+            }
+
+            if (name.includes(value) || rowId.includes(value)) {
+                row.style.display = ''
+                found = true
+            } else {
+                row.style.display = 'none'
             }
         })
 
