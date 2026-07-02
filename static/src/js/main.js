@@ -177,23 +177,38 @@ document.addEventListener("DOMContentLoaded", function () {
     const sidebar = document.getElementById('sidebar');
 
     function openSidebarDesktop() {
-        const collaps_btn = document.getElementById('collaps-btn');
-        const main_content = document.querySelector('.main-content');
-        const notic_board = document.getElementById('notic-board');
+    const collaps_btn = document.getElementById('collaps-btn');
+    const main_content = document.querySelector('.main-content');
+    const notic_board = document.getElementById('notic-board');
 
-        if (!collaps_btn || !main_content || !sidebar || !notic_board) {
-            console.log("Sidebar elements not found ❌");
-            return;
-        }
-
-        collaps_btn.addEventListener('click', function () {
-            sidebar.classList.toggle('sidebar-small');
-            main_content.classList.toggle('main-content-big');
-            notic_board.classList.toggle('big');
-        });
+    if (!collaps_btn || !main_content || !sidebar || !notic_board) {
+        console.log("Sidebar elements not found ❌");
+        return;
     }
 
-    openSidebarDesktop()
+    // Page load হলে previous state apply
+    const isCollapsed = localStorage.getItem('sidebarCollapsed');
+
+    if (isCollapsed === 'true') {
+        sidebar.classList.add('sidebar-small');
+        main_content.classList.add('main-content-big');
+        notic_board.classList.add('big');
+    }
+
+    collaps_btn.addEventListener('click', function () {
+        sidebar.classList.toggle('sidebar-small');
+        main_content.classList.toggle('main-content-big');
+        notic_board.classList.toggle('big');
+
+        // Save state
+        localStorage.setItem(
+            'sidebarCollapsed',
+            sidebar.classList.contains('sidebar-small')
+        );
+    });
+}
+
+openSidebarDesktop();
 
 
 

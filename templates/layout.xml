@@ -581,6 +581,11 @@
 
                 <!--    Javascript Links Here     -->
                 <script src="/xsellence_portal/static/src/js/main.js?v=9"></script>
+               <script>
+                if (localStorage.getItem('sidebarCollapsed') === 'true') {
+                    document.documentElement.classList.add('sidebar-collapsed');
+                }
+            </script>
             </body>
         </html>
     </template>
