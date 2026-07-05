@@ -35,7 +35,9 @@
                             </div>
                             <div>
                                 <div class="section-title head-primary">Create New Project</div>
-                                <p class="desc mt-1">Add the details of your new project (<span class="required">*</span> are required.) </p>
+                                <p class="desc mt-1">Add the details of your new project (<span class="required">*
+                                </span> are required.)
+                                </p>
                             </div>
                         </div>
 
@@ -45,14 +47,16 @@
                                 <label for="name">Name
                                     <span class="required">*</span>
                                 </label>
-                                <input type="text" required="required" name="name" id="name" placeholder="Project Name"/>
+                                <input type="text" required="required" name="name" id="name"
+                                       placeholder="Project Name"/>
                             </div>
 
                             <!--======= For Company Name =======-->
                             <div class="input-control">
-                                <label for="partner_id" data-select-target="partner_id" class="select-open-label">Customer Name
+                                <label for="partner_id" data-select-target="partner_id" class="select-open-label">
+                                    Customer Name
                                 </label>
-                                  <select name="partner_id" id="partner_id" >
+                                <select name="partner_id" id="partner_id">
                                     <option value="">Select Customer</option>
                                     <t t-foreach="customers" t-as="customer">
                                         <option t-att-value="customer.id">
@@ -66,7 +70,8 @@
                         <div class="grid-2 gap-5 grid-sm-1">
                             <!--======= For Project Manager =======-->
                             <div class="input-control">
-                                <label for="user_id" data-select-target="user_id" class="select-open-label">Project Manager
+                                <label for="user_id" data-select-target="user_id" class="select-open-label">Project
+                                    Manager
                                     <span class="required">*</span>
                                 </label>
                                 <select name="user_id" id="user_id" required="required">
@@ -81,7 +86,8 @@
 
                             <!--======= For  Status =======-->
                             <div class="input-control">
-                                <label for="custom_status"  data-select-target="custom_status" class="select-open-label">Project Status
+                                <label for="custom_status" data-select-target="custom_status" class="select-open-label">
+                                    Project Status
                                 </label>
                                 <select name="custom_status" id="custom_status">
                                     <option disabled="disabled" value="Select Status">Select Status</option>
@@ -100,7 +106,8 @@
                             <div class="input-control">
                                 <label for="date_start">Start Date
                                 </label>
-                                <input type="date" t-att-value="today" name="date_start" id="date_start"  placeholder="Project Manager"/>
+                                <input type="date" t-att-value="today" name="date_start" id="date_start"
+                                       placeholder="Project Manager"/>
                             </div>
 
                             <!--======= For End Date =======-->
@@ -108,7 +115,8 @@
                                 <label for="date">End Date
                                     <span class="required">*</span>
                                 </label>
-                                <input type="date" required="required" name="date" id="date" placeholder="Company Name"/>
+                                <input type="date" required="required" name="date" id="date"
+                                       placeholder="Company Name"/>
                             </div>
                         </div>
 
@@ -118,7 +126,8 @@
                                 <label for="assigned_user_ids">Assign Members
                                     <span class="required">*</span>
                                 </label>
-                                <select name="assigned_user_ids" required="required" id="assigned_user_ids" multiple="multiple">
+                                <select name="assigned_user_ids" required="required" id="assigned_user_ids"
+                                        multiple="multiple">
                                     <t t-foreach="users" t-as="user">
                                         <option t-att-value="user.id">
                                             <t t-esc="user.name"/>
@@ -131,7 +140,7 @@
                             <div class="input-control">
                                 <label for="tag_ids">Tags
                                 </label>
-                                <select  name="tag_ids" id="tag_ids"  multiple="multiple">
+                                <select name="tag_ids" id="tag_ids" multiple="multiple">
                                     <t t-foreach="tags" t-as="tag">
                                         <option t-att-value="tag.id">
                                             <t t-esc="tag.name"/>
@@ -144,7 +153,8 @@
                         <div class="grid-1">
                             <!--======= For  Status =======-->
                             <div class="input-control">
-                                <label for="custom_priority"  data-select-target="custom_priority" class="select-open-label">Project Priority
+                                <label for="custom_priority" data-select-target="custom_priority"
+                                       class="select-open-label">Project Priority
                                 </label>
                                 <select name="custom_priority" id="custom_priority">
                                     <t t-foreach="priority" t-as="item">
@@ -177,23 +187,43 @@
 
                                 <!--======= For Live =======-->
                                 <div class="grid-3 gap-3 grid-sm-1">
+
+                                    <!-- Dummy fields to block browser autofill -->
+                                    <input type="text" style="display:none" autocomplete="username"/>
+                                    <input type="password" style="display:none" autocomplete="current-password"/>
+
                                     <div class="input-control">
                                         <label for="live_link">Live Link</label>
-                                        <input name="live_link" id="live_link" placeholder="Live  Link..."/>
+                                        <input type="text"
+                                               name="live_link"
+                                               id="live_link"
+                                               placeholder="Live Link..."
+                                               autocomplete="off"/>
                                     </div>
+
                                     <div class="input-control">
                                         <label for="live_user">User</label>
-                                        <input name="live_user" id="live_link" placeholder="User Type"/>
+                                        <input type="text"
+                                               name="live_user"
+                                               id="live_user"
+                                               placeholder="User Type"
+                                               autocomplete="off"/>
                                     </div>
+
                                     <div class="input-control">
                                         <label for="live_password">Live Password</label>
-                                        <input type="password" name="live_password" id="live_password" placeholder="Live  Password"/>
+                                        <input type="password"
+                                               name="live_password"
+                                               id="live_password"
+                                               placeholder="Live Password"
+                                               autocomplete="new-password"/>
                                     </div>
+
                                 </div>
 
                                 <!--======= For Dev  =======-->
                                 <div class="grid-3 gap-3 grid-sm-1">
-                                   <div class="input-control">
+                                    <div class="input-control">
                                         <label for="dev_link">Dev Link</label>
                                         <input name="dev_link" id="dev_link" placeholder="Dev Server Link..."/>
                                     </div>
@@ -203,7 +233,8 @@
                                     </div>
                                     <div class="input-control">
                                         <label for="dev_password">Dev Password</label>
-                                        <input type="password" name="dev_password" id="dev_password" placeholder="Dev Password"/>
+                                        <input type="password" name="dev_password" id="dev_password"
+                                               placeholder="Dev Password"/>
                                     </div>
                                 </div>
                             </div>

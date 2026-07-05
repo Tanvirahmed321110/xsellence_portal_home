@@ -1,4 +1,3 @@
-
 /*==============  Submit Form Here  ==============*/
 .submit-form {
     display: flex;
@@ -14,23 +13,26 @@
     z-index: 2;
     transition: var(--transition-base);
 }
+
 /* When load then load animation */
-.submit-form{
+.submit-form {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeUp 1.4s ease forwards;
 }
-.team-leader{
+
+.team-leader {
     border: 1px solid var(--color-tag);
     padding: 16px;
     border-radius: var(--radius-xl);
 }
 
-.team-leader a{
+.team-leader a {
     color: var(--color-text-link);
     font-weight: 500;
     text-decoration: underline;
 }
+
 .helpdesk .card-items > *,
 .h-items > * {
     opacity: 0;
@@ -42,6 +44,7 @@
     transform: translateY(40px);
     animation-delay: .3s;
 }
+
 @keyframes fadeUp {
     to {
         opacity: 1;
@@ -76,10 +79,6 @@
 }
 
 
-
-
-
-
 /*=========================  Timesheet page  ===========================*/
 .empty-timesheet-box {
     width: 100%;
@@ -87,9 +86,8 @@
     padding: 42px 20px;
     border: 1px dashed #e5e7eb;
     border-radius: 18px;
-    background:
-        radial-gradient(circle at top, rgba(189, 9, 105, 0.08), transparent 35%),
-        linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+    background: radial-gradient(circle at top, rgba(189, 9, 105, 0.08), transparent 35%),
+    linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -141,8 +139,6 @@
     transform: translateY(-1px);
     box-shadow: 0 10px 24px rgba(189, 9, 105, 0.22);
 }
-
-
 
 
 /*===============================  Employee Page  ======================= */
@@ -203,6 +199,7 @@
     background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
     opacity: 0.1;
 }
+
 .employees .flip-card-front::after {
     content: "";
     position: absolute;
@@ -214,23 +211,29 @@
     background: linear-gradient(125deg, var(--color-primary), var(--color-secondary));
     opacity: 0.1;
 }
+
 .employees .avatar-ring {
     width: 120px;
     height: 120px;
     border-radius: 22%;
     padding: 3px;
-    /*background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));*/
-    background: linear-gradient(135deg, var(--color-primary),var(--color-tag));
+    background: linear-gradient(135deg, var(--color-primary), var(--color-tag));
     margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+
 .employees .avatar-ring img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
+    width: 90%;
+    height: 90%;
+    border-radius: 25%;
     object-fit: cover;
-    border: 5px solid #fff;
-    display: block;
+    border: 3px solid #ddd;
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }
 
 .employees .emp-name {
@@ -261,7 +264,7 @@
 
 /* ---- Back face ---- */
 .employees .flip-card-back {
-    background: linear-gradient(160deg,#3d1a5c, #d9117b);
+    background: linear-gradient(160deg, #3d1a5c, #d9117b);
     color: #fff;
     transform: rotateY(180deg);
     display: flex;
@@ -283,7 +286,7 @@
     gap: 10px;
     font-size: 12.5px;
     padding: 7px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     text-align: left;
 }
 
@@ -324,13 +327,10 @@
 .employees .back-footer {
     margin-top: 14px;
     font-size: 11px;
-    background: rgba(255,255,255,0.18);
+    background: rgba(255, 255, 255, 0.18);
     padding: 5px 16px;
     border-radius: 20px;
 }
-
-
-
 
 
 .timesheets .filter-head,
@@ -340,7 +340,6 @@
     border-radius: var(--radius-md);
     overflow-x: auto;
 }
-
 
 
 .timesheets .table-wrap {
@@ -362,13 +361,12 @@
     transition: var(--transition-fast);
 }
 
- .table-wrap .action-btn{
-    padding:6px 10px;
-    gap:4px;
-    background:var(--color-primary);
-    color:var(--color-white)
- }
-
+.table-wrap .action-btn {
+    padding: 6px 10px;
+    gap: 4px;
+    background: var(--color-primary);
+    color: var(--color-white)
+}
 
 
 .timesheets .action-btn.del:hover {
@@ -426,7 +424,6 @@
 }
 
 
-
 .task-details .task-card {
     border-radius: var(--fs-lg);
 }
@@ -434,8 +431,8 @@
 .task-details pre {
     width: 95% !important;
     white-space: nowrap !important;
-    line-height:1.8;
-    color:var(--color-text-desc);
+    line-height: 1.8;
+    color: var(--color-text-desc);
 }
 
 .task-details .task-card .card-body {
@@ -492,9 +489,8 @@
 }
 
 
-
 /*==============  Ts Control Library  ==============*/
-.ts-control{
+.ts-control {
     padding: 10px 12px;
     border-radius: var(--radius-sm);
     background-color: var(--color-white-off);
@@ -519,10 +515,6 @@
     color: var(--color-text-primary);
     font-weight: 500;
 }
-
-
-
-
 
 
 /*=========================  Profile page  ===========================*/
@@ -580,9 +572,9 @@
     border-radius: 8px;
     padding: 4px;
     background: linear-gradient(to bottom,
-            var(--color-secondary) 41%,
-            var(--color-white) 10%,
-            var(--color-white) 90%);
+    var(--color-secondary) 41%,
+    var(--color-white) 10%,
+    var(--color-white) 90%);
 }
 
 .profile .profile-info .profile-img img {
@@ -609,7 +601,6 @@
     font-weight: 500;
     color: var(--color-text-desc);
 }
-
 
 
 /*=========== Main Info ===========*/
@@ -785,9 +776,6 @@
 }
 
 
-
-
-
 /*=========================  Helpdesk page  ===========================*/
 .helpdesk .helpdesk-card {
     display: flex;
@@ -815,7 +803,7 @@
     font-size: var(--fs-xs);
 }
 
-.helpdesk-card:hover  svg{
+.helpdesk-card:hover svg {
     animation: bounce 0.5s ease;
 }
 
@@ -996,11 +984,6 @@
 }
 
 
-
-
-
-
-
 /*==============  Helpdesk Details Page  ==============*/
 .page {
     max-width: 980px;
@@ -1137,7 +1120,6 @@
 }
 
 
-
 /* ── Grid ── */
 .detail-grid {
     display: grid;
@@ -1204,7 +1186,7 @@
     line-height: 1.8;
 }
 
-.helpdesk-details .description-text p+p {
+.helpdesk-details .description-text p + p {
     margin-top: var(--space-3);
 }
 
@@ -1288,8 +1270,6 @@
     padding: 2px 8px;
     border-radius: var(--radius-pill);
 }
-
-
 
 
 .helpdesk-details .person-name {
@@ -1414,18 +1394,21 @@
 }
 
 
-
 /*===========================  Alert Page  ======================== */
-.alert-wrap {height: 100%;}
-.alert-wrap .submit-form{
+.alert-wrap {
+    height: 100%;
+}
+
+.alert-wrap .submit-form {
     max-width: 500px;
     border-radius: var(--radius-3xl);
 }
-  .d5-wrap {
+
+.d5-wrap {
     width: 440px;
     text-align: center;
     padding: 20px;
-    padding-top:48px;
+    padding-top: 48px;
 }
 
 .d5-icon-circle {
@@ -1471,11 +1454,21 @@
 }
 
 @keyframes popBounce {
-    0%   { transform: scale(1);    }
-    30%  { transform: scale(1.1);  }
-    50%  { transform: scale(0.95); }
-    70%  { transform: scale(1.1);  }
-    100% { transform: scale(1);    }
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    70% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 
@@ -1580,44 +1573,48 @@
 }
 
 .submit-form select option[disabled] {
-  color: gray;
+    color: gray;
 }
 
-@media (max-width:1439px) {
-      .task-details .task-card {
+@media (max-width: 1439px) {
+    .task-details .task-card {
         width: 60%;
         min-width: 60%;
     }
 
 
     .alert-wrap .submit-form {
-        padding:8px;
-        max-width:450px;
+        padding: 8px;
+        max-width: 450px;
         border-radius: 20px;
     }
+
     .d5-icon-circle {
         width: 70px;
         height: 70px;
         font-size: 36px;
     }
+
     .table-wrap td {
         padding: 8px 10px;
-        font-size:var(--fs-sm);
+        font-size: var(--fs-sm);
         font-weight: 400;
         max-width: 220px;
     }
-     .table-wrap th{
-         padding: 16px 10px;
-         font-size:var(--fs-xs);
-         font-weight:600;
-     }
+
+    .table-wrap th {
+        padding: 16px 10px;
+        font-size: var(--fs-xs);
+        font-weight: 600;
+    }
 }
 
 /* Mobile Responsive Code */
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .task-details .task-card {
-        min-width:100%;
+        min-width: 100%;
     }
+
     .detail-grid {
         grid-template-columns: 1fr;
     }
@@ -1703,5 +1700,59 @@
     .helpdesk .helpdesk-card svg {
         height: 20px;
         width: 20px;
+    }
+
+
+    /* =============  Employee Page ============== */
+    .employees .flip-card-front,
+    .employees .flip-card-back {
+        padding: 12px !important;
+    }
+
+    .employees .flip-card {
+        background: transparent;
+        height: 240px;
+        perspective: 1000px;
+    }
+
+    .employees .avatar-ring {
+        width: 90px;
+        height: 90px;
+        border-radius: 20%;
+        padding: 2px;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-tag));
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .employees .avatar-ring img {
+    border-radius: 20%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    display: block;
+}
+    .employees .flip-card-front::after {
+    bottom: -40px;
+    left: -40px;
+    width: 90px;
+    height: 90px;
+}
+    .employees .flip-card-front::before {
+    top: -40px;
+    right: -40px;
+    width: 100px;
+    height: 100px;
+}
+    .employees .emp-role {
+    font-size: 12px;
+}.employees .emp-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+    .employees .emp-role {
+        font-size: 11.5px;
     }
 }

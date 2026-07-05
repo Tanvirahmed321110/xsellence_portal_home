@@ -17,19 +17,6 @@ class XsellencePortal(http.Controller):
         is_portal = user.has_group('base.group_portal')
         is_internal = user.has_group('base.group_user')
 
-        # custom group print
-        # print("=" * 50)
-        # print(f"User: {user.name}")
-        # print("-" * 30)
-        # print("Custom Groups:")
-        # print(f"  - Admin: {is_admin}")
-        # print(f"  - Project Manager: {is_project_manager}")
-        # print(f"  - General Employee: {is_general_employee}")
-        # print("-" * 30)
-        # print("Built-in Groups:")
-        # print(f"  - Portal User: {is_portal}")
-        # print(f"  - Internal User: {is_internal}")
-        # print("=" * 50)
 
         # user type
         if is_admin:
