@@ -5,8 +5,65 @@
         <t t-call="xsellence_portal.custom_layout">
             <section class="">
 
+                <!--=================|| Users Buttons ||==================  -->
+                <div class="d-flex user-btns align-center gap-3 gap-sm-2 flex-wrap">
+                    <a href="" class="user-btn d-flex align-center gap-2 active">
+                        <img/>
+                        <span> Tanvir </span>
+                    </a>
+                    <a href="" class="user-btn  d-flex align-center gap-2">
+                        <img/>
+                        <span> Munna </span>
+                    </a>
+                     <a href="" class="user-btn  d-flex align-center gap-2">
+                        <img/>
+                        <span> Habib </span>
+                    </a>
+                    <a href="" class="user-btn  d-flex align-center gap-2">
+                        <img/>
+                        <span> Fahim </span>
+                    </a>
+                     <a href="" class="user-btn  d-flex align-center gap-2">
+                        <img/>
+                        <span> Shamiul </span>
+                    </a>
+                    <a href="" class="user-btn  d-flex align-center gap-2">
+                        <img/>
+                        <span> Shuvo </span>
+                    </a>
+                     <a href="" class="user-btn  d-flex align-center gap-2">
+                        <img/>
+                        <span> Foysal </span>
+                    </a>
+                    <a href="" class="user-btn  d-flex align-center gap-2">
+                        <img/>
+                        <span> Hasan </span>
+                    </a> <a href="" class="user-btn  d-flex align-center gap-2">
+                        <img/>
+                        <span> Foysal </span>
+                    </a>
+                    <a href="" class="user-btn  d-flex align-center gap-2">
+                        <img/>
+                        <span> Hasan </span>
+                    </a>
+                     <a href="" class="user-btn  d-flex align-center gap-2">
+                        <img/>
+                        <span> Deloyar  </span>
+                    </a>
+                    <a href="" class="user-btn  d-flex align-center gap-2">
+                        <img/>
+                        <span> Hasan </span>
+                    </a>
+
+                    <a href="" class="user-btn  d-flex align-center gap-2">
+                        <img/>
+                        <span> Razzak </span>
+                    </a>
+
+                </div>
+
                 <!--=================|| Carts Here ||==================  -->
-                <div class="grid-4 grid-sm-2 gap-4 gap-sm-3 dashboard-items">
+                <div class="grid-4 mt-7 grid-sm-2 gap-4 gap-sm-3 dashboard-items">
                     <!-- Total Tasks -->
                     <div class="card">
                         <p class="title">Total Tasks</p>
