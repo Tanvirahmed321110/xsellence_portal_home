@@ -13,7 +13,7 @@
                            t-attf-class="user-btn d-flex align-center gap-2 #{'active' if selected_employee_id == employee.id else ''}">
 
                             <img t-if="employee.image_128"
-                                 t-att-src="'/web/image/hr.employee/%s/image_128' % employee.id"
+                                 t-att-src="image_data_uri(employee.image_128)"
                                  t-att-alt="employee.name"
                                  class="employee-avatar"/>
 

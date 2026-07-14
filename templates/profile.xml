@@ -18,8 +18,7 @@
                             <!-- User Image -->
                             <div class="profile-img">
                                 <t t-if="employee.image_512">
-                                    <!-- ✅ Employee-এর নিজের image থাকলে সেটা দেখাবে -->
-                                    <img t-att-src="'web/image/hr.employee/%s/image_512' % employee.id"
+                                      <img t-att-src="image_data_uri(employee.image_128)"
                                          alt="profile image"/>
                                 </t>
                                 <t t-else="">

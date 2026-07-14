@@ -22,22 +22,23 @@
                 <!--==============|| All Employees  ||================-->
                 <div class=" mt-7">
                     <div class="grid-5 gap-5 grid-lg-4 gap-lg-4 grid-sm-2 gap-sm-3 employees">
-                        
+
                         <t t-foreach="employees" t-as="employee">
 
                             <div class="flip-card" data-name="Rakib Hasan">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
                                         <div class="avatar-ring">
-                                            <img t-if="employee.image_128"
-                                                 t-att-src="'/web/image/hr.employee/%s/image_128' % employee.id"
-                                                 t-att-alt="employee.name"
-                                                 class="employee-avatar"/>
-
-                                            <img t-else=""
-                                                 src="/xsellence_portal/static/src/img/default_user.png"
-                                                 t-att-alt="employee.name"
-                                                 class="employee-avatar"/>
+                                            <t t-if="employee.image_128">
+                                                <img t-att-src="image_data_uri(employee.image_128)"
+                                                     t-att-alt="employee.name"
+                                                     class="employee-avatar"/>
+                                            </t>
+                                            <t t-else="">
+                                                <img src="/xsellence_portal/static/src/img/default_user.png"
+                                                     t-att-alt="employee.name"
+                                                     class="employee-avatar"/>
+                                            </t>
                                         </div>
                                         <div class="emp-name" t-esc="employee.name"></div>
                                         <t t-if="employee.job_id.name">
