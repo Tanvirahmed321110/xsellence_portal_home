@@ -28,7 +28,10 @@ class XsellencePortal(http.Controller):
 
         # ===== Pagination Setup =====
         per_page = int(kw.get('per_page', 20))
-        total = request.env['project.task'].sudo().search_count(domain)
+
+        # main request
+        Task = request.env['project.task'].sudo()
+        total = Task.search_count(domain)
 
         pager = get_pager(
             url='/tasks',
@@ -39,9 +42,9 @@ class XsellencePortal(http.Controller):
         )
 
 
-        statuses = request.env['project.task'].sudo()._fields['custom_status'].selection
+        statuses = Task._fields['custom_status'].selection
 
-        tasks = request.env['project.task'].sudo().search(
+        tasks = Task.search(
             domain,
             order='create_date desc',
             offset=pager['offset'],
