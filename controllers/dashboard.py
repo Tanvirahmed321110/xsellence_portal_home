@@ -38,10 +38,16 @@ class XsellencePortal(http.Controller):
             user_role = 'public'
             print("Role: PUBLIC USER")
 
+        active_employees = request.env['hr.employee'].sudo().search([
+            ('active', '=', True),
+        ],order='name asc')
+
+
         return request.render('xsellence_portal.dashboard_page', {
             'active_menu': 'dashboard',
             'user_type': user_role,
             'is_admin': is_admin,
             'is_project_manager': is_project_manager,
             'is_general_employee': is_general_employee,
+            'active_employees':active_employees
         })

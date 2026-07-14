@@ -3,62 +3,30 @@
         <link rel="stylesheet" href="/xsellence_portal/static/src/css/dashboard.css?v=14"/>
 
         <t t-call="xsellence_portal.custom_layout">
-            <section class="">
+            <section class="" style="position:relative">
 
                 <!--=================|| Users Buttons ||==================  -->
                 <div class="d-flex user-btns align-center gap-3 gap-sm-2 flex-wrap">
-                    <a href="" class="user-btn d-flex align-center gap-2 active">
-                        <img/>
-                        <span> Tanvir </span>
-                    </a>
-                    <a href="" class="user-btn  d-flex align-center gap-2">
-                        <img/>
-                        <span> Munna </span>
-                    </a>
-                     <a href="" class="user-btn  d-flex align-center gap-2">
-                        <img/>
-                        <span> Habib </span>
-                    </a>
-                    <a href="" class="user-btn  d-flex align-center gap-2">
-                        <img/>
-                        <span> Fahim </span>
-                    </a>
-                     <a href="" class="user-btn  d-flex align-center gap-2">
-                        <img/>
-                        <span> Shamiul </span>
-                    </a>
-                    <a href="" class="user-btn  d-flex align-center gap-2">
-                        <img/>
-                        <span> Shuvo </span>
-                    </a>
-                     <a href="" class="user-btn  d-flex align-center gap-2">
-                        <img/>
-                        <span> Foysal </span>
-                    </a>
-                    <a href="" class="user-btn  d-flex align-center gap-2">
-                        <img/>
-                        <span> Hasan </span>
-                    </a> <a href="" class="user-btn  d-flex align-center gap-2">
-                        <img/>
-                        <span> Foysal </span>
-                    </a>
-                    <a href="" class="user-btn  d-flex align-center gap-2">
-                        <img/>
-                        <span> Hasan </span>
-                    </a>
-                     <a href="" class="user-btn  d-flex align-center gap-2">
-                        <img/>
-                        <span> Deloyar  </span>
-                    </a>
-                    <a href="" class="user-btn  d-flex align-center gap-2">
-                        <img/>
-                        <span> Hasan </span>
-                    </a>
 
-                    <a href="" class="user-btn  d-flex align-center gap-2">
-                        <img/>
-                        <span> Razzak </span>
-                    </a>
+                    <t t-foreach="active_employees" t-as="employee">
+                        <a t-att-href="'/employee/dashboard?employee_id=%s' % employee.id"
+                           t-attf-class="user-btn d-flex align-center gap-2 #{'active' if selected_employee_id == employee.id else ''}">
+
+                            <img t-if="employee.image_128"
+                                 t-att-src="'/web/image/hr.employee/%s/image_128' % employee.id"
+                                 t-att-alt="employee.name"
+                                 class="employee-avatar"/>
+
+                            <img t-else=""
+                                 src="/xsellence_portal/static/src/img/default_user.png"
+                                 t-att-alt="employee.name"
+                                 class="employee-avatar"/>
+
+                            <span t-esc="employee.name"/>
+
+                        </a>
+                    </t>
+
 
                 </div>
 
@@ -628,6 +596,20 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Demo Data Popup -->
+<div id="demoDataPopup" class="demo-data-popup-overlay">
+    <div class="demo-data-popup-box">
+        <button type="button"
+                id="closeDemoDataPopup"
+                class="demo-data-popup-close">
+            ×
+        </button>
+
+        <h2>Demo Data</h2>
+    </div>
+</div>
+
             </section>
             <script>
                 const scoreElements = document.querySelectorAll('.d4-score-num');
@@ -660,6 +642,28 @@
                 }
 
                 animateCounter();
+                });
+
+
+
+                <!-- demo popup-->
+                document.addEventListener("DOMContentLoaded", function () {
+                    const popup = document.getElementById("demoDataPopup");
+                    const closeButton = document.getElementById("closeDemoDataPopup");
+
+                    setTimeout(function () {
+                        popup.classList.add("show");
+                    }, 4000);
+
+                    closeButton.addEventListener("click", function () {
+                        popup.classList.remove("show");
+                    });
+
+                    popup.addEventListener("click", function (event) {
+                        if (event.target === popup) {
+                            popup.classList.remove("show");
+                        }
+                    });
                 });
             </script>
         </t>

@@ -1,5 +1,69 @@
 /* ============================== Dashboard Here ============================== */
 
+ /*Demo data popur*/
+ .demo-data-popup-overlay {
+        position: absolute;
+        z-index: 99;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+         height: 100%;
+         top:0;
+         left:0;
+        background: rgba(20, 8, 50, 0.45);
+        backdrop-filter: blur(3px);
+        border-radius: 16px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.35s ease;
+    }
+
+    .demo-data-popup-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .demo-data-popup-box {
+        position: relative;
+        width: 350px;
+        max-width: calc(100% - 30px);
+        padding: 55px 30px;
+        background: #ffffff;
+        border-radius: 18px;
+        box-shadow: 0 20px 60px rgba(31, 12, 80, 0.3);
+        text-align: center;
+        transform: scale(0.8);
+        transition: transform 0.35s ease;
+    }
+
+    .demo-data-popup-overlay.show .demo-data-popup-box {
+        transform: scale(1);
+    }
+
+    .demo-data-popup-box h2 {
+        margin: 0;
+        color: #d90b7b;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .demo-data-popup-close {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+
+        padding: 0;
+        border: none;
+        background: transparent;
+
+        color: #777;
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+/*================  User Buttons ===============*/
 .user-btns .user-btn {
     border: 1px solid var(--border-primary);
     padding: 7px 14px;
@@ -24,6 +88,8 @@
     border:1px solid var(--border-primary);
 }
 
+
+/*================  Dashboard Card ===============*/
 .dashboard-items .card {
     background-color: var(--color-white);
     padding: 24px 20px;

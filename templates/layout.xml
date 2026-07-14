@@ -306,7 +306,7 @@
 
                                 <li>
                                     <a href="/employees" class="menu-item"
-                                       t-attf-class="menu-item #{active_menu == 'add_timesheet' and 'active' or ''}">
+                                       t-attf-class="menu-item #{active_menu == 'employees' and 'active' or ''}">
                                         <div class="icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                                  viewBox="0 0 24 24"
