@@ -130,30 +130,30 @@
                                 <div class="user">
                                     <!--==========  Profile Image and Dropdown Here ============= -->
                                     <div class="profile-img-wrapper">
-    <t t-set="current_user" t-value="request.env.user"/>
-    <t t-set="current_employee"
-       t-value="request.env['hr.employee'].sudo().search([('user_id','=',current_user.id)], limit=1)"/>
+                                        <t t-set="current_user" t-value="request.env.user"/>
+                                        <t t-set="current_employee"
+                                           t-value="request.env['hr.employee'].sudo().search([('user_id','=',current_user.id)], limit=1)"/>
 
-    <a href="/profile" class="profile-img">
-        <t t-if="current_employee and current_employee.image_128">
-            <!-- Image with counter-spin -->
-            <img t-att-src="image_data_uri(current_employee.image_128)"
-                 alt="Profile Photo"
-                 class="profile-img-photo"/>
-        </t>
-        <t t-elif="current_user and current_user.name">
-            <!-- Extract initials from user name -->
-            <t t-set="display_name" t-value="current_user.name"/>
-            <t t-set="initials"
-               t-value="(display_name[:2].upper() if len(display_name.split()) == 1 else ''.join([w[0].upper() for w in display_name.split() if w])[:2])"/>
-            <span class="profile-initials" t-esc="initials"/>
-        </t>
-        <t t-else="">
-            <!-- Fallback default user icon -->
-            <span class="profile-initials">U</span>
-        </t>
-    </a>
-</div>
+                                        <a href="/profile" class="profile-img">
+                                            <t t-if="current_employee and current_employee.image_128">
+                                                <!-- Image with counter-spin -->
+                                                <img t-att-src="image_data_uri(current_employee.image_128)"
+                                                     alt="Profile Photo"
+                                                     class="profile-img-photo"/>
+                                            </t>
+                                            <t t-elif="current_user and current_user.name">
+                                                <!-- Extract initials from user name -->
+                                                <t t-set="display_name" t-value="current_user.name"/>
+                                                <t t-set="initials"
+                                                   t-value="(display_name[:2].upper() if len(display_name.split()) == 1 else ''.join([w[0].upper() for w in display_name.split() if w])[:2])"/>
+                                                <span class="profile-initials" t-esc="initials"/>
+                                            </t>
+                                            <t t-else="">
+                                                <!-- Fallback default user icon -->
+                                                <span class="profile-initials">U</span>
+                                            </t>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
