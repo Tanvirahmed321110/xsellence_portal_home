@@ -670,6 +670,32 @@
     gap: 20px 28px;
 }
 
+body.dark-theme .profile .main-info .card {
+    background-color: var(--color-bg-primary);
+    border-color: var(--border-secondary);
+}
+
+body.dark-theme .profile .card .card-header {
+    border-bottom-color: var(--border-secondary);
+}
+
+body.dark-theme .profile .card .info-label {
+    color: var(--color-text-muted);
+}
+
+body.dark-theme .profile .card .info-value {
+    color: var(--color-text-header);
+}
+
+body.dark-theme .profile .card .divider {
+    background-color: var(--border-secondary);
+}
+
+body.dark-theme .profile .card .card-header .icon {
+    background-color: rgba(244, 114, 182, 0.12);
+    color: var(--color-text-header);
+}
+
 .profile .card .card-header .icon {
     background-color: var(--border-primary);
     width: 32px;
@@ -773,6 +799,47 @@
     flex-shrink: 0;
     letter-spacing: .6px;
 
+}
+
+body.dark-theme .profile .main-info .id-card {
+    box-shadow: var(--shadow-md);
+}
+
+body.dark-theme .profile .id-card-label,
+body.dark-theme .profile .id-num {
+    color: rgba(248, 250, 252, 0.68);
+}
+
+body.dark-theme .profile .id-card-pos {
+    color: rgba(248, 250, 252, 0.78);
+}
+
+body.dark-theme .profile .id-card-row {
+    border-top-color: rgba(148, 163, 184, 0.28);
+}
+
+body.dark-theme .profile .main-info .manager {
+    background-color: #202a40;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: none;
+}
+
+body.dark-theme .profile .main-info .manager .card-header {
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+body.dark-theme .profile .main-info .manager-wrap {
+    background-color: #202a40;
+}
+
+body.dark-theme .profile .main-info .manager-role {
+    color: #cbd5e1;
+}
+
+body.dark-theme .profile .main-info .manager-msg-btn {
+    background-color: #111827;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    color: var(--color-text-header);
 }
 
 
