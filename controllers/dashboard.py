@@ -4,6 +4,9 @@ from odoo.http import request
 
 class XsellencePortal(http.Controller):
 
+    # ========================
+    # For Dashboard Route
+    # ========================
     @http.route('/dashboard', type='http', auth='user', website=True)
     def dashboard_f(self, **kw):
 

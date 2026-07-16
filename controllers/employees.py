@@ -4,6 +4,9 @@ from odoo.http import request
 
 class XsellencePortal(http.Controller):
 
+    # ========================
+    # For All Employees
+    # ========================
     @http.route('/employees', type='http', auth='user', website=True)
     def dashboard_f(self, **kw):
         Employees = request.env['hr.employee'].sudo()

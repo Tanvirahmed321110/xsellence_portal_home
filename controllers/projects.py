@@ -30,11 +30,8 @@ class XsellencePortal(http.Controller):
         # ===== Final Domain Merge =====
         domain = base_domain + status_domain
 
-
         Project = request.env['project.project'].sudo()
         total = Project.search_count(domain)
-
-
 
         # for pagination
         per_page = int(kw.get('per_page', 20))

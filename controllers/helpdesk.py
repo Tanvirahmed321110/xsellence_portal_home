@@ -3,6 +3,9 @@ from odoo.http import request
 
 
 class XsellencePortal(http.Controller):
+    # ========================
+    # For Helpdesk Route
+    # ========================
     @http.route('/helpdesk', type='http', auth='public', website=True)
     def helpdesk_f(self, **kw):
         print('load dashboard')
@@ -10,7 +13,9 @@ class XsellencePortal(http.Controller):
             'active_menu': 'helpdesk',
         })
 
-    # =================  Ticket Details Page  ==================
+    # ========================
+    # For Helpdesk Ticket Details
+    # ========================
     @http.route('/helpdesk/ticket_details', type='http', auth='public', website=True)
     def ticket_details_f(self, **kw):
         print('load dashboard')
