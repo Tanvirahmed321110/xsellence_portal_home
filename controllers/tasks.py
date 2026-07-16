@@ -209,6 +209,7 @@ class XsellencePortal(http.Controller):
                 'error_btn_label': 'Again Try',
                 'error_btn_url': '/add_task',
             })
+
         # ✅ Success Page
         return request.render('xsellence_portal.success_page', {
             'success_title': 'Task Successfully Created',
