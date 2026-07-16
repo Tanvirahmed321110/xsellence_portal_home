@@ -27,7 +27,9 @@ class XsellencePortal(http.Controller):
 
         return hours + (minutes / 60.0)
 
-    # =============  Timesheet Page  =============
+    # ========================
+    # For All Timesheets
+    # ========================
     @http.route('/timesheets', type='http', auth='user', website=True)
     def timesheet_f(self, **kw):
         user = request.env.user
@@ -48,9 +50,7 @@ class XsellencePortal(http.Controller):
             ('employee_id', 'in', employees.ids),
         ]
 
-        # ==============================
         # Fast Project Dropdown using read_group
-        # ==============================
         project_groups = request.env['account.analytic.line'].sudo().read_group(
             domain=base_domain + [('project_id', '!=', False)],
             fields=['project_id'],
@@ -68,9 +68,7 @@ class XsellencePortal(http.Controller):
             lambda p: p.name or ''
         )
 
-        # ==============================
         # Final table domain
-        # ==============================
         domain = list(base_domain)
 
         if selected_project_id:
@@ -126,7 +124,10 @@ class XsellencePortal(http.Controller):
             ]
         })
 
-    # ==============  For Add Timesheet Page
+
+    # ========================
+    # For Add  Timesheet
+    # ========================
     @http.route('/add_timesheet', type='http', auth='public', website=True)
     def add_timesheet_f(self, **kw):
         source = kw.get('source')
@@ -156,7 +157,9 @@ class XsellencePortal(http.Controller):
             'tasks': tasks,
         })
 
-    # =============  Timesheet From Tasks  =============
+    # ========================
+    # For Task  Timesheet
+    # ========================
     @http.route('/tasks/add_timesheet', type='http', auth='public', website=True)
     def add_timesheet_from_task(self, **kw):
         task_id = int(kw.get('task_id', 0))
@@ -182,7 +185,9 @@ class XsellencePortal(http.Controller):
             ]
         })
 
-    # =============  Timesheet From Submit  =============
+    # ========================
+    # For Submit Timesheet
+    # ========================
     @http.route('/tasks/add_timesheet/submit', type='http', auth='user', website=True, methods=['POST'])
     def add_timesheet_from_submit(self, **kw):
         task_id = int(kw.get('task_id', 0))
@@ -255,7 +260,9 @@ class XsellencePortal(http.Controller):
             'success_btn_url': '/timesheets',
         })
 
-    # =============  Delete Timesheet  =============
+    # ========================
+    # For Delete Timesheet
+    # ========================
     @http.route('/timesheets/delete', type='http', auth='user', website=True, methods=['POST'], csrf=True)
     def delete_timesheet_f(self, **post):
         user = request.env.user

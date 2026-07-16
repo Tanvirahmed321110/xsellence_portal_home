@@ -7,7 +7,9 @@ from odoo.addons.xsellence_portal.utilitis.pagination import get_pager
 
 
 class XsellencePortal(http.Controller):
-    # =============  For Tasks Page  ===============
+    # ========================
+    # For ALl Tasks
+    # ========================
     @http.route('/tasks', type='http', auth='user', website=True)
     def tasks_f(self, project_id=None, **kw):
 
@@ -66,7 +68,9 @@ class XsellencePortal(http.Controller):
             ]
         })
 
-    # =============  For Task Details Page  ===============
+    # ========================
+    # For Task Details
+    # ========================
     @http.route('/tasks/task_details/<int:project_id>', type='http', auth='public', website=True)
     def task_details_f(self, project_id, **kw):
 
@@ -91,7 +95,9 @@ class XsellencePortal(http.Controller):
             ]
         })
 
-    # =================  For Log Message Submit ===================
+    # ========================
+    # For Task Log Message Submit
+    # ========================
     @http.route('/task/comment/<int:task_id>', type='http', auth='user', website=True, methods=['POST'],
                 csrf=True)
     def project_comment(self, task_id, **post):
@@ -116,7 +122,9 @@ class XsellencePortal(http.Controller):
 
         return request.redirect('/tasks/task_details/%s' % task.id)
 
-    # =================  For Task Update Status   ===================
+    # ========================
+    # For Task Update Status
+    # ========================
     @http.route('/task/update_status', type='http', auth='user', methods=['POST'], csrf=True)
     def update_project_status(self, task_id=None, status=None, redirect_url=None, **kw):
         if task_id and status:
@@ -127,7 +135,9 @@ class XsellencePortal(http.Controller):
             return request.redirect(f"/tasks/task_details/{task_id}")
         return request.redirect(f"/tasks")
 
-    # ============  For Add Task Page  ===============
+    # ========================
+    # For Add Task Route
+    # ========================
     @http.route('/add_task', type='http', auth='public', website=True)
     def add_task_f(self, **kw):
         source = kw.get('source')
@@ -168,7 +178,9 @@ class XsellencePortal(http.Controller):
             'selected_project_id': int(selected_project_id) if selected_project_id else False,
         })
 
-    # ============  For Add Task Submit Page  ===============
+    # ========================
+    # For Task Submit Route
+    # ========================
     @http.route('/add_task/submit', tpe='http', auth='user', methods=['POST'], website=True, csrf=True)
     def add_task_submit(self, **kw):
 
@@ -262,7 +274,9 @@ class XsellencePortal(http.Controller):
         task.write(vals)
         return request.redirect(f"/tasks/task_details/{task_id}")
 
-    # =============  For Delete Task  ===============
+    # ========================
+    # For Delete Task
+    # ========================
     @http.route('/task/delete', type='http', auth='user', methods=['POST'], website=True)
     def delete_task(self, task_id=None, **kw):
 
