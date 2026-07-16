@@ -1,67 +1,67 @@
 /* ============================== Dashboard Here ============================== */
 
- /*Demo data popur*/
- .demo-data-popup-overlay {
-        position: absolute;
-        z-index: 99;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-         height: 100%;
-         top:0;
-         left:0;
-        background: rgba(20, 8, 50, 0.45);
-        backdrop-filter: blur(3px);
-        border-radius: 16px;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.35s ease;
-    }
+/*Demo data popur*/
+.demo-data-popup-overlay {
+    position: absolute;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(20, 8, 50, 0.45);
+    backdrop-filter: blur(3px);
+    border-radius: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.35s ease;
+}
 
-    .demo-data-popup-overlay.show {
-        opacity: 1;
-        visibility: visible;
-    }
+.demo-data-popup-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
 
-    .demo-data-popup-box {
-        position: relative;
-        width: 350px;
-        max-width: calc(100% - 30px);
-        padding: 55px 30px;
-        background: #ffffff;
-        border-radius: 18px;
-        box-shadow: 0 20px 60px rgba(31, 12, 80, 0.3);
-        text-align: center;
-        transform: scale(0.8);
-        transition: transform 0.35s ease;
-    }
+.demo-data-popup-box {
+    position: relative;
+    width: 350px;
+    max-width: calc(100% - 30px);
+    padding: 55px 30px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(31, 12, 80, 0.3);
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.35s ease;
+}
 
-    .demo-data-popup-overlay.show .demo-data-popup-box {
-        transform: scale(1);
-    }
+.demo-data-popup-overlay.show .demo-data-popup-box {
+    transform: scale(1);
+}
 
-    .demo-data-popup-box h2 {
-        margin: 0;
-        color: #d90b7b;
-        font-size: 24px;
-        font-weight: 600;
-    }
+.demo-data-popup-box h2 {
+    margin: 0;
+    color: #d90b7b;
+    font-size: 24px;
+    font-weight: 600;
+}
 
-    .demo-data-popup-close {
-        position: absolute;
-        top: 12px;
-        right: 16px;
+.demo-data-popup-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
 
-        padding: 0;
-        border: none;
-        background: transparent;
+    padding: 0;
+    border: none;
+    background: transparent;
 
-        color: #777;
-        font-size: 28px;
-        line-height: 1;
-        cursor: pointer;
-    }
+    color: #777;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+}
 
 /*================  User Buttons ===============*/
 .user-btns .user-btn {
@@ -70,22 +70,24 @@
     border-radius: 6px;
     box-shadow: 0px 2px 8px #16151526;
     background: white;
-    color:var(--color-text-header);
-    font-weight:500;
-    font-size:14px;
-    transition:var(--transition-base)
-}
-.user-btns .user-btn.active,.user-btns .user-btn:hover{
-     background:var(--color-text-header);
-     color:#fff;
+    color: var(--color-text-header);
+    font-weight: 500;
+    font-size: 14px;
+    transition: var(--transition-base)
 }
 
-.user-btns .user-btn img{
-    width:22px;
-    height:22px;
-    border-radius:50%;
-    background:#ededed;
-    border:1px solid var(--border-primary);
+.user-btns .user-btn.active,
+.user-btns .user-btn:hover {
+    background: var(--color-text-header);
+    color: #fff;
+}
+
+.user-btns .user-btn img {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ededed;
+    border: 1px solid var(--border-primary);
 }
 
 
@@ -104,7 +106,7 @@
     top: 54px;
     width: 120px;
     height: 120px;
-    background-color: #d9117c20;
+    background-color: #d9117c50;
     transform: rotate(54deg);
     border-radius: 50%;
     transition: var(--transition-base);
@@ -115,7 +117,7 @@
     transform: translate(24px, 24px);
 }
 
-.dashboard-items .card:hover svg{
+.dashboard-items .card:hover svg {
     animation: bounce 0.5s ease 1;
 }
 
@@ -247,9 +249,10 @@
     flex-shrink: 0;
     background-color: var(--color-primary-hover);
     z-index: 1;
-    border:4px solid #E2268B;
-    outline:4px solid #eadcc240;
+    border: 4px solid #E2268B;
+    outline: 4px solid #eadcc240;
 }
+
 .chart-performance .d4-score-num {
     font-size: 20px;
     font-weight: 800;
@@ -262,7 +265,7 @@
     font-size: 14px;
     font-weight: 500;
     color: var(--color-white);
-    opacity:.95;
+    opacity: .95;
 }
 
 .chart-performance .d4-score-status {
@@ -293,8 +296,9 @@
     font-size: 13px;
     font-weight: 600;
     color: var(--color-white);
-    opacity:.75;
+    opacity: .75;
 }
+
 .chart-performance .d4-perf-track {
     height: 9px;
     border: 2px solid #85e624bd;
@@ -309,13 +313,14 @@
     background: #88ca46;
     transform: scaleX(0);
     transform-origin: left center;
-    animation: d4PerfLoad 2.5s ease forwards  4;
+    animation: d4PerfLoad 2.5s ease forwards 4;
 }
 
 @keyframes d4PerfLoad {
     from {
         transform: scaleX(0);
     }
+
     to {
         transform: scaleX(1);
     }
@@ -400,7 +405,7 @@
     animation: grow 1.2s cubic-bezier(.4, 0, .2, 1) forwards;
     transform-origin: left;
     background: var(--prog-bar) !important;
-    animation: d4PerfLoad 2.5s ease forwards  4;
+    animation: d4PerfLoad 2.5s ease forwards 4;
 }
 
 @keyframes grow {
@@ -422,7 +427,7 @@
     font-weight: 500;
     letter-spacing: 0.3px;
     background-color: var(--color-tag);
-    color:#ededed;
+    color: #ededed;
 }
 
 
@@ -431,8 +436,8 @@
 /* ==============================
            Attendance Chart Card
         ================================= */
-.leave-attendance{
-    grid-template-columns:  1fr .84fr;
+.leave-attendance {
+    grid-template-columns: 1fr .84fr;
 }
 
 .chart-performance .chart {
@@ -690,7 +695,7 @@
 }
 
 .mini-cards::before {
-    animation: spin 3s linear infinite ;
+    animation: spin 3s linear infinite;
 }
 
 .mini-icon {
@@ -954,19 +959,22 @@
 }
 
 /* ── Title & value ── */
-.attendance .card .title,.leave .card .title  {
+.attendance .card .title,
+.leave .card .title {
     font-size: var(--fs-xs);
     font-weight: 500;
-    color: var(--color-text-desc) ;
+    color: var(--color-text-desc);
     letter-spacing: 0.3px;
     text-transform: uppercase;
     margin-top: 14px;
 }
+
 .leave .card .title {
     color: var(--color-text-desc);
     font-weight: 500;
 }
-.attendance  .card .value {
+
+.attendance .card .value {
     font-size: var(--fs-lg);
     line-height: 1;
     letter-spacing: -1px;
@@ -974,17 +982,20 @@
     color: var(--color-text-primary);
 }
 
-.leave .card .leave-icon{
-     background: #e6ebf4 ;
+.leave .card .leave-icon {
+    background: #e6ebf4;
 }
-.leave .card{
+
+.leave .card {
     /* background: linear-gradient(to right, rgba(52, 211, 153, 0.114), rgba(52, 211, 153, 0.114)) ; */
     background: rgba(51, 128, 201, 0.08);
     border-color: var(--border-secondary);
 }
-.leave .card:nth-child(2){
+
+.leave .card:nth-child(2) {
     /* background: linear-gradient(to left, #effbf6, #cefdffca) ; */
 }
+
 .value-unit {
     font-size: 13px;
     margin-left: 2px;
@@ -995,6 +1006,7 @@
 .card-footer {
     margin-top: 14px;
     padding-top: 12px;
+    padding: 6px;
     border-top: 1px solid var(--border-primary);
     display: flex;
     align-items: center;
@@ -1068,27 +1080,30 @@
 
 
 
-@media(max-width:1439px){
+@media(max-width:1439px) {
     .chart-performance {
-    display: grid;
-    grid-template-columns: 1fr 360px;
-    gap: 32px;
-    margin-top: 32px;
-}
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        gap: 32px;
+        margin-top: 32px;
+    }
 
-.chart-performance {
-    grid-template-columns: 1fr 320px;
-    gap: 24px;
-}
-.attendance-chart-grid {
-    gap: 8px;
-}
-.chart-performance .chart {
- overflow-x:auto;
-}
-.dashboard-items .card {
-    padding: 16px 16px;
-}
+    .chart-performance {
+        grid-template-columns: 1fr 320px;
+        gap: 24px;
+    }
+
+    .attendance-chart-grid {
+        gap: 8px;
+    }
+
+    .chart-performance .chart {
+        overflow-x: auto;
+    }
+
+    .dashboard-items .card {
+        padding: 16px 16px;
+    }
 }
 
 
@@ -1101,9 +1116,9 @@
         grid-auto-rows: max-content;
     }
 
-    .leave-attendance{
-    grid-template-columns:  1fr 1fr;
-}
+    .leave-attendance {
+        grid-template-columns: 1fr 1fr;
+    }
 
     .dashboard-items .card {
         padding: 16px;
@@ -1211,19 +1226,23 @@
     }
 
     .proj-list {
-    max-height: 200px;
+        max-height: 200px;
     }
+
     .mini-card {
         padding: 12px;
         gap: 8px;
     }
+
     .dashboard-items .card::after {
         right: -50px;
         top: 57px;
     }
+
     .dashboard-items .card {
         padding: 12px;
     }
+
     .my-performance.d4-card {
         padding: 16px;
     }
