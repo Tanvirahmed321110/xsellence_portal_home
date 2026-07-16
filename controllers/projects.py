@@ -6,10 +6,12 @@ from odoo.tools import html2plaintext
 from odoo.addons.xsellence_portal.utilitis.pagination import get_pager
 
 
-
 # ========== For Projects Page  ============
 class XsellencePortal(http.Controller):
 
+    # ========================
+    # For All Projects
+    # ========================
     @http.route('/projects', type='http', auth='user', website=True)
     def projects_f(self, **kw):
 
@@ -18,9 +20,9 @@ class XsellencePortal(http.Controller):
             ('name', '!=', 'Internal')
         ]
 
-        status_domain = []
-
         # ===== Status Filter =====
+
+        status_domain = []
         status = kw.get('status')
         if status:
             status_domain = [('custom_status', '=', status)]
@@ -29,9 +31,14 @@ class XsellencePortal(http.Controller):
         domain = base_domain + status_domain
 
 
+        Project = request.env['project.project'].sudo()
+        total = Project.search_count(domain)
+
+
+
         # for pagination
         per_page = int(kw.get('per_page', 20))
-        total = request.env['project.project'].sudo().search_count(domain)
+
         # ===== Pager Object Banano (reusable function call) =====
         pager = get_pager(
             url='/projects',
@@ -41,7 +48,7 @@ class XsellencePortal(http.Controller):
             url_args={'status': status} if status else {}
         )
 
-        projects = request.env['project.project'].sudo().search(
+        projects = Project.search(
             domain,
             order='create_date desc',
             offset=pager['offset'],
@@ -56,14 +63,16 @@ class XsellencePortal(http.Controller):
             'statuses': statuses,
             'status': status or '',
             'pager': pager,
-            'total':total,
+            'total': total,
             'breadcrumb': [
                 {'name': 'Dashboard', 'url': '/dashboard'},
                 {'name': 'Projects', 'url': False},
             ]
         })
 
-    # ==================  For Create Project Page  ====================
+    # ========================
+    # For Create Project
+    # ========================
     @http.route('/create_project', type='http', auth='public', website=True)
     def create_project_f(self, **kw):
         source = kw.get('source')
@@ -104,7 +113,9 @@ class XsellencePortal(http.Controller):
             'today': date.today().strftime('%Y-%m-%d'),
         })
 
-    # ================== Submit Project ==================
+    # ========================
+    # For Submit Project
+    # ========================
     @http.route('/submit_project', type='http', auth='user', methods=['POST'], website=True, csrf=True)
     def submit_project(self, **post):
 
@@ -151,7 +162,9 @@ class XsellencePortal(http.Controller):
             'success_btn_url': '/projects',
         })
 
-    # =================  For Project Details Page  ===================
+    # ========================
+    # For Project Details
+    # ========================
     @http.route('/projects/details/<int:project_id>', type='http', auth='user', website=True)
     def project_details_f(self, project_id, **kw):
 
@@ -179,7 +192,9 @@ class XsellencePortal(http.Controller):
             ]
         })
 
-    # =================  For Log Message Submit ===================
+    # ========================
+    # Load message Submit
+    # ========================
     @http.route('/project/comment/<int:project_id>', type='http', auth='user', website=True, methods=['POST'],
                 csrf=True)
     def project_comment(self, project_id, **post):
@@ -204,7 +219,10 @@ class XsellencePortal(http.Controller):
 
         return request.redirect('/projects/details/%s' % project.id)
 
-    # =================  For Project Details Page State Update  ===================
+
+    # ========================
+    # Project Status Update
+    # ========================
     @http.route('/project/update_status', type='http', auth='user', csrf=True)
     def update_project_status(self, project_id=None, status=None, **kw):
         if project_id and status:
@@ -212,6 +230,7 @@ class XsellencePortal(http.Controller):
             project.write({'custom_status': status})
 
         return request.redirect(f"/projects/details/{project_id}")
+
 
     # ========================
     # GET - Edit Page Show
@@ -287,9 +306,6 @@ class XsellencePortal(http.Controller):
 
         project.write(vals)
         return request.redirect(f"/projects/details/{project_id}")
-
-
-
 
     # ========================
     # POST - Project Delete
