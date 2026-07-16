@@ -14,11 +14,16 @@ class XsellencePortal(http.Controller):
     # ========================
     @http.route('/projects', type='http', auth='user', website=True)
     def projects_f(self, **kw):
+        selected_employee_id = int(kw.get('employee_id') or 0)
+        selected_employee = request.env['hr.employee'].sudo().browse(selected_employee_id) if selected_employee_id else False
+        selected_user = selected_employee.user_id if selected_employee and selected_employee.exists() and selected_employee.user_id else False
 
         base_domain = [
             ('active', '=', True),
             ('name', '!=', 'Internal')
         ]
+        if selected_user:
+            base_domain += ['|', ('user_id', '=', selected_user.id), ('assigned_user_ids', 'in', [selected_user.id])]
 
         # ===== Status Filter =====
 
@@ -42,7 +47,10 @@ class XsellencePortal(http.Controller):
             total=total,
             page=kw.get('page', 1),
             per_page=per_page,
-            url_args={'status': status} if status else {}
+            url_args={
+                'status': status or '',
+                'employee_id': selected_employee_id or '',
+            }
         )
 
         projects = Project.search(
@@ -59,10 +67,11 @@ class XsellencePortal(http.Controller):
             'projects': projects,
             'statuses': statuses,
             'status': status or '',
+            'selected_employee_id': selected_employee_id,
             'pager': pager,
             'total': total,
             'breadcrumb': [
-                {'name': 'Dashboard', 'url': '/dashboard'},
+                {'name': 'Dashboard', 'url': '/dashboard?employee_id=%s' % selected_employee_id if selected_employee_id else '/dashboard'},
                 {'name': 'Projects', 'url': False},
             ]
         })

@@ -36,19 +36,27 @@ class XsellencePortal(http.Controller):
 
         today = date.today().strftime('%Y-%m-%d')
 
+        selected_employee_id = int(kw.get('employee_id') or 0)
         selected_project_id = int(kw.get('project_id') or 0)
         selected_start_date = kw.get('start_date', '')
         selected_end_date = kw.get('end_date', '')
 
-        employees = request.env['hr.employee'].sudo().search([
-            ('user_id', '=', user.id)
-        ])
+        selected_employee = request.env['hr.employee'].sudo().browse(selected_employee_id) if selected_employee_id else False
+        selected_user = selected_employee.user_id if selected_employee and selected_employee.exists() and selected_employee.user_id else False
 
-        base_domain = [
-            '|',
-            ('user_id', '=', user.id),
-            ('employee_id', 'in', employees.ids),
-        ]
+        if selected_employee and selected_user:
+            base_domain = ['|', ('user_id', '=', selected_user.id), ('employee_id', '=', selected_employee.id)]
+        elif selected_employee:
+            base_domain = [('employee_id', '=', selected_employee.id)]
+        else:
+            employees = request.env['hr.employee'].sudo().search([
+                ('user_id', '=', user.id)
+            ])
+            base_domain = [
+                '|',
+                ('user_id', '=', user.id),
+                ('employee_id', 'in', employees.ids),
+            ]
 
         # Fast Project Dropdown using read_group
         project_groups = request.env['account.analytic.line'].sudo().read_group(
@@ -93,6 +101,7 @@ class XsellencePortal(http.Controller):
             page=kw.get('page', 1),
             per_page=per_page,
             url_args={
+                'employee_id': selected_employee_id if selected_employee_id else '',
                 'project_id': selected_project_id if selected_project_id else '',
                 'start_date': selected_start_date,
                 'end_date': selected_end_date,
@@ -114,12 +123,13 @@ class XsellencePortal(http.Controller):
 
             'project_filter_options': project_filter_options,
             'selected_project_id': selected_project_id,
+            'selected_employee_id': selected_employee_id,
 
             'selected_start_date': selected_start_date or '',
             'selected_end_date': selected_end_date or '',
 
             'breadcrumb': [
-                {'name': 'Dashboard', 'url': '/dashboard'},
+                {'name': 'Dashboard', 'url': '/dashboard?employee_id=%s' % selected_employee_id if selected_employee_id else '/dashboard'},
                 {'name': 'Timesheets', 'url': False},
             ]
         })

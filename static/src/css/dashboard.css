@@ -106,7 +106,7 @@
     top: 54px;
     width: 120px;
     height: 120px;
-    background-color: #d9117c50;
+    background-color: #d9117c17;
     transform: rotate(54deg);
     border-radius: 50%;
     transition: var(--transition-base);

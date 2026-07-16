@@ -3006,7 +3006,7 @@ aside .sidebar-bottom {
 .timesheets .search-wrap svg,
 .search-wrap svg {
     position: absolute;
-    left: 24px;
+    left: 12px;
     top: 50%;
     transform: translateY(-50%);
     width: 15px;

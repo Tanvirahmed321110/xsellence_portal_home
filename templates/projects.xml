@@ -1,11 +1,17 @@
 <odoo>
     <template id="projects_page">
         <t t-call="xsellence_portal.custom_layout">
+            <t t-set="employee_query_suffix"
+               t-value="'&amp;employee_id=%s' % selected_employee_id if selected_employee_id else ''"/>
+            <t t-set="employee_status_suffix"
+               t-value="'?employee_id=%s' % selected_employee_id if selected_employee_id else ''"/>
+            <t t-set="project_filter_onchange"
+               t-value='("if (this.value) { window.location = \"/projects?status=\" + this.value + \"%s\"; } else { window.location = \"/projects%s\"; }" % (employee_query_suffix, employee_status_suffix))'/>
 
             <!-- ====================  Breadcrumb  ==================== -->
             <div class="flex-between align-center gap-1 flex-wrap n-btn-wrap">
                 <t t-call="xsellence_portal.breadcrumb_component"/>
-                <a href="/create_project?source=projects" class="btn btn-primary">Create Project +</a>
+                <a t-att-href="'/create_project?source=projects%s' % employee_query_suffix" class="btn btn-primary">Create Project +</a>
             </div>
 
             <!--========================|| Projects Here ||=========================-->
@@ -39,11 +45,7 @@
                         <!--  Filter Projects  -->
                         <select class="filter-select bg-white"
                                 id="filter-status"
-                                onchange="if (this.value) {
-                                    window.location = '/projects?status=' + this.value;
-                                } else {
-                                    window.location = '/projects';
-                                }">
+                                t-att-onchange="project_filter_onchange">
 
                             <option value="">All Status</option>
 
@@ -213,7 +215,7 @@
 
                                             <!-- View Task -->
                                             <t t-if="project.task_count">
-                                                <a t-att-href="'/tasks?project_id=%s' % project.id"
+                                                <a t-att-href="'/tasks?project_id=%s%s' % (project.id, employee_query_suffix)"
                                                    class="action-btn view-task-btn tooltip">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                         <path d="M9 11L12 14L20 6" stroke="currentColor"
@@ -232,8 +234,8 @@
 
                                             <!-- Add Task button: show only if project has no task -->
                                             <t t-if="project.task_count == 0">
-                                                <a t-att-href="'/add_task?project_id=%s&amp;source=projects' % project.id"
-                                                   class="action-btn view-task-btn tooltip">
+                                            <a t-att-href="'/add_task?project_id=%s&amp;source=projects%s' % (project.id, employee_query_suffix)"
+                                               class="action-btn view-task-btn tooltip">
                                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                                                         <path d="M12 5V19"
                                                               stroke="currentColor"

@@ -2,6 +2,9 @@
     <template id="timesheet_page">
         <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages?v=2"/>
         <t t-call="xsellence_portal.custom_layout">
+            <t t-set="selected_employee_param" t-value="str(selected_employee_id) if selected_employee_id else ''"/>
+            <t t-set="timesheet_filter_onchange"
+               t-value='("const project=document.getElementById(\"filter-project\")?.value||\"\"; const startDate=document.getElementById(\"filter-start-date\")?.value||\"\"; const endDate=document.getElementById(\"filter-end-date\")?.value||\"\"; if(startDate &amp;&amp; endDate &amp;&amp; startDate > endDate){ alert(\"From date cannot be greater than To date.\"); return; } const params=new URLSearchParams(); if(project){params.set(\"project_id\", project);} if(startDate){params.set(\"start_date\", startDate);} if(endDate){params.set(\"end_date\", endDate);} if(\"%s\"){params.set(\"employee_id\", \"%s\");} const queryString=params.toString(); window.location.href=queryString ? \"/timesheets?\" + queryString : \"/timesheets\";" % (selected_employee_param, selected_employee_param))'/>
 
             <!-- ====================  Breadcrumb  ==================== -->
             <t t-call="xsellence_portal.breadcrumb_component"/>
@@ -15,7 +18,8 @@
                         </span>
                     </div>
                     <!-- add new timesheet button -->
-                    <a class="btn btn-primary" href="/add_timesheet?source=timesheets">Add New Timesheet +</a>
+                    <a class="btn btn-primary"
+                       t-att-href="'/add_timesheet?source=timesheets&amp;employee_id=%s' % selected_employee_param if selected_employee_param else '/add_timesheet?source=timesheets'">Add New Timesheet +</a>
                 </div>
 
 
@@ -32,7 +36,7 @@
                         <select class="filter-select"
                                 id="filter-project"
                                 name="project_id"
-                                onchange="applyFilters()">
+                                t-att-onchange="timesheet_filter_onchange">
 
                             <option value=""
                                     t-att-selected="'selected' if not selected_project_id else None">
@@ -70,7 +74,8 @@
                                                class="filter-date"
                                                t-att-value="selected_end_date or ''"/>
                                     </div>
-                                    <button class="filter-apply-btn" onclick="applyFilters()">Apply</button>
+                                    <button class="filter-apply-btn" type="button"
+                                            t-att-onclick="timesheet_filter_onchange">Apply</button>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +157,7 @@
                                                 <h4>No timesheets found</h4>
                                                 <p>You have not submitted any timesheet yet.</p>
 
-                                                <a href="/add_timesheet?source=timesheets" class="empty-timesheet-btn">
+                                                <a t-att-href="'/add_timesheet?source=timesheets&amp;employee_id=%s' % selected_employee_param if selected_employee_param else '/add_timesheet?source=timesheets'" class="empty-timesheet-btn">
                                                     Add Timesheet
                                                 </a>
                                             </div>

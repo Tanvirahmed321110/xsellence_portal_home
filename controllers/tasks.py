@@ -16,8 +16,13 @@ class XsellencePortal(http.Controller):
         domain = []
         user = request.env.user
         status = kw.get('status')
+        selected_employee_id = int(kw.get('employee_id') or 0)
+        selected_employee = request.env['hr.employee'].sudo().browse(selected_employee_id) if selected_employee_id else False
+        selected_user = selected_employee.user_id if selected_employee and selected_employee.exists() and selected_employee.user_id else False
 
-        if user.has_group('base.group_system'):
+        if selected_user:
+            domain = [('user_ids', 'in', [selected_user.id])]
+        elif user.has_group('base.group_system'):
             domain = []
         else:
             domain = [('user_ids', 'in', [user.id])]
@@ -40,7 +45,11 @@ class XsellencePortal(http.Controller):
             total=total,
             page=kw.get('page', 1),
             per_page=per_page,
-            url_args={'status': status} if status else {}
+            url_args={
+                'status': status or '',
+                'employee_id': selected_employee_id or '',
+                'project_id': int(project_id) if project_id and str(project_id).isdigit() else '',
+            }
         )
 
 
@@ -60,10 +69,11 @@ class XsellencePortal(http.Controller):
             'tasks': tasks,
             'statuses': statuses,
             'selected_status': status,
+            'selected_employee_id': selected_employee_id,
             'pager': pager,
             'total': total,
             'breadcrumb': [
-                {'name': 'Dashboard', 'url': '/dashboard'},
+                {'name': 'Dashboard', 'url': '/dashboard?employee_id=%s' % selected_employee_id if selected_employee_id else '/dashboard'},
                 {'name': 'Tasks', 'url': False},
             ]
         })
