@@ -175,6 +175,10 @@ body.dark-theme .search-wrap .search-input {
     color: var(--color-text-secondary);
 }
 
+body.dark-theme input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(1.8);
+}
+
 body.dark-theme select option,
 body.dark-theme .filter-select option,
 body.dark-theme .helpdesk-wrap .filter-select option {
