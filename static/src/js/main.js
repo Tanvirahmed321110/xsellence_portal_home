@@ -393,6 +393,73 @@ openSidebarDesktop();
 });
 
 
+// XSELLENCE ADD START: static assignment notification popup
+(function () {
+    const stack = document.getElementById('assignment-notification-stack');
+
+    if (!stack) {
+        return;
+    }
+
+    function playNotificationSound() {
+        const sound = document.getElementById('success-sound') || document.getElementById('click-sound');
+
+        if (!sound) {
+            return;
+        }
+
+        sound.currentTime = 0;
+        const playPromise = sound.play();
+
+        if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(function () {});
+        }
+    }
+
+    function showPopup(popup) {
+        if (!popup) {
+            return;
+        }
+
+        popup.classList.remove('is-hidden');
+        popup.classList.add('is-visible');
+    }
+
+    requestAnimationFrame(function () {
+        const popups = stack.querySelectorAll('.assignment-notification-popup');
+
+        popups.forEach(function (popup) {
+            showPopup(popup);
+        });
+
+        if (popups.length) {
+            playNotificationSound();
+        }
+    });
+
+    stack.addEventListener('click', function (event) {
+        const closeBtn = event.target.closest('.assignment-notification-close');
+        const viewBtn = event.target.closest('.assignment-notification-view');
+
+        if (closeBtn) {
+            const popup = closeBtn.closest('.assignment-notification-popup');
+            if (popup) {
+                popup.classList.remove('is-visible');
+                popup.classList.add('is-hidden');
+            }
+            return;
+        }
+
+        if (viewBtn) {
+            const popup = viewBtn.closest('.assignment-notification-popup');
+            const viewUrl = popup ? popup.dataset.viewUrl : '/dashboard';
+            window.location.href = viewUrl || '/dashboard';
+        }
+    });
+})();
+// XSELLENCE ADD END: static assignment notification popup
+
+
 
 // Dashboard dark theme toggle
 (function () {
