@@ -35,6 +35,11 @@ body.dark-theme {
     gap: 12px;
     overflow-y: auto;
     padding: 4px;
+    scrollbar-width: none;
+}
+
+.assignment-notification-stack::-webkit-scrollbar {
+    display: none;
 }
 
 .assignment-notification-popup {
