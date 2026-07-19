@@ -6,3 +6,4 @@ from . import timesheets
 from . import helpdesk
 from . import profile
 from . import employees
+from . import notifications

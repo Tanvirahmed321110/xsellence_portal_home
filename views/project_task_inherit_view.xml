@@ -24,6 +24,10 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
+             <!-- Show all active users in Assignees -->
+            <xpath expr="//field[@name='user_ids']" position="attributes">
+                <attribute name="domain">[('active', '=', True)]</attribute>
+            </xpath>
             <!-- Add Assign Date -->
             <xpath expr="//field[@name='partner_id']" position="before">
                 <field name="date_assign" widget="date" class="custom_date_field"/>

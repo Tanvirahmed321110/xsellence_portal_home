@@ -82,3 +82,49 @@ class ProjectProject(models.Model):
                 rec.allocated_hours = delta.days * 8
             else:
                 rec.allocated_hours = 0.0
+
+    def _create_assignment_notifications(self, user_ids):
+        Notification = self.env['xsellence.assignment.notification'].sudo()
+
+        for project in self:
+            for user_id in user_ids:
+                Notification.create({
+                    'user_id': user_id,
+                    'title': 'Project Assigned',
+                    'description': 'You have been added to %s project.' % project.name,
+                    'view_url': '/projects/details/%s' % project.id,
+                    'res_model': 'project.project',
+                    'res_id': project.id,
+                })
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        projects = super().create(vals_list)
+
+        for project in projects:
+            assigned_user_ids = set(project.assigned_user_ids.ids)
+            if project.user_id:
+                assigned_user_ids.add(project.user_id.id)
+
+            if assigned_user_ids:
+                project._create_assignment_notifications(assigned_user_ids)
+
+        return projects
+
+    def write(self, vals):
+        old_user_map = {
+            project.id: set(project.assigned_user_ids.ids + project.user_id.ids)
+            for project in self
+        }
+
+        result = super().write(vals)
+
+        if 'assigned_user_ids' in vals or 'user_id' in vals:
+            for project in self:
+                new_user_ids = set(project.assigned_user_ids.ids + project.user_id.ids)
+                added_user_ids = new_user_ids - old_user_map.get(project.id, set())
+
+                if added_user_ids:
+                    project._create_assignment_notifications(added_user_ids)
+
+        return result

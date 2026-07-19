@@ -403,27 +403,6 @@
 
                 <!-- XSELLENCE ADD START: static assignment notification popup -->
                 <div class="assignment-notification-stack" id="assignment-notification-stack">
-                    <div class="assignment-notification-popup" data-view-url="/dashboard">
-                        <div class="assignment-notification-content">
-                            <h4>New Assignment</h4>
-                            <p>You have been added to a project or task.</p>
-                            <div class="assignment-notification-actions">
-                                <button type="button" class="assignment-notification-close">Close</button>
-                                <button type="button" class="assignment-notification-view">View</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="assignment-notification-popup" data-view-url="/tasks">
-                        <div class="assignment-notification-content">
-                            <h4>Task Assigned</h4>
-                            <p>You have been added to a new task.</p>
-                            <div class="assignment-notification-actions">
-                                <button type="button" class="assignment-notification-close">Close</button>
-                                <button type="button" class="assignment-notification-view">View</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- XSELLENCE ADD END: static assignment notification popup -->
 
@@ -607,7 +586,7 @@
 
 
                 <!--    Javascript Links Here     -->
-                <script src="/xsellence_portal/static/src/js/main.js?v=9"></script>
+                <script src="/xsellence_portal/static/src/js/main.js?v=10"></script>
                 <script>
                     if (localStorage.getItem('sidebarCollapsed') === 'true') {
                     document.documentElement.classList.add('sidebar-collapsed');

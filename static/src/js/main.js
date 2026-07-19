@@ -416,6 +416,62 @@ openSidebarDesktop();
         }
     }
 
+    function callJsonRoute(url, params) {
+        return fetch(url, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                jsonrpc: '2.0',
+                method: 'call',
+                params: params || {},
+            }),
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            return data.result;
+        });
+    }
+
+    function buildPopup(notification) {
+        const popup = document.createElement('div');
+        const content = document.createElement('div');
+        const title = document.createElement('h4');
+        const desc = document.createElement('p');
+        const actions = document.createElement('div');
+        const closeBtn = document.createElement('button');
+        const viewBtn = document.createElement('button');
+
+        popup.className = 'assignment-notification-popup';
+        popup.dataset.notificationId = notification.id;
+        popup.dataset.viewUrl = notification.view_url || '/dashboard';
+
+        content.className = 'assignment-notification-content';
+        title.textContent = notification.title || 'New Assignment';
+        desc.textContent = notification.desc || 'You have been added to a project or task.';
+
+        actions.className = 'assignment-notification-actions';
+
+        closeBtn.type = 'button';
+        closeBtn.className = 'assignment-notification-close';
+        closeBtn.textContent = 'Close';
+
+        viewBtn.type = 'button';
+        viewBtn.className = 'assignment-notification-view';
+        viewBtn.textContent = 'View';
+
+        actions.appendChild(closeBtn);
+        actions.appendChild(viewBtn);
+        content.appendChild(title);
+        content.appendChild(desc);
+        content.appendChild(actions);
+        popup.appendChild(content);
+
+        return popup;
+    }
+
     function showPopup(popup) {
         if (!popup) {
             return;
@@ -425,17 +481,47 @@ openSidebarDesktop();
         popup.classList.add('is-visible');
     }
 
-    requestAnimationFrame(function () {
-        const popups = stack.querySelectorAll('.assignment-notification-popup');
-
-        popups.forEach(function (popup) {
-            showPopup(popup);
-        });
-
-        if (popups.length) {
-            playNotificationSound();
+    function hidePopup(popup) {
+        if (!popup) {
+            return;
         }
-    });
+
+        popup.classList.remove('is-visible');
+        popup.classList.add('is-hidden');
+    }
+
+    function markRead(popup) {
+        if (!popup || !popup.dataset.notificationId) {
+            return Promise.resolve();
+        }
+
+        return callJsonRoute('/assignment/notifications/read', {
+            notification_id: popup.dataset.notificationId,
+        }).catch(function () {});
+    }
+
+    function loadNotifications() {
+        callJsonRoute('/assignment/notifications').then(function (notifications) {
+            let newPopupCount = 0;
+
+            (notifications || []).forEach(function (notification) {
+                if (stack.querySelector('[data-notification-id="' + notification.id + '"]')) {
+                    return;
+                }
+
+                const popup = buildPopup(notification);
+                stack.appendChild(popup);
+                requestAnimationFrame(function () {
+                    showPopup(popup);
+                });
+                newPopupCount += 1;
+            });
+
+            if (newPopupCount) {
+                playNotificationSound();
+            }
+        }).catch(function () {});
+    }
 
     stack.addEventListener('click', function (event) {
         const closeBtn = event.target.closest('.assignment-notification-close');
@@ -443,19 +529,24 @@ openSidebarDesktop();
 
         if (closeBtn) {
             const popup = closeBtn.closest('.assignment-notification-popup');
-            if (popup) {
-                popup.classList.remove('is-visible');
-                popup.classList.add('is-hidden');
-            }
+            hidePopup(popup);
+            markRead(popup);
             return;
         }
 
         if (viewBtn) {
             const popup = viewBtn.closest('.assignment-notification-popup');
             const viewUrl = popup ? popup.dataset.viewUrl : '/dashboard';
-            window.location.href = viewUrl || '/dashboard';
+
+            hidePopup(popup);
+            markRead(popup).finally(function () {
+                window.location.href = viewUrl || '/dashboard';
+            });
         }
     });
+
+    loadNotifications();
+    window.setInterval(loadNotifications, 30000);
 })();
 // XSELLENCE ADD END: static assignment notification popup
 
