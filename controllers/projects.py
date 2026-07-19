@@ -282,16 +282,19 @@ class XsellencePortal(http.Controller):
         if not project.exists():
             return request.redirect('/projects')
 
+        def safe_int(value):
+            return int(value) if value and str(value).isdigit() else False
+
         tag_ids = request.httprequest.form.getlist('tag_ids')
-        tag_ids = [int(item) for item in tag_ids if item]
+        tag_ids = [safe_int(item) for item in tag_ids if safe_int(item)]
 
         assigned_user_ids = request.httprequest.form.getlist('assigned_user_ids')
-        assigned_user_ids = [int(user) for user in assigned_user_ids if user]
+        assigned_user_ids = [safe_int(user) for user in assigned_user_ids if safe_int(user)]
 
         vals = {
             'name': kw.get('name', project.name),
-            'partner_id': int(kw['partner_id']) if kw.get('partner_id') else False,
-            'user_id': int(kw['user_id']) if kw.get('user_id') else False,
+            'partner_id': safe_int(kw.get('partner_id')),
+            'user_id': safe_int(kw.get('user_id')),
             'date_start': kw.get('date_start') or False,
             'date': kw.get('date') or False,
             'description': kw.get('description', ''),

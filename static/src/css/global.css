@@ -683,7 +683,9 @@ body.dark-theme .table-wrap .action-btn.del {
     /* border: 1px solid var(--color-primary); */
     box-shadow: var(--shadow-sm);
 }
-
+.history-comment-form{
+    position: relative;
+}
 .history-sidebar .history-header {
     padding: 20px 20px;
     border-bottom: 1px solid #ddd;
@@ -747,8 +749,13 @@ body.dark-theme .table-wrap .action-btn.del {
 
 .history-sidebar .btn-post {
     font-weight: 700;
-    padding: 10px 16px;
+    padding: 10px 14px;
     border-radius: 6px;
+    position: absolute;
+    top: 14px;
+    right: 12px;
+    font-weight: 500;
+    font-size: 12px;
 }
 
 .history-sidebar .history-body {
