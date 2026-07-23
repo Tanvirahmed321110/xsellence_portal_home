@@ -75,7 +75,7 @@
                 <t t-if="tasks">
                     <!--==============================|| Grid View All Projects Here ||============================-->
                     <div class="view-panel visible" id="panel-grid">
-                        <div class="grid-5 grid-lg-4 gap-lg-4 gap-4  grid-sm-1 row-gap-lg-6 row-gap-sm-4 grid-md-2 tasks mt-6 mt-sm-5 gap-sm-3">
+                        <div class="grid-5 grid-lg-4 gap-lg-4 gap-4  grid-sm-2 row-gap-lg-6 row-gap-sm-4 grid-md-2 tasks mt-6 mt-sm-5 gap-sm-2">
                             <t t-foreach="tasks" t-as="task">
                                 <!--================||   Single Task Card here ||===============-->
                                 <div class="proj-card task-card">

@@ -3365,6 +3365,11 @@ aside .sidebar-bottom {
 
 /*===================|| For Mobile Responsive ||====================*/
 @media (max-width:767px) {
+    .task-card .timesheet {
+        padding: 0 10px;
+        padding-bottom: 10px;
+        margin-top: 0;
+    }
      .proj-card .sts {
         display: inline-flex;
         align-items: center;

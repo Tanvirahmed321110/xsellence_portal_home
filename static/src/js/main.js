@@ -62,11 +62,40 @@ function deleteModalF(deleteModal) {
 
 
 //==============  For List and Grid View  (Global)
+function getViewStorageKey() {
+    return 'xsellenceViewMode:' + window.location.pathname;
+}
+
 function setView(type) {
-    document.getElementById('panel-grid').classList.toggle('visible', type === 'grid');
-    document.getElementById('panel-list').classList.toggle('visible', type === 'list');
-    document.getElementById('btn-grid').classList.toggle('active', type === 'grid');
-    document.getElementById('btn-list').classList.toggle('active', type === 'list');
+    const panelGrid = document.getElementById('panel-grid');
+    const panelList = document.getElementById('panel-list');
+    const btnGrid = document.getElementById('btn-grid');
+    const btnList = document.getElementById('btn-list');
+
+    if (!panelGrid || !panelList || !btnGrid || !btnList) {
+        return;
+    }
+
+    const normalizedType = type === 'list' ? 'list' : 'grid';
+
+    panelGrid.classList.toggle('visible', normalizedType === 'grid');
+    panelList.classList.toggle('visible', normalizedType === 'list');
+    btnGrid.classList.toggle('active', normalizedType === 'grid');
+    btnList.classList.toggle('active', normalizedType === 'list');
+    localStorage.setItem(getViewStorageKey(), normalizedType);
+}
+
+function initializeSavedViewMode() {
+    const panelGrid = document.getElementById('panel-grid');
+    const panelList = document.getElementById('panel-list');
+    const btnGrid = document.getElementById('btn-grid');
+    const btnList = document.getElementById('btn-list');
+
+    if (!panelGrid || !panelList || !btnGrid || !btnList) {
+        return;
+    }
+
+    setView(localStorage.getItem(getViewStorageKey()) || 'grid');
 }
 
 
@@ -175,6 +204,7 @@ function searchF(cardSelector, nameSelector, idSelector) {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    initializeSavedViewMode();
 
     //=============  Sidebar
     const sidebar = document.getElementById('sidebar');
