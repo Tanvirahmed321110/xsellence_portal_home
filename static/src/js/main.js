@@ -407,7 +407,26 @@ openSidebarDesktop();
         return;
     }
 
+    const dismissedStorageKey = 'xsellenceDismissedNotificationPopups';
     const seenPopupIds = new Set();
+    const dismissedPopupIds = new Set();
+
+    try {
+        const savedDismissedIds = JSON.parse(localStorage.getItem(dismissedStorageKey) || '[]');
+        if (Array.isArray(savedDismissedIds)) {
+            savedDismissedIds.forEach(function (notificationId) {
+                if (notificationId) {
+                    dismissedPopupIds.add(String(notificationId));
+                }
+            });
+        }
+    } catch (error) {}
+
+    function persistDismissedPopupIds() {
+        try {
+            localStorage.setItem(dismissedStorageKey, JSON.stringify(Array.from(dismissedPopupIds)));
+        } catch (error) {}
+    }
 
     function playNotificationSound() {
         const sound = document.getElementById('success-sound') || document.getElementById('click-sound');
@@ -664,6 +683,9 @@ openSidebarDesktop();
             return Promise.resolve();
         }
 
+        dismissedPopupIds.delete(String(notificationId));
+        persistDismissedPopupIds();
+
         return callJsonRoute('/assignment/notifications/read', {
             notification_id: notificationId,
         }).catch(function () {});
@@ -697,7 +719,11 @@ openSidebarDesktop();
         let newPopupCount = 0;
 
         notifications.forEach(function (notification) {
-            if (notification.is_read || seenPopupIds.has(notification.id)) {
+            if (
+                notification.is_read ||
+                seenPopupIds.has(notification.id) ||
+                dismissedPopupIds.has(String(notification.id))
+            ) {
                 return;
             }
 
@@ -731,7 +757,13 @@ openSidebarDesktop();
 
         if (closeBtn) {
             const popup = closeBtn.closest('.assignment-notification-popup');
+            const notificationId = popup ? popup.dataset.notificationId : null;
+
             hidePopup(popup);
+            if (notificationId) {
+                dismissedPopupIds.add(String(notificationId));
+                persistDismissedPopupIds();
+            }
             return;
         }
 
