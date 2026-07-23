@@ -222,6 +222,12 @@ class XsellencePortal(http.Controller):
                 message_type='comment',
                 subtype_xmlid='mail.mt_note',
             )
+            # Notify other project members about the new comment in the same
+            # sidebar/popup stream used for assignment updates.
+            project.with_user(request.env.user)._create_comment_notifications(
+                request.env.user.name,
+                comment,
+            )
 
         return request.redirect('/projects/details/%s' % project.id)
 

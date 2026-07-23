@@ -497,9 +497,24 @@ openSidebarDesktop();
                 return 'You have been added to <span class="s3-name">' + match[1] + '</span> project.';
             }
 
+            match = description.match(/^(.+) added you to (.+) project\.$/);
+            if (match) {
+                return match[1] + ' added you to <span class="s3-name">' + match[2] + '</span> project.';
+            }
+
+            match = description.match(/^(.+) removed you from (.+) project\.$/);
+            if (match) {
+                return match[1] + ' removed you from <span class="s3-name">' + match[2] + '</span> project.';
+            }
+
             match = description.match(/^(.+) project status changed to (.+)\.$/);
             if (match) {
                 return '<span class="s3-name">' + match[1] + '</span> project status changed to ' + match[2] + '.';
+            }
+
+            match = description.match(/^(.+) commented on (.+) project: (.+)$/);
+            if (match) {
+                return match[1] + ' commented on <span class="s3-name">' + match[2] + '</span> project: ' + match[3];
             }
         }
 
@@ -509,9 +524,24 @@ openSidebarDesktop();
                 return 'You have been added to <span class="s3-name">' + match[1] + '</span> task.';
             }
 
+            match = description.match(/^(.+) added you to (.+) task\.$/);
+            if (match) {
+                return match[1] + ' added you to <span class="s3-name">' + match[2] + '</span> task.';
+            }
+
+            match = description.match(/^(.+) removed you from (.+) task\.$/);
+            if (match) {
+                return match[1] + ' removed you from <span class="s3-name">' + match[2] + '</span> task.';
+            }
+
             match = description.match(/^(.+) task status changed to (.+)\.$/);
             if (match) {
                 return '<span class="s3-name">' + match[1] + '</span> task status changed to ' + match[2] + '.';
+            }
+
+            match = description.match(/^(.+) commented on (.+) task: (.+)$/);
+            if (match) {
+                return match[1] + ' commented on <span class="s3-name">' + match[2] + '</span> task: ' + match[3];
             }
         }
 

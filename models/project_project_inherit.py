@@ -84,36 +84,78 @@ class ProjectProject(models.Model):
                 rec.allocated_hours = 0.0
 
     def _create_assignment_notifications(self, user_ids):
-        Notification = self.env['xsellence.assignment.notification'].sudo()
+        Notification = self.env['xsellence.assignment.notification']
 
         for project in self:
-            for user_id in user_ids:
-                Notification.create({
-                    'user_id': user_id,
-                    'title': 'Project Assigned',
-                    'description': 'You have been added to %s project.' % project.name,
-                    'view_url': '/projects/details/%s' % project.id,
-                    'res_model': 'project.project',
-                    'res_id': project.id,
-                })
+            Notification.create_for_users(user_ids, {
+                'title': 'Project Assigned',
+                'description': 'You have been added to %s project.' % project.name,
+                'view_url': '/projects/details/%s' % project.id,
+                'res_model': 'project.project',
+                'res_id': project.id,
+            })
 
     def _create_status_change_notifications(self, user_ids):
-        Notification = self.env['xsellence.assignment.notification'].sudo()
+        Notification = self.env['xsellence.assignment.notification']
         status_labels = dict(self._fields['custom_status'].selection)
 
         for project in self:
             status_label = status_labels.get(project.custom_status, project.custom_status)
-            for user_id in user_ids:
-                # Reuse the same notification model so popup and sidebar both
-                # receive project status updates without any extra table.
-                Notification.create({
-                    'user_id': user_id,
-                    'title': 'Project Status Changed',
-                    'description': '%s project status changed to %s.' % (project.name, status_label),
+            # Reuse the same notification model so popup and sidebar both
+            # receive project status updates without any extra table.
+            Notification.create_for_users(user_ids, {
+                'title': 'Project Status Changed',
+                'description': '%s project status changed to %s.' % (project.name, status_label),
+                'view_url': '/projects/details/%s' % project.id,
+                'res_model': 'project.project',
+                'res_id': project.id,
+            })
+
+    def _create_member_change_notifications(self, added_user_ids=None, removed_user_ids=None):
+        Notification = self.env['xsellence.assignment.notification']
+        actor_name = self.env.user.name or 'A user'
+
+        for project in self:
+            if added_user_ids:
+                Notification.create_for_users(added_user_ids, {
+                    'title': 'Project Member Added',
+                    'description': '%s added you to %s project.' % (actor_name, project.name),
                     'view_url': '/projects/details/%s' % project.id,
                     'res_model': 'project.project',
                     'res_id': project.id,
                 })
+
+            if removed_user_ids:
+                Notification.create_for_users(removed_user_ids, {
+                    'title': 'Project Member Removed',
+                    'description': '%s removed you from %s project.' % (actor_name, project.name),
+                    'view_url': '/projects/details/%s' % project.id,
+                    'res_model': 'project.project',
+                    'res_id': project.id,
+                })
+
+    def _create_comment_notifications(self, comment_author_name, comment_text):
+        Notification = self.env['xsellence.assignment.notification']
+
+        for project in self:
+            recipient_ids = set(project.assigned_user_ids.ids + project.user_id.ids)
+            if self.env.user.id:
+                recipient_ids.discard(self.env.user.id)
+
+            if not recipient_ids:
+                continue
+
+            comment_preview = (comment_text or '').strip().replace('\n', ' ')
+            if len(comment_preview) > 120:
+                comment_preview = comment_preview[:117] + '...'
+
+            Notification.create_for_users(recipient_ids, {
+                'title': 'Project Comment Added',
+                'description': '%s commented on %s project: %s' % (comment_author_name, project.name, comment_preview),
+                'view_url': '/projects/details/%s' % project.id,
+                'res_model': 'project.project',
+                'res_id': project.id,
+            })
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -145,9 +187,14 @@ class ProjectProject(models.Model):
             for project in self:
                 new_user_ids = set(project.assigned_user_ids.ids + project.user_id.ids)
                 added_user_ids = new_user_ids - old_user_map.get(project.id, set())
+                removed_user_ids = old_user_map.get(project.id, set()) - new_user_ids
 
                 if added_user_ids:
                     project._create_assignment_notifications(added_user_ids)
+                    project._create_member_change_notifications(added_user_ids=added_user_ids)
+
+                if removed_user_ids:
+                    project._create_member_change_notifications(removed_user_ids=removed_user_ids)
 
         if 'custom_status' in vals:
             for project in self:
