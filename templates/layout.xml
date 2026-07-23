@@ -335,7 +335,7 @@
                             <ul class="p-2 flex-column gap-1">
                                 <!-- Setting -->
                                 <li>
-                                    <a href="setting.html" class="menu-item">
+                                    <a href="/dashboard" class="menu-item">
                                         <div class="icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                                  viewBox="0 0 24 24"
