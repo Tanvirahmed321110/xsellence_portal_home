@@ -10,10 +10,10 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <!-- Ts Control Library CDN -->
                 <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet"/>
-                <link rel="stylesheet" href="/xsellence_portal/static/src/css/custom_class.css?v=4"/>
-                <link rel="stylesheet" href="/xsellence_portal/static/src/css/my_component.css?v=8"/>
-                <link rel="stylesheet" href="/xsellence_portal/static/src/css/global.css?v=35"/>
-                <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages.css?v=27"/>
+                <link rel="stylesheet" href="/xsellence_portal/static/src/css/custom_class.css?v=5"/>
+                <link rel="stylesheet" href="/xsellence_portal/static/src/css/my_component.css?v=9"/>
+                <link rel="stylesheet" href="/xsellence_portal/static/src/css/global.css?v=36"/>
+                <link rel="stylesheet" href="/xsellence_portal/static/src/css/pages.css?v=28"/>
                 <t t-raw="header"/>
             </head>
 
@@ -586,7 +586,7 @@
 
 
                 <!--    Javascript Links Here     -->
-                <script src="/xsellence_portal/static/src/js/main.js?v=10"></script>
+                <script src="/xsellence_portal/static/src/js/main.js?v=11"></script>
                 <script>
                     if (localStorage.getItem('sidebarCollapsed') === 'true') {
                     document.documentElement.classList.add('sidebar-collapsed');
