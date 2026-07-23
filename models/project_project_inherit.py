@@ -97,6 +97,24 @@ class ProjectProject(models.Model):
                     'res_id': project.id,
                 })
 
+    def _create_status_change_notifications(self, user_ids):
+        Notification = self.env['xsellence.assignment.notification'].sudo()
+        status_labels = dict(self._fields['custom_status'].selection)
+
+        for project in self:
+            status_label = status_labels.get(project.custom_status, project.custom_status)
+            for user_id in user_ids:
+                # Reuse the same notification model so popup and sidebar both
+                # receive project status updates without any extra table.
+                Notification.create({
+                    'user_id': user_id,
+                    'title': 'Project Status Changed',
+                    'description': '%s project status changed to %s.' % (project.name, status_label),
+                    'view_url': '/projects/details/%s' % project.id,
+                    'res_model': 'project.project',
+                    'res_id': project.id,
+                })
+
     @api.model_create_multi
     def create(self, vals_list):
         projects = super().create(vals_list)
@@ -116,6 +134,10 @@ class ProjectProject(models.Model):
             project.id: set(project.assigned_user_ids.ids + project.user_id.ids)
             for project in self
         }
+        old_status_map = {
+            project.id: project.custom_status
+            for project in self
+        }
 
         result = super().write(vals)
 
@@ -126,5 +148,12 @@ class ProjectProject(models.Model):
 
                 if added_user_ids:
                     project._create_assignment_notifications(added_user_ids)
+
+        if 'custom_status' in vals:
+            for project in self:
+                if project.custom_status != old_status_map.get(project.id):
+                    recipient_ids = set(project.assigned_user_ids.ids + project.user_id.ids)
+                    if recipient_ids:
+                        project._create_status_change_notifications(recipient_ids)
 
         return result

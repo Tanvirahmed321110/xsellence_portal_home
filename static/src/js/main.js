@@ -3,27 +3,30 @@
 const notificationSidebar = document.getElementById('notification-sidebar');
 
 if (notificationSidebar) {
-
     const overlay = document.getElementById('overlay');
+    const notificationButton = document.getElementById('notification-btn');
+    const closeButton = document.getElementById('close3');
 
-    // open button
-    document.getElementById('notification-btn').onclick = () => {
-        notificationSidebar.classList.add('open');
-        overlay.classList.add('show');
-        console.log('click')
-    }
-
-    // close button
-    document.getElementById('close3').onclick = close;
-    overlay.onclick = close;
-
-    function close() {
+    // Keep sidebar open/close behavior simple and reusable.
+    function closeNotificationSidebar() {
         notificationSidebar.classList.remove('open');
         overlay.classList.remove('show');
     }
-}
-else {
-    console.log('notificationSidebar not found')
+
+    if (notificationButton) {
+        notificationButton.onclick = function () {
+            notificationSidebar.classList.add('open');
+            overlay.classList.add('show');
+        };
+    }
+
+    if (closeButton) {
+        closeButton.onclick = closeNotificationSidebar;
+    }
+
+    if (overlay) {
+        overlay.onclick = closeNotificationSidebar;
+    }
 }
 
 //============== For Delete Confirmation
@@ -393,13 +396,18 @@ openSidebarDesktop();
 });
 
 
-// XSELLENCE ADD START: static assignment notification popup
+// XSELLENCE ADD START: dynamic assignment/status notification popup + sidebar
 (function () {
     const stack = document.getElementById('assignment-notification-stack');
+    const sidebarBody = document.getElementById('notification-sidebar-body');
+    const badge = document.getElementById('notification-badge');
+    const blink = document.getElementById('notification-header-blink');
 
-    if (!stack) {
+    if (!stack || !sidebarBody || !badge || !blink) {
         return;
     }
+
+    const seenPopupIds = new Set();
 
     function playNotificationSound() {
         const sound = document.getElementById('success-sound') || document.getElementById('click-sound');
@@ -431,8 +439,83 @@ openSidebarDesktop();
         }).then(function (response) {
             return response.json();
         }).then(function (data) {
-            return data.result;
+            return data.result || {};
         });
+    }
+
+    function formatRelativeTime(dateValue) {
+        if (!dateValue) {
+            return 'JUST NOW';
+        }
+
+        const createdAt = new Date(dateValue);
+        if (Number.isNaN(createdAt.getTime())) {
+            return 'JUST NOW';
+        }
+
+        const diffSeconds = Math.max(0, Math.floor((Date.now() - createdAt.getTime()) / 1000));
+        if (diffSeconds < 60) {
+            return 'JUST NOW';
+        }
+
+        const diffMinutes = Math.floor(diffSeconds / 60);
+        if (diffMinutes < 60) {
+            return diffMinutes + ' MIN AGO';
+        }
+
+        const diffHours = Math.floor(diffMinutes / 60);
+        if (diffHours < 24) {
+            return diffHours + ' HR AGO';
+        }
+
+        const diffDays = Math.floor(diffHours / 24);
+        return diffDays + ' DAY AGO';
+    }
+
+    function getNotificationIcon(notification) {
+        const title = (notification.title || '').toLowerCase();
+        const model = notification.res_model || '';
+
+        if (model === 'project.project' || title.indexOf('project') !== -1) {
+            return '&#128193;';
+        }
+
+        if (model === 'project.task' || title.indexOf('task') !== -1) {
+            return '&#128451;&#65039;';
+        }
+
+        return '&#128276;';
+    }
+
+    function formatSidebarDescription(notification) {
+        const description = notification.desc || notification.title || 'New notification';
+        let match = null;
+
+        if (notification.res_model === 'project.project') {
+            match = description.match(/^You have been added to (.+) project\.$/);
+            if (match) {
+                return 'You have been added to <span class="s3-name">' + match[1] + '</span> project.';
+            }
+
+            match = description.match(/^(.+) project status changed to (.+)\.$/);
+            if (match) {
+                return '<span class="s3-name">' + match[1] + '</span> project status changed to ' + match[2] + '.';
+            }
+        }
+
+        if (notification.res_model === 'project.task') {
+            match = description.match(/^You have been added to (.+) task\.$/);
+            if (match) {
+                return 'You have been added to <span class="s3-name">' + match[1] + '</span> task.';
+            }
+
+            match = description.match(/^(.+) task status changed to (.+)\.$/);
+            if (match) {
+                return '<span class="s3-name">' + match[1] + '</span> task status changed to ' + match[2] + '.';
+            }
+        }
+
+        return description;
     }
 
     function buildPopup(notification) {
@@ -450,7 +533,7 @@ openSidebarDesktop();
 
         content.className = 'assignment-notification-content';
         title.textContent = notification.title || 'New Assignment';
-        desc.textContent = notification.desc || 'You have been added to a project or task.';
+        desc.textContent = notification.desc || 'You have a new notification.';
 
         actions.className = 'assignment-notification-actions';
 
@@ -472,6 +555,62 @@ openSidebarDesktop();
         return popup;
     }
 
+    function buildSidebarItem(notification) {
+        const item = document.createElement('a');
+        const icon = document.createElement('div');
+        const textWrap = document.createElement('div');
+        const desc = document.createElement('p');
+        const time = document.createElement('small');
+
+        item.href = notification.view_url || '/dashboard';
+        item.className = notification.is_read ? 's3-item' : 's3-item new';
+        item.dataset.notificationId = notification.id;
+        item.dataset.viewUrl = notification.view_url || '/dashboard';
+
+        icon.className = 's3-icon';
+        icon.innerHTML = getNotificationIcon(notification);
+
+        textWrap.className = 's3-text';
+        desc.innerHTML = formatSidebarDescription(notification);
+        time.textContent = formatRelativeTime(notification.create_date);
+
+        textWrap.appendChild(desc);
+        textWrap.appendChild(time);
+        item.appendChild(icon);
+        item.appendChild(textWrap);
+
+        return item;
+    }
+
+    function renderEmptyState() {
+        sidebarBody.innerHTML = '';
+
+        const empty = document.createElement('div');
+        const emptyIcon = document.createElement('div');
+        const emptyTitle = document.createElement('p');
+        const emptyText = document.createElement('small');
+
+        empty.className = 's3-empty';
+        empty.id = 'notification-empty-state';
+        emptyIcon.className = 's3-empty-icon';
+        emptyIcon.textContent = 'ðŸ””';
+        emptyTitle.textContent = 'No notifications yet';
+        emptyText.textContent = "You're all caught up!";
+
+        empty.appendChild(emptyIcon);
+        empty.appendChild(emptyTitle);
+        empty.appendChild(emptyText);
+        sidebarBody.appendChild(empty);
+    }
+
+    function updateUnreadState(unreadCount) {
+        const safeUnreadCount = Math.max(0, Number(unreadCount) || 0);
+
+        badge.textContent = String(safeUnreadCount);
+        badge.style.display = 'inline-flex';
+        blink.style.display = safeUnreadCount ? 'inline-block' : 'none';
+    }
+
     function showPopup(popup) {
         if (!popup) {
             return;
@@ -490,36 +629,69 @@ openSidebarDesktop();
         popup.classList.add('is-hidden');
     }
 
-    function markRead(popup) {
-        if (!popup || !popup.dataset.notificationId) {
+    function markNotificationRead(notificationId) {
+        if (!notificationId) {
             return Promise.resolve();
         }
 
         return callJsonRoute('/assignment/notifications/read', {
-            notification_id: popup.dataset.notificationId,
+            notification_id: notificationId,
         }).catch(function () {});
     }
 
-    function loadNotifications() {
-        callJsonRoute('/assignment/notifications').then(function (notifications) {
-            let newPopupCount = 0;
+    function applyReadState(notificationId) {
+        const sidebarItem = sidebarBody.querySelector('[data-notification-id="' + notificationId + '"]');
 
-            (notifications || []).forEach(function (notification) {
-                if (stack.querySelector('[data-notification-id="' + notification.id + '"]')) {
-                    return;
-                }
+        if (sidebarItem) {
+            sidebarItem.classList.remove('new');
+        }
 
-                const popup = buildPopup(notification);
-                stack.appendChild(popup);
-                requestAnimationFrame(function () {
-                    showPopup(popup);
-                });
-                newPopupCount += 1;
-            });
+        const currentUnreadCount = Math.max(0, Number(badge.textContent) || 0);
+        updateUnreadState(currentUnreadCount - 1);
+    }
 
-            if (newPopupCount) {
-                playNotificationSound();
+    function renderSidebar(notifications) {
+        sidebarBody.innerHTML = '';
+
+        if (!notifications.length) {
+            renderEmptyState();
+            return;
+        }
+
+        notifications.forEach(function (notification) {
+            sidebarBody.appendChild(buildSidebarItem(notification));
+        });
+    }
+
+    function syncPopups(notifications) {
+        let newPopupCount = 0;
+
+        notifications.forEach(function (notification) {
+            if (notification.is_read || seenPopupIds.has(notification.id)) {
+                return;
             }
+
+            const popup = buildPopup(notification);
+            stack.appendChild(popup);
+            seenPopupIds.add(notification.id);
+            requestAnimationFrame(function () {
+                showPopup(popup);
+            });
+            newPopupCount += 1;
+        });
+
+        if (newPopupCount) {
+            playNotificationSound();
+        }
+    }
+
+    function loadNotifications() {
+        callJsonRoute('/assignment/notifications').then(function (result) {
+            const notifications = Array.isArray(result.notifications) ? result.notifications : [];
+
+            renderSidebar(notifications);
+            updateUnreadState(result.unread_count || 0);
+            syncPopups(notifications);
         }).catch(function () {});
     }
 
@@ -530,25 +702,44 @@ openSidebarDesktop();
         if (closeBtn) {
             const popup = closeBtn.closest('.assignment-notification-popup');
             hidePopup(popup);
-            markRead(popup);
             return;
         }
 
         if (viewBtn) {
             const popup = viewBtn.closest('.assignment-notification-popup');
+            const notificationId = popup ? popup.dataset.notificationId : null;
             const viewUrl = popup ? popup.dataset.viewUrl : '/dashboard';
 
             hidePopup(popup);
-            markRead(popup).finally(function () {
+            markNotificationRead(notificationId).finally(function () {
+                applyReadState(notificationId);
                 window.location.href = viewUrl || '/dashboard';
             });
         }
     });
 
+    sidebarBody.addEventListener('click', function (event) {
+        const notificationItem = event.target.closest('.s3-item');
+
+        if (!notificationItem) {
+            return;
+        }
+
+        event.preventDefault();
+
+        const notificationId = notificationItem.dataset.notificationId;
+        const viewUrl = notificationItem.dataset.viewUrl || notificationItem.getAttribute('href') || '/dashboard';
+
+        markNotificationRead(notificationId).finally(function () {
+            applyReadState(notificationId);
+            window.location.href = viewUrl;
+        });
+    });
+
     loadNotifications();
     window.setInterval(loadNotifications, 30000);
 })();
-// XSELLENCE ADD END: static assignment notification popup
+// XSELLENCE ADD END: dynamic assignment/status notification popup + sidebar
 
 
 
