@@ -467,7 +467,12 @@ openSidebarDesktop();
             return 'JUST NOW';
         }
 
-        const createdAt = new Date(dateValue);
+        // Odoo returns naive UTC datetimes, so force UTC parsing before
+        // comparing with the browser's local time (Bangladesh timezone here).
+        const normalizedDateValue = /z$|[+-]\d{2}:\d{2}$/i.test(dateValue)
+            ? dateValue
+            : dateValue.replace(' ', 'T') + 'Z';
+        const createdAt = new Date(normalizedDateValue);
         if (Number.isNaN(createdAt.getTime())) {
             return 'JUST NOW';
         }
@@ -567,6 +572,16 @@ openSidebarDesktop();
         return description;
     }
 
+    function formatPopupDescription(notification) {
+        return formatSidebarDescription(notification).replaceAll(
+            '<span class="s3-name">',
+            '<strong>'
+        ).replaceAll(
+            '</span>',
+            '</strong>'
+        );
+    }
+
     function buildPopup(notification) {
         const popup = document.createElement('div');
         const content = document.createElement('div');
@@ -582,7 +597,7 @@ openSidebarDesktop();
 
         content.className = 'assignment-notification-content';
         title.textContent = notification.title || 'New Assignment';
-        desc.textContent = notification.desc || 'You have a new notification.';
+        desc.innerHTML = formatPopupDescription(notification);
 
         actions.className = 'assignment-notification-actions';
 

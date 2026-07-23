@@ -3365,10 +3365,35 @@ aside .sidebar-bottom {
 
 /*===================|| For Mobile Responsive ||====================*/
 @media (max-width:767px) {
+     .proj-card .sts {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius-pill);
+        color: var(--color-white);
+        font-size: var(--fs-low);
+        font-weight: 600;
+        text-transform: capitalize;
+        white-space: nowrap;
+        position: absolute;
+        right: 0;
+        top:-8px;
+        line-height: 2;
+        padding: 0 8px;
 
+    }
 
     .main-content::-webkit-scrollbar {
         width: 4px;
+    }
+    .proj-card .deadline-wrap{
+        display: none;
+    }
+     .proj-card .action-btns {
+         width: 100%;
+     }
+    .proj-card .action-btns .action-btn{
+        flex: 1;
     }
 
 
@@ -3656,4 +3681,18 @@ aside .sidebar-bottom {
         text-align: center;
         min-width: 290px;
     }
+}
+
+@media (max-width: 480px){
+    .proj-card .card-body {
+    padding: 8px;
+    gap: 10px;
+}.proj-card .card-info-grid {
+    gap: 6px;
+    margin-top: 0;
+}
+ .proj-card .card-footer {
+    padding: 10px;
+    margin-top: 4px;
+}
 }
